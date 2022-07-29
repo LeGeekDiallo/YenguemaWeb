@@ -1,0 +1,13 @@
+<div class="__card">
+    <div class="__ad_image">
+        <img src="{{ asset('images/ad_image/'~ad.getAdPhotos()[0].getImageName()) }}" alt="image one">
+        <p class="__myPolice">{{ ad.getAdPhotos() | length }} <i class="far fa-images"></i></p>
+    </div>
+    <div class="card_body">
+        <h5 class="__headLine">{{ ad.getAdTitle() }}</h5>
+        <span class="__myPolice text-muted"><i class="fas fa-map-marker"></i> {{ ad.getCity() }}</span><br>
+        <a href="{{ path('ad_details', { slug: ad.getSlug(), id: ad.getId() }) }}" class="__myPolice" style="color: #0D47A1;"><i class="far fa-eye"></i> voire l'annonce</a>
+        <p class="__myPolice p-2" style="text-align: end;">{{ ad.adPrice | number_format(0, ' ', ' ') }} FG</p>
+    </div>
+</div>
+

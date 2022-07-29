@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ teacher.course }}-{{ teacher.user.username }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__teacher_container">
+            <div class="__teacher_profile">
+                <div class="__profile_block">
+                    <div class="__profile_info_block">
+                        <div class="__profile_photo">
+                            {% if not teacher.user.userAvatar %}
+                                <img src="{{ asset('images/avatar_def.png') }}" alt="avatar default">
+                            {% else %}
+                                <img src="{{ asset('images/users_avatar/'~teacher.user.userAvatar.imageName) }}" alt="avatar default">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="__profile_infos">
+                        <h3 class="__myPolice">{{ teacher.user.username }}</h3>
+                        <h5 class="__myPolice">{{ teacher.age }} ans</h5>
+                        <h5 class="__myPolice">{{ teacher.profile }}</h5>
+                        <h5 class="__myPolice">{{ teacher.yearsOfExperience }} ans d'expérience</h5>
+                        <div class="__contact_">
+                            <a href="tel:{{ teacher.user.phoneNumber }}" class="__myPolice" style="color: white;">
+                                <i class="fas fa-mobile"></i> Contactez</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="__course_details_block">
+                    <h3 class="__myTitle">{{ teacher.title }}</h3>
+                    <div class="__course_details">
+                        <h5 class="__myPolice"><span class="text-muted" style="font-size: 15px;">Niveau : </span>{{ teacher.public }}</h5>
+                        <h5 class="__myPolice">
+                            <span class="text-muted" style="font-size: 15px;">Cours de  : </span>{{ teacher.course }}
+                            <span class="text-muted" style="font-size: 15px;">à (en) </span> {{ teacher.classType }}</h5>
+                        <h5 class="__myPolice">Pour <span style="color:#eb2d07;">{{ teacher.price | number_format(0, ' ', ' ') }}</span> <span style="font-size: 15px;">FG / {{ teacher.billingType }}</span> </h5>
+                    </div>
+                    <div class="__location">
+                        <h4 class="__myPolice">A {{ teacher.city }} <span style="font-size: 15px;" class="text-muted">dans la commune de </span> {{ teacher.municipality }}</h4>
+                    </div>
+                    <h4 class="__myPolice">Diplôme(s)</h4>
+                    <p class="__myPolice">{{ teacher.teacherDiploma|raw }}</p>
+                    <h4 class="__myPolice">Parcours</h4>
+                    <p class="__myPolice">{{ teacher.teacherBackground|raw }}</p>
+                    <h4 class="__myPolice">Méthodologie d'enseignement</h4>
+                    <p class="__myPolice">{{ teacher.teachingMethodology|raw }}</p>
+                    <h4 class="__myPolice">Autre détails</h4>
+                    <p class="__myPolice">{{ teacher.someDetails | raw }}</p>
+                </div>
+                <h4 class="__myPolice">Pour plus d'informations me contacter</h4>
+                <p class="__myPolice teacher_contact">+224 {{ teacher.user.phoneNumber }}</p>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

@@ -1,0 +1,16 @@
+<div class="__card">
+    <div class="__ad_image">
+        <img src="{{ asset('images/svg_img/teacher.svg') }}" style="height: 100%;" class="card-img-top" alt="ad image">
+    </div>
+    <div class="card_body">
+        <h5 class="__myPolice">{{ course.course }}</h5>
+        <div class="__activity_edit_btn_box" style="display: flex;">
+            <a class="btn btn-sm btn-info __myPolice" href="{{ path("course_ad_edit", { slug: course.getSlug(), id: course.id }) }}"><i class="fas fas fa-edit"></i></a>
+            <form method="post" action="{{ path('course_ad_delete', { id: course.id }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete'~course.id) }}">
+                <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>

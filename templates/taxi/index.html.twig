@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Taxi ville{% endblock %}
+
+{% block body %}
+    <main class="__main_page" >
+        <div class="activity_main_page">
+            <div class="__text_block">
+                <div class="__content">
+                    <h2 class="__myPolice">Déplacez-vous dans votre ville <br> comme vous le sentez <br> et quand vous le voulez.</h2>
+                    <p>Besoin d'un deplacement ? <br>
+                        N'attendez plus au bord de la route, appeler un taxi à n'importe quel moment <br>
+                        et où vous êtes.
+                    </p>
+                    <hr class="__line">
+                    <div class="__taxi_search">
+                        <h3 class="__myPolice">Rechercher un Taxi</h3>
+                        {{ form_start(form_search, {'attr':{'class': '__form_search-2-index', 'action':path('taxi')}}) }}
+                        <div class="__row-1">
+                            {{ form_widget(form_search.location, { 'attr':{'list':'locations', 'autocomplete':'off'} }) }}
+                            <datalist id="locations">
+                                <option value="Conakry"></option>
+                                <option value="Boké"></option>
+                                <option value="Faranah"></option>
+                                <option value="Guékedou"></option>
+                                <option value="KanKan"></option>
+                                <option value="Kindia"></option>
+                                <option value="Labé"></option>
+                                <option value="Mamou"></option>
+                                <option value="Beyla"></option>
+                                <option value="Bofa"></option>
+                                <option value="Dalaba"></option>
+                                <option value="Dabola"></option>
+                                <option value="Dinguiraye"></option>
+                                <option value="Dixin"></option>
+                                <option value="Forécariah"></option>
+                                <option value="Gaoual"></option>
+                                <option value="Guéckédou"></option>
+                                <option value="Kaloum"></option>
+                                <option value="Kéouané"></option>
+                                <option value="Koubia"></option>
+                                <option value="Koundara"></option>
+                                <option value="Kouroussa"></option>
+                                <option value="Kissidougou"></option>
+                                <option value="Lola"></option>
+                                <option value="Macenta"></option>
+                                <option value="Mali"></option>
+                                <option value="Mandiana"></option>
+                                <option value="Matam"></option>
+                                <option value="Matoto"></option>
+                                <option value="Pita"></option>
+                                <option value="Ratoma"></option>
+                                <option value="Siguiri"></option>
+                                <option value="Télimélé"></option>
+                                <option value="Tougué"></option>
+                                <option value="Youmou"></option>
+                                <option value="N'Zérékoré"></option>
+                            </datalist>
+                        </div>
+                        <div class="__row-1">
+                            <button id="validate_btn_search_index" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                        {{ form_end(form_search) }}
+                    </div>
+                </div>
+            </div>
+            <div class="__poster_svg">
+                <img src="{{ asset('images/svg_img/taxi_call.svg') }}" alt="svg image">
+            </div>
+        </div>
+        <main class="__container">
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Recherche plus rapide par ville
+                </h2>
+            </div>
+            <div class="__first_city">
+                <div class=" __city_first">
+                    <div class="__city_name">
+                        <a class="__myTitle" style="color: #0d41a1;" href="{{ path('taxi_driver_filter', { filter: "Conakry", column:"city" }) }}"><i class="fas fa-building"></i> Conakry</a>
+                    </div>
+                </div>
+            </div>
+            <div class="__ads_by_cities_block">
+                <div class="__ads_by_cities">
+                    <div class="__ads_by_cities_column __city_one">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Boké", column:"city" }) }}"><i class="fas fa-building"></i> Boké</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_two">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Faranah", column:"city" }) }}"><i class="fas fa-building"></i> Faranah</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_three">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "KanKan", column:"city" }) }}"><i class="fas fa-building"></i> KanKan</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_four">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Kindia", column:"city" }) }}"><i class="fas fa-building"></i> Kindia</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_five">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Guekédou", column:"city" }) }}"><i class="fas fa-building"></i> Guekedou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_six">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Labé", column:"city" }) }}"><i class="fas fa-building"></i> Labé</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_seven">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "Mamou", column:"city" }) }}"><i class="fas fa-building"></i> Mamou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_eight">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('taxi_driver_filter', { filter: "N'Zerekoré", column:"city" }) }}"><i class="fas fa-building"></i>N'Zérékoré</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Recherche par commune
+                </h2>
+            </div>
+            <div class="presentation">
+                <div class="communes">
+                    <div class="commune_list">
+                        <ul class="commune_column">
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Beyla", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Beyla</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Bofa", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Bofa</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Dalaba", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dalaba</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Dabola", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dabola</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Dinguiraye", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dinguiraye</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Dixin", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dixin</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Forécariah", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Forécariah</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Gaoual", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Gaoual</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Guéckédou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Guéckédou</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Kaloum", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kaloum</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Kéouané", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kéouané</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Koubia", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Koubia</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Koundara", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Koundara</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Kouroussa", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kouroussa</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Kissidougou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kissidougou</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Lola", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Lola</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Macenta", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Macenta</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Mali", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Mali</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Mandiana", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Mandiana</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Matam", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Matam   </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Matoto", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Matoto  </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Pita", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Pita    </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Ratoma", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Ratoma  </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Siguiri", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Siguiri </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Télimélé", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Télimélé</a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Tougué", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Tougué  </a></li>
+                            <li><a href="{{ path('taxi_driver_filter', { filter: "Youmou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Youmou  </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <main class="__login_container">
+            <div id="logFormBox">
+                <div class="__log_svg">
+                    <img src="{{ asset('images/svg_img/login_svg.svg') }}" alt="image png">
+                </div>
+                {% for message in app.flashes('notification') %}
+                    <div class="alert-success __alert-success p-3" style="display: flex;">
+                        <p>{{ message }} <i class="far fa-surprise"></i></p>
+                    </div>
+                {% endfor %}
+                <form method="post" class="text-center" style="color: #757575;" id="formLog">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                    <div class="regUsrRow mb-3">
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="regUsrRow">
+                        <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" class="form-control" required>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ path('password_update') }}" class="__label">Mot de passe oublié?</a>
+                    </div>
+                    <div class="regUsrRow d-flex justify-content-start"><span class="text-danger" id="alert"></span></div>
+                    <div class="regUsrRow">
+                        <button id="checkLog" class="validate_btn btn btn-block" type="submit">Connexion</button>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
+                </form>
+            </div>
+            <hr>
+            <div class="__social_login">
+                <a href="{{ path('connect_facebook_start') }}" class="btn text-white btn-block mb-2" style="background-color: #3B5998">
+                    <i class="fab fa-facebook-f"></i>  Connexion avec Facebook
+                </a>
+                <a href="{{ path('connect_google_start') }}" class="btn text-white btn-block" style="background-color: #dd4b39">
+                    <i class="fab fa-google"></i>  Connexion avec Google+
+                </a>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

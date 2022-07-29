@@ -1,0 +1,21 @@
+<div class="__card">
+    <div class="__park_auto_image">
+        <img src="{{ asset('companies_logo/'~car.getCarImages[random(0, car.getCarImages|length-1)].getFilename()) }}" alt="logo image">
+    </div>
+    <div class="park_auto_card_body">
+        <div class="__car_mark_price_block">
+            <h5 class="__myPolice">
+                <a href="{{ path('car_details', { id: car.id, csrf: csrf_token('car_details'~car.getSlug()) }) }}" style="color: #0d41a1;">
+                    {{ car.carBrand }}
+                </a>
+            </h5>
+            <h4 class="__myPolice" style="color: #0d41a1; text-align: end;">{{ car.carPrice | number_format(0, ' ', ' ')}} FG</h4>
+        </div>
+        <h6 class="__myPolice text-muted"> {{ car.carModel }} </h6>
+        <span style="font-family: 'UTMCaviar'">{{ car.carYear }}</span><span class="__myPolice" style="font-size: 24px;">.</span>
+        <span>{{ car.fuel }}</span><span class="__myPolice" style="font-size: 24px;">.</span>
+        <span>{{ car.mileage|number_format(0, ' ', ' ') }} km</span><span class="__myPolice" style="font-size: 24px;">.</span>
+        <span>{{ car.transmissionType }}</span>
+    </div>
+</div>
+

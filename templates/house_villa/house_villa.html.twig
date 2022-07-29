@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ house.adTitle }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div id="items" class="__details_property_images_box" data-nb_img="{{ house.houseVillaImages | length }}">
+                    {% for img in house.houseVillaImages %}
+                        <div class="__prop_img_item">
+                            <img src="{{ asset('companies_logo/'~img.getFilename()) }}" alt="">
+                        </div>
+                    {% endfor %}
+                    <a class="__left" id="__left">&#10094;</a>
+                    <a class="__right" id="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in house.houseVillaImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__prop_details_body">
+                    <h5 class="__myPolice">{{ house.adTitle }}</h5>
+                    <p>
+                        {{ house.propertySurface }} <span class="badge badge-danger">m²</span>
+                        {{ house.roomNumber }} <i class="fas fa-bed"></i>
+                        {{ house.bathroomNumber }} <i class="fas fa-bath"></i>
+                        {{ house.wcNumber }} <i class="fas fa-toilet"></i>
+                        {{ house.floorNumber }} <i class="fas fa-building"></i> étages
+                        {% if house.propositionType == 'A louer' %}
+                            <span class="badge badge-danger">En location</span>
+                        {% else %}
+                            <span class="badge badge-danger">En Vente</span>
+                        {% endif %}
+                    </p>
+                    <p>
+                        Jardin(cour) <span class="badge badge-danger">
+                            {% if house.courtyard %} Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </span>
+                        Cour fermée <span class="badge badge-danger">
+                            {% if house.fenced %} Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </span>
+                        Année : <span class="badge badge-danger">{{ house.buildYear }}</span>
+                    </p>
+                    <p>{{ house.city }}|{{ house.municipality }}|{{ house.district }}</p>
+                    <p style="text-align: end">{{ house.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="__prop_price">{{ house.price | format_number }} FG {% if house.propositionType == 'A louer' %}/mois {% endif %}</div>
+                        <div class="__prop_price"><a href="tel:{{ house.phoneNumber }}" class="text-white"><i class="fas fa-phone-square"></i>Contacter</a></div>
+                    </div>
+                    <p>Meublé <span class="badge badge-danger">
+                        {% if house.furniture %} Oui {% else %} Non {% endif %}
+                    </span></p>
+                    <h6 class="__myPolice">Plus sur l'adresse...</h6>
+                    <p>{{ house.moreInfosAddress | raw }}</p>
+                    {% if house.equipements %}
+                        <h6 class="__myPolice">Equipements de la {{ house.propertyType }}</h6>
+                        <p>{{ house.equipements|raw }}</p>
+                    {% endif %}
+                    {% if house.otherInfos %}
+                        <h6 class="__myPolice">Autres informations</h6>
+                        <p>{{ house.otherInfos|raw }}</p>
+                    {% endif %}
+                    <hr>
+                    <h6 class="__myPolice">Annonceur</h6>
+                    <div class="__prop_owner_avatar">
+                        <img src="{% if house.user.useravatar %}
+                            {{ asset('images/users_avatar/'~house.user.useravatar.imageName) }}
+                        {% else %}
+                            {{ asset('images/avatar_def.png') }}
+                      {% endif %}"
+                             alt="">
+                        <p>{{ house.user.username }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('property_slide_images') }}
+    {% endblock %}
+{% endblock %}
+
+

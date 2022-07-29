@@ -1,0 +1,14 @@
+<div class="__card">
+    <div class="__park_auto_image">
+        {% if park_auto.filename %}
+            <img src="{{ asset('companies_logo/'~park_auto.filename) }}" alt="logo image">
+        {% else %}
+            <img src="{{ asset('images/svg_img/park_auto_default.svg') }}"  alt="logo image">
+        {% endif %}
+    </div>
+    <div class="park_auto_card_body">
+        <h5 class="__myPolice"><a href="{{ path('park_auto_page', { id: park_auto.id}) }}">{{ park_auto.parkName }}</a> </h5>
+        <span class="__myPolice text-muted"><i class="fas fa-map-marker"></i> {{ park_auto.city }} <span style="font-size: 22px; font-family: Ubuntu; color: #0d41a1">.</span> {{ park_auto.municipality }}</span><br>
+    </div>
+</div>
+

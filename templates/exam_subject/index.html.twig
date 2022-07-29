@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujets d'examen{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <div class="__container_book">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'class': '__form-1', 'action': path('exam_subject')}}) }}
+                <div class="__form-1_column">{{ form_widget(form_search.course_name) }}</div>
+                <div class="__form-1_Btn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr class="__line">
+            {% for message in app.flashes('notification') %}
+                <div class="alert-success __alert-success p-3" style="display: flex;">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            <div class="__ebook_cat">
+                <ul class="__list_group list-unstyled">
+                    <li class="__list_group_item"><a href="{{ path('exam_subject') }}" class="__myPolice"><i class="fas fa-home"></i></a></li>
+                    <li class="__list_group_item"><a href="{{ path('new_exam_subject') }}" class="__myPolice"><i class="fas fa-plus-square"></i> Ajoutez un sujet</a></li>
+                </ul>
+            </div>
+            <p style="text-align: center;"><em class="text-muted">
+                Cette plateforme est conçue pour la documentation permettant d'avoir accès aux anciens sujets d'examen. <br>
+                Et chacun est libre
+                d'ajouter des exercices au format pdf.
+            </em></p>
+            {% if pagination %}
+                <hr class="__line">
+                <p class="__myTitle">{{ pagination|length }} sujet(s) trouvé(s)</p>
+                <div class="__block">
+                    {% for exam_sub in pagination %}
+                        {% include 'exam_subject/__exam_subject_card.html.twig' with {'exam':exam_sub} %}
+                    {% endfor %}
+                </div>
+                <div class="__navigation">
+                    <hr class="__line">
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

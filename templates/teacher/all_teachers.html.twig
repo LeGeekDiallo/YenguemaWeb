@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les profs{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <div class="__container">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('all_teachers')}}) }}
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.course_name) }}
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.city) }}
+                    <datalist id="addressList"></datalist>
+                </div>
+                <div class="formAdsSearchColumnBtn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr class="__line">
+            <p class="__myTitle" style="text-align: center"><span class="badge badge-danger">{{ pagination|length }}</span> Profs trouvés</p>
+            <div class="__teachers_found">
+                {% for teacher in pagination %}
+                    {% include '/teacher/__teacher_card.html.twig' with {'teacher':teacher} %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

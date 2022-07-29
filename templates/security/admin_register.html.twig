@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin Registration{% endblock %}
+
+{% block body %}
+<main class="__main_page_activities">
+    <main class="__login_container">
+        <div id="form_ins">
+            <h5 class="__myPolice"><i class="fas fa-user-edit"></i> Inscription administrateur Yenguema</h5>
+            {{ form_start(register_form) }}
+            <div class="regUsrRow">
+                <div class="regUsrColumn">{{ form_widget(register_form.adminname) }}</div>
+                <div class="regUsrColumn">{{ form_widget(register_form.email) }}</div>
+            </div>
+            <div class="regUsrRow">
+                <div class="regUsrColumn">{{ form_widget(register_form.password) }}</div>
+                <div class="regUsrColumn">{{ form_widget(register_form.confirm_password) }}</div>
+            </div>
+            <div class="regUsrRow">{{ form_widget(register_form.phoneNumber) }}</div>
+            <div class="regUsrRow">
+                <button class="btn btn-block validate_btn mt-2" type="submit" id="validate_btn_user_register_form">M'inscrire</button>
+            </div>
+            {{ form_end(register_form) }}
+        </div>
+    </main>
+</main>
+{% endblock %}
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ ols.propertyType }}
+{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div id="items" class="__details_property_images_box" data-nb_img="{{ ols.officeShopLandImages | length }}">
+                    {% for img in ols.officeShopLandImages %}
+                        <div class="__prop_img_item">
+                            <img src="{{ asset('companies_logo/'~img.getFilename()) }}" alt="">
+                        </div>
+                    {% endfor %}
+                    <a class="__left" id="__left">&#10094;</a>
+                    <a class="__right" id="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in ols.officeShopLandImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__prop_details_body">
+                    <h5 class="__myPolice">{{ ols.adTitle }}</h5>
+                    <p>
+                        {{ ols.propertySurface }} <span class="badge badge-danger">m²</span>
+                        {% if ols.propositionType == 'A louer' %}
+                            <span class="badge badge-danger">En location</span>
+                        {% else %}
+                            <span class="badge badge-danger">En Vente</span>
+                        {% endif %}
+                    </p>
+                    <p>{{ ols.city }}|{{ ols.municipality }}|{{ ols.district }}</p>
+                    <p style="text-align: end">{{ ols.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="__prop_price">{{ ols.price | format_number }} FG {% if ols.propositionType == 'A louer' %}/mois {% endif %}</div>
+                        <div class="__prop_price"><a href="tel:{{ ols.phoneNumber }}" class="text-white"><i class="fas fa-phone-square"></i>Contacter</a></div>
+                    </div>
+                    <h6 class="__myPolice">Plus sur l'adresse...</h6>
+                    <p>{{ ols.moreInfosAddress | raw }}</p>
+                    {% if ols.moreInfos %}
+                        <h6 class="__myPolice">Autres informations</h6>
+                        <p>{{ ols.otherInfos|raw }}</p>
+                    {% endif %}
+                    <hr>
+                    <h6 class="__myPolice">Annonceur</h6>
+                    <div class="__prop_owner_avatar">
+                        <img src="{% if ols.user.useravatar %}
+                            {{ asset('images/users_avatar/'~ols.user.useravatar.imageName) }}
+                        {% else %}
+                            {{ asset('images/avatar_def.png') }}
+                      {% endif %}"
+                             alt="">
+                        <p>{{ ols.user.username }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('property_slide_images') }}
+    {% endblock %}
+{% endblock %}
+

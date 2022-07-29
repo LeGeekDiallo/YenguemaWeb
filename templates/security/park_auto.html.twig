@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mon park auto{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;">Vos park auto <span class="badge bg-danger">{{ results | length }}</span></h4>
+            <hr class="__line">
+            <div class="__new">
+                <a href="{{ path("new_park_auto", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-square"></i> Ajouter un park</a>
+            </div>
+            <div class="__item">
+                {% for park_auto in results %}
+                    {% include '/park_auto/__park_auto_profile_card.html.twig' with {'park_auto':park_auto}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

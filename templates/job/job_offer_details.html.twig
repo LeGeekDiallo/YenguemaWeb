@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ joboffer.jobTitle }}-{{ joboffer.contractType }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__job_details_container">
+            <div class="__job_details">
+                {% for message in app.flashes('notification') %}
+                    <div class="alert-success __alert-success p-3" style="display: flex;">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+                <div class="__company_infos">
+                    <div class="__company_logo">
+                        <div class="__profile_photo">
+                            {% if joboffer.filename %}
+                                <img src="{{ asset('companies_logo/'~joboffer.filename) }}" alt="logo image">
+                            {% else %}
+                                <img src="{{ asset('images/svg_img/job-search.svg') }}"  alt="logo image">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="__company_name">
+                        <h4 class="__myPolice">{{ joboffer.compagnyName }}</h4>
+                        <h5 class="__myPolice"><i class="fas fa-map-marker"></i> {{ joboffer.city }} | {{ joboffer.municipality }}</h5>
+                        <h5 class="__myPolice"></h5>
+                        <h5 class="__myPolice"><i class="fas fa-envelope"></i> {{ joboffer.email }}</h5>
+                        <div class="__contact_">
+                            <a href="tel:{{ joboffer.phoneNumber }}" class="__myPolice" style="color: white;">
+                                <i class="fas fa-mobile"></i> Contactez</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="__job_details_infos_block">
+                    <h4 class="__myPolice">Post à pourvoire : {{ joboffer.jobTitle }}</h4>
+                    <div class="__course_details">
+                        <p>Type de contrat : {{ joboffer.contractType }}</p>
+                        <p>
+                            <span class="text-muted" style="font-size: 15px;"></span>{{ joboffer.category }}
+                            <span class="text-muted" style="font-size: 15px;"></span> {{ joboffer.employerGender }}</p>
+                        <h5 class="__myPolice">Pour <span style="color:#eb2d07;">{{ joboffer.salaryEstimate | number_format(0, ' ', ' ') }}</span> <span style="font-size: 15px;">FG / mois </span></h5>
+                    </div>
+
+                    <h4 class="__myPolice">Profil recherché : </h4>
+                    <p>{{ joboffer.employerProfile|raw }}</p>
+                    <h4 class="__myPolice">Mission(s) : </h4>
+                    <p>{{ joboffer.employerMission|raw }}</p>
+                    <h4 class="__myPolice">Compétences requises : </h4>
+                    <p>{{ joboffer.requiredSkills|raw }}</p>
+                    <h4 class="__myPolice">Autre détails</h4>
+                    <p>{{ joboffer.otherDetails | raw }}</p>
+                </div>
+                {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path('new_application', { job: joboffer.id, user:app.user.id }) }}" class="btn rounded-sm text-white" style="background-color: #0d41a1">Postulez</a>
+                {% endif %}
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

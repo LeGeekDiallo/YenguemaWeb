@@ -1,0 +1,3786 @@
+/*Small devices (landscape phones, 576px and up)*/
+@media (max-width: 575px) {
+
+    .__how_it_work{
+        width: 100%;
+    }
+    .__feature{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__ads_container{
+        width: 100%;
+    }
+    .__prop_card_image{
+        height: 17rem;
+    }
+    .__application_form{
+        width: 100%;
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__company_name{
+        width: 20rem;
+    }
+    .__job_details_container{
+        width: 100%;
+    }
+    .__jobs_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__all_features h2{
+        font-size: 20px;
+    }
+    #validate_btn_act{
+        font-size: 15px;
+    }
+    .__form_search-2{
+        width: 100%;
+    }
+    .__taxi_search_container{
+        width: 100%;
+    }
+    .__login_container{
+        width: 100%;
+    }
+    .__real_estate_head_item h1{
+        font-size: 25px;
+    }
+    .__prop_card_body h5{
+        font-size: 15px;
+    }
+    .__prop_price{
+        width: 70%;
+        font-size: 12px;
+    }
+    .__recent_prop_bloc_active{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__recent_sale_prop_bloc_active{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .__real_estate_main_page{
+        height: 50rem;
+    }
+    .__real_estate_head{
+        top: 7rem;
+    }
+    .__properties{
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__real_estate_head_item{
+        width: 100%;
+    }
+    .__details_property_images_box, .__prop_details_body{
+        width: 100%;
+    }
+    .__details_property_images_box{
+        height: 32rem;
+    }
+
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 100%;
+        grid-gap: 2px;
+    }
+    .__rs_features_panel{
+        width: 100%;
+        height: 33rem;
+    }
+    .__res_features_list_box{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__rs_features_box{
+        display: block;
+        width: 100%;
+    }
+    .__add_step{
+        height: 13rem;
+    }
+    .__step img{
+        height: 7rem;
+        width: 100%;
+    }
+    .__arrow{
+        left: 10rem;
+    }
+    .__new{
+        width: 100%;
+    }
+    .__items{
+        width: 100%;
+    }
+    .__item{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__taxi_drivers_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .__row-4{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__ads{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__ride_details_container{
+        width: 100%;
+    }
+    .__rides_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__trip_search_container{
+        padding: 7px;
+        height: 24rem;
+    }
+    .__trips_page{
+        width: 100%;
+    }
+    .__btn_submit{
+        width: 100%;
+    }
+    .__container_car, .__car_details, .__car_images_block, .__car_images_block img{
+        width: 100%;
+    }
+    .__rides{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__car_owner_int{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_mark_price_block h5{
+        font-size: 15px;
+    }
+    .__list_images{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_details h3{
+        width: 100%;
+        text-align: start;
+    }
+    .__park_auto_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_mark_price_block{
+        grid-template-columns: none;
+    }
+    .__pka_cars{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__pka_owner_block{
+        display: flex;
+        flex-direction: column;
+    }
+    .__pka_page_head{
+        grid-template-columns: auto 60%;
+    }
+    .__list_group_v1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__block{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .__container_book, .__ebook_cat, .__form-1{
+        width: 100%;
+    }
+    .__list_group{
+        flex-direction: column;
+    }
+    .__list_group > :first-child{
+        border-radius: 5px;
+        width: 11%;
+        margin-bottom: 2px;
+    }
+    .__list_group > :last-child{
+        border-radius: 5px;
+    }
+    .__form-1_Btn button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .__contact_{
+        width: 60%;
+    }
+
+    .card_body h4{
+        font-size: 15px;
+    }
+    .__price h2{
+        font-size: 15px;
+    }
+    .__contact_block{
+        bottom: 28%;
+        padding: 5px;
+    }
+    .__teacher_image{
+        width: 100%;
+    }
+    .__teacher_image h3{
+        font-size: 15px;
+    }
+    .__teacher_container{
+        width: 100%;
+    }
+    .__teacher_profile{
+        width: 100%;
+    }
+    .__educ_cat{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px;
+        padding: 5px;
+    }
+    .__text_block,.__poster_svg{
+        height: 100%;
+    }
+    .__poster_svg img{
+        width: 100%;
+        height: 100%;
+    }
+    .__text_block{
+        justify-content: start;
+    }
+    .__content{
+        position: relative;
+        top: 18%;
+    }
+    .__content h1{
+        color: #0D47A1;
+        font-size: 30px;
+    }
+    .__content p{
+        text-align: center;
+    }
+
+    .activity_main_page{
+        padding: 5px;
+        height: 70rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        margin-top: 5rem;
+    }
+    .__title_block{
+        width: 100%;
+    }
+
+    .__details{
+        width: 100%;
+    }
+
+    .__details hr{
+        width: 100%;
+    }
+    .__images_block{
+        width: 100%;
+    }
+    .__dropdown_container{
+        overflow: auto;
+    }
+    .__blocks{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .__left_side, .__middle, .__right_side{
+        width: 100%;
+        padding: 5px;
+    }
+    .__user_avatar_profile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .__user_avatar_profile img{
+        width: 10rem;
+        height: 10rem;
+        border-radius: 7px;
+    }
+    .__ads_categories{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__ads_by_cities{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__services_explain h1{
+        font-size: 22px;
+    }
+    .__body a h3{
+        font-size: 15px;
+    }
+    .__ads_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__ad_image{
+        height: 15rem;
+    }
+    .card_body h5, span{
+        font-size: 15px;
+    }
+    .__ad_image p{
+        bottom: 20%;
+    }
+    .__ad_image a{
+        bottom: 25%;
+    }
+    .__activity_panel{
+        flex-direction: column;
+        height: 35rem;
+        align-items: center;
+    }
+    .__active_features{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 60%;
+    }
+    .__draw_image img{
+        height: 20rem;
+        width: 70%;
+    }
+    .userLogInWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    .__alert-success{
+        width: 100%;
+    }
+    .__alert_error{
+        width: 100%;
+    }
+    #logFormBox form{
+        width: 100%;
+    }
+    .userRegisterWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    #form_ins form{
+        width: 100%;
+    }
+    .service-link, .sign_log_container_nav{
+        display: none;
+    }
+    .__home_container_nav{
+        width: 100%;
+    }
+    .__dropdown_menu{
+        width: 100%;
+        display: block;
+    }
+    .__nav_bar{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .formAdsSearchColumnBtn{
+        width: 100%;
+    }
+    .__ads_category_row{
+        grid-template-columns: repeat(1, 1fr);
+        height: 40rem;
+    }
+    .__city_first{
+        width: 100%;
+    }
+
+    .__features{
+        width: 100%;
+    }
+    .__contact_form{
+        width: 100%;
+    }
+    .regUsrRow{
+        flex-direction: column;
+    }
+    .regUsrColumn{
+        width: 100%;
+    }
+
+    .__response_box{
+        height: 15rem;
+        padding: 5%;
+    }
+    .__container{
+        width: 100%;
+    }
+    .__activities_block{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__h5{
+        font-size: 18px;
+    }
+    .__district_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #realEstateFoundBox{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .realEstateFormSearchBox{
+        height: 30rem;
+    }
+    .real_estate_btn_column{
+        width: 100%;
+        margin-top: 5px;
+    }
+    .__slide_cat_real, .__slide_two_cat_real{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__districts_component{
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px;
+    }
+    .__real_estate_form_search_box{
+        width: 100%;
+    }
+    .realEstateFormSearchComponent{
+        width: 100%;
+        margin-top:5rem;
+    }
+    #trip_available_by_day{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__h4{
+        font-size: 22px;
+    }
+    .__form_search_journey{
+        flex-direction: column;
+    }
+    #reversImg{
+        width: 10%;
+        left: 19rem;
+        top: 21rem;
+    }
+    
+    .__user_av_taxi{
+        left: 7rem;
+        bottom: 10rem;
+    }
+    #formSearchTaxi{
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+    }
+    .formTaxiSearchColumn{
+        width: 100%;
+    }
+    .__trip_title{
+        margin-top: 8rem;
+    }
+    #reversImgContainer{
+        width: 10%;
+        left: 85%;
+        top: 22%;
+    }
+    .formSearchJourneyBox{
+        height: 25rem;
+    }
+    .__form_box{
+        width: 90%;
+        flex-direction: column;
+        position: absolute;
+        top: 23rem;
+    }
+    .journeyFormColumn button{
+        background-color: #0d47a1;
+        color: white;
+        width: 100%;
+    }
+    .__act_images{
+        width: 100%;
+    }
+    .ad_details_container, .__details_container{
+        width: 100%;
+    }
+    
+    .__slide_container{
+        flex-direction: column;
+        height: 35rem;
+    }
+    .__user_infos{
+        padding: 5px;
+        width: 70%;
+        height: 100%;
+        margin-top: 5px;
+    }
+    .tel_contact{
+        width: 50%;
+    }
+    .__images{
+        width: 100%;
+    }
+    #all_adverts{
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3px;
+    }
+    .__categories_details{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__cat_title{
+        font-size: 12px;
+    }
+    .cities_list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__cat_type_list li a{
+        font-size: 12px;
+    }
+    .__slide, .__slide_two{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 5px;
+        height: 100%;
+    }
+    h5 .__myPolice{
+        font-size: 10px;
+        background-color: white;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    .all_activities{
+        padding: 5px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5px;
+    }
+
+    .__menu_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #__menu_btn{
+        display: block;
+    }
+
+    .result_search_exam_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .search_exam_form_result_page{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .search_exam_form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+    }
+    .subjectColumn input{
+        border:2px solid whitesmoke;
+    }
+
+    .result_search_ebook_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .form_search_ebook_result_page{
+        width: 97%;
+    }
+    .resultSearchBookContainer{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .ebookFormSearch{
+        height: 20rem;
+    }
+    .course_form_search{
+        flex-direction: column;
+    }
+    .__school_menu_link li a{
+        color: #0d47a1;
+    }
+    #ControlButton{
+        background-color: #0d47a1;
+        padding: 3px
+    }
+    .service{
+        color: white;
+    }
+    .navFilter li a{
+        color: white;
+    }
+    .__category{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .formSearchEbook{
+        width: 100%;
+    }
+    .levels_filter_container{
+        left: 140px;
+    }
+    .teacher_details_box{
+        width: 100%;
+        margin-top:24rem;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .class_level_info{
+        width: 100%;
+        height: 12%;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: whitesmoke;
+    }
+    ._box{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+    }
+    .teacher_details_avatar{
+        height: 40%;
+        width: 100%;
+        transition: width 1.2s;
+    }
+    .__details_avatar{
+        width: 100%;
+        border-radius: 50%;
+        height: 100%;
+    }
+    .school_sup_form_search{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .course_main{
+        width: 100%;
+        padding: 5px;
+    }
+    .formAdsSearchColumn input{
+        border: 1px solid whitesmoke;
+    }
+    .teacher_filter{
+        width: 100%;
+        padding-left: 5px; 
+    }
+    .teacher_option{
+        width: 20%;
+    }
+    #school_sup_menu_btn{
+        display: block;
+    }
+    .menu_title{
+        width: 100%;
+        position: relative;
+        left: 0%;
+    }
+    .school_dropdown_container{
+        width: 350px;
+    }
+    .school_dropdown_container .header h3{
+        font-size: 25px;
+    }
+    
+    .school_menu_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .school_sup_form_search_title h3{
+        font-size: 20px;
+    }
+    .formAdsSearchColumn input{
+        width: 97%;
+        height: 70px;
+    }
+    .nb_result h3{
+        font-size: 30px;
+    }
+    .formSearchActBox{
+        padding: 5px;
+    }
+    .act_box{
+        width: 100%;
+    }
+    .all_activities{
+        width: 100%;
+        flex-direction: column;
+    }
+    .act_card{
+        width: 100%;
+    }
+    .great h4{
+        font-size: 20px;
+    }
+    .act_card_title{
+        font-size: 20px;
+    }
+    .activityRow{
+        width: 100%;
+        margin-bottom: 5px;
+        flex-wrap: wrap;
+    }
+    .regions{
+        flex-direction: column;
+    }
+    .guinea_map_container{
+        width: 100%;
+    }
+    .commune_list{
+       grid-template-columns: repeat(2, 1fr);     
+    }
+    
+    .activity_page_info{
+        flex-direction: column;
+    }
+    .profession, .contact{
+        width: 100%;
+        flex-direction: column;
+    }
+    .image_activity_page_laptop{
+        width: 100%;
+        height: 150px;
+    }
+    .image_activity_page_ipad_phone{
+        width: 100%;
+        height: 150px;
+    }
+    #cabFormBox{
+        width: 100%;
+    }
+    .responseBox{
+        width: 100%;
+    }
+    .alertSendIndexMessage{
+        top: 305em;
+        width: 80.32%;
+    }
+    .servicesComponentRow{
+        flex-direction: column;
+    }
+    .serviceBoxColumn{
+        width: 100%;
+    }
+    .countActFormBox{
+        width: 100%;
+    }
+    .countActivateFormColumn input{
+        width: 100%;
+    }
+    .countActivateFormRow{
+        flex-direction: column;
+    }
+    .countActivateFormColumn{
+        width: 100%;
+    }
+    .countActivateFormColumnBtn{
+        width: 100%;
+    }
+    .countActivateFormColumnBtn button{
+        width: 100%;
+    }
+    .alertSendMessage{
+        top: 148em;
+        width: 87%;
+    }
+    #contactFormBox{
+        width: 100%;
+    }
+    .items{
+        flex-direction: column;
+    }
+    .itemColumn{
+        width: 100%;
+    }
+    .topBtn{
+        width: 12%;
+    }
+    .alertSuccess{
+        width: 100%;
+    }
+    .conv_card{
+        width: 100%;
+    }
+    .forumFormRow{
+        flex-direction: column;
+    }
+    .forumFormColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .forumFormColumn input{
+        width: 100%;
+    }
+    .forumFormBtnColumn{
+        width: 100%;
+    }
+    .forumBody{
+        width: 100%;
+    }
+    .forumLeftSide{
+        width: 0px;
+        z-index: 1;
+        position: absolute;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    .forumRightSide{
+        width: 100%;
+        padding: 2px;
+    }
+    #cabUniverseLeftSide{
+        width: 0px;
+        z-index: 1;
+        position: absolute;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    .cabUniverseRightSide{
+        width: 100%;
+    }
+    .cabCardColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .cab_card{
+        width: 100%;
+    }
+    .realEstateFormRow{
+        flex-direction: column;
+        margin-bottom: 5px;
+    }
+    .realEstateFormColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .blockAdAtt{
+        flex-direction: column;
+    }
+    .cvColumn{
+        width: 100%;
+    }
+    .formNewCvBox{
+        width: 100%;
+    }
+    #formSearchAd{
+        width: 100%;
+        flex-direction: column;
+    }
+    .formJobSearchBox{
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin: 3px;
+        height: 25%;
+    }
+    .formColumnBtn{
+        width: 100%;
+    }
+    
+    .formColumnBtn button{
+        width: 100%;
+    }
+    .formJobSearchColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .formJobSearchColumn input{
+        width: 100%;
+    }
+    .cabCarousel{
+        width: 100%;
+    }
+    
+    .departDest, .tripTime{
+        flex-direction: column;
+    }
+    .tripDetailsNavItem{
+        width: 100%;
+    }
+    .formSearchJourneyRow{
+        flex-direction: column;
+    }
+    .formSearchJourneyRow .journeyFormColumn button{
+        width: 100%;
+    }
+    .mainScreen{
+        width: 100%;
+    }
+    .newRealEstateBox{
+        width: 100%;
+    }
+    .real_estate_column input, select{
+        width: 100%;
+    }
+    .realEstateFormSearchRow input[name=address]{
+        width: 100%;
+    }
+    .subjectRow{
+        flex-direction: column;
+    }
+    .subjectColumn{
+        width: 100%;
+        margin-bottom: 5px;
+        height: 70px;
+    }
+    .subjectColumn input{
+        height: 100%;
+        width: 100%;
+    }
+    .newSubjectRegRow{
+        flex-direction: column;
+    }
+    .inputSubjectColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .formNewSubjectBox{
+        width: 100%;
+    }
+    .inputSubjectColumn input{
+        width: 100%;
+    }
+    .all_books_column{
+        width: 100%;
+    }
+    #allbooks{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .coursFormSearch{
+        height: 15rem;
+    }
+    
+    .courseList h3{
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .library{
+        display: flex;
+        flex-direction: column;
+    }
+    .coursColumn{
+        width: 100%;
+    }
+    .coursesRow, .coursesRow_two{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .library_card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        margin-bottom: 3px;
+    }
+    .formCourseSearchBox{
+        height: 30rem;
+    }
+    .school_sup_head_title h3{
+        font-size: 20px;
+    }
+    #regFormBox{
+        width: 100%;
+    }
+    #logFormBox{
+        width: 100%;
+    }
+    .avatar{
+        width: 50%;
+        padding:2px;
+    }
+    .profRegisterRow{
+        flex-direction: column;
+    }
+    .profInputColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .profInputColumn input, select{
+        width: 100%;
+        height: 50px;
+    }
+    .profRegisterRow{
+        display: flex;
+    }
+    .adRegisterRow{
+        flex-direction: column;
+    }
+    .adInputColumn{
+       width: 100%;
+        margin-bottom: 5px;
+    }
+    .jobInputContainer{
+        margin-bottom: 3px;
+        width: 100%;
+    }
+    .formAdsSearchBox{
+        border-radius: 5px;
+        margin: 3px;
+        height:20rem ;
+    }
+    .formAdsSearchColumn{
+        width: 103%;
+        margin-bottom: 3px;
+    }
+    .activityColumn{
+        border-right: none;
+        padding: 3px;
+        margin-bottom: 5px;
+    }
+    .someActivities{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .activityColumn{
+        height: 100%;
+        margin-block: 3px;
+    }
+    #rightSideContainer{
+        width: 100%;
+    }
+    .message{
+        text-indent: 10px;
+        text-align: justify;
+        letter-spacing: 3px;
+        font-size:12px
+    }
+    .formActBox{
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        width: 100%;
+        height: 20%;
+    }
+    .formActColumn{
+        width: 100%;
+        margin-bottom: 3px;
+    }
+    .formActColumn input[type="text"]{
+        margin-top: 5px;
+    }
+    .formActColumnBtn button{
+        width: 100%;
+    }
+    .presentation h4{
+       font-size: 18px;
+    }
+    .presentation p{
+       text-indent: 10px
+    }
+    .formAct{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+    }
+    .formBox{
+        width: 100%;
+    }
+    .fourCabColumn{
+        width: 100%;
+    }
+    .fourCabCard{
+        width: 100%;
+    }
+    #sideMenu{
+        width: 100%;
+        background-color:#0d47a1;
+    }
+    #arrow{
+        width: 10%;
+        display: flex;
+        align-items: center;
+    }
+    .reduce{
+        cursor: pointer;
+        width: auto;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        width: 100%;
+        text-align: center;
+        height: 10%;
+        background-color: white;
+    }
+    .reduce:hover{
+       
+    }
+    .relatedAd{
+        width: 98%;
+        margin-bottom: 5px;
+    }
+    #leftSideUniversAds{
+        width: 0px;
+        z-index: 1;
+        position: absolute;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    #leftSideRealEstate{
+        width: 0px;
+        z-index: 1;
+        position: absolute;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    #rightUniversAdsSide{
+        width: 100%;
+    }
+    #openBtn{
+        display: block;
+        color: white;  
+    }
+    #closeBtn{
+        display: block;
+        color: white;
+        font-size: 30px;
+    }
+   
+    .toolsLine{
+        flex-direction: column;
+    }
+    .cardColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .cardSize{
+        width: 100%;
+    }
+    #formNewForumQuestionContainer{
+        width: 100%;
+    }
+    #someRealEstateAds{
+        flex-direction: column;
+    }
+    .someRealEstateColumn{
+        width: 100%;
+    }
+    .someRealEstateCard{
+        width: 100%;
+    }   
+    #cardRealEstateFormAdd{
+        height: 94%;
+    }
+    #leftSideBookContainer{
+        width: 0px;
+        z-index: 1;
+        position: absolute;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    .formNewBookBox{
+        width: 100%;
+    }
+    #inputAndButtonBoxFlex{
+        flex-direction: column;
+    }
+    #search_book_field{
+     width: 100%;
+    }
+    #introduction{
+        flex-direction: column;
+    }
+    #resultSearch{
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #act_details_box{
+        width: 100%;
+    }
+    #sideContainerAct{
+        width: 40%;
+    }
+    #actIntro{
+        width: 100%;
+    }
+    .coursColumn{
+        height: 10em;
+        margin-bottom: 5px;
+    }
+
+    #cours{
+        height: 85em;
+    }
+    #cardActform{
+        width: 100%;
+    }
+    .col_adUnivers{
+        width: 100%;
+    }
+    .card_ads_index{
+        width: 100%;
+    }
+    .col_index_ads{
+        width: 100%;
+    }
+    #cardUpdateUserPassWord{
+        width: 95%;
+    }
+    #cardUpdate{
+        width: 98%;
+    }
+    #profileBox{
+        flex-direction: column;
+    }
+    .optionsLine{
+        display: flex;
+        flex-direction: column;
+    }
+    #card_form, #cardForm, #cardRealEstateFormAdd{
+        width: 100%;
+    }
+    .allsubject_column{
+        width: 100%;
+    }
+    #info{
+        width: 100%;
+    }
+    #trade_right_side{
+        width: 100%;
+    }
+    #actInfos{
+        width: 90%;
+    }
+    .act_img{
+        width: 100%;
+    }
+    #adDetailsContainer{
+        width: 100%;
+        padding: 3px;
+    }
+    .blockCarouselUserInfo{
+        flex-direction: column;
+    }
+    #formActContainer{
+        width: 100%;
+        height: 45em;
+        align-items: center;
+    }
+    #actCard{
+        width: 100%;
+        height: 88%;
+    }
+    #formTeacherRegContainer{
+       height: 57em;
+       align-items: center;
+    }
+    #teacherRegCard{
+        height: 85%;
+        width: 100%;
+    }
+    .teacherTextarea{
+        margin-bottom: 12em;
+    }
+    .teacherInput{
+        margin-bottom: 3em;
+    }
+    .tripInputContainer{
+        width: 100%;
+        margin-bottom:3px;
+    }
+    .tripInputContainer input{
+        width: 100%;
+    }
+    .tripRegisterformBox{
+        width: 100%;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+ 
+    #formTripContainer{
+        justify-content: center;
+    }
+    #formJobContainer{
+        height: 100%;
+        width: 100%;
+    }
+    #formJobContainer{
+        width: 100%;
+    }
+    #cabCard{
+        width: 100%;
+    }
+    .adRegisterColumn{
+        flex-direction: column;
+    }
+    .inputContainer{
+        margin-bottom: 2.5em;
+    }
+    #form_container{
+        width: 100%;
+        height: 95%;
+    }
+    #login_card{
+        width: 100%;
+    }
+    .relatedRealEstate{
+        margin-bottom: 3px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+   
+    #carousel{
+        width: 100%;
+        height: 50%;
+    }
+    #infos{
+        display: flex;
+        flex-direction: column;
+    }
+    .imagesads{
+        height: 20em;
+        width: 100%
+    }
+    .servicesColumn{
+        width: 100%;
+    }
+    #services_in_profile{
+        width: 100%;
+        flex-direction: column;
+    }
+    #left_side_profil{
+        width: 100%;
+        height: 100%;
+    }
+    .user_avatar{
+        width: 100%;
+        height: 100%;
+    }
+    #screen{
+        width: 100%;
+    }
+    #services_profil_box{
+        width: 100%;
+        flex-direction: column;
+    }
+    #trip_available_by_day{
+        flex-direction: column;
+        justify-content: center;
+        padding: 3px;
+    }
+    #trip_info{
+        flex-direction: column;
+    }
+    
+    #result_search{
+        flex-direction: column;
+    }
+    .tripColumn{
+        width: 100%;
+    }
+    .trip_card{
+        width: 100%;
+    }
+    #journeyFormSubmitBtn{
+        display: grid;
+        align-content: center;
+    }
+    .journeyFormColumn{
+        margin-bottom: 3px;
+        width: 100%;
+    }
+    #formSearchJourney{
+        flex-direction: column;
+    }
+    .field_subExam{
+        width: 100%;
+        margin-top: 5px;
+    }
+    #field_subExam_box{
+        display: flex;
+        flex-direction: column;
+    }
+    #left{
+        width: 100%;
+    }
+    #form_container{
+        width: 100%;
+    }
+    .library_container{
+        display: flex;
+        flex-direction: column;
+    }
+    .someRealEstateCard{
+        width: 100%;
+    }
+    .real_estate_column{
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #formSearchRealEstate{
+        display: flex;
+        flex-direction: column;
+    }
+    #conv_card{
+        width: 100%;
+    }
+    .act_details_title{
+        font-size: 15px;
+    }
+    #act_details_card{
+        width: 100%;
+    }
+    .act_column{
+        width: 100%;
+    }
+    .column{
+        width: 100%;
+    }
+    #act_card{
+        width: 110%;
+    }
+    #act_card_title{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    #title_form{
+        font-size: 15px;
+    }
+    
+    #allteachers{
+        display: flex;
+        flex-direction: column;
+    }
+    .teach_card{
+        width: 100%;
+    }
+    
+    #lastjo_result{
+        display: flex;
+        flex-direction: column;
+        padding: 3px;
+    }
+    #validate_btn_job_search{
+        font-weight: bold;
+    }
+   
+    .jobOfferColumn{
+       width: 100%; 
+    }
+    .job_card{
+        width: 100%;
+    }
+    #allcab{
+        display: flex;
+        flex-direction: column;
+    }
+    #cab_card{
+        width: 16em;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+    #fourcab{
+        display: flex;
+        flex-direction: column;
+    }
+    #fourcab .card{
+        margin-top: 3px;
+    }
+    
+    #formSearchJourney .col{
+        margin-top: 15px;
+    }
+    #related{
+        display: flex;
+        flex-direction: column;
+    }
+    #relatedAd{
+        width: 100%;
+        margin-bottom: 2px;
+    }
+    #screen{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #user{
+        width: 100%;
+        margin-top: 5px;
+    }
+    #imgs{
+        width: 100%;
+    }
+    #display{
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    #ControlButton{
+        display: flex;
+        flex-direction: column;
+    }
+    #ads{
+        width: 100%;
+    }
+    .col_ads{
+        margin-bottom: -12px;
+    }
+    #alladverts{
+        display: flex;
+        flex-direction: column;
+    }
+    #lastfourads{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+    #services-component{
+        display: flex;
+        flex-direction: column;
+    }
+    .services{
+        width: 100%;
+    }
+    .title{
+        word-wrap: break-word;
+    }
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767px) {
+    .__ad_image{
+        height: 15rem;
+    }
+    .__how_it_work{
+        width: 90%;
+    }
+    .__ads_container{
+        width: 100%;
+    }
+    .__prop_card_image{
+        height: 17rem;
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__company_name{
+        width: 25rem;
+    }
+    .__job_details_container{
+        width: 100%;
+    }
+    .__jobs_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__form_search-2{
+        width: 100%;
+    }
+    .__taxi_search_container{
+        width: 100%;
+    }
+    .__login_container{
+        width: 60%;
+    }
+    .__rs_features_box {
+        width: 100%;
+    }
+    .__real_estate_head_item h1{
+        font-size: 25px;
+    }
+    .__real_estate_main_page{
+        height: 45rem;
+    }
+    .__real_estate_head{
+        top: 5rem;
+    }
+    .__real_estate_head_item{
+        width: 100%;
+    }
+    .__property_items{
+        top: 30rem;
+    }
+    .__properties{
+        width: 100%;
+    }
+    .__details_property_images_box, .__prop_details_body{
+        width: 90%;
+    }
+    .__recently{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 90%;
+        grid-gap: 2px;
+    }
+    .__rs_features_panel{
+        width: 100%;
+    }
+    .__res_features_list_box{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .__new{
+        width: 30%;
+    }
+    .__items{
+        width: 100%;
+    }
+    .__item{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__rides_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__container_car, .__car_images_block, .__car_images_block img{
+        width: 100%;
+    }
+    .__list_images{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__car_details h3{
+        width: 100%;
+        text-align: start;
+    }
+    .__container_book, .__ebook_cat, .__form-1{
+        width: 90%;
+    }
+
+    .__form-1_Btn button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .__teacher_container{
+        width: 80%;
+    }
+    .__teacher_profile{
+        width: 100%;
+    }
+    .activity_main_page{
+        height: 40rem;
+    }
+    .__poster_svg img{
+        width: 100%;
+        height: 100%;
+    }
+    .__text_block{
+        justify-content: start;
+    }
+    .__content{
+        position: relative;
+        top: 18%;
+    }
+    .__content h1{
+        color: #0D47A1;
+        font-size: 30px;
+    }
+    .__title_block{
+        width: 100%;
+    }
+
+    .__details_block h3{
+        text-align: end;
+        width: 100%;
+    }
+    .__details{
+        width: 100%;
+    }
+
+    .__details hr{
+        width: 100%;
+    }
+    .__images_block{
+        width: 100%;
+    }
+    .__blocks{
+        grid-template-columns: 30% 70%;
+        width: 100%;
+    }
+    .__left_side{
+        width: 100%;
+    }
+    .__middle{
+        width: 100%;
+    }
+
+    .__ads_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__active_features{
+        width: 100%;
+    }
+    .menu_title{
+        width: 100%;
+        position: relative;
+        left: 0%;
+    }
+    .__dropdown_menu{
+        width: 100%;
+        display: block;
+    }
+    #form_ins form{
+        width: 100%;
+    }
+    .__alert-success{
+        width: 100%;
+    }
+    .__alert_error{
+        width: 100%;
+    }
+    .service-link, .sign_log_container_nav{
+        display: none;
+    }
+    .__home_container_nav{
+        width: 100%;
+    }
+    .__nav_bar{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__city_first{
+        width: 80%;
+    }
+    .__features{
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__ads_category_row{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .__contact_form{
+        width: 90%;
+    }
+    .__response_box{
+        height: 12rem;
+        padding: 2%;
+    }
+    .__container{
+        width: 97%;
+    }
+    .__headLine{
+        font-size: 22px;
+    }
+    .__activities_block{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__h5{
+        font-size: 20px;
+    }
+    #realEstateFoundBox{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .real_estate_btn_column{
+        width: 100%;
+        margin-top: 2px;
+    }
+    #trip_available_by_day{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__h4{
+        font-size: 22px;
+    }
+    #reversImg{
+        width: 5%;
+        left: 11rem;
+        top: 16.7rem;
+    }
+    .act_box{
+        width: 90%;
+    }
+    #resultSearch{
+        width: 90%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #formSearchTaxi{
+        width: 100%;
+    }
+    .formTaxiSearchColumn{
+        width: 100%;
+    }
+    #reversImgContainer{
+        width: 5%;
+        left: 23.2%;
+        top: 99%;
+    }
+    .__form_box{
+        width: 100%;
+    }
+    .formSearchJourneyBox{
+        border-radius: 5px;
+        padding: 10px;
+        height: 30rem;
+    }
+    .__user_infos{
+        width: 30%;
+    }
+    .ad_details_container{
+        width: 100%;
+    }
+    #all_adverts{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__cat_title{
+        font-size: 15px;
+    }
+    .__cat_type_list li a{
+        font-size: 12px;
+    }
+    .__categories_details{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #formSearchAd{
+        width: 100%;
+    }
+    .__category_card_container{
+        height: 7rem;
+    }
+    .__slide, .__slide_two{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 5px;
+        height: 100%;
+    }
+    
+    #__menu_btn{
+        display: block;
+    }
+    .formAct{
+        width: 100%;
+    }
+    .someActivities{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .result_search_exam_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .search_exam_form_result_page{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .ebookFormSearch{
+        height: 50%;
+    }
+    .search_exam_form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 60%;
+    }
+    .subjectColumn{
+        width: 100%;
+        margin-bottom: 5px;
+        height: 70px;
+    }
+    .subjectColumn input{
+        border:2px solid whitesmoke;
+        width: 100%;
+    }
+    
+    .result_search_ebook_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .form_search_ebook_result_page{
+        width: 90%;
+    }
+    .resultSearchBookContainer{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .formSearchEbook{
+        width: 100%;
+    }
+    .__category{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .levels_filter_container{
+        left: 220px;
+    }
+    .price_details{
+        width: 100%;
+    }
+    .tel_contact{
+        color: #0d47a1;
+        width: 100%;
+    }
+    .school_sup_form_search{
+        width: 90%;
+    }
+    .teacher_option{
+        width: 10%;
+    }
+    .formColumnBtn button{
+        height: 80%;
+    }
+    .course_main{
+        width: 90%;
+    }
+    .courseList h3{
+        width: 70%;
+    }
+    .library_card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    }
+    .new_teacher_link h6{
+        width: 25%;
+    }
+    #school_sup_menu_btn{
+        display: block;
+    }
+
+    .profession, .contact{
+        width: 100%;
+        flex-direction: column;
+    }
+    .image_activity_page_laptop{
+        width: 100%;
+        height: 150px;
+    }
+    .image_activity_page_ipad_phone{
+        width: 100%;
+        height: 150px;
+    }
+    .commune_list{
+       grid-template-columns: repeat(3, 1fr);     
+    }
+    .activityColumn{
+        margin-bottom: 3px;
+    }
+    
+    .formActBox{
+        height: 350px;
+    }
+    .activityRow{
+        flex-wrap: wrap;
+        height: 100%;
+    }
+    #cabFormBox{
+        width: 80%;
+    }
+    .serviceBoxColumn{
+        width: 100%;
+    }
+    .alertSendIndexMessage{
+        top: 238em;
+        width: 63.42%;
+    }
+    .servicesComponentRow{
+        flex-direction: column;
+    }
+    .countActivateFormRow{
+        flex-direction: column;
+    }
+    .countActivateFormColumn{
+        width: 100%;
+    }
+    .countActivateFormColumnBtn{
+        width: 100%;
+    }
+    .countActivateFormColumnBtn button{
+        width: 100%;
+    }
+    .alertSendMessage{
+        top: 148em;
+        width: 47.5%;
+    }
+    .items{
+        flex-direction: column;
+    }
+    .itemColumn{
+        width: 70%;
+    }
+    .topBtn{
+        width: 6%;
+        height: 9%;
+    }
+    .alertSuccess{
+        width: 50%;
+    }
+    .conv_card{
+        width: 100%;
+    }
+    .forumFormColumn{
+        width: 70%;
+    }
+    .forumFormColumn input{
+        width: 98%;
+    }
+    .forumFormBtnColumn{
+        width: 30%;
+    }
+    .forumLeftSide{
+        width: 25%;
+    }
+    .forumRightSide{
+        width: 75%;
+    }
+    .forumBody{
+        width: 100%;
+    }
+    .cabUniverseLeftSide{
+        width: 30%;
+        height: 100%;
+        margin-right: 5px;
+    }
+    .cabUniverseRightSide{
+        width: 70%;
+    }
+    
+    .cab_card{
+        width: 98%;
+    }
+    
+    #adDetailsContainer{
+        width: 98%;
+    }
+    .formColumnBtn{
+        width: 30%;
+    }
+    .formColumnBtn button{
+        width: 100%;
+    }
+    .cvColumn{
+        width: 50%;
+    }
+    .cvInfos{
+        width: 70%;
+    }
+   
+    .formNewCvBox{
+        width: 80%;
+    }
+    .jobOfferColumn{
+        width: 50%;
+    }
+    .formColumnBtn button{
+        width: 100%;
+    }
+    .cabCarousel{
+        width: 100%;
+    }
+    
+    .newRealEstateBox{
+        width: 50%;
+    }
+    .real_estate_column input, select{
+        width: 100%;
+    }
+    .subjectRow{
+        flex-direction: column;
+    }
+    .subjectColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .formNewSubjectBox{
+        width: 100%;
+    }
+    .all_books_column{
+        width: 100%;
+    }
+    #allbooks{
+       grid-template-columns: repeat(3, 1fr);
+    }
+    .formNewBookBox{
+        width: 80%;
+    }
+    .coursFormSearch{
+        height: 25rem;
+    }
+    .coursesRow{
+        flex-direction: column;
+        padding: 5px;
+    }
+    .coursColumn{
+        height: 10em;
+    }
+    .coursColumn{
+        width: 100%;
+    }
+    #regFormBox{
+        width: 60%;
+    }
+    #logFormBox{
+        width: 100%;
+    }
+    #logFormBox form{
+        width: 100%;
+    }
+    .avatar{
+        width: 30%;
+        padding:2px;
+    }
+    #leftSideUniversAds{
+        width: 40%;
+    }
+    .formBox{
+        width: 85%;
+    }
+     .tripInputContainer{
+        width: 100%;
+        margin-bottom:3px;
+    }
+    .tripInputContainer input{
+        width: 98%;
+    }
+    .tripRegisterformBox{
+        width: 90%;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    .fourCabColumn{
+        width: 100%;
+    }
+    .fourCabCard{
+        width: 90%;
+    }
+    
+    .toolsLine{
+        flex-direction: column;
+    }
+    .cardColumn{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .cardSize{
+        width: 100%;
+    }
+    #formNewForumQuestionContainer{
+        width: 90%;
+    }
+    #someRealEstateAds{
+        display: flex;
+    }
+   
+    #leftSideBookContainer{
+        height: 85%;
+        width: 40%;
+    }
+    #search_book_field{
+        width: 70%;
+    }
+    #field_subExam_box{
+        display: flex;
+        flex-direction: column;
+    }
+    .field_subExam{
+        width: 90%;
+        margin-top: 5px;
+        width: 110%;
+    }
+    .act_card{
+        width: 100%;
+    }
+     #resultSearch{
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         grid-gap: 5px;
+         padding: 3px;
+    }
+    #act_details_box{
+        width: 100%;
+    }
+    #actIntro{
+        width: 100%;
+    }
+    #cardActform{
+        width: 100%;
+    }
+    .col_adUnivers{
+        width: 100%;
+    }
+    .card_ads_univers{
+        width: 99%;
+    }
+    .col_index_ads{
+        width: 48%;
+        margin-right: 3px;
+    }
+    #cardUpdateUserPassWord{
+        width: 75%;
+    }
+    #cardForm{
+        width: 90%;
+    }
+    #cardRealEstateFormAdd{
+        width: 95%;
+    }
+    #info{
+        width: 100%;
+    }
+    .allsubject_column{
+        width: 100%;
+    }
+    #trade_right_side{
+        width: 100%;
+    }
+    .act_img{
+        width: 100%;
+    }
+    #actCard{
+        width: 100%;
+        height: 88%;
+    } 
+    #formTeacherRegContainer{
+       height: 47em;
+       align-items: center;
+    }
+    #teacherRegCard{
+        height: 75%;
+        width: 100%;
+    }
+    
+    .teacherInput{
+        margin-bottom: 3em;
+    }
+    #formJobContainer{
+        height: 100%;
+        width: 100%;
+    }
+    #formJobContainer{
+        width: 100%;
+    }
+    #form_container{
+        width: 100%;
+        height: 90%;
+    }
+    #login_card{
+        width: 100%;
+    }
+    .relatedRealEstate{
+        margin-bottom: 3px;
+        width: 25%;
+    }
+    .realEstateCard{
+        width: 100%;
+    }
+   
+    #carousel{
+        width: 100%;
+        height: 50%;
+    }
+    .servicesColumn{
+        width: 100%;
+    }
+    #services_in_profile{
+        width: 100%;
+        flex-direction: column;
+    }
+    #left_side_profil{
+        width: 50%;
+        height: 100%;
+    }
+    #screen{
+        width: 70%;
+    }
+    #services_profil_box{
+        width: 100%;
+        flex-direction: column;
+    }
+    #journeyFormSubmitBtn{
+        display: grid;
+        align-content: center;
+    }
+    .formSearchJourneyRow{
+        flex-direction: column;
+    }
+    .formSearchJourneyRow .journeyFormColumn button{
+        width: 100%;
+    }
+    .journeyFormColumn{
+        margin-bottom: 3px;
+        width: 100%;
+    }
+    #formSearchJourney{
+        flex-direction: column;
+    }
+     #result_search{
+        flex-direction: column;
+    }
+    .tripColumn{
+        width: 100%;
+    }
+    
+    .real_estate_column{
+        width: 100%;
+        margin-top: 2px;
+    }
+    #address{
+        width: 100%;
+    }
+    
+    #othersFiels{
+        display: flex;
+        flex-direction: column;
+    }
+    #conv_card{
+        width: 100%;
+    }
+    .act_details_title{
+        font-size: 15px;
+    }
+    #act_details_card{
+        width: 100%;
+    }
+    #act_card_title{
+        font-size: 15px;
+    }
+    #title_form{
+        font-size: 15px;
+    }
+   
+    .act_column{
+        width: 49%;
+        margin-right: 3px;
+    }
+    .all_activities{
+        flex-wrap: wrap;
+    }
+    .column{
+        width: 50%;
+    }
+     #allteachers{
+        display: flex;
+    }
+    
+    #teach_card{
+        width: 97%;
+    }
+     .job_card{
+        width: 98%;
+        height: 15em;   
+    }
+    #allcab{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #cab_card{
+        width: 18em;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+    #ControlButton{
+        display: flex;
+        flex-direction: column;
+    }
+    #fourcab{
+        display: flex;
+        flex-direction: column;
+    }
+    #fourcab .card{
+        margin-top: 3px;
+    }
+    
+    #formSearchJourney .col{
+        margin-top: 17px;
+    }
+    #related{
+        grid-template-columns:repeat(3, 1fr);
+    }
+    #relatedAd{
+        width: 60%;
+        margin-bottom: 2px;
+    }
+    
+    #user{
+        width: 20%;
+    }
+    #imgs{
+        width: 20%;
+    }
+   
+    #adUnivers{
+        width: 130px;
+    }
+    
+    .card_ads_index{
+        width: 100%;
+    }
+    
+    #lastfourads{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #services-component{
+        display: flex;
+        flex-direction: column;
+    }
+    .services{
+        width: 100%;
+    }
+    .title{
+        word-wrap: break-word;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) {
+    .__ads{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__how_it_work{
+        width: 80%;
+    }
+    .__ads_container{
+        width: 100%;
+    }
+    .__prop_card_image{
+        height: 17rem;
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__company_name{
+        width: 25rem;
+    }
+    .__job_details_container{
+        width: 80%;
+    }
+    .__jobs_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__taxi_drivers_found {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__taxi_search_container{
+        width: 100%;
+    }
+    .__login_container{
+        width: 50%;
+    }
+    .__real_estate_head_item h1{
+        font-size: 25px;
+    }
+    .__real_estate_head{
+        top: 5rem;
+    }
+    .__real_estate_head_item{
+        width: 100%;
+    }
+    .__properties{
+        width: 100%;
+    }
+    .__recently{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 90%;
+        grid-gap: 2px;
+    }
+    .__rs_features_box{
+        display: block;
+        width: 100%;
+    }
+
+    .__new{
+        width: 35%;
+    }
+    .__items{
+        width: 100%;
+    }
+    .__item{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__rides_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__container_car{
+        width: 100%;
+    }
+    .__list_images{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .__car_details h3{
+        width: 100%;
+        text-align: start;
+    }
+    .__pka_cars{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__container_book, .__ebook_cat, .__form-1{
+        width: 90%;
+    }
+
+    .__form-1_Btn button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .__teacher_container{
+        width: 80%;
+    }
+    .__teacher_profile{
+        width: 100%;
+    }
+    .activity_main_page{
+        height: 40rem;
+    }
+    .__poster_svg img{
+        width: 100%;
+        height: 100%;
+    }
+    .__text_block{
+        justify-content: start;
+    }
+    .__content{
+        position: relative;
+        top: 18%;
+    }
+    .__content h1{
+        color: #0D47A1;
+        font-size: 30px;
+    }
+    .__title_block{
+        width: 80%;
+    }
+
+    .__details_block h3{
+        text-align: end;
+        width: 80%;
+    }
+    .__details{
+        width: 80%;
+    }
+
+    .__details hr{
+        width: 80%;
+    }
+    .__images_block{
+        width: 100%;
+    }
+
+    .__blocks{
+        width: 100%;
+        grid-template-columns: 30% 70%;
+    }
+
+
+    .__ads_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__draw_image img{
+        height: 20rem;
+        width: 70%;
+    }
+    .__active_features{
+        width: 100%;
+    }
+    .menu_title{
+        width: 100%;
+        position: relative;
+        left: 0%;
+    }
+    .__dropdown_menu{
+        width: 100%;
+        display: block;
+    }
+    .__dropdown_menu:hover  .__dropdown_container{
+        display: unset;
+    }
+    #form_ins form{
+        width: 100%;
+    }
+    .__alert-success{
+        width: 100%;
+    }
+    .__alert_error{
+        width: 100%;
+    }
+    .service-link, .sign_log_container_nav{
+        display: none;
+    }
+    .__home_container_nav{
+        width: 100%;
+    }
+    .__nav_bar{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__city_first{
+        width: 80%;
+    }
+    .__dropdown_menu{
+        display: block;
+    }
+    .__features{
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__ads_category_row{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__ads_by_cities_row{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__contact_form{
+        width: 90%;
+    }
+    .__response_box{
+        height: 11rem;
+        padding: 2%;
+    }
+
+    .__activities_block{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__ad_image a{
+        bottom: 20%;
+        padding: 5px;
+    }
+    .card_body h5{
+        font-size: 15px;
+    }
+    .__container{
+        width: 100%;
+    }
+
+    .__h5{
+        font-size: 20px;
+    }
+    #realEstateFoundBox{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__real_estate_form_search_box{
+        width: 90%;
+    }
+    .realEstateFormSearchComponent{
+        width: 90%;
+    }
+    #trip_available_by_day{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #reversImg{
+        width: 4%;
+        left: 11.7rem;
+        top: 16.7rem;
+    }
+    .__h4{
+        font-size: 22px;
+    }
+    #resultSearch{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+    }
+     .act_box{
+        width: 90%;
+    }
+    #allcab{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #formSearchTaxi{
+        width: 100%;
+    }
+    .formSearchJourneyBox{
+        border-radius: 5px;
+        padding: 10px;
+        height: 30rem;
+    }
+    #reversImgContainer{
+        width: 5%;
+        left: 23.5%;
+        top: 34.7%;
+    }
+    .__form_box{
+        width: 100%;
+    }
+    .__act_images{
+        width: 95%;
+    }
+
+    .ad_details_container{
+        width: 100%;
+    }
+    #all_adverts{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__cat_title{
+        font-size: 15px;
+    }
+    .__cat_type_list li a{
+        font-size: 12px;
+    }
+    .__categories_details{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #formSearchAd{
+        width: 100%;
+    }
+    .__category_card_container{
+        height: 8rem;
+    }
+    .__slide, .__slide_two{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 5px;
+        height: 100%;
+    }
+    #__menu_btn{
+        display: block;
+    }
+    .commune_list{
+       grid-template-columns: repeat(3, 1fr);     
+    }
+    .formAct{
+        width: 100%;
+    }
+    .someActivities{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .result_search_exam_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .search_exam_form_result_page{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .ebookFormSearch{
+        height: 50%;
+    }
+    .search_exam_form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 60%;
+    }
+    .ebookFormSearch{
+        height: 50%;
+    }
+    .search_exam_form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 70%;
+    }
+    .subjectColumn{
+        width: 100%;
+        margin-bottom: 5px;
+        height: 70px;
+    }
+    .subjectColumn input{
+        border:2px solid whitesmoke;
+        width: 100%;
+    }
+    .result_search_ebook_box{
+        width: 100%;
+        padding: 3px;
+    }
+    .form_search_ebook_result_page{
+        width: 90%;
+    }
+    .resultSearchBookContainer{
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .__category{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #allbooks{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #leftSideBookContainer{
+        width: 30%;
+    }
+    #rightSideContainer{
+        width: 70%;
+    }
+    .formSearchEbook{
+        width: 90%;
+    }
+    .levels_filter_container{
+        left: 220px;
+    }
+    .teacher_details_box{
+        width: 100%;
+    }
+    .tel_contact{
+        color: #0d47a1;
+        width: 100%;
+    }
+    .price_details{
+        width: 100%;
+    }
+    .school_sup_form_search{
+        width: 90%;
+    }
+    .teacher_option{
+        width: 10%;
+    }
+    .course_main{
+        width: 90%;
+    }
+    #school_sup_menu_btn{
+        display: block;
+    }
+    .new_teacher_link h6{
+        width: 25%;
+    }
+    .act_column{
+        width: 49%;
+        margin-right: 3px;
+    }
+    .profession, .contact{
+        width: 100%;
+        flex-direction: column;
+    }
+    .image_activity_page_laptop{
+        width: 100%;
+        height: 150px;
+    }
+    .image_activity_page_ipad_phone{
+        width: 100%;
+        height: 150px;
+    }
+    .activityRow{
+        flex-wrap: wrap;
+    }
+    .activityColumn{
+        margin-bottom:5px;
+    }
+    .formActBox{
+        height: 350px;
+    }
+    .great h4{
+        color: blue;
+    }
+   .alertSendIndexMessage{
+        top: 178em;
+        width: 39.2%;
+    }
+    .countActFormBox{
+        width: 70%;
+    }
+    .alertSendMessage{
+        top: 99em;
+        width: 51.5%;
+    }
+    .itemColumn{
+        width: 40%;
+    }
+    .avatar{
+        width: 20%;
+    }
+    .topBtn{
+        width: 5%;
+        height: 7%;
+    }
+    .alertSuccess{
+        width: 50%;
+    }
+    .conv_card{
+        width: 90%;
+    }
+    .forumLeftSide{
+        width: 25%;
+    }
+    .forumRightSide{
+        width: 75%;
+    }
+    .forumFormColumn{
+        width: 70%;
+    }
+    .forumFormColumn input{
+        width: 98%;
+    }
+    .forumFormBtnColumn{
+        width: 30%;
+    }
+     .forumBody{
+        width: 90%;
+    }
+    .cabUniverseLeftSide{
+        width: 30%;
+        height: 100%;
+        margin-right: 5px;
+    }
+    .cabUniverseRightSide{
+        width: 70%;
+    }
+    
+    .cab_card{
+        width: 98%;
+    }
+    #adDetailsContainer{
+        width: 98%;
+    }
+    .formColumnBtn{
+        width: 30%;
+    }
+    .formColumnBtn button{
+        width: 100%;
+    }
+    .cvColumn{
+        width: 50%;
+    }
+    .formNewCvBox{
+        width: 80%;
+    }
+    .formColumnBtn button{
+        width: 100%;
+    }
+    .jobOfferColumn{
+        width: 50%;
+    }
+    .job_card{
+        width: 98%;
+    }
+    #leftSideUniversAds{
+        width: 35%;
+    }
+    #rightUniversAdsSide{
+        width: 65%;
+    }
+    .cabCarousel{
+        width: 95%;
+    }
+    .formSearchJourneyRow{
+        flex-direction: column;
+        width: 80%;
+    }
+    #formSearchTraveling{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .journeyFormColumn{
+        margin-bottom: 3px;
+        width: 100%;
+    }
+    .formSearchJourneyRow .journeyFormColumn button{
+        width: 100%;
+    }
+    .newRealEstateBox{
+        width: 50%;
+    }
+    .formNewSubjectBox{
+        width: 85%;
+    }
+    .formNewBookBox{
+        border-radius: 5px;
+        background-color: #0d47a1;
+        width: 80%;
+    }
+    .coursFormSearch{
+        height: 25rem;
+    }
+    .courseList h3{
+        width: 62%;
+    }
+    .coursesRow{
+        flex-direction: column;
+        padding: 5px;
+    }
+    .coursColumn{
+    }
+     .coursColumn{
+        width: 100%;
+        height: 10em;
+    }
+    #regFormBox{
+        width: 60%;
+    }
+    #logFormBox{
+        width: 100%;
+    }
+    #logFormBox form{
+        width: 100%;
+    }
+    .formBox{
+        width: 85%;
+    }
+    .tripInputContainer{
+        width: 100%;
+        margin-bottom:3px;
+    }
+    .tripInputContainer input{
+        width: 100%;
+    }
+    .tripRegisterformBox{
+        width: 80%;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    
+    #someRealEstateAds{
+        display: flex;
+    }
+    
+    #field_subExam_box{
+        display: flex;
+        flex-direction: column;
+    }
+    .field_subExam{
+        width: 90%;
+        margin-top: 5px;
+        width: 110%;
+    }
+    .allsubject_column{
+        width: 100%;
+    }
+    #resultSearch{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #act_details_box{
+        width: 100%;
+    }
+    .col_adUnivers{
+        width: 100%;
+    }
+    
+    #cardRealEstateFormAdd{
+        width: 85%;
+    }
+    #cardForm{
+        width: 75%;
+    }
+    #info{
+        width: 100%;
+    }
+    #trade_right_side{
+        width: 100%;
+    }
+    #actCard{
+        width: 95%;
+        height: 88%;
+    }
+    #formTeacherRegContainer{
+       height: 47em;
+       align-items: center;
+    }
+    #teacherRegCard{
+        height: 65%;
+        width: 100%;
+    }
+  
+    #tripRegisterCard{
+        width: 90%;
+        height: 98%;
+    }
+    #formJobContainer{
+        height: 100%;
+        width: 100%;
+    }
+    #formJobContainer{
+        width: 100%;
+    }
+    #form_container{
+        width: 100%;
+        height: 85%;
+    }
+    #login_card{
+        width: 70%;
+    }
+    #carousel{
+        width: 100%;
+        height: 50%;
+    }
+    .servicesColumn{
+        width: 20%;
+    }
+    #services_in_profile{
+        width: 100%;
+    }
+    #left_side_profil{
+        width: 25%;
+        height: 100%;
+    }
+    #screen{
+        width: 75%;
+    }
+    #services_profil_box{
+        width: 100%;
+    }
+    #conv_card{
+        width: 100%;
+    }
+    .act_details_title{
+        font-size: 15px;
+    }
+    #act_details_card{
+        width: 100%;
+    }
+    #act_card_title{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    #title_form{
+        font-size: 15px;
+    }
+   
+    .act_card{
+        width: 100%;
+    }
+    .column{
+        width: 33.33%;
+    }
+    #teach_card{
+        width: 97%;;
+    }
+    #cab_card{
+        width: 10em;
+        margin-bottom: 15px;
+    }
+    .services{
+        width: 100%;
+    }
+    #ads{
+        width: 170px;
+    }
+    #relatedAd{
+        width: 60%;
+        margin-bottom: 2px;
+    }
+    #formSearchJourney .col{
+        margin-top: 17px;
+    }
+
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199px) {
+    .__ads{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__jobs_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__taxi_search_container{
+        width: 90%;
+    }
+    .__login_container{
+        width: 40%;
+    }
+    .__recently{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__properties{
+        width: 90%;
+    }
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 80%;
+        grid-gap: 2px;
+    }
+    .__rs_features_box{
+        width: 90%;
+    }
+
+    .__rides_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_details h3{
+        width: 100%;
+        text-align: start;
+    }
+    .__nav_bar{
+        grid-template-columns: auto 60% auto;
+    }
+    .__container_book{
+        width: 90%;
+    }
+    .__teacher_container{
+        width: 70%;
+    }
+    .__teacher_profile{
+        width: 100%;
+    }
+    .activity_main_page{
+        height: 40rem;
+    }
+    .__poster_svg img{
+        width: 100%;
+        height: 100%;
+    }
+    .__text_block{
+        justify-content: start;
+    }
+    .__content{
+        position: relative;
+        top: 18%;
+    }
+    .__content h1{
+        color: #0D47A1;
+        font-size: 30px;
+    }
+    .__title_block{
+        width: 70%;
+    }
+
+    .__details_block h3{
+        text-align: end;
+        width: 70%;
+    }
+    .__details{
+        width: 70%;
+    }
+
+    .__details hr{
+        width: 70%;
+    }
+    .__images_block{
+        width: 70%;
+    }
+    .__blocks{
+        width: 100%;
+        grid-template-columns: 30% 70%;
+    }
+
+    .__ads_found{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #logFormBox{
+        width: 100%;
+    }
+    #logFormBox form{
+        width: 100%;
+    }
+    .__draw_image img{
+        height: 20rem;
+        width: 80%;
+    }
+    .__active_features{
+        width: 100%;
+    }
+
+    .__alert-success{
+        width: 100%;
+    }
+    .__alert_error{
+        width: 100%;
+    }
+    #form_ins form{
+        width: 100%;
+    }
+    .__city_first{
+        width: 60%;
+    }
+    .__features{
+        width: 95%;
+    }
+    .__container{
+        width: 90%;
+    }
+    .__activities_block{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__ads_category_row{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__ads_by_cities_row{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .realEstateFormSearchComponent{
+        width: 95%;
+    }
+    .__real_estate_form_search_box{
+        width: 80%;
+    }
+    .__container{
+        width: 100%;
+    }
+    #trip_available_by_day{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #reversImg{
+        width: 3%;
+        left: 16.8rem;
+        top: 17.5rem;
+    }
+    #resultSearch{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+    }
+     .act_box{
+        width: 90%;
+    }
+    #allcab{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #formSearchTaxi{
+        width: 80%;
+    }
+   
+    .journeyFormColumn button{
+        width: 70%;
+    }
+    #reversImgContainer{
+        width: 3%;
+        left: 29.8%;
+        top: 53.5%;
+    }
+    .__form_box{
+        width: 80%;
+    }
+    .__act_images{
+        width: 95%;
+    }
+    .__cat_title{
+        font-size: 15px;
+    }
+    .__category_card_container{
+        height: 8rem;
+    }
+    #formSearchAd{
+        width: 80%;
+    }
+    #__menu_btn{
+        display: block;
+    }
+    .formAct{
+        width: 90%;
+    }
+    .result_search_exam_box{
+        width: 90%;
+        padding: 3px;
+    }
+    .ebookFormSearch{
+        height: 70%;
+    }
+    .search_exam_form{
+        width: 100%;
+    }
+    .result_search_ebook_box{
+        width: 80%;
+        padding: 3px;
+    }
+    .form_search_ebook_result_page{
+        width: 90%;
+    }
+    .resultSearchBookContainer{
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .levels_filter_container{
+        left: 300px;
+    }
+    .price_details{
+        width: 100%;
+    }
+    .tel_contact{
+        color: #0d47a1;
+        width: 100%;
+    }
+    .school_sup_form_search{
+        width: 90%;
+    }
+    .teacher_option{
+        width: 10%;
+    }
+    .course_main{
+        width: 90%;
+    }
+    .new_teacher_link h6{
+        width: 18%;
+    }
+    #school_sup_menu_btn{
+        display: block;
+    }
+    .courseList h3{
+        width: 50%;
+    }
+    .act_column{
+        width: 35%;
+    }
+    .profession, .contact{
+        width: 100%;
+        flex-direction: column;
+    }
+    .image_activity_page_laptop{
+        width: 100%;
+        height: 150px;
+    }
+    .image_activity_page_ipad_phone{
+        width: 100%;
+        height: 150px;
+    }
+    .activityRow{
+        flex-wrap: wrap;
+    }
+    .activityColumn{
+        margin-bottom:5px;
+    }
+    .formActBox{
+        height: 350px;
+    }
+    .alertSendIndexMessage{
+        top: 148em;
+        width: 40.99%;
+    }
+    .alertSendMessage{
+        top: 99em;
+        width: 39%;
+    }
+    .itemColumn{
+        width: 33.33%;
+    }
+    .avatar{
+        width: 20%;
+    }
+    .topBtn{
+        width: 5%;
+        height: 5%;
+    }
+    .alertSuccess{
+        width: 50%;
+    }
+    .forumLeftSide{
+        width: 25%;
+    }
+    .forumRightSide{
+        width: 75%;
+    }
+    .forumFormColumn{
+        width: 70%;
+    }
+    .forumFormColumn input{
+        width: 98%;
+    }
+    .forumFormBtnColumn{
+        width: 30%;
+    }
+     .forumBody{
+        width: 90%;
+    }
+    .cabUniverseLeftSide{
+        width: 20%;
+        height: 100%;
+        margin-right: 5px;
+    }
+    .cabUniverseRightSide{
+        width: 80%;
+    }
+   
+    .cab_card{
+        width: 98%;
+    }
+    #adDetailsContainer{
+        width: 80%;
+    }
+    .cvColumn{
+        width: 40%;
+    }
+    .formNewCvBox{
+        width: 60%;
+    }
+    .formColumnBtn button{
+        width: 90%;
+    }
+    .jobOfferColumn{
+        width: 33.33%;
+    }
+    #leftSideUniversAds{
+        width: 30%;
+    }
+    #rightUniversAdsSide{
+        width: 70%;
+    }
+    .cabCarousel{
+        width: 65%;
+    }
+    .formSearchJourneyRow .journeyFormColumn button{
+        width: 95%;
+    }
+     .formNewSubjectBox{
+        width: 75%;
+    }
+     .formNewBookBox{
+        width: 60%;
+    }
+     #regFormBox{
+        width: 60%;
+    }
+
+    .tripInputContainer{
+        width: 100%;
+        margin-bottom:3px;
+    }
+    .tripInputContainer input{
+        width: 100%;
+    }
+    .tripRegisterformBox{
+        width: 80%;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    #field_subExam_box{
+       width: 90%;
+        margin-left: 12px;
+    }
+    #actCard{
+        width: 80%;
+        height: 88%;
+    }
+     #formTeacherRegContainer{
+       height: 57em;
+       align-items: center;
+    }
+    #teacherRegCard{
+        height: 65%;
+        width: 90%;
+    }
+    #tripRegisterCard{
+        width: 80%;
+        height: 98%;
+    }
+    #formJobContainer{
+        height: 100%;
+        width: 100%;
+    }
+    #formJobContainer{
+        width: 100%;
+    }
+    #form_container{
+        width: 100%;
+        height: 95%;
+    }
+    #carousel{
+        width: 100%;
+        height: 50%;
+    }
+    #conv_card{
+        width: 100%;
+    }
+    .act_details_title{
+        font-size: 15px;
+    }
+    #act_details_card{
+        width: 100%;
+    }
+    .services{
+        width: 100%;
+    }
+    #ads{
+        width: 230px;
+    }
+    
+    #fourcab .card{
+        width: 110%;
+    }
+    
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 900px) and ( max-width: 1440px) {
+    .__items{
+        width: 80%;
+    }
+    .__container{
+        width: 90%;
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 80%;
+        grid-gap: 2px;
+    }
+    .service-link a{
+        font-size: 13px;
+    }
+    .__new{
+        width: 35%;
+        padding: 20px;
+    }
+    .__rs_features_box{
+        width: 90%;
+    }
+
+    .__rides_found{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1024px) and (max-width: 1366px) {
+
+    .__taxi_search_container{
+        width: 90%;
+    }
+    .__new a{
+        font-size: 15px;
+    }
+    .__prop_card_body h5{
+        font-size: 15px;
+    }
+    .__prop_price{
+        width: 70%;
+        font-size: 12px;
+    }
+
+    .__nav_bar{
+        grid-template-columns: auto 65% auto;
+    }
+    .__pka_cars{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 360px) {
+    .__user_avatar_profile img{
+        width: 10rem;
+        height: 10rem;
+        vertical-align: middle;
+    }
+    .__how_it_work{
+        width: 100%;
+    }
+    .__feature{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__prop_card_image{
+        height: 20rem;
+    }
+    .__application_form{
+        width: 100%;
+    }
+    .__teachers_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__company_name{
+        width: 20rem;
+    }
+    .__job_details_container{
+        width: 100%;
+    }
+    .__jobs_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__form_search-2{
+        width: 100%;
+    }
+    .__taxi_search_container{
+        width: 100%;
+    }
+    .__login_container{
+        width: 100%;
+    }
+    .__new a{
+        font-size: 15px;
+    }
+    .__prop_card_body h5{
+        font-size: 15px;
+    }
+    .__prop_price{
+        width: 70%;
+        font-size: 12px;
+    }
+    .__side_menu_display{
+        width: 300px;
+    }
+    .__real_estate_head_item h1{
+        font-size: 25px;
+    }
+    .__real_estate_main_page{
+        height: 45rem;
+    }
+    .__real_estate_head{
+        top: 5rem;
+    }
+    .__recently{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__new_property_container{
+        width: 100%;
+    }
+    .__new_property_items{
+        width: 100%;
+        grid-gap: 2px;
+    }
+    .__res_features_list_box{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__rs_features_box{
+        display: block;
+        width: 100%;
+    }
+    .__items{
+        width: 100%;
+    }
+    .__item{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__taxi_drivers_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #__driver_img{
+        width: 80%;
+    }
+
+    .__row-4{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__ride_details_container{
+        width: 100%;
+    }
+    .__rides_found{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .__trips_page{
+        width: 100%;
+    }
+    .__btn_submit{
+        width: 100%;
+    }
+    .__trip_search_container{
+        padding: 3px;
+        height: 25rem;
+    }
+    .__car_mark_price_block h5{
+        font-size: 15px;
+    }
+    .__container_car, .__car_details, .__car_images_block, .__car_images_block img{
+        width: 100%;
+    }
+    .__list_images{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_details h3{
+        width: 100%;
+        text-align: start;
+    }
+    .__pka_page_head{
+        grid-template-columns: auto 70%;
+    }
+    .__pka_owner_block{
+        display: flex;
+        flex-direction: column;
+    }
+    .__pka_cars{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__car_mark_price_block{
+        grid-template-columns: none;
+    }
+    .__park_auto_found{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .__dropdown_container{
+        width: 300px;
+        overflow: auto;
+    }
+    .__rides{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+

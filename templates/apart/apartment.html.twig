@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ apart.adTitle }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div id="items" class="__details_property_images_box" data-nb_img="{{ apart.apartmentImages | length }}">
+                    {% for img in apart.apartmentImages %}
+                        <div class="__prop_img_item">
+                            <img src="{{ asset('companies_logo/'~img.getFilename()) }}" alt="">
+                        </div>
+                    {% endfor %}
+                    <a class="__left" id="__left">&#10094;</a>
+                    <a class="__right" id="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in apart.apartmentImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__prop_details_body">
+                    <h5 class="__myPolice">{{ apart.adTitle }}</h5>
+                    <p>
+                        {{ apart.propertySurface }} <span class="badge badge-danger">m²</span>
+                        {{ apart.roomNumber }} <i class="fas fa-bed"></i>
+                        {{ apart.bathroomNumber }} <i class="fas fa-bath"></i>
+                        {{ apart.wcNumber }} <i class="fas fa-toilet"></i>
+                        {% if apart.propositionType == 'A louer' %}
+                            <span class="badge badge-danger">En location</span>
+                        {% else %}
+                            <span class="badge badge-danger">En Vente</span>
+                        {% endif %}
+                    </p>
+                    <p>{{ apart.city }}|{{ apart.municipality }}|{{ apart.district }}</p>
+                    <p style="text-align: end">{{ apart.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="__prop_price">{{ apart.price | format_number }} FG {% if apart.propositionType == 'A louer' %}/mois {% endif %}</div>
+                        <div class="__prop_price"><a href="tel:{{ apart.phoneNumber }}" class="text-white"><i class="fas fa-phone-square"></i>Contacter</a></div>
+                    </div>
+                    <p>Meublé <span class="badge badge-danger">
+                        {% if apart.furniture %} Oui {% else %} Non {% endif %}
+                    </span></p>
+                    <h6 class="__myPolice">Plus sur l'adresse...</h6>
+                    <p>{{ apart.moreDetailsAddress | raw }}</p>
+                    {% if apart.additionalSurfaces|length %}
+                        <h6 class="__myPolice">Surfaces annexes de l'appartement</h6>
+                        <ul>
+                            {% for adS in apart.additionalSurfaces %}
+                                <li>{{ adS.getAdditionalSurfaceName() }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if apart.equipements %}
+                        <h6 class="__myPolice">Equipements de l'appartement</h6>
+                        <p>{{ apart.equipements|raw }}</p>
+                    {% endif %}
+                    {% if apart.otherInfos %}
+                        <h6 class="__myPolice">Autres informations</h6>
+                        <p>{{ apart.otherInfos|raw }}</p>
+                    {% endif %}
+                    <hr>
+                    <h6 class="__myPolice">Annonceur</h6>
+                    <div class="__prop_owner_avatar">
+                        <img src="{% if apart.user.useravatar %}
+                            {{ asset('images/users_avatar/'~apart.user.useravatar.imageName) }}
+                        {% else %}
+                            {{ asset('images/avatar_def.png') }}
+                      {% endif %}"
+                             alt="">
+                        <p>{{ apart.user.username }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('property_slide_images') }}
+    {% endblock %}
+{% endblock %}
+
+

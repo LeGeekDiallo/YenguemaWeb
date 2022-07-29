@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ studio.propertyType }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div id="items" class="__details_property_images_box" data-nb_img="{{ studio.studioImages | length }}">
+                    {% for img in studio.studioImages %}
+                        <div class="__prop_img_item">
+                            <img src="{{ asset('companies_logo/'~img.getFilename()) }}" alt="">
+                        </div>
+                    {% endfor %}
+                    <a class="__left" id="__left">&#10094;</a>
+                    <a class="__right" id="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in studio.studioImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__prop_details_body">
+                    <h5 class="__myPolice">{{ studio.adTitle }}</h5>
+                    <p>
+                        {{ studio.propertySurface }} <span class="badge badge-danger">m²</span>
+                        {{ studio.pieceNumber }} <i class="fas fa-bed"></i>
+                        {{ studio.bathroom }} <i class="fas fa-bath"></i>
+                        {% if studio.propositionType == 'A louer' %}
+                            <span class="badge badge-danger">En location</span>
+                        {% else %}
+                            <span class="badge badge-danger">En Vente</span>
+                        {% endif %}
+                    </p>
+                    <p>{{ studio.city }}|{{ studio.municipality }}|{{ studio.district }}</p>
+                    <p style="text-align: end">{{ studio.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="__prop_price">{{ studio.price | format_number }} FG {% if studio.propositionType == 'A louer' %}/mois {% endif %}</div>
+                        <div class="__prop_price"><a href="tel:{{ studio.phoneNumber }}" class="text-white"><i class="fas fa-phone-square"></i>Contacter</a></div>
+                    </div>
+                    <p>Meublé <span class="badge badge-danger">
+                        {% if studio.furniture %} Oui {% else %} Non {% endif %}
+                    </span></p>
+                    <p>En colocation <span class="badge badge-danger">
+                        {% if studio.flatsharing %} Oui {% else %} Non {% endif %}
+                    </span></p>
+                    <h6 class="__myPolice">Plus sur l'adresse...</h6>
+                    <p>{{ studio.moreInfosAddress | raw }}</p>
+                    {% if studio.equipements %}
+                        <h6 class="__myPolice">Equipements du studio</h6>
+                        <p>{{ studio.equipements|raw }}</p>
+                    {% endif %}
+                    {% if studio.otherInfos %}
+                        <h6 class="__myPolice">Autres informations</h6>
+                        <p>{{ studio.otherInfos|raw }}</p>
+                    {% endif %}
+                    <hr>
+                    <h6 class="__myPolice">Annonceur</h6>
+                    <div class="__prop_owner_avatar">
+                        <img src="{% if studio.user.useravatar %}
+                            {{ asset('images/users_avatar/'~studio.user.useravatar.imageName) }}
+                        {% else %}
+                            {{ asset('images/avatar_def.png') }}
+                      {% endif %}"
+                             alt="">
+                        <p>{{ studio.user.username }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('property_slide_images') }}
+    {% endblock %}
+{% endblock %}
+
+

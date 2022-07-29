@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Nouvelle propriété {% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="__new_property_container">
+            <div class="__properties_box">
+                <div class="__new_property_items">
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/apartment.svg') }}" alt="">
+                    </div>
+                    <div class="__new_prop_right_side">
+                        <a class="btn text-white" href="{{ path('new_apart', {id: app.user.id}) }}" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i> Ajouter un appartement</a>
+                        <p>
+                            Rédigez la meilleur description pour vos appartements en y ajoutant plusieurs images de bonnes
+                            qualités, <br>
+                            déterminez vos tarifs,
+                            et mettez à jour votre calendrier. <br>
+                            Puis publiez votre annonce. <br>
+                            <strong>Ce service est 100% gratuit pour les propriétaires ou démarcheurs.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="__new_property_items">
+                    <div class="__new_prop_right_side">
+                        <a class="btn text-white" style="background-color: #0d41a1;" href="{{ path('new_house', {id: app.user.id}) }}" ><i class="fas fa-plus-square"></i> Maison ou Villas</a>
+                        <p>
+                            Rédigez la meilleur description pour vos maisons ou villas en y ajoutant plusieurs images de bonnes
+                            qualités, <br>
+                            déterminez vos tarifs,
+                            et mettez à jour votre calendrier. <br>
+                            Puis publiez votre annonce. <br>
+                            <strong>Ce service est 100% gratuit pour les propriétaires ou démarcheurs.</strong>
+                        </p>
+                    </div>
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/villa.svg') }}" alt="">
+                    </div>
+
+                </div>
+                <div class="__new_property_items">
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/work-from-home.svg') }}" alt="">
+                    </div>
+                    <div class="__new_prop_right_side">
+                        <a href="{{ path('new_studio', { id: app.user.id }) }}" class="btn text-white" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i> Studio ou Chambre-salon</a>
+                        <p>
+                            Rédigez la meilleur description pour vos <em>Studio ou Chambre-salon</em>
+                            en y ajoutant plusieurs images de bonnes
+                            qualités, <br>
+                            déterminez vos tarifs,
+                            Puis publiez votre annonce. <br>
+                            <strong>Ce service est 100% gratuit pour les propriétaires ou démarcheurs.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="__new_property_items">
+                    <div class="__new_prop_right_side">
+                        <a href="{{ path('new_ols', { id: app.user.id }) }}" class="btn text-white" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i> Bureau ou Magasin</a>
+                        <p>
+                            Vous louez des espaces de commerce ou des bureaux <br>
+                            Rédigez la meilleur description en y ajoutant plusieurs images de bonnes
+                            qualités, <br>
+                            déterminez vos tarifs,
+                            Puis publiez votre annonce. <br>
+                            <strong>Ce service est 100% gratuit pour les propriétaires ou démarcheurs.</strong>
+                        </p>
+                    </div>
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/office-building.svg') }}" alt="">
+                    </div>
+
+                </div>
+                <div class="__new_property_items">
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/architect.svg') }}" alt="">
+                    </div>
+                    <div class="__new_prop_right_side">
+                        <a href="{{ path('new_ols', { id: app.user.id }) }}" class="btn text-white" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i> Terrain</a>
+                        <p>
+                            Vous voulez vendre un domaine, un terrain ? <br>
+                            Rédigez la meilleur description en y ajoutant plusieurs images de bonnes
+                            qualités, <br>
+                            déterminez vos tarifs,
+                            Puis publiez votre annonce. <br>
+                            <strong>Ce service est 100% gratuit pour les propriétaires ou démarcheurs.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="__infos_studio">
+            <h3 class="__myPolice">T1, T2, studio… : quelles sont les différences ?</h3>
+
+            <h5 class="__myPolice">Un Studio</h5>
+            <p>
+                Le studio est le type de logement le plus courant pour les étudiants. <br>
+                D’une surface minimale de 9m² et maximum de 30m², il comporte une seule pièce : <br>
+                la principale qui sert de salon et chambre et la seconde dîtes « accessoire » qui est la salle de bain.
+                <br>
+                Dans ce type de logement, la cuisine/kitchenette est dans la pièce principale
+            </p>
+            <h5 class="__myPolice">Un T1, T2, T3</h5>
+            <p>
+                Le chiffre après F/T (1, 2 ou encore 3), indique le nombre de pièce que contient le logement <br>
+                (sans la salle de bain et la cuisine).
+                A la différence d’un studio, le T1 a une cuisine séparée de la pièce principale.
+                Ainsi, on verra la composition des appartements :
+            <ul>
+                <li>Un T1 : Une pièce : la principale (chambre/salon) + une cuisine séparée</li>
+                <li>
+                    Un T2 : Deux pièces : la principale + chambre + cuisine à part
+                </li>
+                <li>
+                    Un T3 : Trois pièces : la principale + 2 chambre + cuisine séparée
+                </li>
+                <li>
+                    (...)
+                </li>
+            </ul>
+            </p>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

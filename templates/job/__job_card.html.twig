@@ -1,0 +1,20 @@
+<div class="__job_card">
+    <div class="__job_image">
+        {% if job.filename %}
+            <img src="{{ asset('companies_logo/'~job.filename) }}" alt="logo image">
+        {% else %}
+            <img src="{{ asset('images/svg_img/job-search.svg') }}"  alt="logo image">
+        {% endif %}
+    </div>
+    <div class="card_body">
+        <h4 class="__myPolice">{{ job.jobTitle }} - {{ job.employerGender }} - {{ job.category }} - {{ job.contractType }} </h4>
+        <h5 class="__headLine"><i class="fas fa-building"></i> {{ job.compagnyName }}</h5>
+        <span class="__myPolice text-muted"><i class="fas fa-map-marker"></i> {{ job.city }} - {{ job.municipality }}</span><br>
+        <h5 class="__myPolice p-2">{{ job.salaryEstimate | number_format(0, ' ', ' ') }} FG par mois</h5>
+        <span class="__myPolice text-muted">{{ job.createdAt | format_datetime('short', 'none', locale='fr')  }}</span>
+        <div class="__apply">
+            <a href="{{ path('job_offer_details', { id:job.id, slug:job.getSlug() }) }}" class="btn rounded-sm text-white" style="background-color: #0d41a1">Postulez</a>
+        </div>
+    </div>
+</div>
+

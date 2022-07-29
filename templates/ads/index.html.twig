@@ -1,0 +1,213 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Petites annonces{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="activity_main_page">
+            <div class="__text_block">
+                <div class="__content">
+                    <h1 class="__myPolice">Vendre ou acheter aussi simple qu'un appel. <i class="far fa-grin-wink"></i></h1>
+                    <p class="text-muted">
+                        En quelques cliques vendez votre bien en le postant sur LeYenguema, <br>
+                        votre annonce est toute de suite visible sur la plateforme.
+                        <br>
+                        Achetez simplement ce qui vous convient à tout moment et n'importe où.
+                    </p>
+                    {% if not app.user %}
+                        <a href="{{ path('new_user_register') }}" class="btn  text-white __myPolice">Je M'inscris</a>
+                    {% endif %}
+                    <hr>
+                    <div class="__form_index">
+                        <h6 class="__announcement">Rechercher une annonce par mot clé</h6>
+                        {{ form_start(form_search, {'attr':{'action':path('ads_search')}}) }}
+                        <div class="__row-3">
+                            <div class="_column">
+                                {{ form_widget(form_search.keyWord) }}
+                            </div>
+                            <div class="_column">
+                                {{ form_widget(form_search.address, { 'attr':{ 'list':'addressList', 'autocomplete':'off' } }) }}
+                                <datalist id="addressList">
+                                    <option value="Conakry"></option>
+                                    <option value="Boké"></option>
+                                    <option value="Faranah"></option>
+                                    <option value="Guékedou"></option>
+                                    <option value="KanKan"></option>
+                                    <option value="Kindia"></option>
+                                    <option value="Labé"></option>
+                                    <option value="Mamou"></option>
+                                    <option value="Beyla"></option>
+                                    <option value="Bofa"></option>
+                                    <option value="Dalaba"></option>
+                                    <option value="Dabola"></option>
+                                    <option value="Dinguiraye"></option>
+                                    <option value="Dixin"></option>
+                                    <option value="Forécariah"></option>
+                                    <option value="Gaoual"></option>
+                                    <option value="Guéckédou"></option>
+                                    <option value="Kaloum"></option>
+                                    <option value="Kéouané"></option>
+                                    <option value="Koubia"></option>
+                                    <option value="Koundara"></option>
+                                    <option value="Kouroussa"></option>
+                                    <option value="Kissidougou"></option>
+                                    <option value="Lola"></option>
+                                    <option value="Macenta"></option>
+                                    <option value="Mali"></option>
+                                    <option value="Mandiana"></option>
+                                    <option value="Matam"></option>
+                                    <option value="Matoto"></option>
+                                    <option value="Pita"></option>
+                                    <option value="Ratoma"></option>
+                                    <option value="Siguiri"></option>
+                                    <option value="Télimélé"></option>
+                                    <option value="Tougué"></option>
+                                    <option value="Youmou"></option>
+                                    <option value="N'Zérékoré"></option>
+                                </datalist>
+                            </div>
+                            <div class="_column">
+                                <button class="btn btn-block search_btn_index" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form_search) }}
+                    </div>
+                </div>
+            </div>
+            <div class="__poster_svg">
+                <img src="{{ asset('images/svg_img/ad_poster.svg') }}" alt="svg image">
+            </div>
+        </div>
+        <main class="__ads_container">
+            <h6 class="__announcement">Annonces ajoutées recemment</h6>
+            <div class="__recent_ads">
+                {% for ad in last_ads %}
+                    {% include '/ads/__ad_card.html.twig' with {'ad':ad} %}
+                {% endfor %}
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">Toutes les catégories</h2>
+            </div>
+            <div class="__ads_categories_block">
+                <div class="__ads_categories">
+                        <div class="__ads_category_column __acc">
+                            <h3 class="__myTitle">Accessoires</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "accessoires", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __cha">
+                            <h3 class="__myTitle">Chaussures</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "chaussures", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __cos">
+                            <h3 class="__myTitle">Cosmétique</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "cosmétique", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __ele">
+                            <h3 class="__myTitle">Electronique</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "electronique", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __docs">
+                            <h3 class="__myTitle">Documents-Livres-brochures</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "document-livres-brochures", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __mul">
+                            <h3 class="__myTitle">Multimédia</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "multimédia", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __int">
+                            <h3 class="__myTitle">Interieur Maison</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "interieur-maison", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __mot">
+                            <h3 class="__myTitle">Motos</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "motos", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __loi">
+                            <h3 class="__myTitle">Loisir</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "loisir", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __vel">
+                            <h3 class="__myTitle">Vélos</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "vélos", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __vet">
+                            <h3 class="__myTitle">Vêtements</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "vêtements", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                        <div class="__ads_category_column __voi">
+                            <h3 class="__myTitle">Véhicules</h3>
+                            <a class="__myPolice" href="{{ path('ads_matches',
+                                { category: "véhicules", column:"adCategory" }) }}">Explorez <i class="fas fa-play"></i></a>
+                        </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">Toutes les annonces dans votre ville</h2>
+            </div>
+            <div class="__first_city">
+                <div class=" __city_first">
+                    <div class="__city_name">
+                        <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Conakry", column:"city" }) }}"><i class="fas fa-building"></i> Conakry</a>
+                    </div>
+                </div>
+            </div>
+            <div class="__ads_by_cities_block">
+                <div class="__ads_by_cities">
+                    <div class="__ads_by_cities_column __city_one">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Boké", column:"city" }) }}"><i class="fas fa-building"></i> Boké</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_two">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Faranah", column:"city" }) }}"><i class="fas fa-building"></i> Faranah</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_three">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "KanKan", column:"city" }) }}"><i class="fas fa-building"></i> KanKan</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_four">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Kindia", column:"city" }) }}"><i class="fas fa-building"></i> Kindia</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_five">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Guekédou", column:"city" }) }}"><i class="fas fa-building"></i> Guekedou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_six">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Labé", column:"city" }) }}"><i class="fas fa-building"></i> Labé</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_seven">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "Mamou", column:"city" }) }}"><i class="fas fa-building"></i> Mamou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_eight">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('ads_matches', { category: "N'Zerekoré", column:"city" }) }}"><i class="fas fa-building"></i>N'Zérékoré</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

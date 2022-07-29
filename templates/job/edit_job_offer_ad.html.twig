@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-plus-square"></i> </h5></div>
+            {% include 'job/__new_job_offer_ad_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

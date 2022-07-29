@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartements{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('apart_search')}}) }}
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.location) }}
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.price) }}
+                    <datalist id="addressList"></datalist>
+                </div>
+                <div class="formAdsSearchColumnBtn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <h4 class="__myPolice" style="text-align: center;"><span class="badge bg-danger">{{ aparts | length }}</span>Appartments</h4>
+            <hr>
+            <div class="__item">
+                {% for apart in aparts %}
+                    {% include '/apart/__apart_card.html.twig' with {'apart':apart}  %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(aparts) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

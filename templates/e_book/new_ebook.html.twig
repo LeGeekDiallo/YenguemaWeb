@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contribution nouveau livre{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Ajouter un ebook</h5></div>
+            {{ form_start(form) }}
+            <div class="adRegisterRow">
+                <div class="adInputColumn">
+                    {{ form_label(form.title, "Donnez le titre du livre *") }}
+                    {{ form_widget(form.title) }}
+                    <small class="form-text">{{ form_errors(form.title) }}</small>
+                </div>
+                <div class="adInputColumn">
+                    {{ form_label(form.category, "Selectionnez la catégorie *") }}
+                    {{ form_widget(form.category) }}
+                    <small class="form-text">{{ form_errors(form.category) }}</small>
+                </div>
+            </div>
+            <div class="adRegisterRow">
+                <div class="adInputColumn-1">
+                    {{ form_label(form.filename, "Ajoutez le pdf *") }}
+                    {{ form_widget(form.filename) }}
+                    <small class="form-text">{{ form_errors(form.filename) }}</small>
+                </div>
+            </div>
+            <div class="newActRegisterRow">
+                <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

@@ -1,0 +1,30 @@
+<div class="card">
+    <a class="card_body __ride_card" href="{{ path('ride_details', { id:ride.id, slug:ride.getSlug() }) }}">
+        <div class="__trip_infos">
+            <div class="__dep __myPolice">{{ ride.departure }}</div>
+            <div class="__ride_draw">
+                <div><i class="fas fa-map-pin"></i></div>
+                <hr class="__trait">
+                <div><i class="fas fa-map-pin"></i></div>
+            </div>
+            <div class="__dep __myPolice">{{ ride.destination }}</div>
+        </div>
+        <div class="__trip_time">
+            <div class="__dep __myPolice">{{ ride.departureTime | format_datetime('none', 'short', locale='fr') }}</div>
+            <div class="__dep __myPolice">{{ ride.arrivingTime  | format_datetime('none', 'short', locale='fr')}}</div>
+        </div>
+        <div class="__trip_time">
+            <div class="__seats"><h6 class="__myPolice">{{ ride.placeNumber }}</h6><img src="{{ asset('images/svg_img/seat.svg') }}" alt=""></div>
+            <h6 class="__dep __myPolice">{{ ride.ridePrice | number_format(0, 0, ' ') }} FG</h6>
+        </div>
+        <h6 class="__myPolice text-muted" style="text-align: center;">{{ ride.departureDate | format_datetime('full', 'none', locale='fr') }}</h6>
+        <div class="__driver_box">
+            {% if ride.user.userAvatar %}
+                <img src="{{ asset('images/users_avatar/'~ride.user.userAvatar.getImageName()) }}" alt="">
+            {% else %}
+                <img src="{{ asset('images/avatar_def.png') }}" alt="">
+            {% endif %}
+            <span class="__myPolice">{{ ride.user.username }}</span>
+        </div>
+    </a>
+</div>

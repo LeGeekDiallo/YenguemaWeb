@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ ride.getSlug() }}{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <main class="__ride_details_container">
+            <div class="__travel_infos">
+                <h2 class="__myPolice" style="text-align: center; color: #0d41a1">{{ ride.departureDate | format_datetime('full', 'none', locale='fr') }}</h2>
+                <div class="__trip_infos">
+                    <div class="__dep __myPolice">{{ ride.departure }}</div>
+                    <div class="__ride_draw">
+                        <div><i class="fas fa-map-pin"></i></div>
+                        <hr class="__trait">
+                        <div><i class="fas fa-map-pin"></i></div>
+                    </div>
+                    <div class="__dep __myPolice">{{ ride.destination }}</div>
+                </div>
+                <div class="__trip_time">
+                    <div class="__dep __myPolice">{{ ride.departureTime | format_datetime('none', 'short', locale='fr') }}</div>
+                    <div class="__dep __myPolice">{{ ride.arrivingTime  | format_datetime('none', 'short', locale='fr')}}</div>
+                </div>
+                <div class="__trip_time">
+                    <h6 class="__dep __myPolice">{{ ride.placeNumber }}  places</h6>
+                    <h6 class="__dep __myPolice">{{ ride.ridePrice | number_format(0, 0, ' ') }} FG</h6>
+                </div>
+                <h4 class="__myPolice" style="color: #0d41a1;">Précisions</h4>
+                <p class="text-muted">{{ ride.otherDetails|raw }}</p>
+                <hr class="__line">
+                <h4 class="__myPolice"><i class="fas fa-car"></i> {{ ride.carBrand }}</h4>
+                <div class="__driver_">
+                    {% if ride.user.userAvatar %}
+                        <img src="{{ asset('images/users_avatar/'~ride.user.userAvatar.getImageName()) }}" alt="">
+                    {% else %}
+                        <img src="{{ asset('images/avatar_def.png') }}" alt="">
+                    {% endif %}
+                    <span class="__myPolice">{{ ride.user.username }}</span>
+                </div>
+                <p style="text-align: end">
+                    <a href="tel: {{ ride.user.phoneNumber }}" class="__myPolice btn"><i class="fas fa-mobile-alt"></i> Réserver</a>
+                </p>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

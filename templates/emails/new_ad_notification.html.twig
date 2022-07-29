@@ -1,0 +1,18 @@
+{% extends '@email/default/notification/body.html.twig' %}
+
+{% block content %}
+    <container>
+        <row>
+            User Name: {{ user.username }}
+        </row>
+        <row>
+            User Email: {{ user.email }}
+        </row>
+        <row>
+            User state: {{ user.state }}
+        </row>
+        <row>
+            User PhoneNumber : {{ user.phoneNumber }}
+        </row>
+    </container>
+{% endblock %}

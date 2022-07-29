@@ -1,0 +1,201 @@
+{% extends './base.html.twig' %}
+{% block title %}Bienvenue {{ app.user.username }}{% endblock %}
+
+{% block body %}
+    <div class="__profile_container">
+        <div class="__blocks">
+            <div class="__left_side">
+                <div class="__user_avatar_profile">
+                    {% if app.user.userAvatar %}
+                        <img id="usr_av" src="{{ asset('images/users_avatar/'~app.user.userAvatar.getImageName()) }}"
+                             alt="avatar mx-auto white" class="border user_avatar">
+                        {% else %}
+                            <img id="usr_av" src="{{ asset('images/avatar_def.png') }}"
+                                 alt="avatar mx-auto white" class="border user_avatar">
+                    {% endif %}
+                </div>
+                <div class="__btn_chge_av">
+                    {% if app.user.userAvatar %}
+                        <a href="{{ path('upload_avatar', {id: app.user.userAvatar.getId()}) }}" class="btn btn-sm"><i class="fas fa-camera"></i></a>
+                    {% else %}
+                        <a href="{{ path('new_avatar', {email: app.user.email}) }}" class="btn btn-sm"><i class="fas fa-camera"></i></a>
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="__user_infos_profile">
+                    <ul style="list-style-type: none;">
+                        <li class="__label">{{ app.user.username }}</li>
+                        <li class="__label">{{ app.user.email }}</li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="__middle">
+                {% for message in app.flashes('notification') %}
+                    <div class="alert-success __alert-success p-3" style="display: flex;">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+
+                <p class="__announcement">Votre tableau de bord</p>
+                <hr>
+                <div class="__dashboard">
+                    {% if not app.user.activity %}
+                        <div class="__dashboard_item">
+                            <div class="__item_body">
+                                <a href="{{ path("new_activity", { id: app.user.Id() }) }}">
+                                    <i class="fas fa-save"></i>
+                                </a>
+                            </div>
+                            <div class="__text_box">
+                                Mon activité
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_ad", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Annonces
+                        </div>
+                    </div>
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_teacher", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Cours
+                        </div>
+                    </div>
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_job_offer", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Jobs
+                        </div>
+                    </div>
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_park_auto", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Park-Auto
+                        </div>
+                    </div>
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_ride", { id: app.user.getId()}) }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Trajet
+                        </div>
+                    </div>
+                    {% if not app.user.taxiDriver %}
+                        <div class="__dashboard_item">
+                            <div class="__item_body">
+                                <a href="{{ path("new_taxidriver", { id: app.user.getId()}) }}"><i class="fas fa-save"></i></a>
+                            </div>
+                            <div class="__text_box">
+                                Taxi
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="__dashboard_item">
+                        <div class="__item_body">
+                            <a href="{{ path("new_property") }}"><i class="fas fa-plus-circle"></i></a>
+                        </div>
+                        <div class="__text_box">
+                            Immobilier
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="__ads">
+                    {% if app.user.activity %}
+                        {% include 'activity/__activity_card_profile.html.twig' %}
+                    {% endif %}
+                    {% if app.user.taxiDriver %}
+                        {% include 'taxi/__driver_card_profile.html.twig' %}
+                    {% endif %}
+                </div>
+                <div class="__ads">
+                    {% if app.user.getAds()|length %}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/ads.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_ads', { id:app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice">Mes ads <span class="badge bg-primary">{{ app.user.getAds()|length }}</span></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if app.user.myCourses | length %}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/elearning.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_courses_ads', { id:app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice">Mes annonces de cours <span class="badge bg-primary">{{ app.user.myCourses|length }}</span></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if app.user.jobOffers | length %}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/job-search.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_job_ads', { id:app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice">Offres d'emploi postées <span class="badge bg-primary">{{ app.user.jobOffers|length }}</span></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if app.user.parkAutos | length %}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/car_dealer.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_park_auto', { id:app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice">Park Auto <span class="badge bg-primary">{{ app.user.parkAutos|length }}</span></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if app.user.rides | length %}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/destination.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_rides_auto', { id:app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice">Vos Trajets <span class="badge bg-primary">{{ app.user.rides|length }}</span></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if app.user.apartments|length!=0 or app.user.studios|length!=0 or app.user.houseVillas|length!=0 or app.user.officeShopLands|length!=0%}
+                        <div class="__user_card_folder">
+                            <div class="__folder_svg">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/home.svg') }}" alt="">
+                            </div>
+                            <div class="__text_box">
+                                <a href="{{ path('user_properties') }}" class="__myPolice">Annonces Immo
+                                    <span class="badge bg-primary">
+                                        {{ app.user.apartments|length + app.user.houseVillas|length + app.user.studios|length + app.user.officeShopLands|length}}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('scroll_top') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('__taxiDriverState') }}
+    {% endblock %}
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

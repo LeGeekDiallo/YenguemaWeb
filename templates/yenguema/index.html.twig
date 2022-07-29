@@ -1,0 +1,362 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Yenguema{% endblock %}
+
+{% block body %}
+    <main class="__main_home_page" id="swup">
+        <main class="__home_container">
+            <div class="__home_image">
+                <div class="__features_display __active_features">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Activités</h1>
+                        <p class="text-white">
+                            Les commerces, salons de coiffures, atéliers de coutures,
+                            mais aussi les garages voitures, motos et vélos, toutes les
+                            activités de votre quartiers ou de votre ville en un clic. <br>
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('trades_universe') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/activity_illus.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Petites annonces</h1>
+                        <p class="text-white">
+                            Vendre et acheter n'a jamais aussi été plus facile, <br>
+                            Vente et achat de tout type de produits et pour tout public en un clic. <br>
+
+                            Inscrivez-vous pour aussi poster votre annonce.
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('ads_universe') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/ads_post.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Education</h1>
+                        <p class="text-white">
+                            Toute une bibliothèque dans votre téléphone,
+                            les livres pdf, sujets d'examen, brochures etc..<br>
+                            Mais ce n'est pas tout, vous pouvez aussi donner des cours en postant juste votre profile
+                            d'enseignant; c'est simple et facile. <br>
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('education') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/etudes.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Offres d'emploi</h1>
+                        <p class="text-white">
+                            Vous êtes à la recherche d'un emploi ? <br> ou Vous êtes une entreprise et vous souhaitez
+                            poster vos offres d'emploi, vous êtes au bon endroit.
+
+                            Postulez n'importe où et n'importe quand.
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('jobs_universe') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/jobs.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Park Auto</h1>
+                        <p class="text-white">
+                            Ventes et achats de voitures neuves ou occasions.
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('park_auto') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/park_auto.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">La Gare Voiture</h1>
+                        <p class="text-white">
+                            Voyager devient plus simple et plus facile, <br>
+                            Reservez votre place avant de vous déplacer dans n'importe quelle gare. <br>
+
+                            C'est aussi le coin des taxisman et aussi les taxis motos, <br>
+                            Inscrivez-vous et postez votre taxis sur la plateforme.
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('travel') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/voyage.svg') }}" alt="image svg">
+                    </div>
+                </div>
+                <div class="__features_display">
+                    <div class="__services_explain">
+                        <h1 class="__myPolice text-white">Immobilier</h1>
+                        <p class="text-white">
+                            Achat ou vente d'immobilier, <br>
+                            Appatement, chambre simple, maison, terrain, villa, etc... <br>
+
+                            C'est aussi le coin des demarcheurs, <br>
+                            Inscrivez-vous et postez vos biens sur la plateforme.
+                        </p>
+                        <div class="__buttons_block">
+                            <a class="btn btn-lg" href="{{ path('real_estate') }}">Allez sur la page</a>
+                        </div>
+                    </div>
+                    <div class="__draw_image">
+                        <img src="{{ asset('images/svg_img/immo.svg') }}" alt="image svg">
+                    </div>
+                </div>
+            </div>
+            <div class="__arrow" id="__arrow">
+                <h1><i class="fas fa-angle-double-down"></i></h1>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice" id="test_animate">Par un simple click, vous avez</h2>
+            </div>
+            <div class="__features_block" >
+                <div class="__features">
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/artisanat.jpg') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('trades_universe') }}">
+                                <h3 class="__myTitle"><i class="fas fa-hand-holding-usd"></i> Activités </h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/makiti.png') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('ads_universe') }}">
+                                <h3 class="__myTitle"><i class="far fa-handshake"></i> Petites Annonces</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/education.png') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('education') }}">
+                                <h3 class="__myTitle"><i class="fas fa-laptop-code"></i> Ka Doudhal</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/jobs.png') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('jobs_universe') }}">
+                                <h3 class="__myTitle"><i class="fas fa-business-time"></i> Offres d'emploi</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/svg_img/park_auto.svg') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('park_auto') }}">
+                                <h3 class="__myTitle"><i class="fas fa-car"></i> Park Auto</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/traveling.png') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('travel') }}">
+                                <h3 class="__myTitle"><i class="fas fa-suitcase-rolling"></i> Covoiturage</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="__act_block">
+                        <div class="__image_block">
+                            <img src="{{ asset('images/real_estate.png') }}" alt="category image">
+                        </div>
+                        <div class="__body">
+                            <a href="{{ path('real_estate') }}">
+                                <h3 class="__myTitle"><i class="fas fa-home"></i> Immobilier</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="__announcement">Mais comment ça marche Yenguema ?</h4>
+            <hr style="width: 70%">
+            <div class="__how_it_work_container">
+                <div class="__how_it_work">
+                    <div class="__feature">
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/activity_illus.svg') }}" alt="">
+                        </div>
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Donnez plus de visibilité à votre activité.</h5>
+                                Pour ce faire, rien de plus simple. <br>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez mettre en ligne votre activité, en ajoutant
+                                <br> l'adresse de localisation, votre contact et une image.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Vendez vos objets plus facilement.</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                ajouter vos annonces de ventes en y ajoutant jusqu'à 10 photos de bonne qualité.
+                            </p>
+                        </div>
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/busness.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/teacher.svg') }}" alt="">
+                        </div>
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Cours particuliers</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                créer vos annonces de cours.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Postez vos offres d'emploi</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                poster vos offres d'emploi. <br>
+                                Une fois votre offre publiée, vous recevrez par mail automatique les candidatures avec les CV en pièce jointe.
+                            </p>
+                        </div>
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/job-search.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/park_auto.svg') }}" alt="">
+                        </div>
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Vente de véhicules d'occasion ou neufs</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                ajouter votre park auto en y renseignant le nom et l'adresse. <br>
+                                Puis vous pourrez ajoutez tous vos véhicules dans votre park.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Proposez vos trajets, mettez en ligne votre taxi/taxi-moto</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                ajoutez vos trajets à chaque fois que vous prévoyez de voyager. <br>
+                                Si vous êtes taximan ou mototaximan mettez en ligne votre profile.
+                            </p>
+                        </div>
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/voyage.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="__feature">
+                        <div class="__feature_svg_container">
+                            <img src="{{ asset('images/svg_img/immo.svg') }}" alt="">
+                        </div>
+                        <div class="__feature_text_explanation">
+                            <p>
+                                <h5 class="__myPolice">Vente, location d'appartement, maison, locaux de bureau, commerce, terrains</h5>
+                                Pour commencer : Inscrivez-vous via le formulaire d'inscription ou <br>
+                                par via votre compte Facebook ou compte Google. <br>
+                                Une fois inscrit vous aurez accès à votre profile où vous pourrez <br>
+                                rediger une bonne annonce pour votre bien immobilier en y ajoutant plusieurs images de  bonne qualité. <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="width: 70%">
+            <h5 class="__announcement">Pour toute autre question n'hésitez pas à nous envoyer un mail</h5>
+            <p class="text-muted" style="text-align: center">
+                <em>
+                    Si vous souhaitez créer un site web pour votre activité, votre commerce, <br>
+                    l'équipe du <strong>Yenguema</strong> est à votre disposition de vous proposer un bon deal.
+                </em>
+            </p>
+            <div class="__contact_form_block">
+                {{ form_start(form) }}
+                <div class="__row-2">
+                    <div class="__column">
+                        {{ form_label(form.userName, "*") }}
+                        {{ form_widget(form.userName) }}
+                    </div>
+                    <div class="__column">
+                        {{ form_label(form.userEmail, "*") }}
+                        {{ form_widget(form.userEmail) }}
+                    </div>
+                </div>
+                <div class="__row-1">
+                    <div class="__column">
+                        {{ form_label(form.subject, "*") }}
+                        {{ form_widget(form.subject) }}
+                    </div>
+
+                </div>
+                <div class="__row-1">
+                    <div class="__column">
+                        {{ form_label(form.message, "Votre message *") }}
+                        {{ form_widget(form.message) }}
+                    </div>
+
+                </div>
+                <div class="regUsrRow">
+                    <button class="btn btn-block validate_btn mt-2" type="submit">Envoyez</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__slide') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+        {{ encore_entry_script_tags('scroll_top') }}
+    {% endblock %}
+{% endblock %}

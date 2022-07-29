@@ -1,0 +1,99 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.title, "Donnez un bon titre à votre annonce*") }}
+        {{ form_widget(form.title) }}
+        <small class="form-text">{{ form_errors(form.title) }}</small>
+    </div>
+</div>
+
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.age, "Donnez votre âge *") }}
+        {{ form_widget(form.age) }}
+        <small class="form-text">{{ form_errors(form.age) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.profile, "Donnez votre profile *") }}
+        {{ form_widget(form.profile) }}
+        <small class="form-text">{{ form_errors(form.profile) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.years_of_experience, "Nombre d'années d'expérience *") }}
+        {{ form_widget(form.years_of_experience) }}
+        <small class="form-text">{{ form_errors(form.years_of_experience) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.teacherDiploma, "Votre diplôme *") }}
+        {{ form_widget(form.teacherDiploma) }}
+        <small class="form-text">{{ form_errors(form.teacherDiploma) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.teacherBackground, "Votre parcours *") }}
+        {{ form_widget(form.teacherBackground) }}
+        <small class="form-text">{{ form_errors(form.teacherBackground) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.class_type, "Type de séance *") }}
+        {{ form_widget(form.class_type) }}
+        <small class="form-text">{{ form_errors(form.class_type) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.public, "Le public cible *") }}
+        {{ form_widget(form.public) }}
+        <small class="form-text">{{ form_errors(form.public) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.course, "Le cours enseigné *") }}
+        {{ form_widget(form.course) }}
+        <small class="form-text">{{ form_errors(form.course) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.teachingMethodology, "Votre méthodologie d'enseignement *") }}
+        {{ form_widget(form.teachingMethodology|raw) }}
+        <small class="form-text">{{ form_errors(form.teachingMethodology) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.price, "Donnez votre prix *") }}
+        {{ form_widget(form.price) }}
+        <small class="form-text">{{ form_errors(form.price) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.billing_type, "Type de facturation *") }}
+        {{ form_widget(form.billing_type) }}
+        <small class="form-text">{{ form_errors(form.billing_type) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.city, "Selectionnez la ville *") }}
+        {{ form_widget(form.city) }}
+        <small class="form-text">{{ form_errors(form.city) }}</small>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.municipality, "Selectionnez la commune *") }}
+        {{ form_widget(form.municipality) }}
+        <small class="form-text">{{ form_errors(form.municipality) }}</small>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.some_details, "Dites nous un peu sur vous ou ajoutez d'autre details *") }}
+        {{ form_widget(form.some_details) }}
+        <small class="form-text">{{ form_errors(form.some_details) }}</small>
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

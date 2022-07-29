@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ka Doudhal{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="activity_main_page">
+            <div class="__text_block">
+                <div class="__content">
+                    <h1 class="__myPolice">Apprenez ou donnez cours</h1>
+                    <p class="text-muted">
+                        A la <strong>Doudhal</strong>, trouvez le prof parfait, pour vous ( Etudiant, élève) <br>
+                        ou donnez cours à domincile en postant votre profile <br> en renseignant vos compétences, cela est si
+                        simple et facile.
+                        <br>
+                        Retrouvez aussi des sujets d'examens ou des documents pdf <br>
+                        pour les séances de révisions.
+                    </p>
+                    {% if not app.user %}
+                        <a href="{{ path('new_user_register') }}" class="btn  text-white __myPolice">Je M'inscris</a>
+                    {% endif %}
+                    <hr>
+                    <div class="__form_index">
+                        <h6 class="__announcement">Rechercher un cours</h6>
+                        {{ form_start(form_search, {'attr':{'action':path('all_teachers')}}) }}
+                        <div class="__row-3">
+                            <div class="_column">
+                                {{ form_widget(form_search.course_name) }}
+                            </div>
+                            <div class="_column">
+                                {{ form_widget(form_search.city) }}
+                                <datalist id="addressList"></datalist>
+                            </div>
+                            <div class="_column">
+                                <button class="btn btn-block search_btn_index" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form_search) }}
+                    </div>
+                </div>
+            </div>
+            <div class="__poster_svg">
+                <img src="{{ asset('images/svg_img/education_poster.svg') }}" alt="svg image">
+            </div>
+        </div>
+        <main class="__container">
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Que souhaitez-vous faire ?
+                </h2>
+            </div>
+            <div class="__educ_features">
+                <div class="__act_block">
+                    <div class="__image_block">
+                        <img src="{{ asset('images/svg_img/teacher.svg') }}" alt="svg image">
+                    </div>
+                    <div class="__body">
+                        <a href="{{ path('all_teachers') }}">
+                            <h3 class="__myTitle"><i class="fas fa-chalkboard-teacher"></i> Prof à domicile</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="__act_block">
+                    <div class="__image_block">
+                        <img src="{{ asset('images/svg_img/books.svg') }}" alt="svg image">
+                    </div>
+                    <div class="__body">
+                        <a href="{{ path('e_books') }}">
+                            <h3 class="__myTitle"><i class="fas fa-book-open"></i> Bibliothèque</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="__act_block">
+                    <div class="__image_block">
+                        <img src="{{ asset('images/svg_img/exams.svg') }}" alt="svg image">
+                    </div>
+                    <div class="__body">
+                        <a href="{{ path('exam_subject') }}">
+                            <h3 class="__myTitle"><i class="fas fa-book-reader"></i> Sujets d'examen</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Que souhaitez-vous Apprendre ?
+                </h2>
+            </div>
+            <div class="__educ_cat">
+                <div class="__educ_cat_item">
+                    <h4 class="__headLineWhite">Scolaire</h4>
+                    <ul style="list-style-type: none;" class="list-unstyled">
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Chimie" }) }}" class="__myPolice text-white">Chimie</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Maths" }) }}" class="__myPolice text-white">Maths</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Physique" }) }}" class="__myPolice text-white">Physique</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Initiation informatique" }) }}" class="__myPolice text-white">Initiation informatique</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Programmation" }) }}" class="__myPolice text-white">Programmation</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Word" }) }}" class="__myPolice text-white">Word</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Excel" }) }}" class="__myPolice text-white">Excel</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Powerpoint" }) }}" class="__myPolice text-white">Powerpoint</a></li>
+                    </ul>
+                </div>
+                <div class="__educ_cat_item">
+                    <h4 class="__headLineWhite">Langue</h4>
+                    <ul style="list-style-type: none;" class="list-unstyled">
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Arabe" }) }}" class="__myPolice text-white">Arabe</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Anglais" }) }}" class="__myPolice text-white">Anglais</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Allemand" }) }}" class="__myPolice text-white">Allemand</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Espagnol" }) }}" class="__myPolice text-white">Espagnol</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Italien" }) }}" class="__myPolice text-white">Italien</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Swahili" }) }}" class="__myPolice text-white">Swahili</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Japonais" }) }}" class="__myPolice text-white">Japonais</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Chinois" }) }}" class="__myPolice text-white">Chinois</a></li>
+                    </ul>
+                </div>
+                <div class="__educ_cat_item">
+                    <h4 class="__headLineWhite">Musique</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Balafon" }) }}" class="__myPolice text-white">Balafon</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Batterie" }) }}" class="__myPolice text-white">Batterie</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Chant" }) }}" class="__myPolice text-white">Chant</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Kora" }) }}" class="__myPolice text-white">Kora</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Danse" }) }}" class="__myPolice text-white">Danse</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Guitare" }) }}" class="__myPolice text-white">Guitare</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Piano" }) }}" class="__myPolice text-white">Piano</a></li>
+                    </ul>
+                </div>
+                <div class="__educ_cat_item">
+                    <h4 class="__headLineWhite">Sport</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Coach sportif" }) }}" class="__myPolice text-white">Coach sportif</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Boxe" }) }}" class="__myPolice text-white">Boxe</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Natation" }) }}" class="__myPolice text-white">Natation</a></li>
+                    </ul>
+                </div>
+                <div class="__educ_cat_item">
+                    <h4 class="__headLineWhite">Arts et Loisirs</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Couture" }) }}" class="__myPolice text-white">Couture</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Cuisine" }) }}" class="__myPolice text-white">Cuisine</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Dessin" }) }}" class="__myPolice text-white">Dessin</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Pâtisserie" }) }}" class="__myPolice text-white">Pâtisserie</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Photographie" }) }}" class="__myPolice text-white">Photographie</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Sculpture" }) }}" class="__myPolice text-white">Sculpture</a></li>
+                        <li><a href="{{ path('teacher_filter', { column: "course", filter:"Théâtre" }) }}" class="__myPolice text-white">Théâtre</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Les profs dans votre ville
+                </h2>
+            </div>
+            <div class="__first_city">
+                <div class=" __city_first">
+                    <div class="__city_name">
+                        <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Conakry", column:"city" }) }}"><i class="fas fa-building"></i> Conakry</a>
+                    </div>
+                </div>
+            </div>
+            <div class="__ads_by_cities_block">
+                <div class="__ads_by_cities">
+                    <div class="__ads_by_cities_column __city_one">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Boké", column:"city" }) }}"><i class="fas fa-building"></i> Boké</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_two">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Faranah", column:"city" }) }}"><i class="fas fa-building"></i> Faranah</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_three">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "KanKan", column:"city" }) }}"><i class="fas fa-building"></i> KanKan</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_four">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Kindia", column:"city" }) }}"><i class="fas fa-building"></i> Kindia</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_five">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Guekédou", column:"city" }) }}"><i class="fas fa-building"></i> Guekedou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_six">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Labé", column:"city" }) }}"><i class="fas fa-building"></i> Labé</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_seven">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "Mamou", column:"city" }) }}"><i class="fas fa-building"></i> Mamou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_eight">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('teacher_filter', { filter: "N'Zerekoré", column:"city" }) }}"><i class="fas fa-building"></i>N'Zérékoré</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Encore au plus près de chez vous
+                </h2>
+            </div>
+            <div class="presentation">
+                <div class="communes">
+                    <div class="commune_list">
+                        <ul class="commune_column">
+                            <li><a href="{{ path('teacher_filter', { filter: "Beyla", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Beyla</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Bofa", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Bofa</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Dalaba", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dalaba</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Dabola", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dabola</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Dinguiraye", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dinguiraye</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Dixin", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Dixin</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Forécariah", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Forécariah</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('teacher_filter', { filter: "Gaoual", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Gaoual</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Guéckédou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Guéckédou</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Kaloum", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kaloum</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Kéouané", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kéouané</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Koubia", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Koubia</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Koundara", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Koundara</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('teacher_filter', { filter: "Kouroussa", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kouroussa</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Kissidougou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Kissidougou</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Lola", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Lola</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Macenta", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Macenta</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Mali", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Mali</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Mandiana", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Mandiana</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('teacher_filter', { filter: "Matam", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Matam   </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Matoto", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Matoto  </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Pita", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Pita    </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Ratoma", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Ratoma  </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Siguiri", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Siguiri </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Télimélé", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Télimélé</a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Tougué", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Tougué  </a></li>
+                            <li><a href="{{ path('teacher_filter', { filter: "Youmou", column:"municipality" }) }}"><i class="fas fa-map-signs"></i> Youmou  </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

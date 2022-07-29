@@ -1,0 +1,86 @@
+{{ form_start(form) }}
+<div class="__row-2">
+    <div class="_column">
+        {{ form_label(form.driver_full_name, "Donner votre nom et prénom") }}
+        {{ form_widget(form.driver_full_name) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.phone_number, "Donner le numéro de téléphone") }}
+        {{ form_widget(form.phone_number) }}
+    </div>
+</div>
+<div class="__row-3">
+    <div class="_column">
+        {{ form_label(form.taxi_brand, "Donner la marque du taxi *") }}
+        {{ form_widget(form.taxi_brand, { 'attr': { 'list':'brand_model_addressList', 'autocomplete':'off' } }) }}
+        <datalist id="brand_model_addressList">
+            <option value="ALFA ROMEO"></option>
+            <option value="AUDI"></option>
+            <option value="BMW"></option>
+            <option value="CHEVROLET"></option>
+            <option value="CHRYSLER"></option>
+            <option value="CITROEN"></option>
+            <option value="DACIA"></option>
+            <option value="DODGE"></option>
+            <option value="FIAT"></option>
+            <option value="FORD"></option>
+            <option value="HONDA"></option>
+            <option value="HUMMER"></option>
+            <option value="HYUNDAI"></option>
+            <option value="INFINITY"></option>
+            <option value="JAGUAR"></option>
+            <option value="JEEP"></option>
+            <option value="KIA"></option>
+            <option value="LAND ROVER"></option>
+            <option value="LEXUS"></option>
+            <option value="LOTUS"></option>
+            <option value="MAZDA"></option>
+            <option value="MERCEDES-BENZ"></option>
+            <option value="MITSUBISHI"></option>
+            <option value="MINI"></option>
+            <option value="NISSAN"></option>
+            <option value="OPEL"></option>
+            <option value="PEUGEOT"></option>
+            <option value="RENAULT"></option>
+            <option value="SEAT"></option>
+            <option value="SKODA"></option>
+            <option value="SMART"></option>
+            <option value="SUZUKI"></option>
+            <option value="TOYOTA"></option>
+            <option value="VOLKSWAGEN"></option>
+            <option value="VOLVO"></option>
+        </datalist>
+    </div>
+    <div class="_column">
+        {{ form_label(form.taxi_model, "Model du taxi *") }}
+        {{ form_widget(form.taxi_model) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.registration_number, "Donner Numéro d'immatriculation *") }}
+        {{ form_widget(form.registration_number) }}
+    </div>
+</div>
+<div class="__row-1">
+    <div class="_column">
+        {{ form_label(form.taxi_type, "Selectionner le type de taxi *") }}
+        {{ form_widget(form.taxi_type) }}
+    </div>
+</div>
+<div class="__row-3">
+    <div class="_column">
+        {{ form_label(form.city, "Selectionnez la ville où vous travaillez *") }}
+        {{ form_widget(form.city) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.municipality, "Selectionnez la commune où vous travaillez *") }}
+        {{ form_widget(form.municipality) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.district, "Donnez le quartier où vous travaillez *") }}
+        {{ form_widget(form.district) }}
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

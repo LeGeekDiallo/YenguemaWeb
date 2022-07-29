@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes trajets{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;">Trajets proposés {{ results | length }}</h4>
+            <hr class="__line">
+            <div class="__new">
+                <a href="{{ path("new_ride", { id: app.user.getId()}) }}"><i class="fas fa-plus-square"></i> Proposer un trajet</a>
+            </div>
+            <div class="__item">
+                {% for ride in results %}
+                    {% include '/travel/___trip_card_profile.html.twig' with {'ride':ride}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block title %}Annonces correspondantes{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <div class="__container">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('ads_search')}}) }}
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.keyWord) }}
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.address) }}
+                    <datalist id="addressList"></datalist>
+                </div>
+                <div class="formAdsSearchColumnBtn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <div class="__filters">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "accessoires", column:"adCategory" }) }}">Accessoires</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "chaussures", column:"adCategory" }) }}">Chaussures</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "cosmétique", column:"adCategory" }) }}">Cosmétique</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "electronique", column:"adCategory" }) }}">Electronique</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "document-livres-brochures", column:"adCategory" }) }}">Documents</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "multimédia", column:"adCategory" }) }}">Multimédia</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "interieur-maison", column:"adCategory" }) }}">Maison</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "motos", column:"adCategory" }) }}">Motos</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "loisir", column:"adCategory" }) }}">Loisir</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "vélos", column:"adCategory" }) }}">Vélos</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "vêtements", column:"adCategory" }) }}">Vêtements</a>
+                    </li>
+                    <li>
+                        <a class="__myPolice" href="{{ path('ads_matches',
+                            { category: "véhicules", column:"adCategory" }) }}">Véhicules</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="__line">
+            <p class="__myTitle" style="text-align: center"><span class="badge badge-danger">{{ pagination|length }}</span> Annonces trouvée(s)</p>
+
+            <div class="__ads_found">
+                {% for ad in pagination %}
+                    {% include '/ads/__ad_card.html.twig' with {'ad':ad} %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

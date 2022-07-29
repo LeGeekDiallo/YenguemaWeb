@@ -1,0 +1,89 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.car_brand, "Donnez la marque *") }}
+        {{ form_widget(form.car_brand) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_model, "Donnez le modèle *") }}
+        {{ form_widget(form.car_model) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.fuel, "Selectionnez le type de carburant *") }}
+        {{ form_widget(form.fuel) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.mileage, "Donnez le kilométrage *") }}
+        {{ form_widget(form.mileage) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_year, "Donnez l'année du véhicule *") }}
+        {{ form_widget(form.car_year) }}
+    </div>
+    <div class="adRegisterRow">
+        <div class="adInputColumn-1">
+            {{ form_label(form.car_country, "Donnez le pays d'origine *") }}
+            {{ form_widget(form.car_country) }}
+        </div>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.car_class, "Selectionnez la classe du véhicule *") }}
+        {{ form_widget(form.car_class) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_nb_places, "Donnez le nombre de places *") }}
+        {{ form_widget(form.car_nb_places) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_nb_doors, "Donnez le nombre de portes *") }}
+        {{ form_widget(form.car_nb_doors) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.car_color, "Donnez la couleur *") }}
+        {{ form_widget(form.car_color) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_price, "Donnez votre prix *") }}
+        {{ form_widget(form.car_price) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.car_state, "Selectionnez l'état du véhicule *") }}
+        {{ form_widget(form.car_state) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.transmissionType, "Selectionnez le type de transmission *") }}
+        {{ form_widget(form.transmissionType) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.carAdvantages, "Selectionnez les points forts du véhicule *") }}
+        {{ form_widget(form.carAdvantages) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.carImages, "Télécharchez les images *") }}
+        {{ form_widget(form.carImages) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="__list_images">
+        {% for image in car.carImages %}
+            <div class='__car_images_form'>
+                <img src="{{ asset('companies_logo/'~image.filename) }} " alt="image">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

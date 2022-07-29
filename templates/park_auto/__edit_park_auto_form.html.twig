@@ -1,0 +1,61 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.park_name, "Donnez le nom de votre park *") }}
+        {{ form_widget(form.park_name) }}
+    </div>
+</div>
+
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.city, "Donnez la ville *") }}
+        {{ form_widget(form.city) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.municipality, "Donnez la commune *") }}
+        {{ form_widget(form.municipality) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.address, "Donnez l'adresse complète *") }}
+        {{ form_widget(form.address) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.services, "Selectionnez les services *") }}
+        {{ form_widget(form.services) }}
+    </div>
+</div>
+
+<h6 class="__myPolice">Services du park</h6>
+<hr>
+<div class="__activity_images">
+    {% if parkAuto.services %}
+        {% for service in parkAuto.services %}
+            <div class="__act_img" id="service{{ loop.index }}">
+                {{ service.serviceName }}
+                <a class="text-danger delete_service_btn" data-number="{{ loop.index }}" data-urlDelete="/park/auto/remove_service/{{ parkAuto.id }}-{{ service.id }}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.phone_number, "Donnez le numéro de téléphone *") }}
+        {{ form_widget(form.phone_number) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.email, "Donnez l'email (facultatif) ") }}
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.filename, "Ajoutez une photo du park ") }}
+        {{ form_widget(form.filename) }}
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

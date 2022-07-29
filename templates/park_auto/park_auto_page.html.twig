@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ park_auto.getSlug() }}{% endblock %}
+
+{% block body %}
+<main class="__main_page bg-light">
+    <div class="__container">
+        <div class="bg-light __pka_page_head mt-4">
+            <div class="__pka_page_panel">
+                {% if park_auto.filename %}
+                    <img src="{{ asset('companies_logo/'~park_auto.filename) }}" alt="logo image">
+                {% else %}
+                    <img src="{{ asset('companies_logo/default_logo.svg') }}"  alt="logo image">
+                {% endif %}
+            </div>
+            <div class="__pka_page_name">
+                <h1 class="__myPolice">{{ park_auto.parkName }}</h1>
+            </div>
+        </div>
+        <div class="__car_search_box mt-4">
+            {{ form_start(form_search, {'attr':{'id': 'formSearchAd'}}) }}
+            <div class="formAdsSearchColumn">
+                {{ form_widget(form_search.model) }}
+            </div>
+            <div class="formAdsSearchColumn">
+                {{ form_widget(form_search.price) }}
+            </div>
+            <div class="formAdsSearchColumn">
+                {{ form_widget(form_search.year) }}
+            </div>
+            <div class="formAdsSearchColumn">
+                {{ form_widget(form_search.mileage) }}
+            </div>
+            <div class="formAdsSearchColumnBtn">
+                <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            {{ form_end(form_search) }}
+        </div>
+        <hr class="__line">
+        <h4 class="__myPolice" style="color: #0d41a1">{{ pagination | length }} véhicules</h4>
+        <div class="__pka_owner_block">
+            <div class="__pka_services">
+                <h5 class="__myPolice" style="color: #0d41a1;">Services proposé</h5>
+                {% for s in park_auto.services %}
+                    <h6 class="__myPolice">{{ s.serviceName }}</h6>
+                {% endfor %}
+                <hr class="__line">
+                <h4 class="__myPolice" style="color: #0d41a1;">Contacts</h4>
+                <h6 class="__myPolice"><i class="fas fa-phone-square"></i> +224 {{ park_auto.phoneNumber }}</h6>
+                <h6 class="__myPolice"><i class="fas fa-envelope-square"></i> {{ park_auto.email }}</h6>
+                <h6 class="__myPolice"><i class="fas fa-map-marked"></i> {{ park_auto.address }}-<span>{{ park_auto.municipality }}</span>-<span>{{ park_auto.city }}</span></h6>
+            </div>
+            <div class="__pka_cars">
+                {% for car in pagination %}
+                    {% include '/car/__car_card.html.twig' with { 'car':car } %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="__navigation">
+            <hr class="__line">
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+</main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+

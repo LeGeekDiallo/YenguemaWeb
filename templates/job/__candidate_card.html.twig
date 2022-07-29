@@ -1,0 +1,17 @@
+<div class="__card __job_profile_card">
+    <div class="__candidate_image">
+        <img src="{{ asset('images/svg_img/job-search.svg') }}" class="card-img-top" alt="logo image">
+        <div class="__all_applications">
+            <h6 class="__myPolice">{{ candidate.candidateName }}</h6>
+            <h6 class="__myPolice">{{ candidate.candidateEmail }}</h6>
+            <h6 class="__myPolice">+224 {{ candidate.candidatePhoneNumber }}</h6>
+            <p>A postulé : {{ candidate.createdAt|format_datetime('full', 'none', locale='fr') }}</p>
+        </div>
+    </div>
+    <div class="card_body">
+        <h5 class="__myPolice">CV du candidat</h5>
+        <a href="{{ asset('resume/'~candidate.filename) }}" download>Télecharcher le CV</a>
+    </div>
+</div>
+
+

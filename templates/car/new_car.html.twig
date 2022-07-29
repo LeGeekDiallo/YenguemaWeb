@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajout de nouveau véhicule{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Ajouter de nouveau véhicule</h5></div>
+            {% include 'car/__new_car_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes annonces de cours{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;">Vos cours de soutien <span class="badge bg-danger">{{ results | length }}</span></h4>
+            <hr class="__line">
+            <div class="__new">
+                <a href="{{ path("new_teacher", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-square"></i> Proposer un cours</a>
+            </div>
+            <div class="__item">
+                {% for course in results %}
+                    {% include '/teacher/__course_card.html.twig' with {'course':course}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

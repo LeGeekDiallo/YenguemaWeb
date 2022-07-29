@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nouveau Appartement{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            {% include 'apart/__apart_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__form_step_handler') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}

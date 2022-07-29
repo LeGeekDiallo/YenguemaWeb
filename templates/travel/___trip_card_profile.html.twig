@@ -1,0 +1,22 @@
+<div class="__card">
+    <div class="card_body">
+        <div class="__trip_infos">
+            <div class="__dep __myPolice">{{ ride.departure }}</div>
+            <div class="__ride_draw">
+                <div><i class="fas fa-map-pin"></i></div>
+                <hr class="__trait">
+                <div><i class="fas fa-map-pin"></i></div>
+            </div>
+            <div class="__dep __myPolice">{{ ride.destination }}</div>
+        </div>
+        <h6 class="__myPolice text-muted" style="text-align: center;">{{ ride.departureDate | format_datetime('full', 'none', locale='fr') }}</h6>
+        <div class="__control_btn">
+            <a class="btn btn-sm btn-info __myPolice" href="{{ path('edit_ride', { id:ride.id, slug:ride.getSlug() }) }}"><i class="fas fas fa-edit"></i></a>
+            <form method="post" action="{{ path('delete_ride', { id:ride.id }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete'~ride.id) }}">
+                <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>

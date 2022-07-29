@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur detectée{% endblock %}
+
+{% block body %}
+<main class="__main_error_page">
+    <div class="error_container">
+        <div class="__error">
+            <h2 class="__myPolice">Une erreur a été rencontrée</h2>
+            <div class="__error_message">
+                <h6 class="__myPolice">Message</h6>
+                <p>{{ message }}</p>
+                <h6 class="__myPolice">Code erreur</h6>
+                <p>{{ error_code }}</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

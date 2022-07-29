@@ -1,0 +1,44 @@
+easy_admin:
+   site_name: Yenguema
+   design:
+
+     assets:
+       favicon: 'Yenguema_logo.png'
+     menu:
+       - { route: 'yenguema', label: 'Back to the website', icon: 'home'}
+       - { entity: 'User', label: 'Users', icon: 'users'}
+       - { entity: 'Activity', label: 'Activities', icon: 'tools'}
+       - { entity: 'Ads', label: 'Ads', icon: 'ad'}
+       - { entity: 'Teacher', label: 'Courses', icon: 'chalkboard'}
+       - { entity: 'JobOffer', label: 'Job offers', icon: 'briefcase'}
+       - { entity: 'Ride', label: 'Trips', icon: 'suitcase'}
+   entities:
+     User:
+      class: App\Entity\User
+      list:
+        sort: ['subscribeAt', 'ASC']
+     Activity:
+       class: App\Entity\Activity
+       list:
+         sort: ['createdAt', 'ASC']
+     Ads:
+       class: App\Entity\Ads
+       list:
+         sort: ['createdAt', 'ASC']
+     Teacher:
+       class: App\Entity\Teacher
+       list:
+         sort: ['created_at', 'ASC']
+     JobOffer:
+       class: App\Entity\JobOffer
+       list:
+         sort: ['created_at', 'ASC']
+     Ride:
+       class: App\Entity\Ride
+       list:
+         sort: ['created_at', 'ASC']
+
+
+
+
+

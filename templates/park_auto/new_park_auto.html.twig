@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nouveau park auto{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Ajouter un nouveau park auto</h5></div>
+            {% include 'park_auto/__new_park_auto_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

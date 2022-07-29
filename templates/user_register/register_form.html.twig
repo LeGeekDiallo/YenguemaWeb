@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <main class="__login_container">
+            <div id="form_ins">
+                <div class="__log_svg">
+                    <img src="{{ asset('images/svg_img/login_svg.svg') }}" alt="image png">
+                </div>
+                {% for message in app.flashes('notification') %}
+                    <div class="alert-danger __alert_error p-3" style="display: flex;">
+                        <p>{{ message }} <i class="far fa-surprise"></i></p>
+                    </div>
+                {% endfor %}
+                {{ form_start(register_form) }}
+                <div class="regUsrRow">
+                    <div class="regUsrColumn">
+                        {{ form_label(register_form.sexe, "Sexe") }}
+                        {{ form_widget(register_form.sexe) }}
+                    </div>
+                </div>
+                <div class="regUsrRow">
+                    <div class="regUsrColumn">
+                        {{ form_label(register_form.username, "Nom et Prénom *") }}
+                        {{ form_widget(register_form.username) }}
+                        <small class="form-text">{{ form_errors(register_form.username) }}</small>
+                    </div>
+                    <div class="regUsrColumn">
+                        {{ form_label(register_form.email, "Email *") }}
+                        {{ form_widget(register_form.email) }}
+                        <small class="form-text">{{ form_errors(register_form.email) }}</small>
+                    </div>
+                </div>
+                <div class="regUsrRow">
+                    <div class="regUsrColumn">
+                        {{ form_label(register_form.password, "Mot de passe *") }}
+                        {{ form_widget(register_form.password) }}
+                        <small class="form-text">{{ form_errors(register_form.password) }}</small>
+                    </div>
+                    <div class="regUsrColumn">
+                        {{ form_label(register_form.confirm_password, "Confirmation *") }}
+                        {{ form_widget(register_form.confirm_password) }}
+                        <small class="form-text">{{ form_errors(register_form.confirm_password) }}</small>
+                    </div>
+                </div>
+                {{ form_label(register_form.phoneNumber, "Numéro de téléphone *") }}
+                <div class="regUsrRow">
+                    {{ form_widget(register_form.phoneNumber) }}
+                </div>
+                <small class="form-text">{{ form_errors(register_form.phoneNumber) }}</small>
+                <div class="regUsrRow">
+                    <button class="btn btn-block validate_btn mt-2" type="submit" id="validate_btn_user_register_form">M'inscrire</button>
+                </div>
+                <hr>
+                <p class="__myPolice">En cliquant sur
+                    <em>M'inscrire</em> vous acceptez
+                    <a href="#" target="_blank" class="__myPolice">nos conditions d'utilisation</a>
+                    {{ form_end(register_form) }}
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

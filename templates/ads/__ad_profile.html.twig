@@ -1,0 +1,15 @@
+<div class="__card">
+    <div class="__ad_image">
+        <img src="{{ asset('images/ad_image/'~ad.getAdPhotos()[0].getImageName()) }}" style="height: 100%;" class="card-img-top" alt="ad image">
+    </div>
+    <div class="card_body">
+        <h5 class="__myPolice">{{ ad.getAdTitle() }}</h5>
+        <div class="__activity_edit_btn_box">
+            <form method="post" action="{{ path('ad_delete', { id: ad.getId() }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete'~ad.getId()) }}">
+                <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>

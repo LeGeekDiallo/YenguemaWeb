@@ -1,0 +1,26 @@
+{% extends '@email/default/notification/body.html.twig' %}
+
+{% block content %}
+    <container>
+        {% apply inline_css(source('@css/email_style.css')) %}
+            <row>
+                <columns class="__logo_image">
+                    <img src="{{ email.image('@public/LeYenguema.png') }}" alt="">
+                </columns>
+                <columns>
+                    <h4>Yenguema</h4>
+                </columns>
+            </row>
+            <row class="__email_header">
+                <columns>
+                    <h4 class="text-center">Message de la part de {{ username }}</h4>
+                </columns>
+            </row>
+            <callout>
+                <p>{{ message|raw }}</p>
+            </callout>
+        {% endapply %}
+
+    </container>
+{% endblock %}
+

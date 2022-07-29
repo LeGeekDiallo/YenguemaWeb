@@ -1,0 +1,23 @@
+<div class="__card">
+    <div class="__prop_card_image">
+        <img src="{{ asset('companies_logo/'~studio.getStudioImages[random(0, studio.getStudioImages|length-1)].getFilename()) }}" alt="logo image">
+    </div>
+    <div class="__prop_card_body">
+        <p>
+            {{ studio.propertySurface }} <span class="badge badge-danger">m²</span>
+            {{ studio.pieceNumber }} <i class="fas fa-bed"></i>
+            {{ studio.bathroom }} <i class="fas fa-bath"></i>
+        </p>
+        <h5 class="__myPolice">{{ studio.adTitle }}</h5>
+        <p>{{ studio.city }}|{{ studio.municipality }}|{{ studio.district }}</p>
+        <p style="text-align: end">{{ studio.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+        <div class="__prop_price">{{ studio.price | format_number }} FG {% if studio.propositionType == 'A louer' %}/mois {% endif %}</div>
+        <hr>
+        <form method="post" action="{{ path('delete_studio', { id:studio.id, user:app.user.id, slug:csrf_token('_user'~app.user.getSlug()) }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete'~studio.id) }}">
+            <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+        </form>
+    </div>
+</div>
+

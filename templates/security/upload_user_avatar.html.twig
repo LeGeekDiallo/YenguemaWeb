@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification photo{% endblock %}
+{% block body %}
+    <div class="d-flex align-items-center justify-content-center userLogInWrapper" >
+        <div class="change_av_form_block">
+            <div class="__announcement"><h5><i class="fas fa-camera"></i> Photo de profile</h5></div>
+            {{ form_start(form) }}
+                <div class="custom-file">
+                    {{ form_widget(form.imageName) }}
+                    <label for="avatar" class="custom-file-label">choisir une image</label>
+                </div>
+                <small class="__alert_error">{{ form_errors(form.imageName) }}</small>
+                <div class="regUsrRow mt-3">
+                    <button id="checkLog" class="validate_btn btn btn-block" type="submit">Validez</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

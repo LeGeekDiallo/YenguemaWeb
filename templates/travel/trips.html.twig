@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+{% block title %}Voyages|Covoiturages{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__container">
+            <div class="bg-light __trip_search_container mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('trips')}}) }}
+                <div class="formAdsSearchColumn">
+                    {{ form_label(form_search.departure, "Départ *") }}
+                    {{ form_widget(form_search.departure, { 'attr':{'list':'departure_addressList', 'autocomplete':'off'} }) }}
+                    <datalist id="departure_addressList">
+                        <option value="Conakry"></option>
+                        <option value="Boké"></option>
+                        <option value="Faranah"></option>
+                        <option value="Guékedou"></option>
+                        <option value="KanKan"></option>
+                        <option value="Kindia"></option>
+                        <option value="Labé"></option>
+                        <option value="Mamou"></option>
+                        <option value="Beyla"></option>
+                        <option value="Bofa"></option>
+                        <option value="Dalaba"></option>
+                        <option value="Dabola"></option>
+                        <option value="Dinguiraye"></option>
+                        <option value="Dixin"></option>
+                        <option value="Forécariah"></option>
+                        <option value="Gaoual"></option>
+                        <option value="Guéckédou"></option>
+                        <option value="Kaloum"></option>
+                        <option value="Kéouané"></option>
+                        <option value="Koubia"></option>
+                        <option value="Koundara"></option>
+                        <option value="Kouroussa"></option>
+                        <option value="Kissidougou"></option>
+                        <option value="Lola"></option>
+                        <option value="Macenta"></option>
+                        <option value="Mali"></option>
+                        <option value="Mandiana"></option>
+                        <option value="Matam"></option>
+                        <option value="Matoto"></option>
+                        <option value="Pita"></option>
+                        <option value="Ratoma"></option>
+                        <option value="Siguiri"></option>
+                        <option value="Télimélé"></option>
+                        <option value="Tougué"></option>
+                        <option value="Youmou"></option>
+                        <option value="N'Zérékoré"></option>
+                    </datalist>
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_label(form_search.destination, "Destination *") }}
+                    {{ form_widget(form_search.destination, { 'attr':{'list':'destination_addressList', 'autocomplete':'off'} }) }}
+                    <datalist id="destination_addressList">
+                        <option value="Conakry"></option>
+                        <option value="Boké"></option>
+                        <option value="Faranah"></option>
+                        <option value="Guékedou"></option>
+                        <option value="KanKan"></option>
+                        <option value="Kindia"></option>
+                        <option value="Labé"></option>
+                        <option value="Mamou"></option>
+                        <option value="Beyla"></option>
+                        <option value="Bofa"></option>
+                        <option value="Dalaba"></option>
+                        <option value="Dabola"></option>
+                        <option value="Dinguiraye"></option>
+                        <option value="Dixin"></option>
+                        <option value="Forécariah"></option>
+                        <option value="Gaoual"></option>
+                        <option value="Guéckédou"></option>
+                        <option value="Kaloum"></option>
+                        <option value="Kéouané"></option>
+                        <option value="Koubia"></option>
+                        <option value="Koundara"></option>
+                        <option value="Kouroussa"></option>
+                        <option value="Kissidougou"></option>
+                        <option value="Lola"></option>
+                        <option value="Macenta"></option>
+                        <option value="Mali"></option>
+                        <option value="Mandiana"></option>
+                        <option value="Matam"></option>
+                        <option value="Matoto"></option>
+                        <option value="Pita"></option>
+                        <option value="Ratoma"></option>
+                        <option value="Siguiri"></option>
+                        <option value="Télimélé"></option>
+                        <option value="Tougué"></option>
+                        <option value="Youmou"></option>
+                        <option value="N'Zérékoré"></option>
+                    </datalist>
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_label(form_search.date_depart, "Date départ *") }}
+                    {{ form_widget(form_search.date_depart) }}
+                </div>
+                <div class="__btn_submit">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr class="__line">
+            {% if pagination %}
+                <h5 class="__announcement"><span class="badge badge-danger">{{ pagination | length }}</span> résultat(s) trouvé(s)</h5>
+                <div class="__rides_found">
+                    {% for ride in pagination %}
+                        {% include '/travel/__ride_card.html.twig' with { 'ride':ride } %}
+                    {% endfor %}
+                </div>
+                <div class="__navigation">
+                    <hr class="__line">
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="__trips_page">
+                <div class="__all_features">
+                    <h2 class="__myPolice">
+                        Voyager plus simplement
+                    </h2>
+                </div>
+                <div class="__carpooling">
+                    <div class="__svg">
+                        <img src="{{ asset('images/svg_img/carpooling.svg') }}" alt="carpooling">
+                    </div>
+                    <div class="__carpooling_explain">
+                        <h4 class="__myPolice" style="color: #0d41a1;">Covoiturage</h4>
+                        <p class="text-muted __myPolice">
+                            Ne faites plus le trajet tout seul. <br>
+                            Inscrivez-vous en quelques click et proposer votre trajet. <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="__carpooling">
+                    <div class="__svg">
+                        <img src="{{ asset('images/svg_img/cars.svg') }}" alt="carpooling">
+                    </div>
+                    <div class="__carpooling_explain">
+                        <h4 class="__myPolice" style="color: #0d41a1;">Gare voiture</h4>
+                        <p class="text-muted __myPolice">
+                            Vous êtes chauffeurs de ligne professionnel ? <br>
+                            Inscrivez-vous en quelques click et proposer désormais vos trajets. <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

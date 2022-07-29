@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block title %}Annonces immobilières{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="__new_property_container">
+            <div class="__properties_box">
+                <div class="__new_property_items">
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/apartment.svg') }}" alt="">
+                    </div>
+                    <div class="__new_prop_right_side">
+                        <a class="btn text-white" href="{{ path('new_apart', {id: app.user.id}) }}" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i></a>
+                        <p>
+                            Vous avez publié <span class="badge bg-danger">{{ app.user.apartments | length }}</span> <br>
+                            annonces de appartements en location/vente.
+                        </p>
+                        {% if app.user.apartments | length %}
+                            <a href="{{ path('user_apartments', { id: app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice"><i class="fas fa-eye"></i> Voire toutes les les annonces</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="__new_property_items">
+                    <div class="__new_prop_right_side">
+                        <a class="btn text-white" style="background-color: #0d41a1;" href="{{ path('new_house', {id: app.user.id}) }}" ><i class="fas fa-plus-square"></i></a>
+                        <p>
+                            Vous avez publié <span class="badge bg-danger">{{ app.user.houseVillas | length}}</span> <br>
+                            annonces de maisons/villas en location/vente.
+                        </p>
+                        {% if app.user.houseVillas | length %}
+                            <a href="{{ path('user_houses', { id: app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice"><i class="fas fa-eye"></i> Voire toutes les les annonces</a>
+                        {% endif %}
+                    </div>
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/villa.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="__new_property_items">
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/work-from-home.svg') }}" alt="">
+                    </div>
+                    <div class="__new_prop_right_side">
+                        <a href="{{ path('new_studio', {id: app.user.id}) }}" class="btn text-white" style="background-color: #0D47A1;"><i class="fas fa-plus-square"></i></a>
+                        <p>
+                            Vous avez publié <span class="badge bg-danger">{{ app.user.studios|length }}</span> <br>
+                            annonces de studios en location/vente.
+                        </p>
+                        {% if app.user.studios|length %}
+                            <a href="{{ path('user_studios', { id: app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice"><i class="fas fa-eye"></i> Voire toutes les les annonces</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="__new_property_items">
+                    <div class="__new_prop_right_side">
+                        <a href="{{ path('new_ols', { id: app.user.id }) }}" class="btn text-white" style="background-color: #0d41a1;"><i class="fas fa-plus-square"></i></a>
+                        <p>
+                            Vous avez publié <span class="badge bg-danger">{{ app.user.officeShopLands|length }}</span> <br>
+                            annonces de bureau à louer ou magasin ou terrain à vendre. <br>
+                        </p>
+                        {% if app.user.officeShopLands|length %}
+                            <a href="{{ path('user_olss', { id: app.user.id, slug: csrf_token('_user'~app.user.getSlug()) }) }}" class="__myPolice"><i class="fas fa-eye"></i> Voire toutes les les annonces</a>
+                        {% endif %}
+                    </div>
+                    <div class="__res_img">
+                        <img src="{{ asset('images/svg_img/real_estate_svg/office-building.svg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

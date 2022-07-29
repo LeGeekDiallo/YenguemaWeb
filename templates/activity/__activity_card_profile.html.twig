@@ -1,0 +1,15 @@
+<div class="__card">
+    <h4 class="__myTitle">Mon activité</h4>
+    <div class="__img_wrapper">
+        <img class="__activity_image" src="{{ asset('images/activity_image/'~app.user.activity.getActivityImages()[0].getFilename()) }}" alt="activity image">
+    </div>
+    <h5 class="__label">{{ app.user.activity.getActivityName() }}</h5>
+    <div class="__activity_edit_btn_box" style="display: flex;">
+        <a class="btn btn-sm btn-info __myPolice" href="{{ path("edit_activity", { slug: app.user.activity.getSlug(), id: app.user.activity.getId() }) }}"><i class="fas fas fa-edit"></i></a>
+        <form method="post" onsubmit="return confirm('Êtes-vous sûr ?')" action="{{ path('delete_activity', { id: app.user.activity.getId() }) }}" style="display: inline-block;">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete'~app.user.activity.getId()) }}">
+            <button type="submit" class="btn btn-sm btn-danger __myPolice"><i class="fas fas fa-trash-alt"></i></button>
+        </form>
+    </div>
+</div>

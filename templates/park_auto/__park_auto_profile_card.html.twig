@@ -1,0 +1,23 @@
+<div class="__card">
+    <div class="__ad_image">
+        {% if park_auto.filename %}
+            <img src="{{ asset('companies_logo/'~park_auto.filename) }}" alt="logo image">
+        {% else %}
+            <img src="{{ asset('images/svg_img/park_auto_default.svg') }}"  alt="logo image">
+        {% endif %}
+    </div>
+    <div class="card_body">
+        <h5 class="__myPolice"><a href="{{ path('park_auto_owner_page', { id:park_auto.id, csrf: csrf_token('owner_page'~park_auto.getSlug()) }) }}">{{ park_auto.parkName }}</a> </h5>
+        <div class="__activity_edit_btn_box" style="display: flex;">
+            <a class="btn btn-sm btn-info __myPolice" href="{{ path("edit_park_auto", { slug: park_auto.getSlug(), id: park_auto.id }) }}">
+                <i class="fas fas fa-edit"></i>
+            </a>
+            <form method="post" action="{{ path('delete_park_auto', { id: park_auto.id }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete'~park_auto.id) }}">
+                <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+

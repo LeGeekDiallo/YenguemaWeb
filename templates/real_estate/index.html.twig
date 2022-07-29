@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immobilier{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="__real_estate_main_page">
+            <div class="__real_estate_head">
+                <div class="__real_estate_head_item">
+                    <h1 class="__myPolice" style="color: white;">Trouver les meilleurs logements autour de vous</h1>
+                    <p class="text-white" style="text-align: center; font-size: 20px">
+                        Vente, location de biens immobiliers par des démarcheurs
+                        ou propriétaires
+                    </p>
+                </div>
+            </div>
+            <div class="__real_image_features" id="__real_estate_item-1"></div>
+            <div class="__real_image_features"  id="__real_estate_item-2"></div>
+            <div class="__real_image_features" id="__real_estate_item-3"></div>
+            <div class="__real_image_features" id="__real_estate_item-4"></div>
+            <div class="__real_image_features" id="__real_estate_item-5"></div>
+            <div class="__real_image_features" id="__real_estate_item-6"></div>
+            <div class="__real_image_features" id="__real_estate_item-7"></div>
+            <div class="__property_items">
+                <div class="__properties">
+                    <div class="__property_card_item card">
+                        <div class="__res_img">
+                            <a href="{{ path('all_apartments') }}">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/apartment.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <h5 class="__myPolice" style="color: #0d41a1; text-align: center">Apparts</h5>
+                    </div>
+                    <div class="__property_card_item card">
+                        <div class="__res_img">
+                            <a href="{{ path('all_houses') }}">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/villa.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <h5 class="__myPolice" style="color: #0d41a1; text-align: center">Villas/Maisons</h5>
+                    </div>
+                    <div class="__property_card_item card">
+                        <div class="__res_img">
+                            <a href="{{ path('all_studios') }}">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/work-from-home.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <h5 class="__myPolice" style="color: #0d41a1; text-align: center">Studios</h5>
+                    </div>
+                    <div class="__property_card_item card">
+                        <div class="__res_img">
+                            <a href="{{ path('all_ols') }}">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/office-building.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <h5 class="__myPolice" style="color: #0d41a1; text-align: center">Bureaux/magasin</h5>
+                    </div>
+                    <div class="__property_card_item card">
+                        <div class="__res_img">
+                            <a href="{{ path('all_lands') }}">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/architect.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <h5 class="__myPolice" style="color: #0d41a1; text-align: center">Terrains</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <main class="__container">
+            <div class="__all_features">
+                <h2 class="__myPolice">Ajoutées recemments</h2>
+            </div>
+            <div class="__recently" id="__recently">
+                {% if aparts | length %}
+                    <div class="__recent_prop_bloc">
+                        {% for apart in aparts %}
+                            {% include '/apart/__apart_card.html.twig' with {'apart':apart}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if houses | length %}
+                    <div class="__recent_prop_bloc">
+                        {% for house in houses %}
+                            {% include '/house_villa/__house_card.html.twig' with {'house':house}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if studios | length %}
+                    <div class="__recent_prop_bloc">
+                        {% for studio in studios %}
+                            {% include '/studio/__studio_card.html.twig' with {'studio':studio}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if ols_s|length %}
+                    <div class="__recent_prop_bloc">
+                        {% for ols in ols_s %}
+                            {% include '/ols/__ols_card.html.twig' with {'ols':ols}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+        <div class="__activity_panel">
+            <div class="__services_explain">
+                <h1 class="__myPolice text-white">Vous êtes propriétaire ou démarcheur ?</h1>
+                <p>
+                    Pour poster vos annonces sur leYenguema, rien de plus simple et totalement gratuit.<br>
+                    leYenguema vous propose ce service vous perttant de gerer facilement vos annonces immobilières, <br>
+                    vous pourrez ainsi ajouter-modifier-supprimer. <br>
+
+                    <em>Tout cela en 2 petites étapes :</em>
+                </p>
+                <div class="__add_step">
+                    <div class="__step" id="__step_1">
+                        <img src="{{ asset('images/svg_img/register.svg') }}" alt="">
+                        <div class="__text_box">
+                            <h4><i class="fas fa-user-plus"></i><a href="{{ path('new_user_register') }}">Inscription</a></h4>
+                        </div>
+                    </div>
+                    <div class="__step" id="__step_2">
+                        <img src="{{ asset('images/svg_img/new_house.svg') }}" alt="">
+                        <div class="__text_box">
+                            <h4><i class="far fa-plus-square"></i> ajouter une propriété</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="__container">
+            <div class="__all_features">
+                <h2 class="__myPolice">Propriétés à vendre recentes</h2>
+            </div>
+            <div class="__recently">
+                {% if sale_aparts|length %}
+                    <div class="__recent_sale_prop_bloc">
+                        {% for apart in sale_aparts %}
+                            {% include '/apart/__apart_card.html.twig' with {'apart':apart}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if sale_houses|length %}
+                    <div class="__recent_sale_prop_bloc">
+                        {% for house in sale_houses %}
+                            {% include '/house_villa/__house_card.html.twig' with {'house':house}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if sale_ols|length %}
+                    <div class="__recent_sale_prop_bloc">
+                        {% for ols in sale_ols %}
+                            {% include '/ols/__ols_card.html.twig' with {'ols':ols}  %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+        <div class="__rs_features_panel">
+            <div class="__rs_features_box">
+                <div class="__res_features_intro">
+                    <div class="__intro_box">
+                        <h4 class="text-white" style="font-family: Ubuntu;">Explorer tous <br> les biens par type</h4>
+                    </div>
+                </div>
+                <div class="__res_features_list">
+                    <div class="__res_features_list_box">
+                        <a class="__res_features_items" href="{{ path('all_apartments') }}">
+                            <div class="__res_img">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/apartment.svg') }}" alt="">
+                            </div>
+                            <h5 style="text-align: center; color: white; z-index: 1">Appartements</h5>
+                        </a>
+                        <a class="__res_features_items" href="{{ path('all_houses') }}">
+                            <div class="__res_img">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/villa.svg') }}" alt="">
+                            </div>
+                            <h5 style="text-align: center; color: white;">Villas & Maisons</h5>
+                        </a>
+                        <a class="__res_features_items" href="{{ path('all_studios') }}">
+                            <div class="__res_img">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/work-from-home.svg') }}" alt="">
+                            </div>
+                            <h5 style="text-align: center; color: white;">Studios</h5>
+                        </a>
+                        <a class="__res_features_items" href="{{ path('all_ols') }}">
+                            <div class="__res_img">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/office-building.svg') }}" alt="">
+                            </div>
+                            <h5 style="text-align: center; color: white;">Bureaux & Magasins</h5>
+                        </a>
+                        <a class="__res_features_items" href="{{ path('all_lands') }}">
+                            <div class="__res_img">
+                                <img src="{{ asset('images/svg_img/real_estate_svg/architect.svg') }}" alt="">
+                            </div>
+                            <h5 style="text-align: center; color: white;">Terrains</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__real_estate') }}
+        {{ encore_entry_script_tags('scroll_top') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}

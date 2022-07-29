@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Yenguema{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="https://leyenguema.com plateforme multiservices, de petites annonces en Guinée, forum étudiant sujets d'examens livres pdf">
+        <meta name="keywords" content="annonce, soutient, scolaire, exercices, livres, location, voiture, gare, offre,
+                emploi, villas, maison, appart, immobilier,bureaux,magasin, chambre, terrain, tailleurs, salon, coiffure, menuisier, garage, clinique, docteur,
+                forum, guinée, sujets, Guinée, question, physique, informatique, programmation, langage, sciences, discussion,
+                réponses, recherches, histoire, chimie, géographie, droit, matières, cours, université, collèges,
+                lycée">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="{{ asset('logo_yenguema.png') }}" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}{% endblock %}
+
+    </head>
+    <body>
+        <nav id="nav" class="__nav_bar">
+            <div class="__home_container_nav">
+                <a class="navbar-brand border rounded px-2 primary-color-dark font-weight-bold logo" href="{{ path('yenguema') }}">Yenguema</a>
+            </div>
+            <div class="__dropdown_menu" >
+                <div class="menu_title"><span id="__menu_btn">&#9776;</span></div>
+            </div>
+            <div class="service-link">
+                <a class="__service_link" href="{{ path('trades_universe') }}">Activités</a>
+                <a class="__service_link" href="{{ path('ads_universe') }}">Annonces</a>
+                <div class="__dropdown_btn">
+                    <a class="__service_link" href="{{ path('education') }}"> Ka Doudhal</a>
+                    <div class="__dropdown_educ">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('all_teachers') }}">COURS PARTICULIERS</a></li>
+                            <li><a href="{{ path('e_books') }}">BIBLIOTHEQUE</a></li>
+                            <li><a href="{{ path('exam_subject') }}">SUJETS D'EXAMEN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="__dropdown_btn">
+                    <a class="__service_link" href="{{ path('jobs_universe') }}"> Offres d'emploi</a>
+                    <div class="__dropdown_educ">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'ALTERNANCE' }) }}">ALTERNANCE</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDD' }) }}">CDD</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDI' }) }}">CDI</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'FREELANCE-INDEPENDANT' }) }}">FREELANCE-INDEPENDANT</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'STAGE' }) }}">STAGE</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PARTIEL' }) }}">TEMPS PARTIEL</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PLEIN' }) }}">TEMPS PLEIN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="__service_link" href="{{ path('park_auto') }}"> Park Auto</a>
+                <div class="__dropdown_btn">
+                    <a class="__service_link" href="{{ path('travel') }}">Voyages|Taxis</a>
+                    <div class="__dropdown_educ">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('trips') }}">GARE VOITURE</a></li>
+                            <li><a href="{{ path('taxi') }}">TAXI VILLE</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="__dropdown_btn">
+                    <a class="__service_link" href="{{ path('real_estate') }}">Immobilier</a>
+                    <div class="__dropdown_educ">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('all_apartments') }}">APPARTS</a></li>
+                            <li><a href="{{ path('all_ols') }}">BUREAUX-MAGASIN</a></li>
+                            <li><a href="{{ path('all_houses') }}">MAISONS-VILLAS</a></li>
+                            <li><a href="{{ path('all_studios') }}">STUDIOS</a></li>
+                            <li><a href="{{ path('all_lands') }}">TERRAIN</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sign_log_container_nav">
+                <div class="__links">
+                    {% if app.user %}
+                        <a  href='{{ path('profile') }}'>
+                            {% if app.user.userAvatar %}
+                                <img id='usr_av' src='{{ asset('images/users_avatar/'~app.user.userAvatar.getImageName()) }}' class='rounded-circle z-depth-0'
+                                     alt='avatar image' height='30'/>
+                            {% else %}
+                                <img id='usr_av' src='{{ asset('images/avatar_def.png') }}' class='rounded-circle z-depth-0'
+                                     alt='avatar image' height='30'/>
+                            {% endif %}
+                        </a>
+                        <a class="text-white ml-2" id="logout" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> LogOut</a>
+                    {% else %}
+                        <a class="__service_link signIn" href="{{ path('new_user_register') }}"><i class="fas fa-user-plus"></i> S'inscrire</a>
+                        <a class="__service_link" href="{{ path('login_user') }}"><i class="fas fa-sign-in-alt"></i> LogIn</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        {% block header %}{% endblock %}
+        <div class="__dropdown_container" id="__dropdown_container">
+            <div class="header">
+                <h3>Menu</h3>
+            </div>
+            <div class="__menu_container">
+                <a class="__menu_link" href="{{ path('trades_universe') }}"><i class="fas fa-chart-line"></i> Activités</a>
+                <a class="__menu_link" href="{{ path('ads_universe') }}"><i class="fas fa-ad"></i> Annonces</a>
+                <div class="__dropdown">
+                    <a class="__menu_link" href="{{ path('education') }}"><i class="fas fa-graduation-cap"></i> Ka Doudhal</a>
+                    <span class="__menu_link drpbtn"><i class="fas fa-angle-double-down"></i></span>
+                    <div class="__dropdown_educ_side_menu">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('all_teachers') }}">COURS PARTICULIERS</a></li>
+                            <li><a href="{{ path('e_books') }}">BIBLIOTHEQUE</a></li>
+                            <li><a href="{{ path('exam_subject') }}">SUJETS D'EXAMEN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="__dropdown">
+                    <a class="__menu_link" href="{{ path('jobs_universe') }}"><i class="fas fa-bullhorn"></i> Offres d'emploi</a>
+                    <span class="__menu_link job_drpbtn"><i class="fas fa-angle-double-down"></i></span>
+                    <div class="__dropdown_job_side_menu">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'ALTERNANCE' }) }}">ALTERNANCE</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDD' }) }}">CDD</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDI' }) }}">CDI</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'FREELANCE-INDEPENDANT' }) }}">FREELANCE-INDEPENDANT</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'STAGE' }) }}">STAGE</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PARTIEL' }) }}">TEMPS PARTIEL</a></li>
+                            <li><a href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PLEIN' }) }}">TEMPS PLEIN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="__menu_link" href="{{ path('park_auto') }}"><i class="fas fa-car"></i> Park Auto</a>
+                <div class="__dropdown">
+                    <a class="__menu_link" href="{{ path('travel') }}"><i class="fas fa-taxi"></i> Voyages|Taxis</a>
+                    <span class="__menu_link travel_drpbtn"><i class="fas fa-angle-double-down"></i></span>
+                    <div class="__dropdown_travel_side_menu">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('trips') }}">GARE VOITURE</a></li>
+                            <li><a href="{{ path('taxi') }}">TAXI VILLE</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="__dropdown">
+                    <a class="__menu_link" href="{{ path('real_estate') }}"><i class="fas fa-home"></i> Immobilier</a>
+                    <span class="__menu_link real_estate_dpd_btn"><i class="fas fa-angle-double-down"></i></span>
+                    <div class="__dropdown_real_estate_side_menu">
+                        <ul class="list-unstyled __myPolice">
+                            <li><a href="{{ path('all_apartments') }}">APPARTS</a></li>
+                            <li><a href="{{ path('all_ols') }}">BUREAUX-MAGASIN</a></li>
+                            <li><a href="{{ path('all_houses') }}">MAISONS-VILLAS</a></li>
+                            <li><a href="{{ path('all_studios') }}">STUDIOS</a></li>
+                            <li><a href="{{ path('all_lands') }}">TERRAIN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% if app.user %}
+                    <a class='__menu_link p-0' href='{{ path('profile') }}'>
+                        {% if app.user.userAvatar %}
+                            <img id='usr_av' src='{{ asset('images/users_avatar/'~app.user.userAvatar.getImageName()) }}' class='rounded-circle z-depth-0'
+                                 alt='avatar image' height='30'/>
+                        {% else %}
+                            <img id='usr_av' src='{{ asset('images/avatar_def.png') }}' class='rounded-circle z-depth-0'
+                                 alt='avatar image' height='30'/>
+                        {% endif %}
+                    </a>
+                    <a class="__myPolice text-danger __menu_link" id="logout" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> LogOut</a>
+                {% else %}
+                    <a class="__menu_link __signIn_logIn_link" href="{{ path('new_user_register') }}"><i class="fas fa-user-plus"></i> S'inscrire</a>
+                    <a class="__menu_link __signIn_logIn_link" href="{{ path('login_user') }}"><i class="fas fa-sign-in-alt"></i> LogIn</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="top"><button class="topBtn"><i class="fas fa-angle-double-up"></i></button></div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('menu_handler') }}
+            {{ encore_entry_script_tags('scroll_top') }}
+        {% endblock %}
+    </body>
+</html>

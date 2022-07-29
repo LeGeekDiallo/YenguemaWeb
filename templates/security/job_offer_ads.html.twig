@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes offres d'emploi{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;"><span class="badge bg-danger">{{ results | length }}</span> Vos offres d'emploi </h4>
+            <hr class="__line">
+            <div class="__new p-2">
+                <a href="{{ path("new_job_offer", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-square"></i> Poster une offre</a>
+            </div>
+            <div class="__item">
+                {% for job in results %}
+                    {% include '/job/__job_offer_card.html.twig' with {'job':job}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

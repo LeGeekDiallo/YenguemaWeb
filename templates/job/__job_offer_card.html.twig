@@ -1,0 +1,27 @@
+<div class="__card __job_profile_card">
+    <div class="__job_image">
+        {% if job.filename %}
+            <img src="{{ asset('companies_logo/'~job.filename) }}" class="card-img-top" alt="logo image">
+            {% else %}
+                <img src="{{ asset('companies_logo/default_logo.svg') }}" class="card-img-top" alt="logo image">
+        {% endif %}
+        <div class="__all_applications">
+            <h6 class="__myPolice">{{ job.jobApplies|length }} candidatures </h6>
+            {% if job.jobApplies|length %}
+                <a href="{{ path('all_application', { id:job.id }) }}">Voire les candidats</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card_body">
+        <h5 class="__myPolice">{{ job.jobTitle }}</h5>
+        <div class="__activity_edit_btn_box" style="display: flex;">
+            <a class="btn btn-sm btn-info __myPolice" href="{{ path("edit_job_offer", { slug: job.getSlug(), id: job.id }) }}"><i class="fas fas fa-edit"></i></a>
+            <form method="post" action="{{ path('delete_job_offer', { id: job.id }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete'~job.id) }}">
+                <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2"><i class="fas fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+

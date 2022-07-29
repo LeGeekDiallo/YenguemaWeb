@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Modification du park auto</h5></div>
+            {% include 'park_auto/__edit_park_auto_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('delete_image') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}

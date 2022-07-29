@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ ad.getAdTitle() }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div class="__title_block">
+                    <h4 class="__myPolice">{{ ad.getAdTitle() }}</h4>
+                    <p class="text-muted __myPolice">{{ ad.getAdState() }}</p>
+                </div>
+                <h3 class="__myPolice">{{ ad.adPrice | number_format(0, ' ', ' ') }} FG</h3>
+                <div class="__images_block" data-nb_img="{{ ad.adPhotos | length }}" id="items">
+                    <div class="__slides">
+                        {% for image in ad.adPhotos %}
+                            <div class='__slide_item'>
+                                <img src="{{ asset('images/ad_image/'~image.getImageName()) }} " alt="image">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="__left">&#10094;</a>
+                    <a class="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in ad.adPhotos %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__details">
+                    <h6 class="__myPolice">{{ ad.city }} - {{ ad.municipality }} - {{ ad.address }}</h6>
+                    <p class="text-muted __myPolice">Publié :  {{ ad.createdAt | format_datetime('full', 'none', locale='fr') }}</p>
+                    {% if ad.brand %}
+                        <h4 class="__myPolice">Caractéristiques : </h4>
+                        <ul style="list-style-type: none; color: #0D47A1">
+                            <li class="__myPolice"><i class="fas fa-car"></i> {{ ad.brand }}</li>
+                            <li class="__myPolice"><i class="fas fa-car"></i> {{ ad.model }}</li>
+                            <li class="__myPolice"><i class="fas fa-gas-pump"></i> {{ ad.vehicleType }}</li>
+                            <li class="__myPolice"><i class="fas fa-road"></i> {{ ad.mileage | number_format(0, ' ', ' ')}} km/h</li>
+                            <li class="__myPolice"><i class="far fa-calendar"></i> {{ ad.year }}</li>
+                        </ul>
+                    {% endif %}
+                    <h6 class="__myPolice">Description</h6>
+                    <p class="text-muted">{{ ad.details | raw }}</p>
+                    <hr>
+                    <p>Annonceur</p>
+                    <div class="__user">
+                        {% if not ad.user.userAvatar %}
+                            <img src="{{ asset('images/avatar_def.png') }}" alt="avatar default">
+                            {% else %}
+                                <img src="{{ asset('images/users_avatar/'~ad.user.userAvatar.imageName) }}" alt="avatar default">
+                        {% endif %}
+                        <span class="__myPolice">{{ ad.user.username }}</span>
+                    </div>
+                    <hr>
+                    <a href="tel: {{ ad.phoneNumber }}" class="__myPolice btn btn-sm text-white" style="background-color: #0d41a1;"> <i class="fas fa-mobile"></i> Appeler</a>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__slide_control') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}
+

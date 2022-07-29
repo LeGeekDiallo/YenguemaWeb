@@ -1,0 +1,137 @@
+{{ form_start(form) }}
+<div class="__bloc">
+    <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Caractéristiques de base de la maison/villa</h5></div>
+    <div class="__row-4">
+        <div class="_column">
+            {{ form_label(form.propertyType, "Type de la propriété") }}
+            {{ form_widget(form.propertyType) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.ad_title, "Titre de l'annonce") }}
+            {{ form_widget(form.ad_title) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.property_surface, "Surface en m²") }}
+            {{ form_widget(form.property_surface) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.floor_number, "Nombre d'étages") }}
+            {{ form_widget(form.floor_number) }}
+        </div>
+    </div>
+    <div class="__row-4">
+        <div class="_column">
+            {{ form_label(form.room_number, "Nombre de chambres") }}
+            {{ form_widget(form.room_number) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.bathroom_number, "Nombre de salles de bain") }}
+            {{ form_widget(form.bathroom_number) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.wc_number, "Nombre de salles de WC") }}
+            {{ form_widget(form.wc_number) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.build_year, "Année de construction") }}
+            {{ form_widget(form.build_year) }}
+        </div>
+    </div>
+    <div class="__row-1">
+        <div class="_column">
+            {{ form_label(form.other_infos, "Autres details sur la maison/villa le mettant en valeur") }}
+            {{ form_widget(form.other_infos) }}
+        </div>
+    </div>
+
+</div>
+<div class="__bloc">
+    <div class="__row-3">
+        <div class="_column">
+            {{ form_label(form.furniture, "La maison/villa est-elle meublée ?") }}
+            {{ form_widget(form.furniture) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.courtyard, "La maison/villa a-t-elle une cour ?") }}
+            {{ form_widget(form.courtyard) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.fenced, "La maison/villa est-elle cloturée ?") }}
+            {{ form_widget(form.fenced) }}
+        </div>
+    </div>
+    <div class="__row-1">
+        <div class="_column">
+            {{ form_label(form.equipements, "Citer tous les equipements et meubles se trouvant dans la maison/villa") }}
+            {{ form_widget(form.equipements) }}
+        </div>
+    </div>
+</div>
+<div class="__bloc">
+    <p>
+        La maison/villa est à vendre ou à louer ?<br>
+        Choisissez-en et donner votre prix sans espace entre les chiffres
+    </p>
+    <div class="_column">
+        {{ form_label(form.propositionType, "Type de proposition") }}
+        {{ form_widget(form.propositionType) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.price, "Prix") }}
+        {{ form_widget(form.price) }}
+    </div>
+</div>
+<div class="__bloc">
+    <div class="__announcement"><h5><i class="fas fa-plus-square"></i> Où se trouve cette maison-villa ?</h5></div>
+    <p>
+        Les moindres details sur l'adresse sont necessaires et importants pour mieux localiser votre maison-villa.
+        Vous pouvez aussi indiquer la proximité des transports en commun ou des routes principales ou encore des lieux
+        <br>
+        comme les gares et les aéroports ou des commerces, restaurants et services médicaux (médecins, hôpitaux, cliniques, etc.) <br>
+        Décrivez le quartier si c’est un point positif (résidentiel, calme, tranquille)
+    </p>
+    <div class="__row-3">
+        <div class="_column">
+            {{ form_label(form.city, "La ville") }}
+            {{ form_widget(form.city) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.municipality, "La commune") }}
+            {{ form_widget(form.municipality) }}
+        </div>
+        <div class="_column">
+            {{ form_label(form.district, "Le quartier") }}
+            {{ form_widget(form.district) }}
+        </div>
+    </div>
+    <div class="__row-1">
+        <div class="_column">
+            {{ form_label(form.more_infos_address, "Complement de la localisation") }}
+            {{ form_widget(form.more_infos_address) }}
+        </div>
+    </div>
+</div>
+<div class="__bloc">
+    <div class="_column">
+        {{ form_label(form.phone_number, "Donner votre numéro de téléphone") }}
+        {{ form_widget(form.phone_number) }}
+    </div>
+    <div class="_column">
+        {{ form_label(form.email, "Donner votre email (facultatif)") }}
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+<div class="__bloc">
+    <div class="__row-1">
+        <div class="_column">
+            {{ form_label(form.houseVillaImages, "Images") }}
+            {{ form_widget(form.houseVillaImages) }}
+        </div>
+    </div>
+</div>
+
+<div class="next_step_btn_box">
+    <button id="prev_btn" class="validate_btn btn" type="button">precedent</button>
+    <button id="submit_btn" class="validate_btn btn" type="button">Suivant</button>
+</div>
+{{ form_end(form) }}

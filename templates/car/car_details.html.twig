@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ car.carBrand }}-{{ car.carModel }}-{{ car.carYear }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container_car">
+            <div class="__details_block">
+                <div class="__car_images_block" data-nb_img="{{ car.carImages | length }}" id="items">
+                    <div class="__slides">
+                        {% for image in car.carImages %}
+                            <div class='__slide_item'>
+                                <img src="{{ asset('companies_logo/'~image.filename) }} " alt="image">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="__left">&#10094;</a>
+                    <a class="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in car.carImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__car_details">
+                    <div class="__car_mark_price_block">
+                        <h3 class="__myPolice" style="color: #0d41a1;">
+                            {{ car.carBrand }} {{ car.carModel }}
+                        </h3>
+                        <h4 class="__myPolice" style="color: #0d41a1; text-align: end;">{{ car.carPrice | number_format(0, ' ', ' ')}} FG</h4>
+                    </div>
+                    <h3 class="__myPolice" style="color: #0d41a1;">Caractéristiques</h3>
+                    <ul class="list-unstyled __list_group_v1">
+                        <li class="__list_group_item_v1">{{ car.carBrand }}</li>
+                        <li class="__list_group_item_v1">{{ car.carModel }}</li>
+                        <li class="__list_group_item_v1">Carburant : {{ car.fuel }}</li>
+                        <li class="__list_group_item_v1">{{ car.carClass }}</li>
+                        <li class="__list_group_item_v1">{{ car.carYear }}</li>
+                        <li class="__list_group_item_v1">{{ car.mileage | number_format(0, ' ', ' ')}} km</li>
+                        <li class="__list_group_item_v1">{{ car.carNbPlaces }} places</li>
+                        <li class="__list_group_item_v1">{{ car.carNbDoors }} portières</li>
+                        <li class="__list_group_item_v1">Couleur : {{ car.carColor }} </li>
+                        <li class="__list_group_item_v1">Etat : {{ car.carState }} </li>
+                        <li class="__list_group_item_v1">Transimission : {{ car.transmissionType }} </li>
+                    </ul>
+                    <h3 class="__myPolice" style="color: #0d41a1;">Les points forts</h3>
+                    <ul class="list-unstyled __list_group_v1">
+                        {% for adv in car.carAdvantages %}
+                            <li class="__list_group_item_v1">{{ adv.advantageName }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__slide_control') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}

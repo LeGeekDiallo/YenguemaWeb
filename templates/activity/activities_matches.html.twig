@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+{% block title %}Activités correspondantes{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities" id="swup">
+        <div class="__container">
+            <div class="__response_box mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('activities_search')}}) }}
+                <div class="formAdsSearchColumn">{{ form_widget(form_search.category, {'attr':{'class':'browser-default custom-select'}}) }}</div>
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.address) }}
+                    <datalist id="addressList"></datalist>
+                </div>
+                <div class="formAdsSearchColumnBtn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <div class="__filters">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Artisanat", column:"category" }) }}">
+                            Artisan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Blanchisseur", column:"category" }) }}">
+                             Blanchisseur
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Boulangerie", column:"category" }) }}">
+                            Boulangerie, Patisserie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Boutiquier", column:"category" }) }}">
+                            Boutiques
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Briqueterie", column:"category" }) }}">
+                            Briqueterie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Climatisation", column:"category" }) }}">
+                            Climatisation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Commerçant", column:"category" }) }}">
+                            Commerces
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Cordonniers", column:"category" }) }}">
+                            Cordonnerie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Cosmetique", column:"category" }) }}">
+                            Cosmetique
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Couture", column:"category" }) }}">
+                            Couture
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Déménagement", column:"category" }) }}">
+                            Déménagement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activities_matches', { category: "Garage Auto", column:"category" }) }}">
+                            Garage Auto
+                        </a>
+                    </li>
+                    <li>
+                       <a href="{{ path('activities_matches', { category: "Garage Moto", column:"category" }) }}">
+                            Garage Moto
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="__line">
+            <p class="__myTitle" style="text-align: center"><span class="badge badge-danger">{{ pagination|length }}</span> Activités trouvée(s)</p>
+            <div class="__activities_block">
+                {% for activity in pagination %}
+                    {% include '/activity/__activity_card.html.twig' with {'activity':activity} %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('activities_likes_handler') }}
+        {{ encore_entry_script_tags('scroll_top') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}
+
+
+

@@ -1,0 +1,58 @@
+{% extends '@email/default/notification/body.html.twig' %}
+
+{% block content %}
+    <container>
+        {% apply inline_css(source('@css/email_style.css')) %}
+            <row>
+                <columns class="__logo_image">
+                    <img src="{{ email.image('@public/logo_yenguema.png') }}" alt="logo">
+                </columns>
+                <columns>
+                    <h4>Yenguema.com</h4>
+                </columns>
+            </row>
+            <row class="__email_header">
+                <columns>
+                    <h4 class="text-center">Nouvelle candidature à votre offre</h4>
+                </columns>
+            </row>
+            <callout>
+                <p>Bonjour Mr/Mme,<br>
+                    Suite à votre offre d'emploi sur la plateforme Yenguema.com, nous avons le plaisir de vous informer que vous avez une nouvelle candidature. <br>
+                    L'offre d'emploi : <br>
+                    Post à pourvoire : {{ job_offer.jobTitle }}
+                </p>
+                <p>Vous trouverez en pièce jointe le cv du candidat</p>
+            </callout>
+            <h4>Informations du Candidat(e) : </h4>
+            <row>
+                <p>Nom complet: {{ user.username }}</p>
+            </row>
+            <row>
+                <p>Son email : {{ user.email }}</p>
+            </row>
+            <row>
+                <p>Son numéro de téléphone : +224 {{ user.phoneNumber }}</p>
+            </row>
+            {% if letter %}
+                <h4>Lettre de motivation</h4>
+                <row>
+                    <p>{{ letter|raw }}</p>
+                </row>
+            {% endif %}
+
+            <row>
+                <p>Nous vous remercions d'utiliser nos services.</p>
+            </row>
+            <row class="__email_footer">
+                <columns>
+                    <p>
+                        Cet email est envoyé automatiquement.
+                    </p>
+                </columns>
+            </row>
+        {% endapply %}
+
+    </container>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn" >
+        {{ form_label(form.adTitle, "Le titre de l'annonce *") }}
+        {{ form_widget(form.adTitle) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.adCategory, "La categorie de l'annonce *") }}
+        {{ form_widget(form.adCategory) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.adType, "Le type *") }}
+        {{ form_widget(form.adType) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.adState, "Etat du produit *") }}
+        {{ form_widget(form.adState) }}
+    </div>
+</div>
+<div class="adRegisterRow " id="__if_cat_eq_vehicle">
+    <div class="adInputColumn" >
+        {{ form_label(form.brand, "La marque") }}
+        {{ form_widget(form.brand) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.model, "Le model") }}
+        {{ form_widget(form.model) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.vehicleType, "Type de véhicule") }}
+        {{ form_widget(form.vehicleType) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.mileage, "Le kilometrage") }}
+        {{ form_widget(form.mileage) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.year, "L'année") }}
+        {{ form_widget(form.year) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.transmissionType, "Type de transimission") }}
+        {{ form_widget(form.transmissionType) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn" >
+        {{ form_label(form.city, "Ville *") }}
+        {{ form_widget(form.city) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.municipality, "Commune *") }}
+        {{ form_widget(form.municipality) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.address, "Adresse complète *") }}
+        {{ form_widget(form.address) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn" >
+        {{ form_label(form.email, "Email") }}
+        {{ form_widget(form.email) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.phoneNumber, "Numéro de téléphone *") }}
+        {{ form_widget(form.phoneNumber) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1" >
+        {{ form_label(form.adPrice, "Prix *") }}
+        {{ form_widget(form.adPrice) }}
+    </div>
+
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.adPhotos, "Choisissez des photos") }}
+        {{ form_widget(form.adPhotos) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.details, "Autres details de l'annonce *") }}
+        {{ form_widget(form.details) }}
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

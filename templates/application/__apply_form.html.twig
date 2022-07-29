@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+<div class="__announcement"><h5><i class="fas fa-plus-square"></i> Envoie de candidature </h5></div>
+<div class="__row-1">
+    <div class="_column">
+        {{ form_label(form.filename, "CV *") }}
+        {{ form_widget(form.filename) }}
+    </div>
+
+</div>
+<div class="__row-1">
+    <div class="_column">
+        {{ form_label(form.application_letter, "Vos motivations (facultatif) ") }}
+        {{ form_widget(form.application_letter) }}
+    </div>
+</div>
+<div class="next_step_btn_box">
+    <button id="submit_btn" class="validate_btn btn" type="submit">Postuler</button>
+</div>
+{{ form_end(form) }}
+

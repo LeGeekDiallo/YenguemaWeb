@@ -1,0 +1,52 @@
+<div class="card __taxi_card">
+    <div class="__driver_info">
+        <div class="__driver_avatar">
+            <img src="
+                {% if driver.user.userAvatar %}
+                    {{ asset('/images/users_avatar/'~driver.user.userAvatar.getImageName()) }}
+                    {% else %}
+                    {{ asset('/images/avatar_def.png') }}
+                {% endif %}
+                " alt="driver avatar">
+        </div>
+        <p>
+            {% if driver.user.username != driver.driverFullName %}
+                {{ driver.driverFullName }}
+                {% if driver.driverFullName == null%}
+                    {{ driver.user.getUserName() }}
+                {% endif %}
+            {% endif %}
+        </p>
+    </div>
+    <div class="__driver_contact">
+        <div class="__activity_edit_btn_box">
+            <p>
+                {% if driver.taxiType == "Taxi moto" %}
+                    <i class="fas fa-motorcycle"></i>   {{ driver.taxiBrand }}  {{ driver.taxiModel }}
+                    {% else %}
+                        <i class="fas fa-taxi"></i>      {{ driver.taxiBrand }}  {{ driver.taxiModel }}
+                {% endif %}
+
+            </p>
+            <p><i class="fas fa-mobile"></i> +224
+                {% if driver.user.phoneNumber != driver.phoneNumber %}
+                    {{ driver.phoneNumber }}
+                    {% if driver.phoneNumber == null %}
+                        {{ driver.user.phoneNumber }}
+                    {% endif %}
+                {% endif %}
+            </p>
+            <p><i class="fas fa-map-marker-alt"></i>      {{ driver.city }} | {{ driver.municipality }} | {{ driver.district }}</p>
+        </div>
+        <div class="__img_wrapper">
+            {% if driver.state %}
+                <span class="on"><i class="fas fa-circle" style="color: #05f51b;"></i>
+                    <span class="__myPolice">Disponible</span>
+                </span>
+            {% else %}
+                <span class="off"><i class="fas fa-circle"></i><span class="__myPolice">Indisponible</span>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</div>

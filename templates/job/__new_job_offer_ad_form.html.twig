@@ -1,0 +1,84 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.compagny_name, "Donnez le nom de votre entreprise *") }}
+        {{ form_widget(form.compagny_name) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.filename, "Le logo de l'entreprise ") }}
+        {{ form_widget(form.filename) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.phone_number, "Donnez le numéro de téléphone *") }}
+        {{ form_widget(form.phone_number) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.email, "Donnez l'adresse email *") }}
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.city, "Selectionnez la ville *") }}
+        {{ form_widget(form.city) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.municipality, "Selectionnez la commune *") }}
+        {{ form_widget(form.municipality) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.job_title, "Donnez l'intitulé du post *") }}
+        {{ form_widget(form.job_title) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.category, "Selectionnez la catégorie *") }}
+        {{ form_widget(form.category) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.contract_type, "Selectionnez le type de contrat *") }}
+        {{ form_widget(form.contract_type) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.employer_gender, "Selectionnez le type de profil *") }}
+        {{ form_widget(form.employer_gender) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.salary_estimate, "Donnez le salaire proposé *") }}
+        {{ form_widget(form.salary_estimate) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.employer_profile, "Donnez les details du profil souhaité *") }}
+        {{ form_widget(form.employer_profile) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.required_skills, "Donnez les details sur les compétences souhaité ou requises*") }}
+        {{ form_widget(form.required_skills) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.employer_mission, "Donnez les details sur la(les) mission(s) *") }}
+        {{ form_widget(form.employer_mission) }}
+    </div>
+</div>
+
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.other_details, "Donnez d'autres précisions ") }}
+        {{ form_widget(form.other_details) }}
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voyage|Taxi{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="activity_main_page">
+            <div class="__text_block">
+                <div class="__content">
+                    <h1 class="__myPolice">Déplacez-vous en toute simplicité</h1>
+                    <p class="text-muted">
+                        Fini les attentes interminables dans les gares routières.
+                        <br>
+                        Reservez votre voyage à tout moment et n'importe où. <br>
+                        Vous pouvez aussi : <br>
+                        <em>Appeler un taxi</em> <br>
+                        <em>Appeler un taxi moto</em> <br>
+                        Taximans, Taximotoman, Chauffeurs de ligne : inscrivez-vous pour proposer
+                        vos trajets.
+                    </p>
+                    {% if not app.user %}
+                        <a href="{{ path('new_user_register') }}" class="btn  text-white __myPolice">Je M'inscris</a>
+                    {% endif %}
+                    <hr>
+                    <div class="__form_index">
+                        <h6 class="__announcement">Rechercher un trajet</h6>
+                        {{ form_start(form_search, {'attr':{'action':path('trips')}}) }}
+                        <div class="__row-4">
+                            <div class="_column">
+                                {{ form_widget(form_search.departure, { 'attr':{'list':'departure_addressList', 'autocomplete':'off'} }) }}
+                                <datalist id="departure_addressList">
+                                    <option value="Conakry"></option>
+                                    <option value="Boké"></option>
+                                    <option value="Faranah"></option>
+                                    <option value="Guékedou"></option>
+                                    <option value="KanKan"></option>
+                                    <option value="Kindia"></option>
+                                    <option value="Labé"></option>
+                                    <option value="Mamou"></option>
+                                    <option value="Beyla"></option>
+                                    <option value="Bofa"></option>
+                                    <option value="Dalaba"></option>
+                                    <option value="Dabola"></option>
+                                    <option value="Dinguiraye"></option>
+                                    <option value="Dixin"></option>
+                                    <option value="Forécariah"></option>
+                                    <option value="Gaoual"></option>
+                                    <option value="Guéckédou"></option>
+                                    <option value="Kaloum"></option>
+                                    <option value="Kéouané"></option>
+                                    <option value="Koubia"></option>
+                                    <option value="Koundara"></option>
+                                    <option value="Kouroussa"></option>
+                                    <option value="Kissidougou"></option>
+                                    <option value="Lola"></option>
+                                    <option value="Macenta"></option>
+                                    <option value="Mali"></option>
+                                    <option value="Mandiana"></option>
+                                    <option value="Matam"></option>
+                                    <option value="Matoto"></option>
+                                    <option value="Pita"></option>
+                                    <option value="Ratoma"></option>
+                                    <option value="Siguiri"></option>
+                                    <option value="Télimélé"></option>
+                                    <option value="Tougué"></option>
+                                    <option value="Youmou"></option>
+                                    <option value="N'Zérékoré"></option>
+                                </datalist>
+                            </div>
+                            <div class="_column">
+                                {{ form_widget(form_search.destination, { 'attr':{'list':'destination_addressList', 'autocomplete':'off'} }) }}
+                                <datalist id="destination_addressList">
+                                    <option value="Conakry"></option>
+                                    <option value="Boké"></option>
+                                    <option value="Faranah"></option>
+                                    <option value="Guékedou"></option>
+                                    <option value="KanKan"></option>
+                                    <option value="Kindia"></option>
+                                    <option value="Labé"></option>
+                                    <option value="Mamou"></option>
+                                    <option value="Beyla"></option>
+                                    <option value="Bofa"></option>
+                                    <option value="Dalaba"></option>
+                                    <option value="Dabola"></option>
+                                    <option value="Dinguiraye"></option>
+                                    <option value="Dixin"></option>
+                                    <option value="Forécariah"></option>
+                                    <option value="Gaoual"></option>
+                                    <option value="Guéckédou"></option>
+                                    <option value="Kaloum"></option>
+                                    <option value="Kéouané"></option>
+                                    <option value="Koubia"></option>
+                                    <option value="Koundara"></option>
+                                    <option value="Kouroussa"></option>
+                                    <option value="Kissidougou"></option>
+                                    <option value="Lola"></option>
+                                    <option value="Macenta"></option>
+                                    <option value="Mali"></option>
+                                    <option value="Mandiana"></option>
+                                    <option value="Matam"></option>
+                                    <option value="Matoto"></option>
+                                    <option value="Pita"></option>
+                                    <option value="Ratoma"></option>
+                                    <option value="Siguiri"></option>
+                                    <option value="Télimélé"></option>
+                                    <option value="Tougué"></option>
+                                    <option value="Youmou"></option>
+                                    <option value="N'Zérékoré"></option>
+                                </datalist>
+                            </div>
+                            <div class="_column">
+                                {{ form_widget(form_search.date_depart) }}
+                            </div>
+                            <div class="_column">
+                                <button class="btn btn-block search_btn_index" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form_search) }}
+                    </div>
+                </div>
+            </div>
+            <div class="__poster_svg">
+                <img src="{{ asset('images/svg_img/travel.svg') }}" alt="svg image">
+            </div>
+        </div>
+        <main class="__container">
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Toutes les offres par type de contrat
+                </h2>
+            </div>
+            <div class="__travel_features">
+                <div class="__act_block">
+                    <div class="__image_block">
+                        <img src="{{ asset('images/svg_img/cars.svg') }}" alt="svg image">
+                    </div>
+                    <div class="__body">
+                        <a href="{{ path('trips') }}">
+                            <h3 class="__myTitle"><i class="fas fa-car"></i> GARE VOITURE</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="__act_block">
+                    <div class="__image_block">
+                        <img src="{{ asset('images/svg_img/taxi.svg') }}" alt="svg image">
+                    </div>
+                    <div class="__body">
+                        <a href="{{ path('taxi') }}">
+                            <h3 class="__myTitle"><i class="fas fa-taxi"></i> TAXI VILLE</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Tous les travers par destinations
+                </h2>
+            </div>
+            <div class="__first_city">
+                <div class=" __city_first">
+                    <div class="__city_name">
+                        <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Conakry", column:"destination" }) }}"><i class="fas fa-building"></i> Conakry</a>
+                    </div>
+                </div>
+            </div>
+            <div class="__ads_by_cities_block">
+                <div class="__ads_by_cities">
+                    <div class="__ads_by_cities_column __city_one">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Boké", column:"destination" }) }}"><i class="fas fa-building"></i> Boké</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_two">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Faranah", column:"destination" }) }}"><i class="fas fa-building"></i> Faranah</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_three">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "KanKan", column:"destination" }) }}"><i class="fas fa-building"></i> KanKan</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_four">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Kindia", column:"destination" }) }}"><i class="fas fa-building"></i> Kindia</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_five">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Guekédou", column:"destination" }) }}"><i class="fas fa-building"></i> Guekedou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_six">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Labé", column:"destination" }) }}"><i class="fas fa-building"></i> Labé</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_seven">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "Mamou", column:"destination" }) }}"><i class="fas fa-building"></i> Mamou</a>
+                        </div>
+                    </div>
+                    <div class="__ads_by_cities_column __city_eight">
+                        <div class="__city_name">
+                            <a class="__myTitle text-white" href="{{ path('trip_destination', { filter: "N'Zerekoré", column:"destination" }) }}"><i class="fas fa-building"></i>N'Zérékoré</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="__all_features">
+                <h2 class="__myPolice">
+                    Encore au plus près de chez vous
+                </h2>
+            </div>
+            <div class="presentation">
+                <div class="communes">
+                    <div class="commune_list">
+                        <ul class="commune_column">
+                            <li><a href="{{ path('trip_destination', { filter: "Beyla", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Beyla</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Bofa", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Bofa</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Dalaba", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Dalaba</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Dabola", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Dabola</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Dinguiraye", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Dinguiraye</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Forécariah", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Forécariah</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('trip_destination', { filter: "Gaoual", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Gaoual</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Guéckédou", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Guéckédou</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Kéouané", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Kéouané</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Koubia", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Koubia</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Koundara", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Koundara</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('trip_destination', { filter: "Kouroussa", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Kouroussa</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Kissidougou", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Kissidougou</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Lola", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Lola</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Macenta", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Macenta</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Mali", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Mali</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Mandiana", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Mandiana</a></li>
+                        </ul>
+                        <ul class="commune_column">
+                            <li><a href="{{ path('trip_destination', { filter: "Pita", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Pita    </a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Siguiri", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Siguiri </a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Télimélé", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Télimélé</a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Tougué", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Tougué  </a></li>
+                            <li><a href="{{ path('trip_destination', { filter: "Youmou", column:"destination" }) }}"><i class="fas fa-map-signs"></i> Youmou  </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

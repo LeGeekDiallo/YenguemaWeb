@@ -1,0 +1,17 @@
+<div class="__card">
+    <div class="__exam_image">
+        <img src="{{ asset('images/svg_img/exam_subject.svg') }}" style="height: 100%;" class="card-img-top" alt="ad image">
+        <div class="__description">
+            <h6 class="__myPolice"><i class="fas fa-filter"></i> {{ exam.theMention }}</h6>
+            <h6 class="__myPolice"><i class="fas fa-level-up-alt"></i>  {{ exam.level }}</h6>
+            <h6 class="__myPolice"><i class="fas fa-calendar"></i> {{ exam.examYear }}</h6>
+            <h6 class="__myPolice"><i class="fas fa-align-center"></i> {{ exam.description }}</h6>
+            <h6 class="__myPolice"><i class="fas fa-school"></i> {{ exam.schoolName }}</h6>
+        </div>
+    </div>
+    <div class="card_body">
+        <h3>
+            <a class="__myPolice" style="color: #0D47A1;" href="{{ asset('ebook_subject_files/'~exam.filename) }}" download>{{ exam.courseName }}</a>
+        </h3>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ park_auto.parkName }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <div class="__container">
+            <div class="__pka_page_head mt-4">
+                <div class="__pka_page_panel">
+                    {% if park_auto.filename %}
+                        <img src="{{ asset('companies_logo/'~park_auto.filename) }}" alt="logo image">
+                    {% else %}
+                        <img src="{{ asset('images/svg_img/park_auto_default.svg') }}"  alt="logo image">
+                    {% endif %}
+                </div>
+                <div class="__pka_page_name">
+                    <h1 class="__myPolice">{{ park_auto.parkName }}</h1>
+                </div>
+            </div>
+            <hr class="__line">
+            <div class="__ebook_cat">
+                <ul class="__list_group_v1 list-unstyled">
+                    <li class="__list_group_item_v1"><a href="{{ path('new_car', { id: park_auto.id, csrf: csrf_token('owner_page'~park_auto.getSlug()) }) }}" class="__myPolice"><i class="fas fa-plus-square "></i> Ajoutez un véhicule</a></li>
+                    <li class="__list_group_item_v1"><a href="{{ path('edit_park_auto',{ slug: park_auto.getSlug(), id: park_auto.id }) }}" class="__myPolice">
+                            <i class="fas fa-edit"></i> Editer le park
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% for message in app.flashes('notification') %}
+                <div class="alert-success __alert-success p-3" style="display: flex;">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            <div class="__pka_owner_block">
+                <div class="__pka_services">
+                    <h5 class="__myPolice" style="color: #0d41a1;">Services proposés</h5>
+                    {% for s in park_auto.services %}
+                        <h6 class="__myPolice">{{ s.serviceName }}</h6>
+                    {% endfor %}
+                </div>
+                <div class="__pka_cars">
+                    {% for car in pagination %}
+                        {% include '/car/__car_card_profile.html.twig' with { 'car':car } %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

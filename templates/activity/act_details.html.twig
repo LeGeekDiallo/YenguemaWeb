@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ activity.activityName }}{% endblock %}
+
+{% block body %}
+    <main class="__main_page">
+        <main class="__container">
+            <div class="__details_block">
+                <div class="__title_block">
+                    <h4 class="__myPolice">{{ activity.activityName }}</h4>
+                    <p>
+                        <span><i class="fas fa-map-marker"></i> {{ activity.city }} | {{ activity.municipality }} | {{ activity.address }}</span>
+                    </p>
+                    <p>
+                        <span><i class="fas fa-mobile"></i> +224 {{ activity.phoneNumber }}</span>
+                        <span><i class="fas fa-at"></i> {{ activity.email }}</span>
+                    </p>
+                    <span class="badge badge-danger"><i class="fas fa-heart"></i> {{ activity.likes }}</span>
+                </div>
+                <div class="__images_block" data-nb_img="{{ activity.activityImages | length }}" id="items">
+                    <div class="__slides">
+                        {% for image in activity.activityImages %}
+                            <div class='__slide_item'>
+                                <img src="{{ asset('images/activity_image/'~image.getFilename()) }} " alt="image">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="__left">&#10094;</a>
+                    <a class="__right">&#10095;</a>
+                </div>
+                <div class="__dot_control">
+                    {% for image in activity.activityImages %}
+                        <span class="dot" data-index="{{ loop.index }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="__details">
+                    <h6 class="__myPolice">Qui sommes-nous ?</h6>
+                    <p class="text-muted">{{ activity.details | raw }}</p>
+                    <hr>
+                    <div class="__user">
+                        {% if not activity.user.userAvatar %}
+                            <img src="{{ asset('images/avatar_def.png') }}" alt="avatar default">
+                        {% else %}
+                            <img src="{{ asset('images/users_avatar/'~activity.user.userAvatar.imageName) }}" alt="avatar default">
+                        {% endif %}
+                        <span class="__myPolice">{{ activity.user.username }} <i class="fas fa-edit"></i></span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </main>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('__slide_control') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}
+
+

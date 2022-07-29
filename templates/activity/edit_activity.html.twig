@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier votre activité{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-chart-line"></i> Modifier d'activité</h5></div>
+            {{ form_start(form) }}
+            <div class="adRegisterColumn">
+                <div class="actInput">
+                    {{ form_label(form.activity_name, "Enseigne *") }}
+                    {{ form_widget(form.activity_name) }}
+                </div>
+                <div class="actInput">
+                    {{ form_label(form.category, "La categorie de l'activité *") }}
+                    {{ form_widget(form.category) }}
+                </div>
+            </div>
+            <div class="adRegisterColumn">
+                <div class="actInput">
+                    {{ form_label(form.email, "Email *") }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="actInput">
+                    {{ form_label(form.phone_number, "Numéro de téléphone *") }}
+                    {{ form_widget(form.phone_number) }}
+                </div>
+            </div>
+            <div class="adRegisterColumn-3">
+                <div class="actInput">
+                    {{ form_label(form.city, "Ville *") }}
+                    {{ form_widget(form.city) }}
+                </div>
+                <div class="actInput">
+                    {{ form_label(form.municipality, "Commune *") }}
+                    {{ form_widget(form.municipality) }}
+                </div>
+                <div class="actInput">
+                    {{ form_label(form.address, "Adresse complète *") }}
+                    {{ form_widget(form.address) }}
+                </div>
+            </div>
+            <div class="newActRegisterRow">
+                <div class="actInput">
+                    {{ form_label(form.activityImages, "Photo de la place*") }}
+                    {{ form_widget(form.activityImages) }}
+                    <small id="img_number_error" data-nbImagesToLoad="{{ 4-activity.activityImages|length }}"></small>
+                </div>
+                <div class="__activity_images">
+                    {% if activity.activityImages %}
+                        {% for image in activity.activityImages %}
+                            <div class="__act_img" id="img{{ loop.index }}">
+                                <a class="btn btn-sm btn-danger delete_btn" data-number="{{ loop.index }}" data-urlDelete="/activity/remove_image/{{ activity.id }}-{{ image.id }}">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                                <img src="{{ asset('images/activity_image/'~image.filename) }}" alt="image">
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="newActRegisterRow">
+                {{ form_label(form.details, "Autres details de l'activité*") }}
+                {{ form_widget(form.details) }}
+            </div>
+            <div class="newActRegisterRow">
+                <button id="act_validate_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Editer</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('delete_image') }}
+        {{ encore_entry_script_tags('menu_handler') }}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter votre activité{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="formBox">
+            <div class="__announcement"><h5><i class="fas fa-chart-line"></i> Ajout d'activité</h5></div>
+            {{ form_start(form) }}
+                <div class="adRegisterColumn">
+                    <div class="actInput">
+                        {{ form_label(form.activity_name, "Enseigne *") }}
+                        {{ form_widget(form.activity_name) }}
+                    </div>
+                    <div class="actInput">
+                        {{ form_label(form.category, "La categorie de l'activité *") }}
+                        {{ form_widget(form.category) }}
+                    </div>
+                </div>
+                <div class="adRegisterColumn">
+                    <div class="actInput">
+                        {{ form_label(form.email, "Email *") }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                    <div class="actInput">
+                        {{ form_label(form.phone_number, "Numéro de téléphone *") }}
+                        {{ form_widget(form.phone_number) }}
+                    </div>
+                </div>
+                <div class="adRegisterColumn-3">
+                    <div class="actInput">
+                        {{ form_label(form.city, "Ville *") }}
+                        {{ form_widget(form.city) }}
+                    </div>
+                    <div class="actInput">
+                        {{ form_label(form.municipality, "Commune *") }}
+                        {{ form_widget(form.municipality) }}
+                    </div>
+                    <div class="actInput">
+                        {{ form_label(form.address, "Adresse complète *") }}
+                        {{ form_widget(form.address) }}
+                    </div>
+                </div>
+                <div class="newActRegisterRow">
+                    <div class="actInput">
+                        {{ form_label(form.activityImages, "Photos de la place*") }}
+                        {{ form_widget(form.activityImages) }}
+                    </div>
+                </div>
+                <div class="newActRegisterRow">
+                    {{ form_label(form.details, "Autres details de l'activité*") }}
+                    {{ form_widget(form.details) }}
+                </div>
+                <div class="newActRegisterRow">
+                    <button id="act_validate_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+
+

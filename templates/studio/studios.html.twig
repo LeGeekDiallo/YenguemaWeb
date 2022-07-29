@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Studios{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;">Vos annonces <span class="badge bg-danger">{{ results | length }}</span></h4>
+            <hr class="__line">
+            <div class="__new">
+                <a href="{{ path("new_studio", { id: app.user.getId() }) }}"><i class="fas fa-plus-square"></i> Ajouter une annonce</a>
+            </div>
+            <div class="__item">
+                {% for studio in results %}
+                    {% include '/studio/__studio_card_profile.html.twig' with {'studio':studio}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+

@@ -1,0 +1,174 @@
+{{ form_start(form) }}
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.departure, "Départ *") }}
+        {{ form_widget(form.departure, { 'attr':{'list':'departure_addressList', 'autocomplete':'off'} }) }}
+        <datalist id="departure_addressList">
+            <option value="Conakry"></option>
+            <option value="Boké"></option>
+            <option value="Faranah"></option>
+            <option value="Guékedou"></option>
+            <option value="KanKan"></option>
+            <option value="Kindia"></option>
+            <option value="Labé"></option>
+            <option value="Mamou"></option>
+            <option value="Beyla"></option>
+            <option value="Bofa"></option>
+            <option value="Dalaba"></option>
+            <option value="Dabola"></option>
+            <option value="Dinguiraye"></option>
+            <option value="Dixin"></option>
+            <option value="Forécariah"></option>
+            <option value="Gaoual"></option>
+            <option value="Guéckédou"></option>
+            <option value="Kaloum"></option>
+            <option value="Kéouané"></option>
+            <option value="Koubia"></option>
+            <option value="Koundara"></option>
+            <option value="Kouroussa"></option>
+            <option value="Kissidougou"></option>
+            <option value="Lola"></option>
+            <option value="Macenta"></option>
+            <option value="Mali"></option>
+            <option value="Mandiana"></option>
+            <option value="Matam"></option>
+            <option value="Matoto"></option>
+            <option value="Pita"></option>
+            <option value="Ratoma"></option>
+            <option value="Siguiri"></option>
+            <option value="Télimélé"></option>
+            <option value="Tougué"></option>
+            <option value="Youmou"></option>
+            <option value="N'Zérékoré"></option>
+        </datalist>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.destination, "Destination *") }}
+        {{ form_widget(form.destination, { 'attr':{'list':'destination_addressList', 'autocomplete':'off'} }) }}
+        <datalist id="destination_addressList">
+            <option value="Conakry"></option>
+            <option value="Boké"></option>
+            <option value="Faranah"></option>
+            <option value="Guékedou"></option>
+            <option value="KanKan"></option>
+            <option value="Kindia"></option>
+            <option value="Labé"></option>
+            <option value="Mamou"></option>
+            <option value="Beyla"></option>
+            <option value="Bofa"></option>
+            <option value="Dalaba"></option>
+            <option value="Dabola"></option>
+            <option value="Dinguiraye"></option>
+            <option value="Dixin"></option>
+            <option value="Forécariah"></option>
+            <option value="Gaoual"></option>
+            <option value="Guéckédou"></option>
+            <option value="Kaloum"></option>
+            <option value="Kéouané"></option>
+            <option value="Koubia"></option>
+            <option value="Koundara"></option>
+            <option value="Kouroussa"></option>
+            <option value="Kissidougou"></option>
+            <option value="Lola"></option>
+            <option value="Macenta"></option>
+            <option value="Mali"></option>
+            <option value="Mandiana"></option>
+            <option value="Matam"></option>
+            <option value="Matoto"></option>
+            <option value="Pita"></option>
+            <option value="Ratoma"></option>
+            <option value="Siguiri"></option>
+            <option value="Télimélé"></option>
+            <option value="Tougué"></option>
+            <option value="Youmou"></option>
+            <option value="N'Zérékoré"></option>
+        </datalist>
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.departure_date, "Donner la date de départ *") }}
+        {{ form_widget(form.departure_date) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.arriving_at, "Donner la date d'arrivée *") }}
+        {{ form_widget(form.arriving_at) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.departure_time, "Donner l'heure de départ *") }}
+        {{ form_widget(form.departure_time) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.arriving_time, "Donner l'heure d'arrivée *") }}
+        {{ form_widget(form.arriving_time) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.rideType, "Selectionnez le type de voyage *") }}
+        {{ form_widget(form.rideType) }}
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.ridePrice, "Donner le prix *") }}
+        {{ form_widget(form.ridePrice) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn">
+        {{ form_label(form.car_brand, "Donner la marque et model du véhicule *") }}
+        {{ form_widget(form.car_brand, { 'attr': { 'list':'brand_model_addressList', 'autocomplete':'off' } }) }}
+        <datalist id="brand_model_addressList">
+            <option value="ALFA ROMEO"></option>
+            <option value="AUDI"></option>
+            <option value="BMW"></option>
+            <option value="CHEVROLET"></option>
+            <option value="CHRYSLER"></option>
+            <option value="CITROEN"></option>
+            <option value="DACIA"></option>
+            <option value="DODGE"></option>
+            <option value="FIAT"></option>
+            <option value="FORD"></option>
+            <option value="HONDA"></option>
+            <option value="HUMMER"></option>
+            <option value="HYUNDAI"></option>
+            <option value="INFINITY"></option>
+            <option value="JAGUAR"></option>
+            <option value="JEEP"></option>
+            <option value="KIA"></option>
+            <option value="LAND ROVER"></option>
+            <option value="LEXUS"></option>
+            <option value="LOTUS"></option>
+            <option value="MAZDA"></option>
+            <option value="MERCEDES-BENZ"></option>
+            <option value="MITSUBISHI"></option>
+            <option value="MINI"></option>
+            <option value="NISSAN"></option>
+            <option value="OPEL"></option>
+            <option value="PEUGEOT"></option>
+            <option value="RENAULT"></option>
+            <option value="SEAT"></option>
+            <option value="SKODA"></option>
+            <option value="SMART"></option>
+            <option value="SUZUKI"></option>
+            <option value="TOYOTA"></option>
+            <option value="VOLKSWAGEN"></option>
+            <option value="VOLVO"></option>
+        </datalist>
+    </div>
+    <div class="adInputColumn">
+        {{ form_label(form.place_number, "Donner le nombre de places *") }}
+        {{ form_widget(form.place_number) }}
+    </div>
+</div>
+<div class="adRegisterRow">
+    <div class="adInputColumn-1">
+        {{ form_label(form.other_details, "Ajouter d'autres précisions: lieu de départ, lieu d'arrivée") }}
+        {{ form_widget(form.other_details) }}
+    </div>
+</div>
+<div class="newActRegisterRow">
+    <button id="submit_btn" class="validate_btn btn btn-rounded btn-block" type="submit">Ajouter</button>
+</div>
+{{ form_end(form) }}

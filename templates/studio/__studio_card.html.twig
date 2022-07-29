@@ -1,0 +1,36 @@
+<div class="__card">
+    <div class="__prop_card_image">
+        <img src="{{ asset('companies_logo/'~studio.getStudioImages[random(0, studio.getStudioImages|length-1)].getFilename()) }}" alt="logo image">
+    </div>
+    <div class="__prop_card_body">
+        <p>
+            <span class="badge badge-primary">Studio <i class="fas fa-arrow-right"></i> </span>
+            {{ studio.propertySurface }} <span class="badge badge-danger">m²</span>
+            {{ studio.pieceNumber }} <i class="fas fa-bed"></i>
+            {{ studio.bathroom }} <i class="fas fa-bath"></i>
+            {% if studio.propositionType == 'A louer' %}
+                <span class="badge badge-danger">En location</span>
+            {% else %}
+                <span class="badge badge-danger">En Vente</span>
+            {% endif %}
+        </p>
+        <h5 class="__myPolice">{{ studio.adTitle }}</h5>
+        <p>Meublé <span class="badge badge-danger">
+                        {% if studio.furniture %} Oui {% else %} Non {% endif %}
+                    </span></p>
+        <p>{{ studio.city }}|{{ studio.municipality }}|{{ studio.district }}</p>
+        <div class="__prop_price">{{ studio.price | format_number }} FG {% if studio.propositionType == 'A louer' %}/mois {% endif %}</div>
+        <p class="__myPolice" style="text-align: end"><a href="{{ path('studio_details', { id:studio.id, slug:csrf_token('studio'~studio.getSlug()) }) }}" style="color: #0d41a1;"><i class="fas fa-eye"></i> Voire le studio</a></p>
+        <hr>
+        <div class="__prop_owner_avatar">
+            <img src="{% if studio.user.useravatar %}
+                            {{ asset('images/users_avatar/'~studio.user.useravatar.imageName) }}
+                        {% else %}
+                            {{ asset('images/avatar_def.png') }}
+                      {% endif %}"
+                 alt="">
+            <p>{{ studio.user.username }}</p>
+        </div>
+    </div>
+</div>
+

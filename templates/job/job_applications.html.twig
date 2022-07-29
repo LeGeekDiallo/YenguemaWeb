@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Toutes les candidatures{% endblock %}
+
+{% block body %}
+    <main class="__main">
+        <div class="__items">
+            <h4 class="__myPolice" style="text-align: center;"><span class="badge bg-danger">{{ applications | length }}</span> Candidature(s)</h4>
+            <hr class="__line">
+            <div class="__new p-2">
+                <a href="{{ path("new_job_offer", { id: app.user.getId(),  slug: app.user.getSlug()}) }}"><i class="fas fa-plus-square"></i> Poster une offre</a>
+            </div>
+            <div class="__item">
+                {% for candidate in applications %}
+                    {% include '/job/__candidate_card.html.twig' with {'candidate':candidate}  %}
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+

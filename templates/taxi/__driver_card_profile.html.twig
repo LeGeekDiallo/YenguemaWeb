@@ -1,0 +1,19 @@
+<div class="__card">
+    <h4 class="__myTitle">Mon taxi</h4>
+    <div class="__img_wrapper">
+        <img class="__activity_image" id="__driver_img" src="{{ asset('images/svg_img/taxi-driver.svg') }}" alt="taxi image">
+    </div>
+    <div class="__activity_edit_btn_box" style="display: flex;">
+        <a class="btn btn-sm btn-info __myPolice" href="{{ path("edit_taxi", { id: app.user.taxiDriver.id }) }}"><i class="fas fas fa-edit"></i></a>
+        <form method="post" onsubmit="return confirm('Êtes-vous sûr ?')" action="{{ path('delete_taxi', { id: app.user.taxiDriver.id }) }}" style="display: inline-block;">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete'~app.user.taxiDriver.id) }}">
+            <button type="submit" class="btn btn-sm btn-danger __myPolice"><i class="fas fas fa-trash-alt"></i></button>
+        </form>
+        <button
+                style="{% if app.user.taxiDriver.state %} background-color: #ecf30c; color: black; font-family: Ubuntu;{% endif %}"
+                type="submit" data-url="{{ path('switch_state', { id: app.user.taxiDriver.id}) }}" class="btn btn-sm __myPolice" id="__taxi_availability">
+            <i class="far fa-lightbulb" id="bulb"></i>
+        </button>
+    </div>
+</div>

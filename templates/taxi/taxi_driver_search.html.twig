@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultats recherche{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <div class="__taxi_search_container">
+            <div class="__taxi_search bg-light">
+                <h3 class="__myPolice">Rechercher un Taxi</h3>
+                {{ form_start(form_search, {'attr':{'class': '__form_search-2', 'action':path('taxi_driver_search')}}) }}
+                <div class="__row-1">
+                    {{ form_widget(form_search.location, { 'attr':{'list':'locations', 'autocomplete':'off'} }) }}
+                    <datalist id="locations">
+                        <option value="Conakry"></option>
+                        <option value="Boké"></option>
+                        <option value="Faranah"></option>
+                        <option value="Guékedou"></option>
+                        <option value="KanKan"></option>
+                        <option value="Kindia"></option>
+                        <option value="Labé"></option>
+                        <option value="Mamou"></option>
+                        <option value="Beyla"></option>
+                        <option value="Bofa"></option>
+                        <option value="Dalaba"></option>
+                        <option value="Dabola"></option>
+                        <option value="Dinguiraye"></option>
+                        <option value="Dixin"></option>
+                        <option value="Forécariah"></option>
+                        <option value="Gaoual"></option>
+                        <option value="Guéckédou"></option>
+                        <option value="Kaloum"></option>
+                        <option value="Kéouané"></option>
+                        <option value="Koubia"></option>
+                        <option value="Koundara"></option>
+                        <option value="Kouroussa"></option>
+                        <option value="Kissidougou"></option>
+                        <option value="Lola"></option>
+                        <option value="Macenta"></option>
+                        <option value="Mali"></option>
+                        <option value="Mandiana"></option>
+                        <option value="Matam"></option>
+                        <option value="Matoto"></option>
+                        <option value="Pita"></option>
+                        <option value="Ratoma"></option>
+                        <option value="Siguiri"></option>
+                        <option value="Télimélé"></option>
+                        <option value="Tougué"></option>
+                        <option value="Youmou"></option>
+                        <option value="N'Zérékoré"></option>
+                    </datalist>
+                </div>
+                <div class="__row-1">
+                    <button id="validate_btn_search_index" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr>
+            {% if pagination %}
+                <h3 class="__myPolice"><span class="badge badge-danger">{{ pagination | length }}</span> Taximan trouvés </h3>
+                <div class="__taxi_drivers_found" id="__taxi_drivers_found">
+                    {% for driver in pagination %}
+                        {% include '/taxi/__driver_card.html.twig' with { 'driver':driver } %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

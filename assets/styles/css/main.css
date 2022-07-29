@@ -1,0 +1,4478 @@
+body, html, .wrapper, .userRegisterWrapper, .userLogInWrapper, .realEstateWrapper,.realEstateRightSideBox, .course_container{
+    height: 100%;
+}
+
+.__job_profile_card{
+    border: 1px solid silver;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.__feature_svg_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+.__feature_svg_container img{
+    width: 10rem;
+    height: 10rem;
+}
+.__how_it_work_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.__how_it_work{
+    width: 70%;
+}
+.__feature{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    padding: 7px;
+}
+.__job_card:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: whitesmoke;
+}
+.__apply{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.__job_card{
+    width: 100%;
+    padding: 7px;
+    border: 1px solid silver;
+    transition: 2s box-shadow, background-color;
+}
+.__taxi_card{
+    background-image: url("../../../public/images/bg_taxi.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.__taxi_card:hover{
+    cursor: pointer;
+    animation-name: headShake;
+    animation-duration: 2s;
+}
+.__driver_contact{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 5px;
+    width: 100%;
+}
+.__taxi_search{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.__taxi_search_container{
+    width: 60%;
+    padding: 3px;
+    margin-top: 5rem;
+}
+.__empty_folder{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__empty_folder img{
+    width: 7rem;
+    height: 7rem;
+}
+.__social_login{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.__log_svg{
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__log_svg img{
+    width: 50%;
+    height: 50%;
+}
+.__vl_innertex{
+    padding: 5px;
+    text-align: center;
+    border-radius: 50%;
+    border:1px solid #0d41a1;
+    vertical-align: middle;
+}
+
+.__recent_prop_bloc_active{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    animation-name: slideInRight;
+    animation-duration: 2.5s;
+}
+.__recent_sale_prop_bloc_active{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    animation-name: slideInRight;
+    animation-duration: 2.5s;
+}
+.__recent_prop_bloc{
+    display: none;
+}
+.__recent_sale_prop_bloc{
+    display: none;
+}
+
+.__property_card_item{
+    padding: 5px;
+}
+.__properties{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 7px;
+    width: 60%;
+    padding: 3px;
+}
+.__res_img img{
+    width: 5rem;
+    height: 5rem;
+}
+.__property_items{
+    position: absolute;
+    z-index: 1;
+    padding: 3px;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__property_card_item{
+    width: 100%;
+}
+.__real_estate_head_item{
+    margin: auto;
+    width: 50%;
+    background-color: rgba( 121, 176, 220, 0.4);
+    padding: 5px;
+    border-radius: 3px;
+}
+.__real_estate_head{
+    position: absolute;
+    z-index: 1;
+    padding: 3px;
+    width: 100%;
+    top: 30%;
+}
+#__real_estate_item-1{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/apart.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-2{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/house.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-3{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/villas.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-4{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/studio.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-5{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/magasin.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-7{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/office.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#__real_estate_item-6{
+    background-image: url("../../../public/images/svg_img/real_estate_svg/land.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.__real_image_features img{
+    width: 100%;
+    height: 100%;
+}
+.__real_image_features{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.dot_active{
+    background-color: #0D47A1;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.__details_property_images_box, .__prop_details_body{
+    width: 70%;
+    padding: 5px;
+}
+.__details_property_images_box{
+    height: 40rem;
+    position: relative;
+    overflow: hidden;
+}
+.__prop_img_item{
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+.__prop_img_item img, .__image_active img, .__active_slide img{
+    width: 100%;
+    height: 100%;
+}
+
+.__recently{
+    width: 100%;
+    padding: 3px;
+    overflow: hidden;
+}
+.__prop_owner_avatar{
+    height: 4rem;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+}
+.__prop_owner_avatar img{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.__prop_price{
+    padding: 7px;
+    font-family: Ubuntu;
+    border-radius: 5px;
+    background-color: #0D47A1;
+    color: white;
+    width: 40%;
+    text-align: center;
+    font-size: 13px;
+}
+.__side_menu_display{
+    position: fixed;
+    background-color:white;
+    width: 350px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+    left: 0;
+    top: 0px;
+    border:1.7px solid #0d47a1;
+    border-radius: 3px;
+    height: 100%;
+    animation-name: fadeInLeft;
+    animation-duration: 0.3s;
+}
+.__side_menu_display .header{
+    background:#0d47a1;
+    padding: 21px;
+    color: white;
+    font-family: "Ubuntu";
+}
+#prev_btn{
+    display: none;
+}
+.next_step_btn_box{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.next_step_btn_box button{
+    background-color: #0D47A1;
+    color: white;
+}
+.next_step_btn_box button:hover{
+    color: white;
+}
+.__new_prop_btn{
+    padding: 10%;
+    background-color: #0D47A1;
+    width: 70%;
+}
+.__new_prop_btn a{
+    color: white;
+}
+.__new_property_items{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7px;
+    width: 80%;
+}
+.__properties_box{
+    width: 100%;
+    padding: 5px;
+}
+.__text_box a{
+    font-size: 15px;
+    color: #0D47A1;
+}
+.list-group-item a{
+    font-size: 15px;
+    color: #0D47A1;
+}
+.__bloc_active{
+    animation-name: fadeInRight;
+    animation-duration: 0.5s;
+}
+.__image_active{
+    width: 100%;
+    height: 100%;
+    animation-name: fadeInRight;
+    animation-duration: 1s;
+}
+.__bloc{
+    display: none;
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+.__res_features_items{
+    position: relative;
+    width: 100%;
+}
+.__res_features_items:hover .overlay{
+    height: 100%;
+    cursor: pointer;
+}
+.__res_img{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.__res_features_items img{
+    width: 5rem;
+    height: 5rem;
+}
+.__new_property_items img{
+    width: 7rem;
+    height: 7rem;
+}
+.__res_features_intro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.__res_features_list_box{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+}
+.__res_features_list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    font-family: Ubuntu;
+}
+.__add_step{
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3px;
+    height: 18rem;
+    background-color: white;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.__step img{
+    height: 12rem;
+    width: 100%;
+}
+.__step{
+    height: 100%;
+}
+
+.__arrow{
+    width: 5rem;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    bottom: 3.7rem;
+    animation-name: slideInDown;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+.__arrow h1{
+    font-family: Ubuntu;
+    color: #EFF0E9;
+    font-size: 50px;
+}
+.__items{
+    width: 60%;
+    padding: 5px;
+    margin-top: 5rem;
+
+}
+.__item{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    padding: 7px;
+}
+.__text_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 3px;
+}
+.__user_card_folder{
+    width: 100%;
+    padding: 3px;
+}
+
+.__folder_svg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__folder_svg img{
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+h4{
+    color: #0D47A1;
+}
+
+.__taxi_features{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__taxi_features span{
+    margin-right: 2px;
+}
+.__driver_avatar{
+    height: 100%;
+}
+.__driver_avatar img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.__taxi_drivers_found{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+#validate_btn_search_index{
+    font-size: 15px;
+    font-family: Ubuntu;
+    background-color: #0D47A1;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+#validate_btn_act{
+    font-size: 22px;
+    font-family: Ubuntu;
+    background-color: #0D47A1;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+.__form_search-2{
+    width: 50%;
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+.__form_search-2-index{
+    width: 100%;
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+#__taxi_availability{
+    background-color: #0D47A1;
+    color: white;
+    font-family: Ubuntu;
+}
+
+.__img_wrapper{
+    width: 100%;
+}
+
+._column{
+    width: 100%;
+}
+.__row-1{
+    display: flex;
+    padding: 3px;
+}
+.__row-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3px;
+    padding: 3px;
+}
+.__row-3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+    padding: 3px;
+}
+.__row-4{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3px;
+    padding: 3px;
+}
+h3{
+    color: #0d41a1;
+    text-align: center;
+}
+h2{
+    color: #0d41a1;
+}
+.__seats{
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+}
+.__seats img{
+    width: 2rem;
+    height: 1.4rem;
+}
+@font-face {
+    font-family: 'Ubuntu-Light';
+    src: url("Ubuntu-Light.ttf");
+}
+p{
+    font-family: Ubuntu-Light;
+}
+.__driver{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.__driver img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+.__card_driver{
+    height: 5rem;
+    padding: 5px;
+}
+.__card_driver img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.__ride_details_container{
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+.__travel_infos{
+    width: 100%;
+}
+.__ride_card{
+    border: 2px solid #0d41a1;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.__trip_time{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+}
+.__carpooling_explain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.__svg img{
+    width: 70%;
+    height: 70%;
+}
+.__svg{
+    height: 100%;
+    width: 100%;
+}
+.__carpooling{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+}
+.__main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.__trips_page{
+    width: 80%;
+    padding: 3px;
+}
+.__trip_search_container{
+    height: 15rem;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__control_btn{
+    display: flex;
+    justify-content: space-between;
+}
+.__rides{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+}
+.__trait{
+    height: 2px;
+    width: 100%;
+    background-color: #0d41a1;
+    border-radius: 15px;
+}
+.__ride_draw{
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-gap: 5px;
+}
+.__ride_draw div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__trip_infos{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-gap: 5px;
+    width: 100%;
+    padding: 3px;
+}
+.__dep{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.__delete_image_form{
+    position: relative;
+    bottom: 25%;
+}
+.__list_images{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.__car_images_form img{
+    width: 100%;
+    height: 100%;
+}
+.__car_images_form{
+    width: 100%;
+    padding: 3px;
+}
+.__car_owner_int{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.__container_car{
+    width: 70%;
+    margin-top: 5rem;
+}
+.__car_mark_price_block{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.__pka_owner_block{
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto 80%;
+}
+.__pka_services{
+    border-top: 2px solid whitesmoke;
+    border-top-right-radius: 3px;
+    border-right: 2px solid whitesmoke;
+    padding: 10px;
+}
+.__pka_cars{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+.__car_search_box{
+    width: 100%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+}
+.__pka_page_head{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto 80%;
+    grid-gap: 5px;
+}
+.__pka_page_panel img{
+    width: 100%;
+    border-radius: 10px 100px / 120px;
+    height: 100%;
+}
+.__pka_page_panel{
+    height: 100%;
+}
+.__pka_page_name h1{
+    color: #0D47A1;
+}
+.__pka_page_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.__job_image img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.__prop_card_body h5{
+    font-size: 15px;
+}
+.__prop_card_body{
+    border: 1px solid whitesmoke;
+    padding: 5px;
+    background-color: whitesmoke;
+}
+.__prop_card_image{
+    height: 15rem;
+    width: 100%;
+}
+.__prop_card_image img{
+    width: 100%;
+    height: 100%;
+}
+.__park_auto_image{
+    height: 80%;
+    width: 100%;
+}
+.__park_auto_image img{
+    width: 100%;
+    height: 100%;
+}
+.__job_image{
+    height: 7rem;
+    padding: 3px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 3px;
+}
+.__candidate_image{
+    height: 7rem;
+    padding: 3px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 3px;
+}
+.__candidate_image img{
+    width: 5rem;
+    height: 5rem;
+}
+.__list_group{
+    list-style-type: none;
+    display: flex;
+    margin-left: 0;
+}
+.__list_group_v1{
+    list-style-type: none;
+    display: grid;
+    margin-left: 0;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.__list_group_item{
+    padding: 10px;
+    border:2px solid #0d41a1;
+}
+.__list_group_item_v1{
+    padding: 10px;
+    border:2px solid #0d41a1;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.__list_group > :first-child{
+    border-radius: 5px 0px 0px 5px;
+}
+.__list_group > :last-child{
+    border-radius: 0px 5px 5px 0px;
+}
+.__ebook_cat ul li a{
+    color: #0D47A1;
+}
+.__teacher_ ul li{
+    font-family: Ubuntu;
+}
+.card_body h5{
+    font-size: 15px;
+}
+.__teacher_image{
+    width: 100%;
+}
+.__teacher_image img{
+    width: 100%;
+}
+.__teacher_container{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+.__job_details_container{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+.__teacher_profile{
+    width: 60%;
+    padding: 3px;
+}
+.__job_details{
+    width: 100%;
+    padding: 3px;
+}
+.__profile_block{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    padding: 5px;
+}
+.__company_infos{
+    display: flex;
+    padding: 5px;
+}
+.__company_logo{
+    height: 100%;
+}
+.__profile_photo img{
+    width: 100%;
+}
+.__company_logo img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+.__company_name{
+    width: 40%;
+    padding: 10px;
+}
+.teacher_contact{
+    text-align: end;
+    background-color: #0D47A1;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+.__price_block{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.__contact_block{
+    position: absolute;
+    bottom: 38%;
+    padding: 5px;
+    background-color: white;
+}
+.__contact_{
+    padding: 10px;
+    background-color: #0D47A1;
+    cursor: pointer;
+    width: 30%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.drpbtn{
+    padding: 3px;
+    cursor: pointer;
+}
+.job_drpbtn{
+    padding: 3px;
+    cursor: pointer;
+}
+.travel_drpbtn, .real_estate_dpd_btn{
+    padding: 3px;
+    cursor: pointer;
+}
+.__dropdown_educ{
+    z-index: 1;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    padding: 7px;
+    animation-name: fadeInUp;
+    animation-duration: 0.3s;
+    display: none;
+    border: 1px solid #0D47A1;
+    border-radius: 3px;
+}
+.__dropdown_educ_side_menu{
+    z-index: 1;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    padding: 7px;
+    animation-name: fadeInUp;
+    animation-duration: 0.3s;
+    display: none;
+    border: 1px solid #0D47A1;
+    border-radius: 3px;
+}
+.__dropdown_job_side_menu{
+    z-index: 1;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    padding: 7px;
+    animation-name: fadeInUp;
+    animation-duration: 0.3s;
+    display: none;
+    border: 1px solid #0D47A1;
+    border-radius: 3px;
+}
+.__dropdown_real_estate_side_menu{
+    z-index: 1;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    padding: 7px;
+    animation-name: fadeInUp;
+    animation-duration: 0.3s;
+    display: none;
+    border: 1px solid #0D47A1;
+    border-radius: 3px;
+}
+.__dropdown_travel_side_menu{
+    z-index: 1;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    padding: 7px;
+    animation-name: fadeInUp;
+    animation-duration: 0.3s;
+    display: none;
+}
+.__dropdown_educ ul li a, .__dropdown_educ_side_menu ul li a, .__dropdown_job_side_menu ul li a,
+.__dropdown_travel_side_menu ul li a, .__dropdown_real_estate_side_menu ul li a{
+    float: none;
+    color: #0D47A1;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: 1s background-color  linear;
+    font-family: Ubuntu;
+}
+.__dropdown_educ ul li a:hover {
+    background-color: #ddd;
+}
+.__dropdown_educ_side_menu ul li a:hover {
+    background-color: #ddd;
+}
+.__dropdown_job_side_menu ul li a:hover {
+    background-color: #ddd;
+}
+.__dropdown_real_estate_side_menu ul li a:hover{
+    background-color: #ddd;
+}
+.__dropdown_btn:hover .__dropdown_educ {
+    display: block;
+    animation-name: fadeInDown;
+    animation-duration: 0.5s;
+}
+.__educ_features{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__travel_features{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__headLineWhite{
+    font-family: Ubuntu;
+    color:  #0b0b0b ;
+    font-size: 25px;
+}
+.__educ_cat{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    padding: 5px;
+}
+.__job_cat{
+    width: 100%;
+    padding: 5px;
+}
+.__job_cat ul li a{
+    color: #0D47A1;
+    font-size: 15px;
+}
+.__educ_cat_item{
+    background-color: #0D47A1;
+    padding: 15px;
+    border-radius: 20px;
+}
+.__details a{
+    padding: 10px;
+    border:1px solid #0D47A1;
+    border-radius: 5px;
+    text-align: center;
+    margin-top:10px;
+}
+.dot{
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.dot:hover {
+    background-color: #0D47A1;
+}
+.__title_block{
+    width: 50%;
+}
+.__details_block{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.__details_block h3{
+    text-align: end;
+}
+.__details{
+    width: 60%;
+    padding: 5px;
+}
+.__car_details{
+    width: 80%;
+    padding: 5px;
+}
+.__car_details h3{
+    width: 100%;
+    text-align: start;
+}
+.__details p{
+    width: 100%;
+    height: 20%;
+    overflow: auto;
+    text-indent: 5px;
+    padding: 3px;
+}
+.__details hr{
+    width: 50%;
+}
+.__images_block{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    height: 40rem;
+    margin-bottom: 5px;
+    position: relative;
+}
+.__car_images_block{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    height: 50%;
+    margin-bottom: 5px;
+    position: relative;
+}
+.__car_images_block img{
+    width: 100%;
+    height: 100%;
+}
+.__images_block img{
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+label{
+    font-family: Ubuntu;
+}
+.__ads_categories_block{
+    height: 45rem;
+}
+.__card{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    border: 1px solid silver;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.__teacher_card{
+    width: 100%;
+    padding: 3px;
+    border-radius: 7px;
+    border:1px solid whitesmoke;
+    transition: 2s background-color;
+}
+.__teacher_card:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.__price{
+    width: 80%;
+}
+.card_body{
+    width: 100%;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.__teacher_card_body{
+    width: 100%;
+    padding: 3px;
+    height: 100%;
+}
+.__teacher_avatar{
+    height: 5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.__teacher_avatar img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.__exam_image{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3px;
+}
+.__ad_image img{
+    width: 100%;
+    height: 100%;
+}
+.__img_wrapper img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+.__ad_image{
+    height: 10rem;
+}
+.__ad_image p{
+    position: relative;
+    bottom: 12%;
+    background-color: whitesmoke;
+    color: #0D47A1;
+    width: 20%;
+}
+.__ad_image a{
+    position: relative;
+    bottom: 2rem;
+    background-color: white;
+    padding: 5px;
+    border-radius: 2px;
+}
+.__activity_panel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 30rem;
+    background-color:  #0D47A1;
+}
+.__rs_features_panel{
+    width: 100%;
+    height: 25rem;
+    background-color:  #0D47A1;
+    display: flex;
+    justify-content: center;
+}
+.__rs_features_box{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    width: 70%;
+}
+.__features_display{
+    display: none;
+}
+.__buttons_block a{
+    font-family: Ubuntu;
+    padding: 5px;
+    background-color: white;
+    color: #0D47A1;
+}
+.__services_explain, .__draw_image{
+    padding: 5px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__services_explain{
+    flex-direction: column;
+}
+.__services_explain p{
+    color: white;
+    text-indent: 15px;
+    font-size: 17px;
+}
+.__draw_image img{
+    height: 25rem;
+}
+.signIn{
+    border-right: 2px solid white;
+}
+.service-link{
+    width: 100%;
+    display: flex;
+    grid-gap: 5px;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+}
+.service-link a{
+    display: flex;
+    align-items: center;
+}
+.sign_log_container_nav{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.sign_log_container_nav a{
+    text-align: center;
+    color: white;
+}
+.__service_link_footer{
+    font-family: Ubuntu;
+}
+.service-link a{
+    color: white;
+}
+.__home_container_nav{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+.__nav_bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 50% auto;
+    background-color: #0D47A1;
+    height: 5rem;
+    position: fixed;
+    z-index: 5;
+}
+.userRegisterWrapper, .userLogInWrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#form_ins, #logFormBox{
+    width: 100%;
+}
+#form_ins form{
+    padding: 7px;
+    width: 80%;
+}
+#logFormBox form{
+    padding: 7px;
+}
+.__presentation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.__presentation p{
+    color: white;
+    font-size: 20px;
+    text-indent: 10px;
+}
+.__presentation h3{
+    font-family: Ubuntu;
+    color: white;
+    font-weight: 200;
+}
+.__login_container{
+    width: 30%;
+    padding: 5px;
+    margin-top: 5rem;
+}
+
+.__ads{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__ads_found{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__park_auto_found{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__rides_found{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+.__jobs_found{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    padding: 5px;
+}
+#__if_cat_eq_vehicle{
+    display: none;
+}
+select option{
+    font-family: Ubuntu;
+}
+.__first_city{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 20rem;
+    margin-bottom: 10px;
+}
+.__city_first{
+    background-image: url('../../background_images/ads_city_background/conakry.jpg');
+    width: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    transition: width 2s;
+}
+.__city_first:hover{
+    width: 52%;
+    cursor: pointer;
+}
+.__city_name{
+    width: 100%;
+    padding: 10px;
+}
+.__city_one{
+    background-image: url('../../background_images/ads_city_background/ville2.jpg');
+}
+.__city_two{
+    background-image: url('../../background_images/ads_city_background/boké.jpg');
+}
+.__city_three{
+    background-image: url('../../background_images/ads_city_background/faranah.jpg');
+}
+.__city_four{
+    background-image: url('../../background_images/ads_city_background/kankan.jpg');
+}
+.__city_five{
+    background-image: url('../../background_images/ads_city_background/kindia.jpg');
+}
+.__city_six{
+    background-image: url('../../background_images/ads_city_background/labe.jpg');
+}
+.__city_seven{
+    background-image: url('../../background_images/ads_city_background/labé.png');
+}
+.__city_eight{
+    background-image: url('../../background_images/ads_city_background/foret.jpg');
+}
+.__ads_by_cities{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-bottom: 10px;
+}
+.__ads_by_cities_column{
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-color: lightgrey;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.__acc{
+    background-image: url('../../background_images/ads_background_cat/accessoires.png');
+}
+.__cha{
+    background-image: url('../../background_images/ads_background_cat/chaussures.png');
+}
+.__cos{
+    background-image: url('../../background_images/ads_background_cat/cosmetique.png');
+}
+.__ele{
+    background-image: url('../../background_images/ads_background_cat/electonic.png');
+}
+.__docs{
+    background-image: url('../../background_images/ads_background_cat/document.png');
+}
+.__mul{
+    background-image: url('../../background_images/ads_background_cat/multimedia.jpg');
+}
+.__int{
+    background-image: url('../../background_images/ads_background_cat/interieur_maison.png');
+}
+.__mot{
+    background-image: url('../../background_images/ads_background_cat/motos.png');
+}
+.__loi{
+    background-image: url('../../background_images/ads_background_cat/loisir.png');
+}
+.__vel{
+    background-image: url('../../background_images/ads_background_cat/vélos.png');
+}
+.__vet{
+    background-image: url('../../background_images/ads_background_cat/vetements.png');
+}
+.__voi{
+    background-image: url('../../background_images/ads_background_cat/voitures.png');
+}
+.__ads_categories, __ads_by_cities{
+    width: 100%;
+    padding: 5px;
+}
+.__ads_categories_block, __ads_by_cities_block{
+    display: flex;
+    justify-content: center;
+}
+.__ads_by_cities_block{
+    height: 30rem;
+    padding: 5px;
+}
+.__ads_categories{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    height: 100%;
+    margin-bottom: 10px;
+}
+.__ads_category_column {
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.__ads_category_column:hover{
+    cursor: pointer;
+    animation-duration: 2s;
+    animation-name: headShake;
+}
+.__ads_category_column h3{
+    background-color: white;
+    color: #0D47A1;
+    padding: 3px;
+    border-radius: 3px;
+}
+.__ads_category_column a{
+    position: relative;
+    color: #0d41a1;
+    font-size: 20px;
+}
+.__ads_category_column a:hover{
+    display: block;
+}
+
+.__contact_form_block{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.__contact_form{
+    width: 50%;
+    padding: 10px;
+}
+.__contact_form_row{
+    width: 100%;
+    display: flex;
+    margin-bottom: 5px;
+
+}
+.__contact_form_column{
+    width: 50%;
+    margin-right: 5px;
+}
+.__contact_form_column input{
+    width: 100%;
+    padding: 3px;
+    height: 100%;
+    border-radius: 5px;
+}
+.__contact_form_row input, textarea{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+.__features_block{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.__features{
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+}
+.__all_features{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+}
+.__all_features h2{
+    color: #0d41a1;
+    font-size: 35px;
+}
+.__home_image{
+    padding: 20px;
+    background-color: #0D47A1;
+    height: 60rem;
+    margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.__active_features{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    height: 60%;
+    animation-name: fadeInRight;
+    animation-duration: 2s;
+    animation-fill-mode: none;
+}
+.__home_text h2{
+    font-family: 'Ubuntu';
+    font-size: 42px;
+    color: #0d41a1;
+    text-indent: 15px;
+}
+.__home_text{
+    background-color: rgba(253, 253, 253, 0.3);
+    padding: 5px;
+}
+.__main_home_page{
+    width: 100%;
+}
+.__home_container{
+    width: 100%;
+}
+.topBtn{
+    animation-name: slideInDown;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.__act_block{
+    width: 100%;
+    padding: 2px;
+}
+.__act_block:hover{
+    position: relative;
+}
+.__image_block{
+    width: 100%;
+    height: 70%;
+}
+.__image_block:hover{
+    cursor: pointer;
+    animation-duration: 2s;
+    animation-name: bounce;
+}
+.__image_block img{
+    border-radius: 10px;
+}
+.__body{
+    padding: 3px;
+}
+.__body a{
+    font-family: 'Ubuntu';
+    color: black;
+    text-align: center;
+}
+.__image_block img{
+    height: 100%;
+    width: 100%;
+}
+.__rate{
+    display: grid;
+    padding: 3px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.__likes{
+    cursor: pointer;
+    margin-right: 7px;
+    padding: 3px;
+    transition: background-color 2s, color 2s;
+    border-radius: 3px;
+}
+.__unlikes{
+    cursor: pointer;
+    margin-right: 7px;
+    padding: 3px;
+    transition: background-color 2s, color 2s;
+    border-radius: 3px;
+}
+.__cpt_likes, .__cpt_unlikes{
+    margin-left: 3px;
+}
+.__navigation{
+    display: flex;
+    justify-content: center;
+}
+.__activities_block{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+.__teachers_found{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.__block{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+.__response_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7rem;
+    border-radius: 5px;
+}
+.__alert-success{
+    border-radius: 7px;
+    width: 70%;
+}
+.__alert-success p{
+    text-align: center;
+}
+
+.__alert_error{
+    font-family: 'Ubuntu';
+    width: 80%;
+    border-radius: 7px;
+    text-align: center;
+}
+.__btn_chge_av{
+    display: flex;
+    justify-content: end;
+}
+.__btn_chge_av a{
+    background-color: #0d41a1;
+    color:white;
+    font-family: 'Ubuntu';
+}
+.__profile_container{
+    display: flex;
+    justify-content: center;
+}
+.__blocks{
+    width: 75%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-top:5rem;
+}
+.__left_side{
+    width: 100%;
+    padding: 5px;
+}
+.__user_avatar_profile{
+    height: 12rem;
+}
+.__middle{
+    width: 100%;
+    padding: 5%;
+}
+.__right_side{
+    width: 100%;
+    padding: 5%;
+}
+.__remember_container{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+.regUsrRow a{
+    background-color: #0D47A1;
+    font-family: "Ubuntu";
+    color: white;
+}
+.__district{
+    color: #0d47a1;
+    cursor: pointer;
+}
+.__district_container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+}
+.__label{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    font-size: 15px;
+    text-align: start !important;
+}
+#mySidenav a{
+    position: absolute;
+    left: -20px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 200px;
+    text-decoration: none;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid white;
+    z-index: 1;
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+#taxi{
+    top: 40%;
+    background-color: #0D47A1;
+}
+
+#realEstate{
+    top: 48%;
+    background-color: #0D47A1;
+}
+
+.__call_btn{
+    padding: 3px;
+    border: 1px solid #0d47a1;
+    border-radius: 3px;
+    background-color: #00FF00;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.__real_estate_card_body{
+    padding: 3px;
+}
+.realEstateCard img{
+    height: 12rem;
+    width: 100%;
+}
+#realEstateFoundBox{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3px;
+    padding: 3px;
+}
+input[type="text"], input[type="email"], input[type="tel"]{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    height: 50px;
+}
+.__real_estate_filter_box ul{
+    list-style-type: none;
+    display: flex;
+}
+.__real_estate_filter_box ul li label{
+    cursor: pointer;
+}
+#btn_container button{
+    background-color: #0d47a1;
+    font-family: "Ubuntu";
+    color: white;
+    font-size: 20px;
+}
+.__line{
+    height: 1px;
+    background-color: #0d47a1;
+}
+.realEstateFormSearchComponent{
+    width: 70%;
+    margin-top:10rem;
+}
+.__real_estate_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.real_estate_btn_column button{
+    height: 70px;
+    background-color: #0d47a1;
+    color: white;
+    font-size: 25px;
+}
+.real_estate_btn_column{
+    width: 20%;
+}
+.__real_estate_form_search_box{
+    width: 70%;
+    padding: 3px;
+    background-color: white;
+    border-radius: 5px;
+}
+.__real_estate_main_page{
+    height: 60rem;
+    margin-top: 5rem;
+    width: 100%;
+    overflow: hidden;
+    background-color: #87ceeb;
+}
+.__districts_component{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.__districts_component select{
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+#trip_available_by_day{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+.__form_search_journey{
+    width: 100%;
+    display: flex;
+    padding: 3px;
+    margin-top: 5rem;
+}
+.__driver_info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    padding: 7px;
+    height: 6rem;
+}
+
+#resultSearch{
+    width: 75%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+
+.__form_box_trip{
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+}
+.__taxi_driver_city{
+    justify-content: space-between;
+    display: flex;
+}
+.cities_list .__city_filter{
+    cursor: pointer;
+    color: #0d47a1;
+    font-family: "Ubuntu";
+}
+.__user_av_taxi{
+    position: absolute;
+    border: 3px solid #0d47a1;
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    left: 5rem;
+    bottom: 11rem;
+}
+.__user_av_taxi img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+select option{
+    font-family: "Ubuntu";
+}
+.__input_row{
+    margin-bottom: 5px;
+}
+.__column select{
+    height: 70px;
+    width: 100%;
+    border:1px solid #ced4da;
+    border-radius: 3px;
+    color: #495057;
+}
+.__input_row button{
+    background-color: #0d47a1;
+    font-family: "Ubuntu";
+    color: white;
+}
+.__new_taxi{
+    width: 100%;
+    display:flex;
+    justify-content: end;
+    padding: 3px;
+}
+.__new_taxi h6 a{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    border:1px solid;
+    border-radius: 5px;
+}
+.cab_card .__cab_img{
+    height: 10rem;
+    border-bottom: 2px solid #0d47a1;
+    width: 100%;
+}
+.__call{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    text-align: end;
+}
+.__taxi_main_page{
+    width: 100%;
+    height: 100%;
+}
+.__h4{
+    padding: 7px;
+    font-family: "Ubuntu";
+    font-size: 29px;
+    color: #0d47a1;
+    text-align: center;
+}
+.__h5{
+    padding: 7px;
+    font-family: "Ubuntu";
+    font-size: 25px;
+    color: #0d47a1;
+}
+.__h6{
+    padding: 7px;
+    font-family: "Ubuntu";
+    font-size: 17px;
+    color: #0d47a1;
+}
+.formSearchJourneyBox{
+    border-radius: 5px;
+    padding: 10px;
+    height: 36rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /*background-image: url('../image/background_images/indexCarouselImages/trip.jpg');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.__form_box{
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    width: 70%;
+}
+.coursCard{
+    padding: 3px;
+}
+.__details_text{
+    width: 100%;
+    padding: 3px;
+    text-overflow: "...";
+}
+.actInput select{
+    height: 50px;
+}
+.newActRegisterRow{
+    margin-bottom: 5px;
+}
+.newActRegisterRow button{
+    background-color: #0d47a1;
+    color: white;
+    font-family: "Ubuntu";
+    font-size: 20px;
+}
+#locate{
+    display: flex;
+    margin-right:5px;
+}
+.blockAdAtt h5{
+   margin-right: 10px; 
+}
+.blockAdAtt{
+    padding: 5px;
+}
+.__myTitle{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    font-size: 22px;
+}
+.__headLine{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    font-size: 22px;
+}
+
+.__active_slide{
+    -webkit-animation-name: slideInRight;
+    -webkit-animation-duration: 1.5s;
+    animation-name: slideInRight;
+    animation-duration: 1.5s;
+}
+
+.__active{
+    display: block;
+    height: 100%;
+}
+.__slide_item{
+    height: 100%;
+    display: none;
+}
+.__user_avatar{
+    height: 50%;
+}
+.__user_avatar img{
+    height: 70%;
+    width: 30%;
+    border-radius: 50%;
+}
+.__user_infos{
+    padding: 5px;
+    width: 25%;
+    height: 50%;
+    border: 2px solid #0d47a1;
+    border-radius: 5px;
+}
+
+#actInfos{
+    margin-bottom: 2rem;
+}
+.__images{
+    width: 70%;
+    height: 100%;
+    margin-right: 5px;
+    position: relative;
+}
+.__act_images{
+    width: 70%;
+    height: 100%;
+    margin-right: 5px;
+    position: relative;
+}
+.last_four_ads{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.__container_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.__footer{
+    width: 100%;
+    background-color: #0d47a1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.__footer hr{
+    background-color: white;
+    width: 100%;
+}
+.__footer ul{
+    margin-top: 2rem;
+}
+.__footer ul li h5{
+    color: white;
+}
+.__categories_details{
+    padding: 3px;
+    background-color: whitesmoke;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.__underline{
+    background-color: #0d47a1;
+    height: 1.5px;
+    width: 100%;
+}
+.__cat_type_list li a{
+    color: #0d47a1;
+}
+.__cat_type_list{
+    list-style-type: none;
+    font-family: "Ubuntu";
+}
+.__cat_title{
+    font-family: "Ubuntu";
+    color:#0d47a1;
+   font-size: 20px;
+}
+.cities_list{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.cities_list li a{
+    color: #0d47a1;
+    font-family: "Ubuntu";
+}
+.__map_container{
+    display: flex;
+    justify-content: center;
+    height: 30rem;
+    margin-top: 5rem;
+}
+h5 .__myPolice{
+    font-size: 10px;
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+}
+.__slide{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+    height: 100%;
+}
+.__slide_cat_real, .__slide_two_cat_real{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    height: 100%;
+}
+.__slide_two{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+    height: 100%;
+}
+.__cat_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__category_card_container{
+    padding: 10px;
+    height: 12rem;
+    position: relative;
+}
+
+.__right{
+    right: 0;
+}
+.__left{
+    left: 0;
+}
+.__right, .__left{
+    background-color: white;
+    font-family: "Ubuntu";
+    border:2px solid #0d47a1;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    font-weight: bold;
+    transition: 0.6s ease;
+    user-select: none;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+::placeholder{
+    color: #0d47a1;
+    font-family: "Ubuntu";
+}
+
+.__new{
+    height: 3rem;
+    width: 30%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background-color: #0D47A1;
+}
+.__new a{
+    font-family: Ubuntu;
+    font-size: 22px;
+    color: white;
+}
+.__new a:hover{
+    color: white;
+}
+.__new h6 a{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+    border:1px solid;
+    border-radius: 5px;
+    margin-right: 3px;
+}
+#__menu_btn{
+    cursor: pointer;
+    font-size: 30px;
+    display: block;
+    width: 45px;
+    text-align: center;
+    transition: display 1.5s;
+    color: #0D47A1;
+    padding: 3px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.__main_page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.__main_page_activities{
+    justify-content: center;
+    display: flex;
+}
+.__dropdown_menu{
+    display: none;
+    width: 20%;
+    padding: 5px;
+}
+.__dropdown_menu .h4{
+    font-family: "Ubuntu";
+    color: white;
+}
+.header h3{
+    color: white;
+    font-family: Ubuntu;
+}
+.__dropdown_container .header{
+    background:#0d47a1;
+    padding: 21px;
+}
+.__dropdown_container{
+    display: none;
+}
+.__menu_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-x:hidden;
+}
+
+.__menu_column{
+    padding: 5px;
+    height: 100%;
+}
+.__menu_column a{
+    color: #0d41a1;
+}
+.form_activity_result_page{
+    margin-top: 3rem;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formAct, .formSearchTaxi{
+    width: 70%;
+    height: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.communes{
+    margin-top: 5rem;
+}
+.__myPolice, .contact li a, .steps li{
+    font-family: "Ubuntu";
+}
+.__subject_card{
+    height: 100%;
+}
+.search_exam_main_page, .result_search_exam_box{
+    height: 100%;
+}
+.search_exam_main_page{
+    display: flex;
+    justify-content: center;
+}
+.search_exam_form_wrap{
+    height: 15rem;
+    padding: 5px;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.search_exam_form_result_page{
+    height: 5rem;
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.result_search_exam_box{
+    width: 70%;
+}
+.subjectColumnBtn button{
+    width: 70%;
+    height: 100%;
+    background-color: #0d47a1;
+    color: white;
+}
+.subjectColumnBtn{
+    justify-content: center;
+    display: flex;
+}
+.search_ebook_main_page{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.result_search_ebook_box{
+    width: 80%;
+}
+.result_search_ebook_form_box{
+    display: flex;
+    justify-content: center;
+    height: 10rem;
+    align-items: center;
+}
+.form_search_ebook_result_page{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+    height: 5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.resultSearchBookContainer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+}
+#__allEbook{
+    font-family: "Ubuntu";
+}
+.validate_btn{
+    background-color: #0d47a1;
+    font-family: "Ubuntu";
+    color: white;
+}
+.__category{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 3px;
+    list-style-type: none;
+    color: #0d47a1;
+}
+.__category li{
+    border-right: 2px solid;
+    transition: background-color 1.2s;
+    padding: 3px;
+}
+.__ebook_filter{
+    font-family: "Ubuntu";
+}
+.all_books_column{
+    padding: 3px;
+}
+
+.__category li:hover{
+    cursor: pointer;
+    background-color: #0d47a1;
+    color: white;
+    border-radius: 5px;
+}
+.formSearchEbook{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+    height: 5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.formSearchEbookColumn{
+    width: 80%;
+}
+.formSearchEbookColumn input{
+    height: 70px;
+    border: none;
+}
+.ebookFormSearch{
+    border-radius: 5px;
+    padding: 10px;
+    height: 36rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /*background-image: url('../image/background_images/ebook.jpg');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.service{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+
+.__menu_link{
+    font-family: "Ubuntu";
+    padding: 5px;
+    color: #0D47A1;
+    transition: 2s ease-in;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+.__service_link{
+    font-family: "Ubuntu";
+    transition: border-bottom 2s 4s;
+    padding: 5px;
+}
+.__service_link:hover{
+    border-bottom: 2px solid white;
+    color: black;
+}
+.__menu_link:hover{
+    color: black;
+}
+.__announcement{
+    font-family: "Ubuntu";
+    color:#0d47a1;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+#__signIn{
+    color: #0d47a1;
+    background-color: white;
+}
+#__logIn{
+    color: #0d47a1;
+    background-color: white;
+}
+.teacher_details_info_box{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.teacher_details_name{
+    font-family: "Ubuntu";
+    font-size: 22px;
+    color: white;
+}
+._box{
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 90%;
+}
+.teacher_details_avatar{
+    height: 100%;
+    width: 100%;
+    transition: width 1.2s;
+}
+.__details_avatar{
+    width: 100%;
+    border-radius: 50%;
+}
+.teacher_details_header{
+   height: 320px; 
+}
+.teacher_details_box{
+    width: 70%;
+    margin-top:24rem;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.teacher_details_main_bloc{
+    display: flex;
+    justify-content: center;
+}
+.teacher_details_header, .ad_details_header{
+    overflow: hidden;
+    z-index: 99;
+    position: fixed;
+    background-color: #0d47a1;
+    padding: 90px 10px;
+    transition: 0.4s;
+    width: 100%;
+}
+.class_level_info{
+    width: 60%;
+    height: 12%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+.course_name, .class_level_details{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+
+.class_details,.teacher_profile_details, .teacher_title{
+    font-family: "Ubuntu";
+}
+.teacher_title{
+    color: #0d47a1;
+    font-size: 25px;
+}
+.tel_contact{
+    color: #0d47a1;
+    width: 35%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 7px;
+    font-family: "Ubuntu";
+    text-align: center;
+}
+.price_details{
+    font-family: "Ubuntu";
+    color: white;
+    width: 35%;
+    padding: 3px;
+    text-align: center;
+}
+.teacher_profile_card{
+    width: 100%;
+    padding: 7px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: width 1.2s;
+}
+.teacher_avatar{
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 1.2s, width 1.2s;
+}
+.teacher_address, .price{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.teacher_profile_card:hover .teacher_avatar{
+    transform: scale(1.1);
+    width: 97%;
+}
+.teacher_profile_card:hover{
+    width: 101%;
+    cursor: pointer;
+}
+.nb_result{
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+.teacher_profile{
+    text-overflow: clip;
+    overflow: hidden;
+    height: 40px;
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.nb_result h3{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.result_search{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.teacher_name{
+   font-size: 20px;
+    font-family: "Ubuntu";
+    color: #0d41a1;
+    font-size: 25px;
+}
+.price{
+    border:1px solid #0d47a1;
+    border-radius: 10px;
+    padding: 2px;
+    width: 50%;
+    text-align: center;
+}
+.course_form_search_box{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+    padding: 2px;
+}
+.active{
+    background-color: #0d47a1;
+    border-radius: 5px;
+    color: white;
+}
+.__filters{
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+}
+.levels_filter{
+    width: 100%;
+}
+.teacher_option{
+    width: 7%;
+    font-family: "Ubuntu";
+    text-align: center;
+}
+.teacher_option:hover{
+    cursor: pointer;
+}
+.levels_filter_container{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 5px;
+    height: 15rem;
+    left: 400px;
+}
+.class_level{
+    height: 20%;
+    transition: background-color 2.3s;
+    color: #0d47a1;
+}
+.class_level:hover{
+    background-color: #0d47a1;
+    color: white;
+}
+.class_level label{
+    cursor: pointer;
+    font-family: "Ubuntu";
+}
+#level_choice:hover .levels_filter_container{
+    display: block;
+}
+.teacher_filter_box{
+    height: 12%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.teacher_filter{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.course_main_page{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.course_main{
+    width: 70%;
+}
+.formColumnBtn button{
+    background-color: #0d47a1;
+    color: white;
+}
+.menu_title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    height: 100%;
+}
+.new_teacher_link h6 a{
+    border: 1px solid;
+    border-radius: 5px;
+    color: #0d47a1;
+    font-family: "Ubuntu";
+}
+.new_teacher_link{
+    padding: 3px;
+    display: flex;
+    justify-content: end;
+}
+
+.navFilter li a{
+    color: #0d47a1;
+}
+.school_dropdown_container{
+    display: none;
+    position: absolute;
+    background-color:white;
+    width: 670px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0;
+    top: 50px;
+}
+.school_menu_container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+}
+#school_button_services{
+    display: none;
+}
+.school_sup_dropdown_menu .h4{
+    font-family: "Ubuntu";
+    color: white;
+}
+
+.school_dropdown_container .header{
+    background:#0d47a1;
+    padding: 16px;
+    color: white;
+    font-family: "Ubuntu";
+}
+.school_menu_column{
+    padding: 5px;
+    height: 100%;
+}
+.school_sup_dropdown_menu:hover .school_dropdown_container{
+    display: block;
+}
+.library_text h5{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.library{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+}
+.library_card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+.library_card img{
+   border-radius: 5px 5px 0px 0px; 
+    width: 100%;
+}
+.library_text{
+    padding: 5px;
+}
+.coursesRow{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 7px;
+}
+.coursesRow_two{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 7px;
+}
+.courseList h3{
+    font-family: "Ubuntu";
+    color: whitesmoke;
+    text-align: center;
+    background-color: #0d47a1;
+    width: 32%;
+    height: 70%;
+    border-radius: 25px;
+    padding: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.courseList{
+   height: 5rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    align-items: center;
+}
+.educIntro{
+    margin-top: 10px;
+}
+.school_sup_form_search_title h3{
+    text-align: center;
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.school_sup_main_page{
+    justify-content: center;
+    display: flex;
+}
+.school_sup_container{
+    width: 95%;
+}
+.school_sup_head_title h3{
+    text-align: center;
+    font-family: 'Ubuntu';
+    color: #0d47a1;
+}
+@font-face{
+    font-family: 'Ubuntu';
+    src:url('Ubuntu-Bold.ttf'),
+        url('Ubuntu-Regular.ttf')
+}
+@font-face{
+    font-family: 'UTMCaviar';
+    src:url('UTMCaviar.ttf');
+}
+.travels{
+    background-color: blueviolet;
+    padding: 5px;
+    border: 2px solid;
+    box-shadow: 0 5px 5px red;
+}
+.to_call{
+    display: flex;
+    align-items: center;
+}
+
+.all_activities{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.activity_body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    /*! height: 100%; */
+}
+.act_box{
+    width: 75%;
+    margin-top: 7rem;
+    padding: 3px;
+}
+.map_clicable{
+    width: 100%;
+    height: 100%;
+    stroke: white;
+}
+.map_clicable path{
+    fill: #0d47a1;
+    transition: fill 0.3s;
+    stroke-width: 1px;
+}
+.map_clicable path:hover{
+    fill: red;
+}
+
+.card_head{
+    background-color: #0d47a1;
+}
+.card_services:hover .overlay{
+    height: 100%;
+}
+.activity_page_info{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 20rem;
+}
+.__step_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 3px;
+}
+.__step_img img{
+    width: 50%;
+}
+.__step_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.image_activity_page_ipad_phone{
+    /*background-image: url("../image/background_images/indexCarouselImages/presentation2cp.png");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+.image_activity_page_laptop{
+    width: 50%;
+    height: 100%;
+    /*background-image: url("../image/background_images/indexCarouselImages/presentation.png");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+.pro_title, .how_title{
+    font-family: "Times New Roman", Times, serif;
+}
+.steps, .contacts{
+    list-style-type: none;
+}
+.overlay{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0d47a1;
+    opacity: 80%;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+    
+}
+.text {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: "Ubuntu";
+    
+}
+.text_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page_link{
+    position: absolute;
+    top: 300px;
+    left: 250px;
+}
+.page_link div{
+    padding: 2px;
+    background-color: whitesmoke;
+    color: blue;
+}
+.responseFormRow{
+    margin-bottom: 3px;
+}
+.servicesComponentRow{
+    display: flex;
+}
+.serviceBoxColumn{
+    width: 33.33%;
+    margin-right: 5px;
+}
+.formIndexBox{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 3px;
+    width: 100%;
+}
+.contactIndexFormRow{
+    display: flex;
+}
+.contactFormColumn{
+    width: 50%;
+}
+.contactFormColumn input{
+    width: 99%;
+}
+#contactIndexFormBox{
+    width: 100%;
+    height: 100%;
+}
+.countFormTitle{
+    text-align: center;
+}
+#activationContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.countActivateFormRow{
+    display: flex;
+}
+.countActivateFormColumn{
+    width: 75%;
+}
+.countActivateFormColumn input{
+    width: 99%;
+}
+.countActivateFormColumnBtn{
+    width: 25%;
+}
+.countActFormBox{
+    width: 50%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+.alertSmBox{
+    display:none;
+}
+.alertSendIndexMessage{
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding: 3px;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(73, 171, 83);
+    font-weight: bold;
+    position: absolute;
+    top: 143em;
+    width: 33.52%;
+}
+.alertSendMessage{
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding: 3px;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(73, 171, 83);
+    font-weight: bold;
+    position: absolute;
+    top: 1185px;
+    width: 45%;
+}
+#contactFormBox{
+    display: flex;
+    justify-content: center;
+}
+.contactFormTitle{
+    display: flex;
+    justify-content: center;
+}
+.contactFormRow{
+    margin-bottom: 5px;
+}
+.items{
+    display: flex;
+    flex-wrap: wrap;
+}
+.itemColumn{
+    width: 20%;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+.itemBody{
+    display: flex;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.userActivity{
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.bio{
+   height: 48%;
+}
+#about{
+    height: 100%;
+    overflow: auto;
+}
+#resultSearchBookContainer{
+    flex-wrap: wrap;
+}
+.top{
+    display: flex;
+    justify-content: flex-end;
+}
+.topBtn{
+    z-index: 99;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    border: none;
+    background-color: #0d47a1;
+    border-radius: 0px 6px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+    width: 3%;
+    height: 6%;
+}
+#responselist{
+    width: 100%;
+    padding: 2px;
+}
+.responseBox{
+    width: 70%;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.responseText{
+    overflow: auto;
+    width: 100%;
+}
+.forumRegisterFormRow{
+    margin-bottom: 5px;
+}
+.mainBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+#boxProgress{
+    width: 100%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin-top: 2px;
+    display: none;
+}
+#progress{
+    border-radius: 5px;
+    color: black;
+}
+.box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alertSuccess{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.successMessage{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+.questionBody{
+    overflow: auto;
+    width: 100%;
+    text-indent: 10px;
+    padding: 3px;
+}
+.forumFormRow{
+    display: flex;
+}
+.forumFormColumn{
+    width: 80%;
+}
+.forumFormColumn input{
+    width: 98%;
+}
+.forumFormBtnColumn{
+    width: 20%;
+}
+.forumBox{
+    display: flex;
+    justify-content: center;
+}
+.forumBody{
+    width: 70%;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.forumLeftSide{
+    width: 20%;
+    height: 31em;
+    border-radius: 0px 0px 5px 0px;
+}
+.forumRightSide{
+    width: 80%;
+    padding: 2px;
+}
+.cabBody{
+    display: flex;
+    height: 100%;
+}
+.cabUniverseLeftSide{
+    width: 15%;
+    height: 80%;
+    margin-right: 5px;
+    border-bottom:1px;
+    border-radius:0px 0px 5px;
+}
+.cabUniverseRightSide{
+    width: 85%;
+}
+
+.displayer{
+    display: flex;
+    flex-wrap: wrap;
+}
+#allcab{
+    padding: 3px; 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.logo{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: "Ubuntu";
+    color: white;
+}
+.logo:hover{
+    color: white;
+}
+.realEstateFormRow{
+    display: flex;
+    margin-bottom: 5px;
+}
+.realEstateFormRow button{
+   background-color: #0d47a1;
+}
+.realEstateFormColumn{
+    width: 50%;
+}
+.realEstateFormColumn input{
+    width: 98%;
+}
+.realEstateFormRow input{
+    width: 98%;
+}
+.realEstateFileRow{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.realEstateFileRow input{
+    width: 99%;
+}
+.realEstateTextareaRow{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.ad_details_container, .__details_container{
+    width: 80%;
+    padding: 5px;
+}
+
+.ad_details_box{
+    display: flex;
+    justify-content: center;
+}
+.__details_main_page{
+    display: flex;
+    justify-content: center;
+}
+.teach_card{
+    width: 98%;
+}
+.allteachersContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+}
+.cvColumn{
+    width: 25%;
+}
+.cvCard{
+    width: 98%;
+}
+.fileIcon{
+   width: 30%; 
+}
+.cvInfos p{
+    text-overflow: ellipsis;
+}
+#lastjo_result{
+    padding: 3px;
+    flex-wrap: wrap;
+}
+.newCvBox{
+    display: flex;
+    justify-content: center;
+}
+.newCvRegRow{
+    margin-bottom: 5px;
+}
+
+.formNewCvBox{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin: 3px;
+    width: 40%;
+}
+.cabCarousel{
+    width: 45%;
+}
+.cabCarouselInner{
+    width: 80%;
+    justify-content: center;
+}
+.slideControl{
+    width: 10%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.departDest, .tripTime{
+    justify-content: space-between;
+}
+
+.tripDetailsNavItem{
+    width: 75%;
+    display: flex;
+}
+#station{
+    display: none;
+}
+.realEstateDropdown{
+    display: none;
+    transition: height 0.5s;
+}
+.dropdownActivities{
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+#dashboardLeftSide{
+    padding: 3px;
+    height:100%;
+}
+.updateFormRow{
+    display: flex;
+    margin-bottom:5px;
+}
+.updateFormColumn{
+    width: 100%;
+}
+.updateFormColumn input{
+    height: 50px;
+    width: 98%;
+}
+.tableUpdateFormBox{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 40%;
+    margin-right: 5px;
+}
+.columnRefactor{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 40%;
+}
+.columnRefactorRow{
+    margin-bottom: 5px;
+}
+.columnRefactorRow select, input[type=text]{
+    height: 50px;
+}
+#dashboardMainScreen{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.dashboardRightSide{
+    width: 80%;
+}
+.leftSide{
+    width: 20%;
+}
+.dropdownActivities{
+    padding: 3px;
+}
+.closeBtn{
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+.realEstateFormSearchBox{
+    border-radius: 3px;
+    padding: 10px;
+    height: 36rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /*background-image: url('../image/background_images/real_estate_main_page.jpg');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainScreen{
+    width: 80%;
+}
+
+.formSearch{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#teacher_info{
+  border-radius: 5px;
+  padding: 5px;
+}
+.search_exam_form{
+    height: 5rem;
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.subjectRow{
+    width: 100%;
+}
+.subjectColumn{
+    width: 100%;
+}
+.subjectColumn input{
+    height: 100%;
+    width: 98%;
+    border:none;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-family: "Ubuntu";
+}
+.NewPwdUsrRow{
+    margin-bottom: 5px;
+}
+.NewPwdUsrRow input{
+    height: 70px;
+}
+.NewPwdUsrRow button{
+    background-color: #0d47a1;
+    color: white;
+    font-family: "Ubuntu";
+}
+.bookFormSearch{
+    height: 14%;
+}
+.school_sup_form_search{
+    width: 70%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.formCourseSearchBox{
+    border-radius: 5px;
+    padding: 10px;
+    height: 36rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /*background-image: url('../images/background_images/indexCarouselImages/cours-domicile.jpg');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.formNewBookBox{
+    border-radius: 5px;
+    background-color: #0d47a1;
+    padding: 20px;
+    width: 45%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.coursFormSearch{
+    height: 35rem;
+}
+.formNewSubjectBox{
+    border-radius: 5px;
+    padding: 20px;
+    align-items: center;
+    width: 65%;
+    background-color: #0d47a1;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.newSubjectRegRow{
+    display: flex;
+    margin-bottom: 5px;
+}
+.inputSubjectColumn input{
+    height: 50px;
+    width: 98%;
+}
+.inputSubjectColumn{
+    width: 50%;
+}
+.newBookBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.newSubjectBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.newBookRegRow{
+    margin-bottom: 5px;
+}
+.newBookRegRow input{
+    height: 50px;
+}
+.messageText{
+    text-indent: 10px;
+}
+#regFormBox{
+    /*width: 45%;*/
+}
+.regUsrRow{
+    display: flex;
+    margin-bottom: 10px;
+}
+.regUsrRow button{
+    background-color: #0d47a1;
+    font-family: "Ubuntu";
+    color: white;
+}
+.regUsrRow input{
+    height: 50px;
+}
+.userInfos{
+    height: 10em;
+}
+.regUsrColumn{
+    width: 50%;
+    margin-bottom: 5px;
+    margin-right: 2px;
+}
+.regUsrColumn input, .regUsrRow input[type="text"]{
+    height: 50px;
+}
+
+
+input[name="phone"]{
+    margin-bottom: 5px;
+    height: 50px;
+}
+#do, #theservices{
+    display: none;
+}
+.usr_information{
+    margin-left: 3px;
+    padding: 2px;
+    width: 40%;
+}
+.rotation{
+    width: 100%;
+    background: white;
+    justify-content: center;
+    display: flex;
+}
+
+.avatar{
+    width: 12%;
+    height: 100%;
+    padding:2px;
+}
+.profRegisterRow{
+    display: flex;
+}
+.profInputColumn{
+    width: 50%;
+    margin-bottom: 5px;
+}
+.profInputColumn input, select{
+    width: 98%;
+    height: 50px;
+}
+.profTextareaColumn{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.adRegisterRow{
+    display: flex;
+    margin-bottom: 10px;
+}
+.adInputColumn{
+    width: 50%;
+    margin-right: 5px;
+}
+.adInputColumn-1{
+    width: 100%;
+}
+
+.adInputColumn select, input[type=file]{
+    height: 50px;
+}
+._column select, input[type=file]{
+    height: 50px;
+    border:2px solid whitesmoke;
+    border-radius: 5px;
+    width: 100%;
+}
+.adTextareaColumn{
+    width: 100%;
+    margin-bottom: 3px;
+}
+.adInputColumn select{
+    border:2px solid whitesmoke;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.adRegisterRow button{
+    background-color: #0d47a1;
+    color: white;
+    font-family: "Ubuntu";
+}
+.adRegisterColumn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.adRegisterColumn-3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.tripInputContainer input{
+    width: 99%;
+}
+.tripInputContainer select, input[type=date], input[type=time]{
+    height: 50px;
+}
+.formAdsSearchColumn{
+    width: 40%;
+}
+.__form-1_column{
+    width: 80%;
+    margin-right: 5px;
+}
+.formAdsSearchColumnBtn{
+    width: 20%;
+}
+.__btn_submit button{
+    background-color: #0d41a1;
+    color: white;
+    font-size: 22px;
+    height: 70%;
+}
+.__form-1_Btn{
+    width: 20%;
+}
+.__btn_submit{
+    width: 20%;
+    display: flex;
+    align-items: flex-end;
+
+}
+.formAdsSearchColumnBtn button, .__form-1_Btn button{
+    height: 100%;
+    background-color: #0d41a1;
+    color: white;
+    font-size: 22px;
+}
+.formTaxiSearchColumn{
+    width: 75%;
+}
+.formAdsSearchColumn input{
+    width: 98%;
+    height: 70px;
+    border: none;
+}
+.formTaxiSearchColumn input{
+    width: 97%;
+    height: 70px;
+    border: none;
+}
+
+.bar{
+    border-right: 2px solid #0d47a1;
+}
+.formBox{
+    width: 60%;
+    padding: 20px;
+    margin-top: 5rem;
+}
+.__application_form{
+    width: 50%;
+    padding: 20px;
+    margin-top: 5rem;
+}
+.tripRegisterformBox{
+    width: 55%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.someActivities{
+}
+
+.actCard{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 99%;
+}
+.activityColumn{
+    border-right: 2px solid;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+.activityColumn a, .cities_list ul li a, .commune_list ul li a{
+    color: #0d47a1;
+    font-family: "Ubuntu";
+}
+
+.activityColum.line{
+    display: flex;
+    align-items: center;
+}
+.line{
+    display: flex;
+}
+.lineColumn{
+    width: 33.33%;
+}
+.svgLine{
+    width: 100%;
+    height: 1px;
+}
+.message{
+    text-indent: 50px;
+    text-align: justify;
+    letter-spacing: 3px;
+}
+.commune_list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+.presentation{
+    padding: 5px;
+}
+
+.commune_column li{
+    list-style-type: none;
+}
+.regions{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height:250px;
+    margin-bottom: 7px;
+}
+.regions_list ul li{
+    list-style-type: none;
+}
+.guinea_map_container{
+    width: 60%;
+    display: none;
+}
+.act_card_title{
+    font-family: sans-serif;
+}
+#cabFormBox{
+    width: 45%;
+}
+
+.someActivities{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 9px;
+    list-style: none;
+    grid-gap: 7px;
+}
+.__text_block,.__poster_svg{
+    height: 90%;
+}
+.__poster_svg img{
+    width: 100%;
+    height: 100%;
+}
+.__text_block{
+    display: flex;
+    justify-content: center;
+}
+.__content{
+    position: relative;
+    top: 18%;
+}
+.__content h1{
+    color: #0D47A1;
+    font-size: 40px;
+}
+.__content p{
+    text-align: center;
+}
+.__content a{
+    background-color: #0D47A1;
+}
+.activity_main_page{
+    padding: 5px;
+    height: 38rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    margin-top: 5rem;
+}
+.formAdsSearchBox{
+    border-radius: 2px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 3px;
+    height: 39rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../background_images/indexCarouselImages/ecommerce.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 15px;
+}
+.taxiFormSearchBox{
+    border-radius: 5px;
+    padding: 10px;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    height: 10rem;
+    align-items: center;
+}
+.formJobSearchBox{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 3px;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.formColumnBtn{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formColumnBtn button{
+    font-size: 20px;
+}
+.formColumnEBookBtn{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formColumnEBookBtn button{
+    width: 70%;
+    height: 85%;
+    background-color: #0d47a1;
+    color: white;
+}
+.formColumnBtn button{
+    width: 70%;
+    height: 85%;
+}
+.formJobSearchColumn{
+    width: 75%;
+}
+.formJobSearchColumn input{
+    width: 80%;
+}
+.formActColumn{
+    height: 70px;
+}
+.formAdsSearchColumn select{
+    height: 70px;
+    width: 97%;
+    border: none;
+}
+.formActColumn input{
+    height: 100%;
+    border: none;
+    outline: none;
+}
+.formActColumnBtn button{
+    height: 100%;
+    width: 50%;
+    background-color: #0d47a1;
+    color: white;
+}
+.formActColumnBtn{
+    justify-content: center;
+    display: flex;
+}
+.formActColumnBtn button{
+    font-size: 22px;
+}
+#bibliotheque{
+    transition: background 2s;
+}
+#bibliotheque:hover{
+    background: gray;
+}
+
+.fourCabColumn{
+    width: 65%;
+}
+.fourCabCard{
+    width: 90%;
+}
+#libraryItem{
+    display: none;
+    
+}
+#sideMenu{
+    width: 100%;
+    height: 100%;
+}
+#arrow{
+    display: none;
+}
+
+#adDescription{
+    overflow: auto;
+    padding: 3px;
+    text-indent: 10px;
+    width: 100%;
+}
+
+#openBtn{
+    cursor: pointer;
+    font-size: 30px;
+    display: none;
+    width: 45px;
+    text-align: center;
+    transition: display 1.5s;
+    color: white;
+}
+#school_sup_menu_btn{
+    cursor: pointer;
+    font-size: 30px;
+    display: none;
+    width: 45px;
+    text-align: center;
+    transition: display 1.5s;
+    color: white;
+}
+
+.__container{
+    width: 70%;
+    padding: 3px;
+    margin-top: 5rem;
+}
+.__ads_container{
+    width: 80%;
+    padding: 3px;
+    margin-top: 5rem;
+}
+.__new_property_container{
+    width: 70%;
+    padding: 3px;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.__container_book{
+    width: 60%;
+    padding: 3px;
+    margin-top: 5rem;
+}
+
+.cardColumn{
+    width: 33.33%;
+}
+.cardSize{
+    width: 98%;
+}
+
+.service:hover{
+    background-color: silver;
+    transition: 1.5s;
+}
+
+
+#formActContainer{
+    width: 100%;
+    height: 40em;
+    align-items: center;
+}
+#actCard{
+    width: 75%;
+    height: 88%;
+}
+
+
+input[name="adresse"]{
+    width: 100%;
+}
+
+#adRegisterBox{
+    justify-content: center;
+    align-items: center;
+}
+#formSearchAd{
+    display: flex;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+.__form-1{
+    display: flex;
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+#formSearchTaxi{
+    justify-content: center;
+    width: 70%;
+    background-color: white;
+}
+#login_card{
+    width: 50%;
+}
+.relatedRealEstate{
+    margin-right: 3px;
+    width: 25%;
+}
+.realEstateCard{
+    width: 100%;
+}
+
+.imagesads{
+    width: 100%;
+    height: 100%;
+}
+#box_infos_and_services{
+    width: 100%;
+}
+
+#screen{
+    width: 80%;
+}
+.user_avatar{
+    width: 100%;
+    height: 100%;
+}
+#left_side_profile{
+    width: 20%;
+    flex-direction:column;
+}
+.journeyFormColumn{
+    width: 20%;
+}
+
+
+.journeyFormColumn{
+    width: 30%;
+    margin-right: 2px;
+}
+.journeyFormColumn input{
+    width: 100%;
+    font-family: "Ubuntu";
+    padding: 12px 20px 12px 25px;
+}
+.journeyFormColumn button{
+    background-color: #0d47a1;
+    color: white;
+    width: 70%;
+}
+.formSearchJourneyRow .journeyFormColumn button{
+    width: 60%;
+}
+#journeyFormSubmitBtn{
+    justify-content: center;
+}
+#journeyFormSubmitBtn button{
+    font-size: 22px;
+}
+.journeyFormColumn input[type=date]{
+    height: 70px;
+    /*background-image: url('../image/icons/icon_calendar.png');*/
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 60px;
+}
+#reversImgContainer{
+    width: 2%;
+    position: absolute;
+    left: 32.9%;
+    top: 51.5%;
+    border-radius: 50%;
+    background-color: #ced4da;
+    padding: 2px;
+    border:1px solid #ced4da;
+    color: #0d47a1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#reversImg{
+    width: 2%;
+    position: absolute;
+    left: 28.9rem;
+    top: 17.5rem;
+    border-radius: 50%;
+    background-color: #ced4da;
+    padding: 2px;
+    border:1px solid #ced4da;
+    color: #0d47a1;
+}
+.journeyFormColumn img{
+    height: 2em;
+}
+.field_subExam{
+    width: 25%;
+    margin-top: 5px;
+}
+
+
+#search_book_field{
+    width: 60%;
+}
+#books_seach_form{
+    margin-top: 3px;
+}
+.navFilter{
+    flex-direction: column;
+}
+.filter:hover{
+    background-color:silver;
+}
+.filter{
+    font-family: "Ubuntu";
+}
+.book{
+    font-family: "Ubuntu";
+    color: #0d47a1;
+}
+#leftSideBookContainer{
+    width: 20%;
+    border-radius: 0px 0px 3px;
+}
+#rightSideContainer{
+    width: 80%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#allbooks{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+#allbooks_container{
+    display: flex;
+}
+#left{
+    width: 50%;
+}
+#formCabContainer{
+    width: 100%;
+    height: 40em;
+    align-items: center;
+}
+#form_container{
+    width: 50%;
+    height: 90%;
+}
+#intro_card{
+    width: 100%;
+}
+
+#books_card{
+    width: 100%;
+}
+.card-header{
+    font-weight: bold;
+}
+
+.real_estate_column{
+    width: 40%;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2px;
+}
+.real_estate_column input, select{
+    width: 98%;
+}
+
+#form_answer_card{
+    width: 100%;
+}
+.conv_card{
+    width: 70%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 2px;
+}
+#act_details_card{
+    width: 75%;
+}
+
+#info{
+    margin-top: 5px;
+    display: flex;
+    width: 50%;
+}
+#trade_right_side{
+    width: 50%;
+}
+
+.column{
+    width: 25%;
+}
+.act_card{
+    width: 97%;
+}
+#teach_card{
+    width: 95%;
+}
+
+#cab_card{
+    width: 100%;
+    margin-bottom: 15px;
+}
+#card_fourcab{
+    width: 15rem;
+}
+#relatedAd{
+    margin-top: 3px;
+}
+#related{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    padding: 3px;
+    margin-top: 2rem;
+}
+#user{
+    width: 20%; 
+    height: 50%;
+}
+#display{
+    width: 100%;
+    height: 100%;
+}
+#imgs{
+    width: 10%;
+    height: 50%;
+}
+.card-img-top{
+    height: 100px;
+}
+#relatedAd{
+    width: 14%; 
+    height: 12%;
+}
+.card-title{
+    font-size: 0.95em;
+}
+
+.bglog{
+    opacity: 0.89;
+}
+.bg_act{
+
+  /* Half height */
+  height: 50%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
+.bg_library{
+    /* The image used */
+
+  /* Half height */
+  height: 50%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img{
+    border: 1px solid;
+}
+.main{
+    border: 1px solid;
+}
+.usr{
+    border: 1px solid;
+}
+
+#card_profil{
+    width: 40em;
+}
+
+.bodyprofil{
+    height: 50em;
+}
+.body{
+    border: 1px solid;
+    margin: 3px;
+}
+
+.head_link a{
+    border-bottom: 3px solid transparent;
+}
+.head_link a:hover{
+   border-bottom: 3px solid white; 
+}
+nav ul li{
+    display: inline;
+    margin: 0em;
+}
+nav a{
+    font-size: 1em;
+    color:blue;
+    text-decoration: none;
+    font-family: 'SF_Collegiate_Solid', Impact, serif;
+}
+/*@font-face {
+    font-family: 'SF_Collegiate_Solid';
+    src:url('SF_Collegiate_Solid.ttf');
+}
+
+@font-face {
+    font-family: 'Carousel';
+    src:url('Carousel.ttf');
+}
+@media only screen and (min-device-width: 320px) and (max-device-width:375px){}
+@media only screen and (min-device-width: 375px) and (max-device-width:410px){
+
+}
+@media only screen and (min-device-width: 410px) and (max-device-width:567px){
+
+}*/

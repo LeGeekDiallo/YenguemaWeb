@@ -1,0 +1,198 @@
+<footer class="page-footer font-small primary-color-dark pt-4">
+    <div class="container text-center text-md-left">
+        <div class="row">
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 ">Univers Annonce</h5>
+                <hr class="white accent-2  mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('ads_matches',
+                                { category: "accessoires", column:"adCategory" }) }}">Accessoires</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('ads_matches',
+                                { category: "chaussures", column:"adCategory" }) }}">Chaussures</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "cosmétique", column:"adCategory" }) }}" class="__service_link_footer">Cosmétique</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('ads_matches',
+                                { category: "electronique", column:"adCategory" }) }}">Electronique</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "document-livres-brochures", column:"adCategory" }) }}" class="__service_link_footer">Document-Livres-Brochures</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "multimédia", column:"adCategory" }) }}" class="__service_link_footer">Multimédia</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "interieur-maison", column:"adCategory" }) }}" class="__service_link_footer">Interieur-maison</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "motos", column:"adCategory" }) }}" class="__service_link_footer">Motos d'occasion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "loisir", column:"adCategory" }) }}" class="__service_link_footer">Loisir</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "vélos", column:"adCategory" }) }}" class="__service_link_footer">Vélos</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "vêtements", column:"adCategory" }) }}" class="__service_link_footer">Vêtements</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ads_matches',
+                                { category: "véhicules", column:"adCategory" }) }}" class="__service_link_footer">Véhicules</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">Gare Voiture</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ path('trips') }}" class="__service_link_footer">Gare voiture</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('taxi_driver_filter', { filter: "Taxi moto", column:"taxi_type" }) }}" class="__service_link_footer">Taxis moto</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('taxi_driver_filter', { filter: "Taxi classique", column:"taxi_type" }) }}" class="__service_link_footer">Taxis classic</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">Offres d'emploi</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'ALTERNANCE' }) }}">ALTERNANCE</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDD' }) }}">CDD</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'CDI' }) }}">CDI</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'FREELANCE-INDEPENDANT' }) }}">FREELANCE-INDEPENDANT</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'STAGE' }) }}">STAGE</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PARTIEL' }) }}">TEMPS PARTIEL</a></li>
+                    <li><a class="__service_link_footer" href="{{ path('job_offer_matches', { column: 'contract_type', filter: 'TEMPS PLEIN' }) }}">TEMPS PLEIN</a></li>
+                </ul>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">Ka Doudhal</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li><a href="{{ path('all_teachers') }}" class="__service_link_footer">Cours particuliers</a></li>
+                    <li><a href="{{ path('e_books') }}" class="__service_link_footer">Bibliothèque</a></li>
+                    <li><a href="{{ path('exam_subject') }}" class="__service_link_footer">Sujets d'examens</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="__row-4">
+            <div class="_column">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">ACTIVITES</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Artisanat", column:"category" }) }}">Artisan</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Blanchisseur", column:"category" }) }}">Blanchisseur</a>
+                    </li>
+
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Boulangerie", column:"category" }) }}">Boulangerie</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Boutiquier", column:"category" }) }}">Boutiquier</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Briqueterie", column:"category" }) }}">Briqueterie</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Commerçant", column:"category" }) }}">Commerçant</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Cordonniers", column:"category" }) }}">Cordonniers</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Cosmetique", column:"category" }) }}">Cosmetique</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Couture", column:"category" }) }}">Couture</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Déménagement", column:"category" }) }}">Déménagement</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Garage Auto", column:"category" }) }}">Garage Auto</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Garage Moto", column:"category" }) }}">Garage Moto</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Maçonnerie", column:"category" }) }}">Maçonnerie</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Menuisier", column:"category" }) }}">Menuisier</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Menuisier-metal", column:"category" }) }}">Menuisier metal</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Reparateur", column:"category" }) }}">Reparateur</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Restauration", column:"category" }) }}">Restauration</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Salon de coiffure H-F", column:"category" }) }}">Salon de coiffure H-F</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Salon de coiffure H", column:"category" }) }}">Salon de coiffure H</a>
+                    </li>
+                    <li>
+                        <a class="__service_link_footer" href="{{ path('activities_matches', { category: "Salon de coiffure F", column:"category" }) }}">Salon de coiffure F</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="_column">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">Park Auto</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li><a class="__service_link_footer" href="{{ path('park_auto') }}">Park auto</a></li>
+                </ul>
+            </div>
+            <div class="_column">
+                <h5 class="font-weight-bold text-uppercase mt-3 __service_link_footer">Immobilier</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <ul class="list-unstyled">
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=appart">Appartement</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=bureau">Bureau à loué</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=chambre">Chambre</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=magasin">Magasin à loué</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=maison">Maison location ou vente</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=terrain">Terrain en vente</a></li>
+                    <li><a class="__service_link_footer" href="template/real_estate_universe?key_word=villas">Villas</a></li>
+
+                </ul>
+            </div>
+            <div class="_column">
+                <h5 class="text-uppercase font-weight-bold mt-3 __service_link_footer">Contact</h5>
+                <hr class="white accent-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><a class="__service_link_footer" href="mailto:adminservice@leyenguema.com"><i class="far fa-envelope"></i> adminservice@leyenguema.com</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="https://www.leyenguema.com">www.leyenguema.com</a>
+    </div>
+</footer>

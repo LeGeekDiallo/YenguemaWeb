@@ -1,0 +1,28 @@
+<div class="__teacher_card"
+     style="
+             background-image: url('{{ asset('images/svg_img/teacher.svg') }} ');
+             background-repeat: no-repeat;
+             background-size: cover;">
+    <div class="__teacher_card_body">
+
+        <div class="__price_block">
+            <div class="__price">
+                <h5 class="card-title __myPolice badge badge-danger"><i class="fas fa-map-marker-alt"></i> {{ teacher.city }} </h5>
+                <h5 class="__myPolice text-white"><i class="fas fa-graduation-cap"></i> {{ teacher.course }} </h5>
+                <h4 class="__myPolice text-white">{{ teacher.price | number_format(0, ' ', ' ') }} <span style="font-size: 15px;">FG / {{ teacher.billingType }}</span></h4>
+                <a href="{{ path('teacher_details', { slug: teacher.getSlug(), id: teacher.id }) }}"
+                   class="__myPolice badge badge-primary text-white">
+                    <i class="far fa-eye"></i> Voire plus de details <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="__teacher_avatar">
+            <img src="{% if not teacher.user.userAvatar %}
+                        {{ asset('images/avatar_def.png') }}
+                     {% else %}
+                        {{ asset('images/users_avatar/'~teacher.user.userAvatar.imageName) }}
+                     {% endif %}" alt="">
+            <span style="padding: 5px; background-color: #0d41a1; color: white; font-family: Ubuntu; font-size: 10px; border-radius: 3px">{{ teacher.user.username }}</span>
+        </div>
+    </div>
+</div>

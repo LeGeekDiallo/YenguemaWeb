@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Offres d'emploi correspondantes{% endblock %}
+{% block body %}
+    <main class="__main_page">
+        <div class="__container">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'id': 'formSearchAd', 'action':path('job_offer_search')}}) }}
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.job_title) }}
+                </div>
+                <div class="formAdsSearchColumn">
+                    {{ form_widget(form_search.address, { 'attr':{ 'list':'address_list', 'autocomplete':'off' } }) }}
+                    <datalist id="address_list">
+                        {% for ad in address %}
+                        <option value="{{ ad.municipality }}"></option>
+                        <option value="{{ ad.city }}"></option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="formAdsSearchColumnBtn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr class="__line">
+            <p class="__myTitle" style="text-align: center;"><span class="badge badge-danger">{{ pagination | length }}</span> offre(s) trouvée(s)</p>
+            <div class="__jobs_found">
+                {% for job in pagination %}
+                    {% include '/job/__job_card.html.twig' with {'ad':job} %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}
+
+
+

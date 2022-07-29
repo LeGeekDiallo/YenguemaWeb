@@ -1,0 +1,3 @@
+{% if not app.user %}
+    {% do redirect('login_user') %}
+{% endif %}

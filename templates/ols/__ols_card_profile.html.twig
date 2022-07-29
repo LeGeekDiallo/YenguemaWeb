@@ -1,0 +1,20 @@
+<div class="__card">
+    <div class="__prop_card_image">
+        <img src="{{ asset('companies_logo/'~ols.getOfficeShopLandImages[random(0, ols.getOfficeShopLandImages|length-1)].getFilename()) }}" alt="logo image">
+    </div>
+    <div class="__prop_card_body">
+        <p>
+            {{ ols.propertySurface }} <span class="badge badge-danger">m²</span>
+        </p>
+        <h5 class="__myPolice">{{ ols.adTitle }}</h5>
+        <p>{{ ols.city }}|{{ ols.municipality }}|{{ ols.district }}</p>
+        <p style="text-align: end">{{ ols.createdAt | format_datetime('full', 'none', locale='fr') }} <i class="fas fa-calendar"></i></p>
+        <div class="__prop_price">{{ ols.price | format_number }} FG {% if ols.propositionType == 'A louer' %}/mois {% endif %}</div>
+        <hr>
+        <form method="post" action="{{ path('delete_ols', { id:ols.id, user:app.user.id, slug:csrf_token('_user'~app.user.getSlug()) }) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr ?')">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete'~ols.id) }}">
+            <button type="submit" class="btn btn-sm btn-danger __myPolice mb-2" ><i class="fas fas fa-trash-alt"></i></button>
+        </form>
+    </div>
+</div>

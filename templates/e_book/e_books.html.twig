@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèques pdf{% endblock %}
+
+{% block body %}
+    <main class="__main_page_activities">
+        <div class="__container_book">
+            <div class="bg-light __response_box mt-4">
+                {{ form_start(form_search, {'attr':{'class': '__form-1', 'action': path('search_ebook')}}) }}
+                <div class="__form-1_column">{{ form_widget(form_search.ebook_name) }}</div>
+                <div class="__form-1_Btn">
+                    <button id="validate_btn_act" class="btn btn-block" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                {{ form_end(form_search) }}
+            </div>
+            <hr class="__line">
+            {% for message in app.flashes('notification') %}
+                <div class="alert-success __alert-success p-3" style="display: flex;">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            <h3 class="__headLine">Filtrez par catégory</h3>
+            <div class="__ebook_cat">
+                <ul class="__list_group list-unstyled">
+                    <li class="__list_group_item"><a href="{{ path('e_books') }}" class="__myPolice"><i class="fas fa-home"></i></a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Scolaire" }) }}" class="__myPolice">Scolaire</a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Sciences" }) }}" class="__myPolice">Sciences</a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Informatique" }) }}" class="__myPolice">Informatique</a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Littérature" }) }}" class="__myPolice">Littérature</a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Droit" }) }}" class="__myPolice">Droit</a></li>
+                    <li class="__list_group_item"><a href="{{ path('ebook_filter', { column: "category", filter: "Histoire" }) }}" class="__myPolice">Histoire</a></li>
+                    <li class="__list_group_item"><a href="{{ path('new_ebook') }}" class="__myPolice"><i class="fas fa-plus-square"></i> Ajoutez un livre</a></li>
+                </ul>
+            </div>
+
+            <hr class="__line">
+            <p class="__myTitle">{{ pagination|length }} ebook trouvé(s)</p>
+            <div class="__activities_block">
+                {% for ebook in pagination %}
+                    {% include '/e_book/__ebook_card.html.twig' with {'ebook':ebook} %}
+                {% endfor %}
+            </div>
+            <div class="__navigation">
+                <hr class="__line">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include '__footer.html.twig' %}
+{% endblock %}

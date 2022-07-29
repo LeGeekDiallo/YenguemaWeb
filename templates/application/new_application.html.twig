@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postulez{% endblock %}
+
+{% block body %}
+    <div class="__container_form">
+        <div class="__application_form">
+            {% include 'application/__apply_form.html.twig' %}
+        </div>
+    </div>
+    {% include '__footer.html.twig' %}
+{% endblock %}
