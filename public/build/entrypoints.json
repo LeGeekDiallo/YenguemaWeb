@@ -1,0 +1,105 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_to-string_js-node_modules_core-js_modules_es_p-2a1352.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_animate_css_animate_css.css",
+        "/build/app.css"
+      ]
+    },
+    "activities_likes_handler": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_to-string_js-node_modules_core-js_modules_es_p-2a1352.js",
+        "/build/activities_likes_handler.js"
+      ]
+    },
+    "menu_handler": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/menu_handler.js"
+      ]
+    },
+    "scroll_top": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/scroll_top.js"
+      ]
+    },
+    "ads_js": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/ads_js.js"
+      ]
+    },
+    "__slide": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/__slide.js"
+      ]
+    },
+    "__slide_control": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/__slide_control.js"
+      ]
+    },
+    "__taxiDriverState": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_to-string_js-node_modules_core-js_modules_es_p-2a1352.js",
+        "/build/vendors-node_modules_regenerator-runtime_runtime_js.js",
+        "/build/__taxiDriverState.js"
+      ]
+    },
+    "__real_estate": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/__real_estate.js"
+      ]
+    },
+    "__form_step_handler": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/__form_step_handler.js"
+      ]
+    },
+    "property_slide_images": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/property_slide_images.js"
+      ]
+    },
+    "delete_image": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_engine-user-agent_js-node_modules_core-js_internals_ex-b41e05.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_to-string_js-node_modules_core-js_modules_es_p-2a1352.js",
+        "/build/vendors-node_modules_regenerator-runtime_runtime_js.js",
+        "/build/delete_image.js"
+      ]
+    }
+  }
+}
