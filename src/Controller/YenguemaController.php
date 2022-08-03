@@ -128,13 +128,13 @@ class YenguemaController extends AbstractController
             $user->setSexe(0);
 
         if($repos->findOneBy(['email'=>$user->getEmail()])){
-            return $this->json(["response"=>"this email is already used !", "registered"=>false, "useremail"=>$user->getEmail(),
-                "password"=>$request->get('password')]);
+            return $this->json(["resp"=>["response"=>"this email is already used !", "registered"=>false, "useremail"=>$user->getEmail(),
+                "password"=>$request->get('password')]]);
         }
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-        return $this->json(["response"=>"Merci de vous compter parmi nous !", "registered"=>true, "useremail"=>$user->getEmail(),
-            "password"=>$request->get('password')]);
+        return $this->json(["resp"=>["response"=>"Merci de vous compter parmi nous !", "registered"=>true, "useremail"=>$user->getEmail(),
+            "password"=>$request->get('password')]]);
     }
 
 }

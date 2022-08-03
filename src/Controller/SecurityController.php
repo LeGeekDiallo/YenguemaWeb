@@ -61,16 +61,36 @@ class SecurityController extends AbstractController
     #[Route("/security/login_app", name: "login_app")]
     public function logInFromApp(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $repos):Response{
         if($user = $repos->findOneBy(["email"=>$request->get("email")])){
-            if($encoder->isPasswordValid($user, $request->get("password")))
-                return $this->json(["logIn"=>true, "user"=>
-                    ["email"=>$user->getEmail(), "username"=>$user->getUsername(), "usergender"=>$user->getSexe(),
-                        "avatar"=>$user->getUserAvatar()->getImageName(), "avatar_URL"=>"https://127.0.0.1:8000/images/users_avatar/"]]);
-            else{
-                return $this->json(["logIn"=>false,
-                    "user"=>["email"=>$user->getEmail(), "username"=>$user->getUsername(), "usergender"=>$user->getSexe()]]);
+            $avFilename = null;
+            if($encoder->isPasswordValid($user, $request->get("password"))) {
+                if($user->getUserAvatar()!=null)
+                    $avFilename = $user->getUserAvatar()->getImageName();
+                return $this->json(["resp" =>
+                    ["logIn" => true, "u_id" => $user->getId(), "email" => $user->getEmail(),
+                        "username" => $user->getUsername(),
+                        "usergender" => $user->getSexe(),
+                        "avatar" => $avFilename,
+                        "avatar_URL" => "https://www.leyenguema.com/images/users_avatar/"
+                    ]
+                ]);
+            } else{
+                return $this->json(["resp"=>["logIn"=>false, "u_id"=>$user->getId(), "email"=>$user->getEmail(),
+                    "username"=>$user->getUsername(),
+                    "usergender"=>$user->getSexe(),
+                    "avatar"=>null,
+                    "avatar_URL"=>"https://127.0.0.1:8000/images/users_avatar/"
+                ]]);
             }
         }
-        return $this->json(["logIn"=>false, "response"=>"this email not exists !", "user"=>null]);
+        return $this->json([
+            "resp"=>["logIn"=>null, "u_id"=>null,
+                "email"=>null,
+                "username"=>null,
+                "usergender"=>null,
+                "avatar"=>null,
+                "avatar_URL"=>null
+            ]
+        ]);
     }
     /**
      * @Route("/logout", name="app_logout")

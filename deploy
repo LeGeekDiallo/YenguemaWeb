@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -av ./ u96046395@access767469761.webspace-data.io:leYenguema.com --include=public/build  --include=vendor --exclude-from=.gitignore --exclude=DataFixtures --exclude=public/companies_logo --exclude=public/resume --exclude=".*"
+rsync -av ./ u96046395@access767469761.webspace-data.io:Yenguema --include=public/build  --include=vendor --exclude-from=.gitignore --exclude=DataFixtures --exclude=public/companies_logo --exclude=public/resume --exclude=".*"
