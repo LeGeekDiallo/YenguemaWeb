@@ -15,17 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
  */
-#[ApiResource(
-    collectionOperations: [
-        'get'=>[
-            'controller'=>NotFoundAction::class,
-            'read'=>false,
-            'output'=>false
-        ]
-    ],itemOperations: [
-        'get'
-]
-)]
 class Activity
 {
     /**
