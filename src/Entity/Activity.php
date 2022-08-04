@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ActivityRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
  */
-class Activity
+class Activity implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -299,5 +300,21 @@ class Activity
         }
 
         return $this;
+    }
+
+    public function getInfos(): array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "activityImages") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($this->getActivityImages() as $image){
+            $filename[] = $image->getFilename();
+        }
+        $infos["images"] = $filename;
+        $infos["imagesURL"] = "https://leyenguema.com/images/activity_image/";
+        return $infos;
     }
 }

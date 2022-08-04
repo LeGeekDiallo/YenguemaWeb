@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ApartmentRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=ApartmentRepository::class)
  */
-class Apartment
+class Apartment implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -471,5 +472,27 @@ class Apartment
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "apartmentImages" and "additionalSurfaces") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($this->getApartmentImages() as $image){
+            $filename[] = $image->getFilename();
+        }
+        $addSurfaces = array();
+        foreach ($this->getAdditionalSurfaces() as $surface){
+            $addSurfaces[] = $surface->getAdditionalSurfaceName();
+        }
+        $infos["images"] = $filename;
+        $infos["additionalSurfaces"] = $addSurfaces;
+        $infos["imagesURL"] = "https://leyenguema.com/compagnies_logo/";
+        return $infos;
     }
 }

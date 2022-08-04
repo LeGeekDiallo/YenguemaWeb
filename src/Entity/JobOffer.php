@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=JobOfferRepository::class)
  * @ORM\Table (name="job_offer", indexes={@ORM\Index(columns={"job_title", "category", "employer_profile", "required_skills", "employer_mission", "other_details"}, flags={"fulltext"})})
  */
-class JobOffer
+class JobOffer implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -376,5 +377,32 @@ class JobOffer
         }
 
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "jobApplies") {
+                $infos[$item] = $value;
+            }
+        }
+        $candidates = [];
+        foreach ($this->getJobApplies() as $canditate){
+            $candidates[] = $canditate->getInfos();
+        }
+        $infos["applications"] = $candidates;
+        $infos["resumeURL"] = "https://leyenguema.com/resume/";
+        return $infos;
+    }
+
+    public function getJob():array{
+        $job = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "jobApplies") {
+                $job[$item] = $value;
+            }
+        }
+        return $job;
     }
 }

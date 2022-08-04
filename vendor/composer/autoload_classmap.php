@@ -656,6 +656,7 @@ return array(
     'App\\Service\\Email' => $baseDir . '/src/Service/Email.php',
     'App\\Service\\FileUploader' => $baseDir . '/src/Service/FileUploader.php',
     'App\\Service\\PDFFileUploader' => $baseDir . '/src/Service/PDFFileUploader.php',
+    'App\\Tools\\EntityInfos' => $baseDir . '/src/Tools/EntityInfos.php',
     'App\\Tools\\UploadFile' => $baseDir . '/src/Tools/UploadFile.php',
     'App\\Validator\\ImagesNumber' => $baseDir . '/src/Validator/ImagesNumber.php',
     'App\\Validator\\ImagesNumberValidator' => $baseDir . '/src/Validator/ImagesNumberValidator.php',

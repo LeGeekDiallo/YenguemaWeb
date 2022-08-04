@@ -201,7 +201,6 @@ class User implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity=JobApply::class, mappedBy="users")
      */
-    #[Groups(['user:infos'])]
     private $jobApplies;
 
     public function __construct()

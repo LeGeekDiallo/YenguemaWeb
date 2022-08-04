@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\JobApplyRepository;
+use App\Tools\EntityInfos;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=JobApplyRepository::class)
  */
-class JobApply
+class JobApply implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -178,5 +179,16 @@ class JobApply
         $this->users->removeElement($user);
 
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "job" and $item != "users") {
+                $infos[$item] = $value;
+            }
+        }
+        return $infos;
     }
 }

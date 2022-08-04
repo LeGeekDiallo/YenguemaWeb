@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TeacherRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=TeacherRepository::class)
  */
-class Teacher
+class Teacher implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -335,5 +336,16 @@ class Teacher
         $this->teacher_background = $teacher_background;
 
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user") {
+                $infos[$item] = $value;
+            }
+        }
+        return $infos;
     }
 }

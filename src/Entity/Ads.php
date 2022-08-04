@@ -3,18 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\AdsRepository;
+use App\Tools\EntityInfos;
 use App\Validator\ImagesNumber;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdsRepository::class)
  * @ORM\Table(name="ads", indexes={@ORM\Index(columns={"ad_title", "ad_type", "details"}, flags={"fulltext"})})
  */
-class Ads
+class Ads implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -425,5 +429,21 @@ class Ads
         $this->transmission_type = $transmission_type;
 
         return $this;
+    }
+
+    public function getInfos():array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "adPhotos") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($this->getAdPhotos() as $image){
+            $filename[] = $image->getImageName();
+        }
+        $infos["images"] = $filename;
+        $infos["imagesURL"] = "https://leyenguema.com/images/ad_images/";
+        return $infos;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\StudioRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=StudioRepository::class)
  */
-class Studio
+class Studio implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -411,5 +412,21 @@ class Studio
     }
     public function getSlug():string{
         return (new Slugify())->slugify($this->ad_title);
+    }
+
+    public function getInfos(): array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "studioImages") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($this->getStudioImages() as $image){
+            $filename[] = $image->getFilename();
+        }
+        $infos["images"] = $filename;
+        $infos["imagesURL"] = "https://leyenguema.com/compagnies_logo/";
+        return $infos;
     }
 }

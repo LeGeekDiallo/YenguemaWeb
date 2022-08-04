@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TaxiDriverRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=TaxiDriverRepository::class)
  */
-class TaxiDriver
+class TaxiDriver implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -241,5 +242,15 @@ class TaxiDriver
     }
     public function getSlug():string{
         return (new Slugify())->slugify($this->taxi_type);
+    }
+
+    public function getInfos(): array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user") {
+                $infos[$item] = $value;
+            }
+        }
+        return $infos;
     }
 }
