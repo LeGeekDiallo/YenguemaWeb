@@ -7,7 +7,10 @@
 /var/
 /vendor/
 /public/companies_logo
-/public/images
+/public/ebook_subject_files
+/public/images/activity_image
+/public/images/ad_image
+/public/images/users_avatar
 /public/resume
 ###< symfony/framework-bundle ###
 
