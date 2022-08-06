@@ -165,6 +165,9 @@ class YenguemaController extends AbstractController
             }
             $docs["aparts_posted"]=$aparts_posted;
         }
+        if(count($officeShopLand)){
+            //
+        }
         if($taxi){
             $docs["taxi"] = $taxi->getInfos();
         }
