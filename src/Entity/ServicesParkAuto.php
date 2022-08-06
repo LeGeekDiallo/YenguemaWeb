@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ServicesParkAutoRepository;
+use App\Tools\EntityInfos;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,4 +57,5 @@ class ServicesParkAuto
 
         return $this;
     }
+
 }

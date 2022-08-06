@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CarRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
  */
-class Car
+class Car implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -416,5 +417,30 @@ class Car
         $this->sale_state = $sale_state;
 
         return $this;
+    }
+
+    public function getInfos(): array
+    {
+        $carImages = $this->getCarImages();
+        $carAdges = $this->getCarAdvantages();
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "park_auto" and $item != "car_advantages" and $item!="carImages") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($carImages as $image){
+            $filename[] = $image->getFilename();
+        }
+        $advantages = [];
+
+        foreach ($carAdges as $advantage){
+            $advantages[$advantage->getId()] = $advantage->getAdvantageName();
+        }
+        $infos["images"] = $filename;
+        $infos["advantages"] = $advantages;
+        $infos["imagesURL"] = "https://leyenguema.com/compagnies_logo/";
+        return $infos;
     }
 }

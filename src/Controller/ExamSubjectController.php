@@ -76,7 +76,6 @@ class ExamSubjectController extends AbstractController
      * @param string $ebook_file_dir
      * @return Response
      * @Route("/exam/subject/new_exam_subject", name="new_exam_subject")
-     * @IsGranted("ROLE_USER")
      */
     public function new_exam_subject(NotifierInterface $notifier, Request $request, string $ebook_file_dir):Response{
         $exam_subject = new ExamSubject();

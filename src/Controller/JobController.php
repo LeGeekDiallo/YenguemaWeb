@@ -184,7 +184,6 @@ class JobController extends AbstractController
     /**
      * @param JobOffer $jobOffer
      * @return Response
-     * @IsGranted("ROLE_USER")
      * @Route("job/job_offer_details/{id}-details-{slug}", name="job_offer_details")
      */
     public function job_offer_details(JobOffer $jobOffer):Response{

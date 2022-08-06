@@ -38,7 +38,6 @@ class StudioController extends AbstractController
      * @param NotifierInterface $notifier
      * @param FileUploader $fileUploader
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/studio/new_studio/{id}-new-studio', name: 'new_studio')]
     public function newStudio(Request $request, User $user, NotifierInterface $notifier, FileUploader $fileUploader):Response{
@@ -66,7 +65,6 @@ class StudioController extends AbstractController
      * @param User $user
      * @param string $slug
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/studio/studios/{id}-studios-{slug}', name: 'user_studios')]
     public function userStudios(User $user, string $slug):Response{

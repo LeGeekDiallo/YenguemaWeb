@@ -50,7 +50,6 @@ class TravelController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      * @Route("/travel/new_ride/{id}-new-ride", name="new_ride")
-     * @IsGranted("ROLE_USER")
      */
     public function new_ride(Request $request, User $user, NotifierInterface $notifier):Response{
         $ride = new Ride();
@@ -76,7 +75,6 @@ class TravelController extends AbstractController
      * @param Request $request
      * @return Response
      * @Route("/travel/edit_ride/edit-ride-{id}-{slug}", name="edit_ride")
-     * @IsGranted("ROLE_USER")
      */
     public function edit_ride(Ride $ride, NotifierInterface $notifier, Request $request):Response{
         $form = $this->createForm(RideFormType::class, $ride);

@@ -1,179 +1,346 @@
-// Datagrid tables
+// Datagrid tables (used in the INDEX page)
 // ----------------------------------------------------------------------------
 
 table.datagrid {
+  border-collapse: collapse;
   border-spacing: 0;
+  color: var(--table-cell-color);
+  margin-bottom: 0;
   width: 100%;
-}
-.datagrid thead {
-  background: var(--form-bg);
+
+  &:not(.datagrid-empty) {
+    @media (max-width: 767px) {
+      tbody, tr, td { display: block; }
+      tbody, tr { border-radius: var(--border-radius); }
+      thead { display: none; }
+      tr {
+        border: 1px solid var(--responsive-table-row-border-color);
+        margin-bottom: 30px;
+      }
+      tr:not(.empty-row) td {
+        box-shadow: inset 0 1px 0 var(--table-cell-border-color);
+        padding-left: 35%;
+        position: relative;
+
+        &:first-child { box-shadow: none; }
+        &.batch-actions-selector {
+          padding: 8px;
+
+          &:before { display: none; }
+        }
+        &.actions,
+        &.actions.actions-as-dropdown {
+          padding: 8px;
+
+          &:before { display: none; }
+        }
+      }
+      td {
+        // because of how the contents are rendered in small screens, table contents must be left-aligned
+        // the !important flag is needed to override the !important used by Bootstrap in .text-center, .text-right, etc.
+        text-align: left !important;
+      }
+      td::before {
+        content: attr(data-label);
+        color: var(--responsive-table-label-color);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 35%;
+        font-weight: 500;
+        padding: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+        white-space: nowrap;
+      }
+      td.field-boolean {
+        padding-left: 8px;
+
+        &::before {
+          color: var(--table-cell-color);
+          font-weight: 400;
+          left: 0;
+          // needed to truncate text when the switch label is too long
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
 }
 .datagrid thead th {
   border: 0;
+  box-shadow: inset 0 -2px 0 var(--table-cell-border-color);
   padding: 0;
 }
 .datagrid thead a, .datagrid thead span {
-  color: var(--text-color-dark);
+  color: var(--table-thead-color);
   display: block;
   font-weight: 500;
   line-height: 1.357;
-  padding: 8px;
-  text-align: left;
+  padding: 12px 8px;
   white-space: nowrap;
 }
-.datagrid th:first-child a, .datagrid th:first-child span, .datagrid td:first-child {
-  padding-left: 20px;
-}
-.datagrid th:last-child a, .datagrid th:last-child span, .datagrid td:last-child {
-  padding-right: 20px;
-}
 .datagrid td {
+  box-shadow: inset 0 1px 0 var(--table-cell-border-color);
   padding: 8px;
+  line-height: 20px;
+}
+.datagrid tbody {
+  box-shadow: 0 1px 0 var(--table-cell-border-color);
+}
+.datagrid thead + tbody tr:first-child td {
+  @media (min-width: 992px) {
+    box-shadow: none;
+  }
+}
+.datagrid td.field-avatar {
+  padding: 4px 8px;
 }
 .datagrid thead .sorted a, .datagrid thead .sorted span {
   font-weight: 700;
 }
 .datagrid thead i {
-  color: var(--text-muted);
+  color: var(--table-thead-marker-color);
   margin-left: 2px;
 }
+.datagrid thead .sorted {
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+.datagrid thead .sorted a, .datagrid thead .sorted span {
+  color: var(--table-thead-sorted-color);
+}
 .datagrid thead .sorted i {
-  color: var(--color-primary);
+  color: var(--table-thead-sorted-marker-color);
 }
 .datagrid th, .datagrid td {
-  border-bottom: var(--border-width) var(--border-style) var(--border-color);
+  border: none;
   vertical-align: middle;
 }
-.datagrid tr:last-child > td {
-  border: 0;
-}
 .datagrid tbody tr:hover td, .datagrid tbody tr:hover th {
-  background: var(--form-bg);
+  @media (min-width: 992px) {
+    background: var(--table-hover-cell-bg);
+  }
+}
+.datagrid tbody tr.selected-row td {
+  background: var(--table-selected-cell-bg);
+}
+// needed to avoid showing the text of selected rows with the background of selected text
+.datagrid tbody tr.selected-row td ::-moz-selection {
+  background: transparent;
 }
 .datagrid td.actions {
   text-align: right;
 }
-.datagrid td.actions a {
+.datagrid td.actions a:not(.dropdown-item) {
   font-size: var(--font-size-sm);
   font-weight: 500;
+}
+.datagrid td.actions a:not(.dropdown-item) + a:not(.dropdown-item) {
   margin-left: 10px;
 }
-.datagrid td.actions .fa {
+.datagrid td.actions .action-icon {
+  filter: opacity(0.6);
   font-size: var(--font-size-base);
+  margin-right: 2px;
 }
 
-.datagrid .actions-dropdown {
-  position: relative;
-}
-.datagrid .actions-dropdown .dropdown-toggle {
-  background: transparent !important;
-  border: var(--border-width) solid transparent;
-  box-shadow: none !important;
-  padding: 1px 8px 0 8px;
-}
-.datagrid .actions-dropdown .dropdown-toggle:after {
-  display: none;
-}
-.datagrid .actions-dropdown a.dropdown-item {
-  margin: 0;
-}
-.datagrid .actions-dropdown a.dropdown-item i {
-  margin-right: 5px;
-}
-.datagrid .actions-dropdown .dropdown-menu-right {
-  border-top-right-radius: 0;
-  right: 0;
-  top: 20px;
-  box-shadow: var(--box-shadow-lg);
-}
-.datagrid .actions-dropdown:hover {
-  cursor: pointer;
-
-  .dropdown-toggle {
-    background: var(--white) !important;
-    border: var(--border-width) solid var(--border-color);
-    border-bottom-color: var(--white);
-    z-index: $zindex-dropdown + 1;
-    position: relative;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.datagrid {
+  td.actions-as-dropdown {
+    @media (min-width: 992px) {
+      padding: 2px 8px;
+    }
+  }
+  tr:not(.selected-row):hover .dropdown-toggle {
+    background: var(--dropdown-toggle-bg);
+    border-color: var(--dropdown-toggle-border-color);
+  }
+  tr:hover .dropdown-toggle:hover {
+    border-color: var(--dropdown-toggle-hover-border-color);
+  }
+  tr:hover .dropdown-toggle:focus, tr:hover .dropdown-toggle:active, tr:hover .dropdown-toggle:active:focus,
+  .dropdown-toggle:focus, .dropdown-toggle:active, .dropdown-toggle:active:focus,
+  tr:hover .dropdown-toggle.show, tr .dropdown-toggle.show, .dropdown-toggle.show {
+    border-color: var(--dropdown-toggle-hover-border-color);
+    box-shadow: var(--button-active-shadow);
+    outline: none;
   }
 
-  .dropdown-menu {
-    display: block;
+  .dropdown-actions {
+    .dropdown-toggle {
+      border: 1px solid transparent;
+      border-radius: var(--border-radius);
+      color: var(--dropdown-toggle-color);
+      padding: 3px 5px;
+
+      // hides the caret added automatically by Bootstrap
+      &:after { display: none; }
+      &:hover { cursor: pointer; }
+
+      svg { vertical-align: top; }
+    }
+
+    .dropdown-menu { z-index: var(--zindex-900); }
   }
 }
 
-.datagrid .easyadmin-thumbnail img {
-  box-shadow: 0 0 0 2px var(--white), 0 0 4px 1px var(--gray-600);
-  margin-bottom: 2px;
-  margin-top: 2px;
+.datagrid .ea-lightbox-thumbnail img {
+  background: var(--white);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
   max-height: 50px;
   max-width: 100px;
+  padding: 2px 4px;
+}
+.datagrid tr:hover .ea-lightbox-thumbnail img {
+  border-color: var(--border-color);
 }
 
-.datagrid th.boolean, .datagrid th.boolean a, .datagrid td.boolean,
-.datagrid th.image, .datagrid th.image a, .datagrid td.image {
+.datagrid mark {
+  border-radius: var(--border-radius);
+  background: var(--highlight-bg);
+  box-shadow: 0 1px 0 rgba(250, 204, 21, 0.4);
+  color: inherit;
+  padding: 0 1px;
+}
+
+.datagrid .header-for-field-boolean {
   text-align: center;
 }
+.datagrid .field-boolean {
+  text-align: center;
 
-.datagrid td.avatar .image-avatar {
-  border-radius: 50%;
-  border: 0;
-  box-shadow: none;
+  &.has-switch {
+    padding: 6px 8px;
+  }
+
+  .form-switch {
+    display: inline-flex;
+    justify-content: center;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    input {
+      margin-top: 0;
+      position: relative;
+      top: 3px;
+    }
+  }
+}
+.datagrid .field-country {
+  @media (max-width: 992px) {
+    text-align: left !important;
+  }
+}
+.datagrid .form-check {
+  margin-bottom: 0;
+  min-height: 15px;
+  padding-left: 0;
 }
 
-.datagrid td.country .country-flag,
-.field-country .country-flag {
-  margin-right: 2px;
-  max-height: 18px;
-  vertical-align: text-top;
+.datagrid .no-results td {
+  font-size: var(--font-size-lg);
+  padding: 24px 0;
+  text-align: center;
 }
-
-.datagrid .highlight {
-    border-radius: var(--border-radius);
-    background: var(--highlight-bg);
-    padding: 1px;
+.datagrid .no-results:hover td,
+.datagrid .empty-row:hover td {
+  background: transparent;
 }
-
-.datagrid .no-results {
-    padding: 60px 0;
-    text-align: center;
+.datagrid .empty-row td {
+  padding: 0 10px;
 }
-.datagrid .no-results:hover {
-    background: transparent;
+.datagrid .empty-row td:nth-child(1) { width: 20%; }
+.datagrid .empty-row td:nth-child(2) { display: none; @media (min-width: 992px) { width: 5%; } }
+.datagrid .empty-row td:nth-child(3) { width: 10%; }
+.datagrid .empty-row td:nth-child(4) { width: 25%; }
+.datagrid .empty-row td:nth-child(5) { width: 10%; }
+.datagrid .empty-row td:nth-child(6) { width: 30%; }
+.datagrid .empty-row td span {
+  background: var(--datagrid-noresults-placeholder-bg);
+  border-radius: var(--border-radius);
+  display: block;
+  height: 10px;
+  margin: 13px 0;
+  width: 100%;
 }
 
 .datagrid-row-empty td,
 .datagrid tbody .datagrid-row-empty:hover td {
   background-color: transparent;
-  background-image: linear-gradient(135deg, var(--gray-50) 25%, transparent 25%, transparent 50%, var(--gray-50) 50%, var(--gray-50) 75%, transparent 75%, transparent 100%);
+  background-image: linear-gradient(135deg, var(--datagrid-hidden-results-gradient-bg) 25%, transparent 25%, transparent 50%, var(--datagrid-hidden-results-gradient-bg) 50%, var(--datagrid-hidden-results-gradient-bg) 75%, transparent 75%, transparent 100%);
   background-size: 40px 40px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 .datagrid-row-empty-message {
-  background: var(--white);
+  background: var(--body-bg);
   border-radius: var(--border-radius);
   padding: 2px 4px;
+}
+
+.datagrid-header-tools {
+  display: flex;
+  padding: 0px 0px 10px;
+}
+.datagrid-header-tools .datagrid-search {
+  flex: 1;
+  max-width: 480px;
+  margin-right: 15px;
+}
+.datagrid-header-tools .datagrid-search .form-group,
+.datagrid-header-tools .datagrid-search .form-group .form-widget {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.datagrid-header-tools .datagrid-search input[type="search"].form-control {
+  background-color: var(--white);
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path fill="%23aaa" d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"/></svg>');
+  background-repeat: no-repeat;
+  background-size: 13px 13px;
+  background-position: 10px 8px;
+  padding: 0 32px;
+  min-width: 100%;
+}
+
+.datagrid-header-tools .datagrid-search .form-widget {
+  position: relative;
+}
+.datagrid-header-tools .datagrid-search a.action-search-reset {
+  color: var(--gray-500);
+  padding: 4px 7px;
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  text-decoration: none;
+}
+.datagrid-header-tools .datagrid-search a.action-search-reset:hover {
+  color: var(--gray-700);
 }
 
 #modal-filters .modal-dialog {
   max-width: 400px;
 }
 #modal-filters .modal-content {
-  background: var(--white);
+  background: var(--modal-bg);
+  border: 1px solid var(--modal-border-color);
 }
 #modal-filters .modal-header {
-  background: var(--gray-50);
-  border-bottom-color: var(--gray-300);
+  background: var(--modal-header-bg);
+  border-bottom-color: transparent;
   padding: 10px 15px;
 }
 #modal-filters .modal-title {
-  color: var(--gray-700);
+  color: var(--modal-title-color);
   font-size: var(--font-size-base);
 }
 #modal-filters .modal-body {
+  background: var(--modal-bg);
   border-bottom: 0;
   padding: 15px;
 }
@@ -183,11 +350,15 @@ table.datagrid {
 .action-filters-button.action-filters-applied i {
   color: var(--color-primary);
 }
-.action-filters-button span {
+.action-filters-button .action-filters-button-count {
+  color: var(--color-primary);
   font-weight: 600;
 }
 .action-filters-reset i {
   color: var(--text-color-light);
+}
+.filter-field {
+  border-top: 1px solid var(--modal-border-color);
 }
 .filter-heading {
   align-items: center;
@@ -205,18 +376,36 @@ table.datagrid {
 }
 .filter-content .form-group,
 .filter-content .form-widget-compound .form-group {
+  display: block;
   padding-right: 5px;
 }
 .filter-content .form-group:last-of-type {
   padding-bottom: 0;
 }
+.filter-content .form-widget-compound label {
+  display: none;
+}
+.filter-content .form-widget-compound label.form-check-label {
+  display: inline-block;
+}
+.filter-content .form-check-inline {
+  align-items: flex-start;
+  display: inline-flex;
+}
+.filter-content .form-check.form-check-inline {
+  margin-top: 0;
+}
 // needed to hide the visual marker in the labels of required fields
 .filter-content .form-group label.required:after {
-    content: none;
+  content: none;
 }
 .filter-content .field-choice .form-check + .form-check {
-    margin-top: 4px;
+  margin-top: 4px;
 }
 .filter-content .field-choice .form-check-label {
-    margin-top: 0;
+  margin-top: 0;
+}
+
+.table.datagrid > :not(:first-child) {
+  border-top-style: none;
 }

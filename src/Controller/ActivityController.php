@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\DeleteFile;
 use App\Entity\Activity;
 use App\Entity\ActivityImage;
 use App\Entity\ActivitySearch;
@@ -12,11 +11,8 @@ use App\Form\ActivitySearchFormType;
 use App\Notification\NewActivityNotification;
 use App\Repository\ActivityRepository;
 use App\Service\FileUploader;
-use App\Tools\UploadFile;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +20,7 @@ use Symfony\Component\HttpKernel\EventListener\AbstractSessionListener;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ActivityController extends AbstractController
 {
@@ -85,7 +82,6 @@ class ActivityController extends AbstractController
      * @param FileUploader $fileUploader
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     public function newActivity(Request $request, User $user, FileUploader $fileUploader, NotifierInterface $notifier):Response{
         $activity = new Activity();
@@ -100,7 +96,7 @@ class ActivityController extends AbstractController
             $this->entityManager->persist($activity);
             $this->entityManager->flush();
             $notifier->send(new Notification("Votre activité a bien été ajoutée !", ['browser']));
-            $notifier->send(new NewActivityNotification($user), ...$notifier->getAdminRecipients());
+            //$notifier->send(new NewActivityNotification($user), ...$notifier->getAdminRecipients());
             return $this->redirectToRoute('profile');
         }
         return $this->render('activity/create_new_activity.html.twig', [

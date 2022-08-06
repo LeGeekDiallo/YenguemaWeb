@@ -87,7 +87,6 @@ class ParkAutoController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      * @Route("/park/auto/new_park_auto/{id}-new-park-auto-{slug}", name="new_park_auto")
-     * @IsGranted("ROLE_USER")
      */
     public function new_park_auto(Request $request, User $user, FileUploader $fileUploader, NotifierInterface $notifier):Response{
         $parkAuto = new ParkAuto();
@@ -124,7 +123,6 @@ class ParkAutoController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      * @Route("/park/auto/edit_park_auto/{id}-edit-park-auto-{slug}", name="edit_park_auto")
-     * @IsGranted("ROLE_USER")
      */
     public function edit_park_auto(Request $request, ParkAuto $parkAuto, FileUploader $fileUploader, NotifierInterface $notifier):Response{
         $form = $this->createForm(ParkAutoFormType::class, $parkAuto);

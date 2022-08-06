@@ -38,7 +38,6 @@ class TeacherController extends AbstractController
      * @param User $user
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     public function new_teacher(Request $request, User $user, NotifierInterface $notifier): Response
     {
@@ -126,7 +125,6 @@ class TeacherController extends AbstractController
      * @param Request $request
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     public function course_ad_edit(Teacher $teacher, Request $request, NotifierInterface $notifier):Response{
         $form = $this->createForm(TeacherFomType::class, $teacher);

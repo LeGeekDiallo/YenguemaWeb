@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Code\Generator\TypeGenerator;
 
 use Laminas\Code\Generator\Exception\InvalidArgumentException;
@@ -49,6 +43,7 @@ final class AtomicType
         'void'     => 11,
         'false'    => 12,
         'null'     => 13,
+        'never'    => 14,
     ];
 
     /** @psalm-var array<non-empty-string, null> */
@@ -57,6 +52,7 @@ final class AtomicType
         'false' => null,
         'void'  => null,
         'mixed' => null,
+        'never' => null,
     ];
 
     /** A regex pattern to match valid class/interface/trait names */
@@ -139,6 +135,7 @@ final class AtomicType
         if (
             'mixed' === $this->type
             || 'void' === $this->type
+            || 'never' === $this->type
         ) {
             throw new InvalidArgumentException(sprintf(
                 'Type "%s" cannot be composed in a union with any other types',
@@ -150,6 +147,40 @@ final class AtomicType
             if ($other->type === $this->type) {
                 throw new InvalidArgumentException(sprintf(
                     'Type "%s" cannot be composed in a union with the same type "%s"',
+                    $this->type,
+                    $other->type
+                ));
+            }
+        }
+
+        if (
+            $this->requiresUnionWithStandaloneType() &&
+            [] === array_filter($others, static fn (self $type): bool => ! $type->requiresUnionWithStandaloneType())
+        ) {
+            throw new InvalidArgumentException(sprintf(
+                'Type "%s" requires to be composed with non-standalone types',
+                $this->type
+            ));
+        }
+    }
+
+    /**
+     * @psalm-param non-empty-array<self> $others
+     * @throws InvalidArgumentException
+     */
+    public function assertCanIntersectWith(array $others): void
+    {
+        if (array_key_exists($this->type, self::BUILT_IN_TYPES_PRECEDENCE)) {
+            throw new InvalidArgumentException(sprintf(
+                'Type "%s" cannot be composed in an intersection with any other types',
+                $this->type
+            ));
+        }
+
+        foreach ($others as $other) {
+            if ($other->type === $this->type) {
+                throw new InvalidArgumentException(sprintf(
+                    'Type "%s" cannot be composed in an intersection with the same type "%s"',
                     $this->type,
                     $other->type
                 ));

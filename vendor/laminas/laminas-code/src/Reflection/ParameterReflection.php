@@ -1,16 +1,13 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Code\Reflection;
 
+use Laminas\Code\Reflection\DocBlock\Tag\ParamTag;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionParameter;
+use ReflectionProperty;
+use ReturnTypeWillChange;
 
 use function method_exists;
 
@@ -24,6 +21,7 @@ class ParameterReflection extends ReflectionParameter implements ReflectionInter
      *
      * @return ClassReflection
      */
+    #[ReturnTypeWillChange]
     public function getDeclaringClass()
     {
         $phpReflection     = parent::getDeclaringClass();
@@ -38,6 +36,7 @@ class ParameterReflection extends ReflectionParameter implements ReflectionInter
      *
      * @return null|ClassReflection
      */
+    #[ReturnTypeWillChange]
     public function getClass()
     {
         $phpReflectionType = parent::getType();
@@ -56,6 +55,7 @@ class ParameterReflection extends ReflectionParameter implements ReflectionInter
      *
      * @return FunctionReflection|MethodReflection
      */
+    #[ReturnTypeWillChange]
     public function getDeclaringFunction()
     {
         $phpReflection = parent::getDeclaringFunction();
@@ -98,10 +98,19 @@ class ParameterReflection extends ReflectionParameter implements ReflectionInter
             return null;
         }
 
-        $params = $docBlock->getTags('param');
+        /** @var ParamTag[] $params */
+        $params       = $docBlock->getTags('param');
+        $paramTag     = $params[$this->getPosition()] ?? null;
+        $variableName = '$' . $this->getName();
 
-        if (isset($params[$this->getPosition()])) {
-            return $params[$this->getPosition()]->getType();
+        if ($paramTag && ('' === $paramTag->getVariableName() || $variableName === $paramTag->getVariableName())) {
+            return $paramTag->getTypes()[0] ?? '';
+        }
+
+        foreach ($params as $param) {
+            if ($param->getVariableName() === $variableName) {
+                return $param->getTypes()[0] ?? '';
+            }
         }
 
         return null;
@@ -121,5 +130,42 @@ class ParameterReflection extends ReflectionParameter implements ReflectionInter
     public function __toString()
     {
         return parent::__toString();
+    }
+
+    /** @psalm-pure */
+    public function isPromoted(): bool
+    {
+        if (! method_exists(parent::class, 'isPromoted')) {
+            return false;
+        }
+
+        return (bool) parent::isPromoted();
+    }
+
+    public function isPublicPromoted(): bool
+    {
+        return $this->isPromoted()
+            && $this->getDeclaringClass()
+                ->getProperty($this->getName())
+                ->getModifiers()
+            & ReflectionProperty::IS_PUBLIC;
+    }
+
+    public function isProtectedPromoted(): bool
+    {
+        return $this->isPromoted()
+            && $this->getDeclaringClass()
+                ->getProperty($this->getName())
+                ->getModifiers()
+            & ReflectionProperty::IS_PROTECTED;
+    }
+
+    public function isPrivatePromoted(): bool
+    {
+        return $this->isPromoted()
+            && $this->getDeclaringClass()
+                ->getProperty($this->getName())
+                ->getModifiers()
+            & ReflectionProperty::IS_PRIVATE;
     }
 }

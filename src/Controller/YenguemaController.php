@@ -24,8 +24,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class YenguemaController extends AbstractController
 {
@@ -78,19 +78,19 @@ class YenguemaController extends AbstractController
     /**
      * @Route("/user_register", name="new_user_register")
      * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
+     * @param UserPasswordHasherInterface $encoder
      * @param NotifierInterface $notifier
      * @param UserRepository $repository
      * @return Response
      */
-    public function user_register(Request $request, UserPasswordEncoderInterface $encoder, NotifierInterface $notifier, UserRepository $repository):Response{
+    public function user_register(Request $request, UserPasswordHasherInterface $encoder, NotifierInterface $notifier, UserRepository $repository):Response{
         $user = new User();
         $form = $this->createForm(UserSubscribeFormType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $user->setRoles($user->getRoles());
             $user->setSubscribeAt(new \DateTime('now'));
-            $password_hash = $encoder->encodePassword($user, $user->getPassword());
+            $password_hash = $encoder->hashPassword($user, $user->getPassword());
             $user->setPassword($password_hash);
             $this->entityManager->persist($user);
             if($user_exist = $repository->findBy(['email'=>$user->getEmail()])){
@@ -100,7 +100,7 @@ class YenguemaController extends AbstractController
             }
             $this->entityManager->flush();
             $notifier->send(new Notification("Merci de vous compter parmi nous !", ['browser']));
-            $notifier->send(new NewUserNotification($user), ...$notifier->getAdminRecipients());
+            //$notifier->send(new NewUserNotification($user), ...$notifier->getAdminRecipients());
             return $this->redirectToRoute('login_user');
         }
         if($form->isSubmitted()){
@@ -138,8 +138,16 @@ class YenguemaController extends AbstractController
         $jobsApp = $user->getJobApplies();
         $courses = $user->getMyCourses();
         $officeShopLand = $user->getOfficeShopLands();
-        $carsShop = $user->getParkAutos();
+        $carShops = $user->getParkAutos();
         $trips = $user->getRides();
+        
+        if(count($carShops)){
+            $shops = [];
+            foreach ($carShops as $carShop){
+                $shops[$carShop->getId()] = $carShop->getInfos();
+            }
+            $docs["carShops"]=$shops;
+        }
         if($prestS!=null){
             $docs["prestS"] = $prestS->getInfos();
         }
@@ -197,19 +205,20 @@ class YenguemaController extends AbstractController
         }
         return $this->json(["resp"=>$docs]);
     }
+
     /**
      * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
+     * @param UserPasswordHasherInterface $encoder
      * @param UserRepository $repos
      * @return Response
      */
     #[Route("/new_user", name: "new_user_from_app")]
-    public function userRegisterFromApp(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $repos):Response{
+    public function userRegisterFromApp(Request $request, UserPasswordHasherInterface $encoder, UserRepository $repos):Response{
         $user = new User();
         $user->setRoles($user->getRoles())
             ->setUsername($request->get("username"))
             ->setEmail($request->get("email"))
-            ->setPassword($encoder->encodePassword($user, $request->get('password')))
+            ->setPassword($encoder->hashPassword($user, $request->get('password')))
             ->setPhoneNumber($request->get("phoneNumber"))
             ->setSubscribeAt(new \DateTime('now'));
         if($request->get("gender")=="M")

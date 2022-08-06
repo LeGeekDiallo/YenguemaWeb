@@ -105,10 +105,10 @@
                         <a class="btn btn-sm" href="{{ path('_profiler', { token: 'latest' }|merge(request.query.all)) }}">Latest</a>
 
                         <a class="sf-toggle btn btn-sm" data-toggle-selector="#sidebar-search" {% if tokens is defined or about is defined %}data-toggle-initial="display"{% endif %}>
-                            {{ include('@WebProfiler/Icon/search.svg') }} <span class="hidden-small">Search</span>
+                            {{ source('@WebProfiler/Icon/search.svg') }} <span class="hidden-small">Search</span>
                         </a>
 
-                        {{ render(path('_profiler_search_bar', request.query.all)) }}
+                        {{ render(controller('web_profiler.controller.profiler::searchBarAction', request.query.all)) }}
                     </div>
                 </div>
 
@@ -123,7 +123,7 @@
                                 {%- endif -%}
                             {%- endset %}
                             {% if menu is not empty %}
-                                <li class="{{ name }} {{ name == panel ? 'selected' : '' }}">
+                                <li class="{{ name }} {{ name == panel ? 'selected' }}">
                                     <a href="{{ path('_profiler', { token: token, panel: name }) }}">{{ menu|raw }}</a>
                                 </li>
                             {% endif %}

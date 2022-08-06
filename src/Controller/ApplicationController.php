@@ -34,7 +34,6 @@ class ApplicationController extends AbstractController
      * @param MailerInterface $mailer
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/application/{job}-candidature-{user}', name: 'new_application')]
     public function newApplication(Request $request, JobOffer $job, User $user, PDFFileUploader $fileUploader, MailerInterface $mailer, NotifierInterface $notifier): Response

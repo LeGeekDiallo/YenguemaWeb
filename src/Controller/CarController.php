@@ -37,7 +37,6 @@ class CarController extends AbstractController
      * @param NotifierInterface $notifier
      * @param string $csrf
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     public function new_car(Request $request, ParkAuto $parkAuto, FileUploader $fileUploader, NotifierInterface $notifier, string $csrf): Response
     {
@@ -91,7 +90,6 @@ class CarController extends AbstractController
      * @param FileUploader $fileUploader
      * @return Response
      * @Route("/car/car_edit/{id}-car-edit-{csrf}", name="car_edit")
-     * @IsGranted("ROLE_USER")
      */
     public function edit_car(Car $car, Request $request, NotifierInterface $notifier, string $csrf, FileUploader $fileUploader):Response{
         $form = $this->createForm(CarFormType::class, $car);
@@ -152,7 +150,6 @@ class CarController extends AbstractController
      * @param Car $car
      * @return Response
      * @Route("/car/change_sale_state/{id}", name="change_sale_state")
-     * @IsGranted("ROLE_USER")
      */
     public function change_sale_state(Car $car):Response{
         $car->setSaleState(!$car->getSaleState());

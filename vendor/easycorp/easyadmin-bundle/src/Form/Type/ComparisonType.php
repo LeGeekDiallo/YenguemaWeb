@@ -24,63 +24,49 @@ class ComparisonType extends AbstractType
     public const STARTS_WITH = 'like*';
     public const ENDS_WITH = '*like';
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'label' => false,
             'type' => 'numeric',
             'choices' => static function (Options $options) {
-                $choices = [];
-                switch ($options['type']) {
-                    case 'numeric':
-                        $choices = [
-                            'filter.label.is_equal_to' => self::EQ,
-                            'filter.label.is_not_equal_to' => self::NEQ,
-                            'filter.label.is_greater_than' => self::GT,
-                            'filter.label.is_greater_than_or_equal_to' => self::GTE,
-                            'filter.label.is_less_than' => self::LT,
-                            'filter.label.is_less_than_or_equal_to' => self::LTE,
-                            'filter.label.is_between' => self::BETWEEN,
-                        ];
-                        break;
-                    case 'text':
-                        $choices = [
-                            'filter.label.contains' => self::CONTAINS,
-                            'filter.label.not_contains' => self::NOT_CONTAINS,
-                            'filter.label.starts_with' => self::STARTS_WITH,
-                            'filter.label.ends_with' => self::ENDS_WITH,
-                            'filter.label.exactly' => self::EQ,
-                            'filter.label.not_exactly' => self::NEQ,
-                        ];
-                        break;
-                    case 'datetime':
-                        $choices = [
-                            'filter.label.is_same' => self::EQ,
-                            'filter.label.is_not_same' => self::NEQ,
-                            'filter.label.is_after' => self::GT,
-                            'filter.label.is_after_or_same' => self::GTE,
-                            'filter.label.is_before' => self::LT,
-                            'filter.label.is_before_or_same' => self::LTE,
-                            'filter.label.is_between' => self::BETWEEN,
-                        ];
-                        break;
-                    case 'array':
-                        $choices = [
-                            'filter.label.contains' => self::CONTAINS,
-                            'filter.label.not_contains' => self::NOT_CONTAINS,
-                        ];
-                        break;
-                    case 'choice':
-                    case 'entity':
-                        $choices = [
-                            'filter.label.is_same' => self::EQ,
-                            'filter.label.is_not_same' => self::NEQ,
-                        ];
-                        break;
-                }
+                $choices = match ($options['type']) {
+                    'numeric' => [
+                        'filter.label.is_equal_to' => self::EQ,
+                        'filter.label.is_not_equal_to' => self::NEQ,
+                        'filter.label.is_greater_than' => self::GT,
+                        'filter.label.is_greater_than_or_equal_to' => self::GTE,
+                        'filter.label.is_less_than' => self::LT,
+                        'filter.label.is_less_than_or_equal_to' => self::LTE,
+                        'filter.label.is_between' => self::BETWEEN,
+                    ],
+                    'text' => [
+                        'filter.label.contains' => self::CONTAINS,
+                        'filter.label.not_contains' => self::NOT_CONTAINS,
+                        'filter.label.starts_with' => self::STARTS_WITH,
+                        'filter.label.ends_with' => self::ENDS_WITH,
+                        'filter.label.exactly' => self::EQ,
+                        'filter.label.not_exactly' => self::NEQ,
+                    ],
+                    'datetime' => [
+                        'filter.label.is_same' => self::EQ,
+                        'filter.label.is_not_same' => self::NEQ,
+                        'filter.label.is_after' => self::GT,
+                        'filter.label.is_after_or_same' => self::GTE,
+                        'filter.label.is_before' => self::LT,
+                        'filter.label.is_before_or_same' => self::LTE,
+                        'filter.label.is_between' => self::BETWEEN,
+                    ],
+                    'array' => [
+                        'filter.label.contains' => self::CONTAINS,
+                        'filter.label.not_contains' => self::NOT_CONTAINS,
+                    ],
+                    'choice', 'entity' => [
+                        'filter.label.is_same' => self::EQ,
+                        'filter.label.is_not_same' => self::NEQ,
+                    ],
+                    default => [],
+                };
 
                 return $choices;
             },
@@ -90,10 +76,7 @@ class ComparisonType extends AbstractType
         $resolver->setAllowedValues('type', ['array', 'datetime', 'choice', 'entity', 'numeric', 'text']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): ?string
     {
         return ChoiceType::class;
     }

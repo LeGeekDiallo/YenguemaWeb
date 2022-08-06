@@ -2,31 +2,26 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Action\NotFoundAction;
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Controller\GetUserInfos;
-use App\Controller\NewUserFromApp;
 use App\Controller\SecurityController;
 use App\Repository\UserRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['user:infos'])]
     private $id;
 
     /**
@@ -34,13 +29,11 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @Assert\Email
      */
-    #[Groups(['user:infos'])]
     private $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    #[Groups(['user:infos'])]
     private $roles = [];
 
     /**
@@ -49,7 +42,6 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @Assert\EqualTo(propertyPath="confirm_password", message="Les deux mots de passes sont differents")
      */
-    #[Groups(['user:infos'])]
     private $password;
 
     /**
@@ -78,7 +70,6 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @Assert\Regex("/^[a-zA-z\s]+$/")
      */
-    #[Groups(['user:infos'])]
     private string $username;
 
     /**
@@ -90,111 +81,93 @@ class User implements UserInterface
      *     message="Le numero de Tel doit contenir que des nombres sans espace"
      * )
      */
-    #[Groups(['user:infos'])]
     private ?string $phoneNumber;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    #[Groups(['user:infos'])]
     private ?int $sexe;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
      */
-    #[Groups(['user:infos'])]
     private ?bool $state = true;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    #[Groups(['user:infos'])]
     private ?\DateTimeInterface $subscribeAt;
 
     /**
      * @ORM\OneToOne(targetEntity=UserAvatar::class, mappedBy="user", cascade={"persist", "remove"})
      */
-    #[Groups(['user:infos'])]
     private ?UserAvatar $userAvatar;
 
     /**
      * @ORM\OneToOne(targetEntity=Activity::class, mappedBy="user", cascade={"persist", "remove"})
      */
-    #[Groups(['user:infos'])]
     private $activity;
 
     /**
      * @ORM\OneToMany(targetEntity=Ads::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $ads;
 
     /**
      * @ORM\OneToMany(targetEntity=Teacher::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $my_courses;
 
     /**
      * @ORM\OneToMany(targetEntity=JobOffer::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $jobOffers;
 
     /**
      * @ORM\OneToMany(targetEntity=ParkAuto::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $parkAutos;
 
     /**
      * @ORM\OneToMany(targetEntity=Ride::class, mappedBy="user", orphanRemoval=true, cascade={"persist"})
      */
-    #[Groups(['user:infos'])]
     private $rides;
 
     /**
      * @ORM\OneToOne(targetEntity=TaxiDriver::class, mappedBy="user", cascade={"persist", "remove"})
      */
-    #[Groups(['user:infos'])]
     private $taxiDriver;
 
 
     /**
      * @ORM\OneToMany(targetEntity=HouseVilla::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $houseVillas;
 
 
     /**
      * @ORM\OneToMany(targetEntity=OfficeShopLand::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $officeShopLands;
 
     /**
      * @ORM\OneToMany(targetEntity=Apartment::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $apartments;
 
     /**
      * @ORM\OneToMany(targetEntity=Studio::class, mappedBy="user", orphanRemoval=true)
      */
-    #[Groups(['user:infos'])]
     private $studios;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Groups(['user:infos'])]
     private $facebook_id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Groups(['user:infos'])]
     private $google_id;
 
 
@@ -731,4 +704,8 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getUserIdentifier(): string
+    {
+        return $this->getEmail();
+    }
 }

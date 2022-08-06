@@ -1,26 +1,12 @@
 <?php
 
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license. For more information, see
- * <http://www.doctrine-project.org>.
- */
+declare(strict_types=1);
 
 namespace Doctrine\ORM\Query;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Lexer\AbstractLexer;
+use Doctrine\Deprecations\Deprecation;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\AST\AggregateExpression;
@@ -70,12 +56,12 @@ use Doctrine\ORM\Query\AST\SimpleSelectExpression;
 use Doctrine\ORM\Query\AST\SimpleWhenClause;
 use Doctrine\ORM\Query\AST\Subselect;
 use Doctrine\ORM\Query\AST\SubselectFromClause;
-use Doctrine\ORM\Query\AST\SubselectIdentificationVariableDeclaration;
 use Doctrine\ORM\Query\AST\UpdateClause;
 use Doctrine\ORM\Query\AST\UpdateItem;
 use Doctrine\ORM\Query\AST\UpdateStatement;
 use Doctrine\ORM\Query\AST\WhenClause;
 use Doctrine\ORM\Query\AST\WhereClause;
+use LogicException;
 use ReflectionClass;
 
 use function array_intersect;
@@ -90,6 +76,7 @@ use function in_array;
 use function interface_exists;
 use function is_string;
 use function sprintf;
+use function str_contains;
 use function strlen;
 use function strpos;
 use function strrpos;
@@ -99,12 +86,22 @@ use function substr;
 /**
  * An LL(*) recursive-descent parser for the context-free grammar of the Doctrine Query Language.
  * Parses a DQL query, reports any errors in it, and generates an AST.
+ *
+ * @psalm-import-type Token from AbstractLexer
+ * @psalm-type QueryComponent = array{
+ *                 metadata?: ClassMetadata<object>,
+ *                 parent?: string|null,
+ *                 relation?: mixed[]|null,
+ *                 map?: string|null,
+ *                 resultVariable?: AST\Node|string,
+ *                 nestingLevel: int,
+ *                 token: Token,
+ *             }
  */
 class Parser
 {
     /**
-     * READ-ONLY: Maps BUILT-IN string function names to AST class names.
-     *
+     * @readonly Maps BUILT-IN string function names to AST class names.
      * @psalm-var array<string, class-string<Functions\FunctionNode>>
      */
     private static $stringFunctions = [
@@ -117,8 +114,7 @@ class Parser
     ];
 
     /**
-     * READ-ONLY: Maps BUILT-IN numeric function names to AST class names.
-     *
+     * @readonly Maps BUILT-IN numeric function names to AST class names.
      * @psalm-var array<string, class-string<Functions\FunctionNode>>
      */
     private static $numericFunctions = [
@@ -141,8 +137,7 @@ class Parser
     ];
 
     /**
-     * READ-ONLY: Maps BUILT-IN datetime function names to AST class names.
-     *
+     * @readonly Maps BUILT-IN datetime function names to AST class names.
      * @psalm-var array<string, class-string<Functions\FunctionNode>>
      */
     private static $datetimeFunctions = [
@@ -158,19 +153,19 @@ class Parser
      * and still need to be validated.
      */
 
-    /** @psalm-var list<array{token: mixed, expression: mixed, nestingLevel: int}> */
+    /** @psalm-var list<array{token: Token|null, expression: mixed, nestingLevel: int}> */
     private $deferredIdentificationVariables = [];
 
-    /** @psalm-var list<array{token: mixed, expression: mixed, nestingLevel: int}> */
+    /** @psalm-var list<array{token: Token|null, expression: AST\PartialObjectExpression, nestingLevel: int}> */
     private $deferredPartialObjectExpressions = [];
 
-    /** @psalm-var list<array{token: mixed, expression: mixed, nestingLevel: int}> */
+    /** @psalm-var list<array{token: Token|null, expression: AST\PathExpression, nestingLevel: int}> */
     private $deferredPathExpressions = [];
 
-    /** @psalm-var list<array{token: mixed, expression: mixed, nestingLevel: int}> */
+    /** @psalm-var list<array{token: Token|null, expression: mixed, nestingLevel: int}> */
     private $deferredResultVariables = [];
 
-    /** @psalm-var list<array{token: mixed, expression: mixed, nestingLevel: int}> */
+    /** @psalm-var list<array{token: Token|null, expression: AST\NewObjectExpression, nestingLevel: int}> */
     private $deferredNewObjectExpressions = [];
 
     /**
@@ -190,7 +185,7 @@ class Parser
     /**
      * The EntityManager.
      *
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $em;
 
@@ -204,7 +199,7 @@ class Parser
     /**
      * Map of declared query components in the parsed query.
      *
-     * @psalm-var array<string, array<string, mixed>>
+     * @psalm-var array<string, QueryComponent>
      */
     private $queryComponents = [];
 
@@ -225,11 +220,11 @@ class Parser
     /**
      * The custom last tree walker, if any, that is responsible for producing the output.
      *
-     * @var class-string<TreeWalker>
+     * @var class-string<SqlWalker>|null
      */
     private $customOutputWalker;
 
-    /** @psalm-var list<AST\SelectExpression> */
+    /** @psalm-var array<string, AST\SelectExpression> */
     private $identVariableExpressions = [];
 
     /**
@@ -250,6 +245,7 @@ class Parser
      * This tree walker will be run last over the AST, after any other walkers.
      *
      * @param string $className
+     * @psalm-param class-string<SqlWalker> $className
      *
      * @return void
      */
@@ -261,9 +257,10 @@ class Parser
     /**
      * Adds a custom tree walker for modifying the AST.
      *
-     * @return void
+     * @param string $className
+     * @psalm-param class-string<TreeWalker> $className
      *
-     * @psalm-param class-string $className
+     * @return void
      */
     public function addCustomTreeWalker($className)
     {
@@ -293,7 +290,7 @@ class Parser
     /**
      * Gets the EntityManager used by the parser.
      *
-     * @return EntityManager
+     * @return EntityManagerInterface
      */
     public function getEntityManager()
     {
@@ -462,10 +459,8 @@ class Parser
      * as the hydration process relies on that order for proper operation.
      *
      * @param AST\SelectStatement|AST\DeleteStatement|AST\UpdateStatement $AST
-     *
-     * @return void
      */
-    private function fixIdentificationVariableOrder($AST)
+    private function fixIdentificationVariableOrder(Node $AST): void
     {
         if (count($this->identVariableExpressions) <= 1) {
             return;
@@ -479,7 +474,7 @@ class Parser
             }
 
             $expr = $this->identVariableExpressions[$dqlAlias];
-            $key  = array_search($expr, $AST->selectClause->selectExpressions);
+            $key  = array_search($expr, $AST->selectClause->selectExpressions, true);
 
             unset($AST->selectClause->selectExpressions[$key]);
 
@@ -490,13 +485,14 @@ class Parser
     /**
      * Generates a new syntax error.
      *
-     * @param string $expected Expected string.
+     * @param string       $expected Expected string.
+     * @param mixed[]|null $token    Got token.
+     * @psalm-param Token|null $token
      *
      * @return void
+     * @psalm-return no-return
      *
      * @throws QueryException
-     *
-     * @psalm-param array<string, mixed>|null $token    Got token.
      */
     public function syntaxError($expected = '', $token = null)
     {
@@ -510,24 +506,25 @@ class Parser
         $message .= $expected !== '' ? sprintf('Expected %s, got ', $expected) : 'Unexpected ';
         $message .= $this->lexer->lookahead === null ? 'end of string.' : sprintf("'%s'", $token['value']);
 
-        throw QueryException::syntaxError($message, QueryException::dqlError($this->query->getDQL()));
+        throw QueryException::syntaxError($message, QueryException::dqlError($this->query->getDQL() ?? ''));
     }
 
     /**
      * Generates a new semantical error.
      *
-     * @param string $message Optional message.
+     * @param string       $message Optional message.
+     * @param mixed[]|null $token   Optional token.
+     * @psalm-param Token|null $token
      *
      * @return void
+     * @psalm-return no-return
      *
      * @throws QueryException
-     *
-     * @psalm-param array<string, mixed>|null $token Optional token.
      */
     public function semanticalError($message = '', $token = null)
     {
         if ($token === null) {
-            $token = $this->lexer->lookahead ?? ['position' => null];
+            $token = $this->lexer->lookahead ?? ['position' => 0];
         }
 
         // Minimum exposed chars ahead of token
@@ -540,7 +537,7 @@ class Parser
         $pos    = strpos($dql, ' ', $length > $pos ? $pos : $length);
         $length = $pos !== false ? $pos - $token['position'] : $distance;
 
-        $tokenPos = isset($token['position']) && $token['position'] > 0 ? $token['position'] : '-1';
+        $tokenPos = $token['position'] > 0 ? $token['position'] : '-1';
         $tokenStr = substr($dql, $token['position'], $length);
 
         // Building informative message
@@ -554,9 +551,10 @@ class Parser
      *
      * @param bool $resetPeek Reset peek after finding the closing parenthesis.
      *
-     * @psalm-return array<string, mixed>| null
+     * @return mixed[]
+     * @psalm-return array{value: string, type: int|null|string, position: int}|null
      */
-    private function peekBeyondClosingParenthesis(bool $resetPeek = true)
+    private function peekBeyondClosingParenthesis(bool $resetPeek = true): ?array
     {
         $token        = $this->lexer->peek();
         $numUnmatched = 1;
@@ -588,11 +586,11 @@ class Parser
     /**
      * Checks if the given token indicates a mathematical operator.
      *
-     * @psalm-param array<string, mixed> $token
+     * @psalm-param Token|null $token
      */
-    private function isMathOperator($token): bool
+    private function isMathOperator(?array $token): bool
     {
-        return $token !== null && in_array($token['type'], [Lexer::T_PLUS, Lexer::T_MINUS, Lexer::T_DIVIDE, Lexer::T_MULTIPLY]);
+        return $token !== null && in_array($token['type'], [Lexer::T_PLUS, Lexer::T_MINUS, Lexer::T_DIVIDE, Lexer::T_MULTIPLY], true);
     }
 
     /**
@@ -613,15 +611,16 @@ class Parser
     /**
      * Checks whether the given token type indicates an aggregate function.
      *
-     * @return bool TRUE if the token type is an aggregate function, FALSE otherwise.
-     *
      * @psalm-param Lexer::T_* $tokenType
+     *
+     * @return bool TRUE if the token type is an aggregate function, FALSE otherwise.
      */
     private function isAggregateFunction(int $tokenType): bool
     {
         return in_array(
             $tokenType,
-            [Lexer::T_AVG, Lexer::T_MIN, Lexer::T_MAX, Lexer::T_SUM, Lexer::T_COUNT]
+            [Lexer::T_AVG, Lexer::T_MIN, Lexer::T_MAX, Lexer::T_SUM, Lexer::T_COUNT],
+            true
         );
     }
 
@@ -632,7 +631,8 @@ class Parser
     {
         return in_array(
             $this->lexer->lookahead['type'],
-            [Lexer::T_ALL, Lexer::T_ANY, Lexer::T_SOME]
+            [Lexer::T_ALL, Lexer::T_ANY, Lexer::T_SOME],
+            true
         );
     }
 
@@ -686,7 +686,7 @@ class Parser
             $fromClassName = $AST->fromClause->identificationVariableDeclarations[0]->rangeVariableDeclaration->abstractSchemaName ?? null;
 
             // If the namespace is not given then assumes the first FROM entity namespace
-            if (strpos($className, '\\') === false && ! class_exists($className) && strpos($fromClassName, '\\') !== false) {
+            if (! str_contains($className, '\\') && ! class_exists($className) && str_contains($fromClassName, '\\')) {
                 $namespace = substr($fromClassName, 0, strrpos($fromClassName, '\\'));
                 $fqcn      = $namespace . '\\' . $className;
 
@@ -724,7 +724,7 @@ class Parser
     {
         foreach ($this->deferredPartialObjectExpressions as $deferredItem) {
             $expr  = $deferredItem['expression'];
-            $class = $this->queryComponents[$expr->identificationVariable]['metadata'];
+            $class = $this->getMetadataForDqlAlias($expr->identificationVariable);
 
             foreach ($expr->partialFieldSet as $field) {
                 if (isset($class->fieldMappings[$field])) {
@@ -806,8 +806,7 @@ class Parser
         foreach ($this->deferredPathExpressions as $deferredItem) {
             $pathExpression = $deferredItem['expression'];
 
-            $qComp = $this->queryComponents[$pathExpression->identificationVariable];
-            $class = $qComp['metadata'];
+            $class = $this->getMetadataForDqlAlias($pathExpression->identificationVariable);
 
             $field = $pathExpression->field;
             if ($field === null) {
@@ -875,7 +874,7 @@ class Parser
         }
 
         foreach ($this->identVariableExpressions as $dqlAlias => $expr) {
-            if (isset($this->queryComponents[$dqlAlias]) && $this->queryComponents[$dqlAlias]['parent'] === null) {
+            if (isset($this->queryComponents[$dqlAlias]) && ! isset($this->queryComponents[$dqlAlias]['parent'])) {
                 return;
             }
         }
@@ -1028,6 +1027,13 @@ class Parser
 
         $this->match(Lexer::T_ALIASED_NAME);
 
+        Deprecation::trigger(
+            'doctrine/orm',
+            'https://github.com/doctrine/orm/issues/8818',
+            'Short namespace aliases such as "%s" are deprecated and will be removed in Doctrine ORM 3.0.',
+            $this->lexer->token['value']
+        );
+
         [$namespaceAlias, $simpleClassName] = explode(':', $this->lexer->token['value']);
 
         return $this->em->getConfiguration()->getEntityNamespace($namespaceAlias) . '\\' . $simpleClassName;
@@ -1040,7 +1046,7 @@ class Parser
      *
      * @throws QueryException if the name does not exist.
      */
-    private function validateAbstractSchemaName($schemaName)
+    private function validateAbstractSchemaName(string $schemaName): void
     {
         if (! (class_exists($schemaName, true) || interface_exists($schemaName, true))) {
             $this->semanticalError(
@@ -1111,11 +1117,11 @@ class Parser
         $this->match(Lexer::T_DOT);
         $this->match(Lexer::T_IDENTIFIER);
 
+        assert($this->lexer->token !== null);
         $field = $this->lexer->token['value'];
 
         // Validate association field
-        $qComp = $this->queryComponents[$identVariable];
-        $class = $qComp['metadata'];
+        $class = $this->getMetadataForDqlAlias($identVariable);
 
         if (! $class->hasAssociation($field)) {
             $this->semanticalError('Class ' . $class->name . ' has no association named ' . $field);
@@ -1131,6 +1137,7 @@ class Parser
      * PathExpression ::= IdentificationVariable {"." identifier}*
      *
      * @param int $expectedTypes
+     * @psalm-param int-mask-of<PathExpression::TYPE_*> $expectedTypes
      *
      * @return PathExpression
      */
@@ -1278,6 +1285,7 @@ class Parser
     public function UpdateClause()
     {
         $this->match(Lexer::T_UPDATE);
+        assert($this->lexer->lookahead !== null);
 
         $token              = $this->lexer->lookahead;
         $abstractSchemaName = $this->AbstractSchemaName();
@@ -1334,6 +1342,7 @@ class Parser
             $this->match(Lexer::T_FROM);
         }
 
+        assert($this->lexer->lookahead !== null);
         $token              = $this->lexer->lookahead;
         $abstractSchemaName = $this->AbstractSchemaName();
 
@@ -1680,7 +1689,7 @@ class Parser
      * accessible is "FROM", prohibiting an easy implementation without larger
      * changes.}
      *
-     * @return SubselectIdentificationVariableDeclaration|IdentificationVariableDeclaration
+     * @return IdentificationVariableDeclaration
      */
     public function SubselectIdentificationVariableDeclaration()
     {
@@ -1802,6 +1811,7 @@ class Parser
             $this->match(Lexer::T_AS);
         }
 
+        assert($this->lexer->lookahead !== null);
         $token                       = $this->lexer->lookahead;
         $aliasIdentificationVariable = $this->AliasIdentificationVariable();
         $classMetadata               = $this->em->getClassMetadata($abstractSchemaName);
@@ -1834,13 +1844,15 @@ class Parser
             $this->match(Lexer::T_AS);
         }
 
+        assert($this->lexer->lookahead !== null);
+
         $aliasIdentificationVariable = $this->AliasIdentificationVariable();
         $indexBy                     = $this->lexer->isNextToken(Lexer::T_INDEX) ? $this->IndexBy() : null;
 
         $identificationVariable = $joinAssociationPathExpression->identificationVariable;
         $field                  = $joinAssociationPathExpression->associationField;
 
-        $class       = $this->queryComponents[$identificationVariable]['metadata'];
+        $class       = $this->getMetadataForDqlAlias($identificationVariable);
         $targetClass = $this->em->getClassMetadata($class->associationMappings[$field]['targetEntity']);
 
         // Building queryComponent
@@ -1866,6 +1878,12 @@ class Parser
      */
     public function PartialObjectExpression()
     {
+        Deprecation::trigger(
+            'doctrine/orm',
+            'https://github.com/doctrine/orm/issues/8471',
+            'PARTIAL syntax in DQL is deprecated.'
+        );
+
         $this->match(Lexer::T_PARTIAL);
 
         $partialFieldSet = [];
@@ -1906,6 +1924,7 @@ class Parser
 
         $partialObjectExpression = new AST\PartialObjectExpression($identificationVariable, $partialFieldSet);
 
+        assert($this->lexer->token !== null);
         // Defer PartialObjectExpression validation
         $this->deferredPartialObjectExpressions[] = [
             'expression'   => $partialObjectExpression,
@@ -1974,7 +1993,7 @@ class Parser
     }
 
     /**
-     * IndexBy ::= "INDEX" "BY" StateFieldPathExpression
+     * IndexBy ::= "INDEX" "BY" SingleValuedPathExpression
      *
      * @return IndexBy
      */
@@ -1982,7 +2001,7 @@ class Parser
     {
         $this->match(Lexer::T_INDEX);
         $this->match(Lexer::T_BY);
-        $pathExpr = $this->StateFieldPathExpression();
+        $pathExpr = $this->SingleValuedPathExpression();
 
         // Add the INDEX BY info to the query component
         $this->queryComponents[$pathExpr->identificationVariable]['map'] = $pathExpr->field;
@@ -2339,6 +2358,8 @@ class Parser
         $aliasResultVariable = null;
 
         if ($mustHaveAliasResultVariable || $this->lexer->isNextToken(Lexer::T_IDENTIFIER)) {
+            assert($this->lexer->lookahead !== null);
+            assert($expression instanceof AST\Node || is_string($expression));
             $token               = $this->lexer->lookahead;
             $aliasResultVariable = $this->AliasResultVariable();
 
@@ -2435,6 +2456,7 @@ class Parser
         }
 
         if ($this->lexer->isNextToken(Lexer::T_IDENTIFIER)) {
+            assert($this->lexer->lookahead !== null);
             $token                             = $this->lexer->lookahead;
             $resultVariable                    = $this->AliasResultVariable();
             $expr->fieldIdentificationVariable = $resultVariable;
@@ -2549,8 +2571,8 @@ class Parser
 
         if (
             $peek !== null && (
-            in_array($peek['value'], ['=', '<', '<=', '<>', '>', '>=', '!=']) ||
-            in_array($peek['type'], [Lexer::T_NOT, Lexer::T_BETWEEN, Lexer::T_LIKE, Lexer::T_IN, Lexer::T_IS, Lexer::T_EXISTS]) ||
+            in_array($peek['value'], ['=', '<', '<=', '<>', '>', '>=', '!='], true) ||
+            in_array($peek['type'], [Lexer::T_NOT, Lexer::T_BETWEEN, Lexer::T_LIKE, Lexer::T_IN, Lexer::T_IS, Lexer::T_EXISTS], true) ||
             $this->isMathOperator($peek)
             )
         ) {
@@ -2573,7 +2595,15 @@ class Parser
      *      EmptyCollectionComparisonExpression | CollectionMemberExpression |
      *      InstanceOfExpression
      *
-     * @return Node
+     * @return AST\BetweenExpression|
+     *         AST\CollectionMemberExpression|
+     *         AST\ComparisonExpression|
+     *         AST\EmptyCollectionComparisonExpression|
+     *         AST\ExistsExpression|
+     *         AST\InExpression|
+     *         AST\InstanceOfExpression|
+     *         AST\LikeExpression|
+     *         AST\NullComparisonExpression
      */
     public function SimpleConditionalExpression()
     {
@@ -2757,9 +2787,9 @@ class Parser
     }
 
     /**
-     * InParameter ::= Literal | InputParameter
+     * InParameter ::= ArithmeticExpression | InputParameter
      *
-     * @return AST\InputParameter|AST\Literal
+     * @return AST\InputParameter|AST\ArithmeticExpression
      */
     public function InParameter()
     {
@@ -2767,7 +2797,7 @@ class Parser
             return $this->InputParameter();
         }
 
-        return $this->Literal();
+        return $this->ArithmeticExpression();
     }
 
     /**
@@ -2811,7 +2841,7 @@ class Parser
     /**
      * SimpleArithmeticExpression ::= ArithmeticTerm {("+" | "-") ArithmeticTerm}*
      *
-     * @return SimpleArithmeticExpression
+     * @return SimpleArithmeticExpression|ArithmeticTerm
      */
     public function SimpleArithmeticExpression()
     {
@@ -2946,7 +2976,7 @@ class Parser
     /**
      * StringExpression ::= StringPrimary | ResultVariable | "(" Subselect ")"
      *
-     * @return Subselect|string
+     * @return Subselect|Node|string
      */
     public function StringExpression()
     {
@@ -3062,7 +3092,7 @@ class Parser
         $lookaheadType = $this->lexer->lookahead['type'];
         $isDistinct    = false;
 
-        if (! in_array($lookaheadType, [Lexer::T_COUNT, Lexer::T_AVG, Lexer::T_MAX, Lexer::T_MIN, Lexer::T_SUM])) {
+        if (! in_array($lookaheadType, [Lexer::T_COUNT, Lexer::T_AVG, Lexer::T_MAX, Lexer::T_MIN, Lexer::T_SUM], true)) {
             $this->syntaxError('One of: MAX, MIN, AVG, SUM, COUNT');
         }
 
@@ -3092,7 +3122,7 @@ class Parser
         $lookaheadType = $this->lexer->lookahead['type'];
         $value         = $this->lexer->lookahead['value'];
 
-        if (! in_array($lookaheadType, [Lexer::T_ALL, Lexer::T_ANY, Lexer::T_SOME])) {
+        if (! in_array($lookaheadType, [Lexer::T_ALL, Lexer::T_ANY, Lexer::T_SOME], true)) {
             $this->syntaxError('ALL, ANY or SOME');
         }
 
@@ -3471,10 +3501,8 @@ class Parser
 
     /**
      * Helper function for FunctionDeclaration grammar rule.
-     *
-     * @return FunctionNode
      */
-    private function CustomFunctionDeclaration()
+    private function CustomFunctionDeclaration(): ?FunctionNode
     {
         $token    = $this->lexer->lookahead;
         $funcName = strtolower($token['value']);
@@ -3531,6 +3559,8 @@ class Parser
         $functionName  = strtolower($this->lexer->lookahead['value']);
         $functionClass = $this->em->getConfiguration()->getCustomNumericFunction($functionName);
 
+        assert($functionClass !== null);
+
         $function = is_string($functionClass)
             ? new $functionClass($functionName)
             : call_user_func($functionClass, $functionName);
@@ -3569,6 +3599,8 @@ class Parser
         // getCustomDatetimeFunction is case-insensitive
         $functionName  = $this->lexer->lookahead['value'];
         $functionClass = $this->em->getConfiguration()->getCustomDatetimeFunction($functionName);
+
+        assert($functionClass !== null);
 
         $function = is_string($functionClass)
             ? new $functionClass($functionName)
@@ -3610,6 +3642,8 @@ class Parser
         $functionName  = $this->lexer->lookahead['value'];
         $functionClass = $this->em->getConfiguration()->getCustomStringFunction($functionName);
 
+        assert($functionClass !== null);
+
         $function = is_string($functionClass)
             ? new $functionClass($functionName)
             : call_user_func($functionClass, $functionName);
@@ -3617,5 +3651,14 @@ class Parser
         $function->parse($this);
 
         return $function;
+    }
+
+    private function getMetadataForDqlAlias(string $dqlAlias): ClassMetadata
+    {
+        if (! isset($this->queryComponents[$dqlAlias]['metadata'])) {
+            throw new LogicException(sprintf('No metadata for DQL alias: %s', $dqlAlias));
+        }
+
+        return $this->queryComponents[$dqlAlias]['metadata'];
     }
 }

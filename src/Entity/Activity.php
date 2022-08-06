@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Action\NotFoundAction;
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ActivityRepository;
 use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;

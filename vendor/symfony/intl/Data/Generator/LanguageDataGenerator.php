@@ -96,7 +96,7 @@ class LanguageDataGenerator extends AbstractDataGenerator
      *
      * @var string[]
      */
-    private $languageCodes = [];
+    private array $languageCodes = [];
 
     /**
      * {@inheritdoc}
@@ -135,7 +135,7 @@ class LanguageDataGenerator extends AbstractDataGenerator
             $names = [];
             $localizedNames = [];
             foreach (self::generateLanguageNames($localeBundle) as $language => $name) {
-                if (false === strpos($language, '_')) {
+                if (!str_contains($language, '_')) {
                     $this->languageCodes[] = $language;
                     $names[$language] = $name;
                 } else {

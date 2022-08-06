@@ -44,7 +44,7 @@ class TwitchProviderConfigurator implements ProviderConfiguratorInterface
 
     public function getProviderDisplayName()
     {
-        return 'Twitch';
+        return 'Twitch Deprecated';
     }
 
     public function getClientClass(array $config)

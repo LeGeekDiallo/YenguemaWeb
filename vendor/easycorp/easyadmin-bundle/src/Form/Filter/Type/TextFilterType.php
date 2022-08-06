@@ -11,23 +11,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ *
+ * @internal Don't use this to define a text filter. Use Filter\TextFilter instead.
  */
 class TextFilterType extends AbstractType
 {
-    private $valueType;
+    private string $valueType;
 
     public function __construct(string $valueType = null)
     {
         $this->valueType = $valueType ?: TextType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new CallbackTransformer(
-            static function ($data) { return $data; },
+            static fn ($data) => $data,
             static function ($data) {
                 switch ($data['comparison']) {
                     case ComparisonType::STARTS_WITH:
@@ -48,9 +47,6 @@ class TextFilterType extends AbstractType
         ));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -59,9 +55,6 @@ class TextFilterType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): string
     {
         return ComparisonFilterType::class;

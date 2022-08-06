@@ -41,16 +41,16 @@ class SwitchUserListener extends AbstractListener
 {
     public const EXIT_VALUE = '_exit';
 
-    private $tokenStorage;
-    private $provider;
-    private $userChecker;
-    private $firewallName;
-    private $accessDecisionManager;
-    private $usernameParameter;
-    private $role;
-    private $logger;
-    private $dispatcher;
-    private $stateless;
+    private TokenStorageInterface $tokenStorage;
+    private UserProviderInterface $provider;
+    private UserCheckerInterface $userChecker;
+    private string $firewallName;
+    private AccessDecisionManagerInterface $accessDecisionManager;
+    private string $usernameParameter;
+    private string $role;
+    private ?LoggerInterface $logger;
+    private ?EventDispatcherInterface $dispatcher;
+    private bool $stateless;
 
     public function __construct(TokenStorageInterface $tokenStorage, UserProviderInterface $provider, UserCheckerInterface $userChecker, string $firewallName, AccessDecisionManagerInterface $accessDecisionManager, LoggerInterface $logger = null, string $usernameParameter = '_switch_user', string $role = 'ROLE_ALLOWED_TO_SWITCH', EventDispatcherInterface $dispatcher = null, bool $stateless = false)
     {
@@ -140,7 +140,7 @@ class SwitchUserListener extends AbstractListener
         $originalToken = $this->getOriginalToken($token);
 
         if (null !== $originalToken) {
-            if ($token->getUsername() === $username) {
+            if ($token->getUserIdentifier() === $username) {
                 return $token;
             }
 
@@ -148,20 +148,20 @@ class SwitchUserListener extends AbstractListener
             $token = $this->attemptExitUser($request);
         }
 
-        $currentUsername = $token->getUsername();
+        $currentUsername = $token->getUserIdentifier();
         $nonExistentUsername = '_'.md5(random_bytes(8).$username);
 
         // To protect against user enumeration via timing measurements
         // we always load both successfully and unsuccessfully
         try {
-            $user = $this->provider->loadUserByUsername($username);
+            $user = $this->provider->loadUserByIdentifier($username);
 
             try {
-                $this->provider->loadUserByUsername($nonExistentUsername);
-            } catch (\Exception $e) {
+                $this->provider->loadUserByIdentifier($nonExistentUsername);
+            } catch (\Exception) {
             }
         } catch (AuthenticationException $e) {
-            $this->provider->loadUserByUsername($currentUsername);
+            $this->provider->loadUserByIdentifier($currentUsername);
 
             throw $e;
         }
@@ -173,16 +173,14 @@ class SwitchUserListener extends AbstractListener
             throw $exception;
         }
 
-        if (null !== $this->logger) {
-            $this->logger->info('Attempting to switch to user.', ['username' => $username]);
-        }
+        $this->logger?->info('Attempting to switch to user.', ['username' => $username]);
 
         $this->userChecker->checkPostAuth($user);
 
         $roles = $user->getRoles();
         $roles[] = 'ROLE_PREVIOUS_ADMIN';
         $originatedFromUri = str_replace('/&', '/?', preg_replace('#[&?]'.$this->usernameParameter.'=[^&]*#', '', $request->getRequestUri()));
-        $token = new SwitchUserToken($user, $user->getPassword(), $this->firewallName, $roles, $token, $originatedFromUri);
+        $token = new SwitchUserToken($user, $this->firewallName, $roles, $token, $originatedFromUri);
 
         if (null !== $this->dispatcher) {
             $switchEvent = new SwitchUserEvent($request, $token->getUser(), $token);

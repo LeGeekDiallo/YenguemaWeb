@@ -44,7 +44,6 @@
             <tag name="kernel.cache_warmer" />
             <argument /> <!-- build list of entrypoint paths -->
             <argument>%kernel.cache_dir%/webpack_encore.cache.php</argument>
-            <argument type="service" id="cache.webpack_encore" />
         </service>
 
         <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
@@ -66,6 +65,11 @@
         <service id="webpack_encore.preload_assets_event_listener" class="Symfony\WebpackEncoreBundle\EventListener\PreLoadAssetsEventListener">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="webpack_encore.tag_renderer" />
+        </service>
+
+        <service id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="webpack_encore.entrypoint_lookup_collection" />
         </service>
     </services>
 </container>

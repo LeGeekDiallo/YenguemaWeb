@@ -67,7 +67,7 @@ class JsonDescriptor extends Descriptor
         $this->writeData($data, $options);
     }
 
-    protected function describeContainerService($service, array $options = [], ContainerBuilder $builder = null)
+    protected function describeContainerService(object $service, array $options = [], ContainerBuilder $builder = null)
     {
         if (!isset($options['id'])) {
             throw new \InvalidArgumentException('An "id" option must be provided.');
@@ -136,15 +136,15 @@ class JsonDescriptor extends Descriptor
 
     protected function describeEventDispatcherListeners(EventDispatcherInterface $eventDispatcher, array $options = [])
     {
-        $this->writeData($this->getEventDispatcherListenersData($eventDispatcher, \array_key_exists('event', $options) ? $options['event'] : null), $options);
+        $this->writeData($this->getEventDispatcherListenersData($eventDispatcher, $options), $options);
     }
 
-    protected function describeCallable($callable, array $options = [])
+    protected function describeCallable(mixed $callable, array $options = [])
     {
         $this->writeData($this->getCallableData($callable), $options);
     }
 
-    protected function describeContainerParameter($parameter, array $options = [])
+    protected function describeContainerParameter(mixed $parameter, array $options = [])
     {
         $key = $options['parameter'] ?? '';
 
@@ -183,6 +183,14 @@ class JsonDescriptor extends Descriptor
     private function writeData(array $data, array $options)
     {
         $flags = $options['json_encoding'] ?? 0;
+
+        // Recursively search for enum values, so we can replace it
+        // before json_encode (which will not display anything for \UnitEnum otherwise)
+        array_walk_recursive($data, static function (&$value) {
+            if ($value instanceof \UnitEnum) {
+                $value = ltrim(var_export($value, true), '\\');
+            }
+        });
 
         $this->write(json_encode($data, $flags | \JSON_PRETTY_PRINT)."\n");
     }
@@ -275,18 +283,19 @@ class JsonDescriptor extends Descriptor
         ];
     }
 
-    private function getEventDispatcherListenersData(EventDispatcherInterface $eventDispatcher, string $event = null): array
+    private function getEventDispatcherListenersData(EventDispatcherInterface $eventDispatcher, array $options): array
     {
         $data = [];
+        $event = \array_key_exists('event', $options) ? $options['event'] : null;
 
-        $registeredListeners = $eventDispatcher->getListeners($event);
         if (null !== $event) {
-            foreach ($registeredListeners as $listener) {
+            foreach ($eventDispatcher->getListeners($event) as $listener) {
                 $l = $this->getCallableData($listener);
                 $l['priority'] = $eventDispatcher->getListenerPriority($event, $listener);
                 $data[] = $l;
             }
         } else {
+            $registeredListeners = \array_key_exists('events', $options) ? array_combine($options['events'], array_map(function ($event) use ($eventDispatcher) { return $eventDispatcher->getListeners($event); }, $options['events'])) : $eventDispatcher->getListeners();
             ksort($registeredListeners);
 
             foreach ($registeredListeners as $eventListened => $eventListeners) {
@@ -301,7 +310,7 @@ class JsonDescriptor extends Descriptor
         return $data;
     }
 
-    private function getCallableData($callable): array
+    private function getCallableData(mixed $callable): array
     {
         $data = [];
 
@@ -312,7 +321,7 @@ class JsonDescriptor extends Descriptor
                 $data['name'] = $callable[1];
                 $data['class'] = \get_class($callable[0]);
             } else {
-                if (0 !== strpos($callable[1], 'parent::')) {
+                if (!str_starts_with($callable[1], 'parent::')) {
                     $data['name'] = $callable[1];
                     $data['class'] = $callable[0];
                     $data['static'] = true;
@@ -330,7 +339,7 @@ class JsonDescriptor extends Descriptor
         if (\is_string($callable)) {
             $data['type'] = 'function';
 
-            if (false === strpos($callable, '::')) {
+            if (!str_contains($callable, '::')) {
                 $data['name'] = $callable;
             } else {
                 $callableParts = explode('::', $callable);
@@ -347,7 +356,7 @@ class JsonDescriptor extends Descriptor
             $data['type'] = 'closure';
 
             $r = new \ReflectionFunction($callable);
-            if (false !== strpos($r->name, '{closure}')) {
+            if (str_contains($r->name, '{closure}')) {
                 return $data;
             }
             $data['name'] = $r->name;
@@ -372,7 +381,7 @@ class JsonDescriptor extends Descriptor
         throw new \InvalidArgumentException('Callable is not describable.');
     }
 
-    private function describeValue($value, bool $omitTags, bool $showArguments)
+    private function describeValue(mixed $value, bool $omitTags, bool $showArguments): mixed
     {
         if (\is_array($value)) {
             $data = [];

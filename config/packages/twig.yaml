@@ -1,5 +1,9 @@
 twig:
     form_themes: ['bootstrap_4_layout.html.twig']
     paths:
-      '%kernel.project_dir%/assets/styles/css': css
-      '%kernel.project_dir%/public': public
+        '%kernel.project_dir%/assets/styles/css': css
+        '%kernel.project_dir%/public': public
+
+when@test:
+    twig:
+        strict_variables: true

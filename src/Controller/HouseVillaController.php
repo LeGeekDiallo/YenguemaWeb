@@ -47,7 +47,6 @@ class HouseVillaController extends AbstractController
      * @param NotifierInterface $notifier
      * @param FileUploader $fileUploader
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/house/villa/{id}-new-house', name: 'new_house')]
     public function newHouseVilla(Request $request, User $user, NotifierInterface $notifier, FileUploader $fileUploader):Response{
@@ -76,7 +75,6 @@ class HouseVillaController extends AbstractController
      * @param User $user
      * @param string $slug
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/house/villa/houses/{id}-house-villa-{slug}', name: 'user_houses')]
     public function userHouses(User $user, string $slug):Response{

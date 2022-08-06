@@ -3,17 +3,3 @@
 twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
-fos_ck_editor:
-    configs:
-        y_config:
-            toolbar:
-                - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-',
-                                            'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent',
-                                            'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-',
-                                            '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor'] }
-            language: fr
-            stylesSet: "y_style"
-    styles:
-        y_style:
-            - { name: "text", element: "li",  attributes: { class: "__myPolice text-muted"}}
-

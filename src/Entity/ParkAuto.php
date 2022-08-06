@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ParkAutoRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=ParkAutoRepository::class)
  */
-class ParkAuto
+class ParkAuto implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -268,5 +269,29 @@ class ParkAuto
         }
 
         return $this;
+    }
+
+    public function getInfos(): array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "vehicles" and $item!="services") {
+                $infos[$item] = $value;
+            }
+        }
+        $vehicles = [];
+        foreach ($this->getVehicles() as $vehicle){
+            $vehicles[$vehicle->getId()] = $vehicle->getInfos();
+        }
+        $services = [];
+        $shops_services = $this->getServices();
+        if(count($shops_services)){
+            foreach ($shops_services as $service){
+                $services[$service->getId()] = $service->getServiceName();
+            }
+        }
+        $infos["vehicles"] = $vehicles;
+        $infos["services"] = $services;
+        $infos["imagesURL"] = "https://leyenguema.com/companies_logo/";
+        return $infos;
     }
 }

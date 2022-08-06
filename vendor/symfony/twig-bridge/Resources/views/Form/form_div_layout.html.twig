@@ -85,7 +85,7 @@
                 {{- block('choice_widget_options') -}}
             </optgroup>
         {%- else -%}
-            <option value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
+            <option value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans(choice.labelTranslationParameters, choice_translation_domain) }}</option>
         {%- endif -%}
     {% endfor %}
 {%- endblock choice_widget_options -%}
@@ -325,7 +325,7 @@
 {% block form_help -%}
     {%- if help is not empty -%}
         {%- set help_attr = help_attr|merge({class: (help_attr.class|default('') ~ ' help-text')|trim}) -%}
-        <p id="{{ id }}_help"{% with { attr: help_attr } %}{{ block('attributes') }}{% endwith %}>
+        <div id="{{ id }}_help"{% with { attr: help_attr } %}{{ block('attributes') }}{% endwith %}>
             {%- if translation_domain is same as(false) -%}
                 {%- if help_html is same as(false) -%}
                     {{- help -}}
@@ -339,7 +339,7 @@
                     {{- help|trans(help_translation_parameters, translation_domain)|raw -}}
                 {%- endif -%}
             {%- endif -%}
-        </p>
+        </div>
     {%- endif -%}
 {%- endblock form_help %}
 

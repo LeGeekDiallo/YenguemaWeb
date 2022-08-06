@@ -220,4 +220,9 @@ class Admin implements UserInterface
 
         return $this;
     }
+
+    public function getUserIdentifier(): string
+    {
+        // TODO: Implement getUserIdentifier() method.
+    }
 }

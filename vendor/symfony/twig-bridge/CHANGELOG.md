@@ -1,6 +1,25 @@
 CHANGELOG
 =========
 
+6.1
+---
+
+ * Wrap help messages on form elements in `div` instead of `p`
+
+5.4
+---
+
+* Add `github` format & autodetection to render errors as annotations when
+  running the Twig linter command in a Github Actions environment.
+
+5.3
+---
+
+ * Add a new `markAsPublic` method on `NotificationEmail` to change the `importance` context option to null after creation
+ * Add a new `fragment_uri()` helper to generate the URI of a fragment
+ * Add support of Bootstrap 5 for form theming
+ * Add a new `serialize` filter to serialize objects using the Serializer component
+
 5.2.0
 -----
 

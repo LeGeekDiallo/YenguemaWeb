@@ -21,12 +21,13 @@ init:
     - SET PHP=0 # This var is connected to PHP install cache
     - SET ANSICON=121x90 (121x90)
     - SET MAKER_DISABLE_FILE_LINKS=1
+    - SET MAKER_SKIP_MERCURE_TEST=1
 
 environment:
     TEST_DATABASE_DSN: mysql://root:Password12!@127.0.0.1:3306/test_maker
     matrix:
       - dependencies: highest
-        php_ver_target: 7.2.5
+        php_ver_target: 8.0.19
 
 install:
     - ps: Set-Service wuauserv -StartupType Manual
@@ -52,8 +53,9 @@ install:
     - del composer.phar
     - rename composer-stable.phar composer.phar
     - cd C:\projects\maker-bundle
-    - composer global require --no-progress --no-scripts --no-plugins symfony/flex
     - IF %dependencies%==highest appveyor-retry composer update --no-progress --no-suggest --ansi
+    - composer install --no-interaction --no-progress --ansi --no-scripts --working-dir=tools/twigcs
+    - composer install --no-interaction --no-progress --ansi --no-scripts --working-dir=tools/php-cs-fixer
     - vendor/bin/simple-phpunit install
 
 test_script:

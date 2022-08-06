@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Code\Generator;
 
 use Laminas\Code\Reflection\MethodReflection;
@@ -21,6 +15,7 @@ use function strlen;
 use function strtolower;
 use function substr;
 use function trim;
+use function uasort;
 
 class MethodGenerator extends AbstractMemberGenerator
 {
@@ -82,7 +77,11 @@ class MethodGenerator extends AbstractMemberGenerator
         $method->setName($reflectionMethod->getName());
 
         foreach ($reflectionMethod->getParameters() as $reflectionParameter) {
-            $method->setParameter(ParameterGenerator::fromReflection($reflectionParameter));
+            $method->setParameter(
+                $reflectionParameter->isPromoted()
+                    ? PromotedParameterGenerator::fromReflection($reflectionParameter)
+                    : ParameterGenerator::fromReflection($reflectionParameter)
+            );
         }
 
         return $method;
@@ -119,15 +118,17 @@ class MethodGenerator extends AbstractMemberGenerator
     /**
      * Generate from array
      *
-     * @configkey name           string        [required] Class Name
-     * @configkey docblock       string        The docblock information
-     * @configkey flags          int           Flags, one of MethodGenerator::FLAG_ABSTRACT MethodGenerator::FLAG_FINAL
-     * @configkey parameters     string        Class which this class is extending
-     * @configkey body           string
-     * @configkey abstract       bool
-     * @configkey final          bool
-     * @configkey static         bool
-     * @configkey visibility     string
+     * @configkey name             string        [required] Class Name
+     * @configkey docblock         string        The DocBlock information
+     * @configkey flags            int           Flags, one of self::FLAG_ABSTRACT, self::FLAG_FINAL
+     * @configkey parameters       string        Class which this class is extending
+     * @configkey body             string
+     * @configkey returntype       string
+     * @configkey returnsreference bool
+     * @configkey abstract         bool
+     * @configkey final            bool
+     * @configkey static           bool
+     * @configkey visibility       string
      * @throws Exception\InvalidArgumentException
      * @param  array $array
      * @return MethodGenerator
@@ -175,6 +176,8 @@ class MethodGenerator extends AbstractMemberGenerator
                 case 'returntype':
                     $method->setReturnType($value);
                     break;
+                case 'returnsreference':
+                    $method->setReturnsReference((bool) $value);
             }
         }
 
@@ -222,6 +225,8 @@ class MethodGenerator extends AbstractMemberGenerator
             $this->setParameter($parameter);
         }
 
+        $this->sortParameters();
+
         return $this;
     }
 
@@ -249,6 +254,8 @@ class MethodGenerator extends AbstractMemberGenerator
         }
 
         $this->parameters[$parameter->getName()] = $parameter;
+
+        $this->sortParameters();
 
         return $this;
     }
@@ -309,6 +316,23 @@ class MethodGenerator extends AbstractMemberGenerator
         $this->returnsReference = (bool) $returnsReference;
 
         return $this;
+    }
+
+    public function returnsReference(): bool
+    {
+        return $this->returnsReference;
+    }
+
+    /**
+     * Sort parameters by their position
+     */
+    private function sortParameters(): void
+    {
+        uasort(
+            $this->parameters,
+            static fn(ParameterGenerator $item1, ParameterGenerator $item2)
+                => $item1->getPosition() <=> $item2->getPosition()
+        );
     }
 
     /**

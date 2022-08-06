@@ -4,7 +4,6 @@
 namespace App\Tools;
 
 
-use App\DeleteFile;
 use App\Entity\AdImages;
 use App\Entity\Ads;
 use Exception;

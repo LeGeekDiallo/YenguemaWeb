@@ -13,10 +13,7 @@ use Symfony\Component\Form\FormEvents;
  */
 class EasyAdminTabSubscriber implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::POST_SUBMIT => ['handleViolations', -1],
@@ -26,19 +23,17 @@ class EasyAdminTabSubscriber implements EventSubscriberInterface
     /**
      * Deal with form constraint violations. This method has to be executed with
      * a negative priority to make sure that the validation process is done.
-     *
-     * @param FormEvent $event
      */
     public function handleViolations(FormEvent $event)
     {
-        $formTabs = $event->getForm()->getConfig()->getAttribute('easyadmin_form_tabs');
+        $formTabs = $event->getForm()->getConfig()->getAttribute('ea_form_tabs');
 
         $firstTabWithErrors = null;
         foreach ($event->getForm() as $child) {
             $errors = $child->getErrors(true);
 
             if (\count($errors) > 0) {
-                $formTab = $child->getConfig()->getAttribute('easyadmin_form_tab');
+                $formTab = $child->getConfig()->getAttribute('ea_form_tab');
                 $formTabs[$formTab]['errors'] += \count($errors);
 
                 if (null === $firstTabWithErrors) {

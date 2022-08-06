@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\Exception\LogicException;
  */
 abstract class Extension implements ExtensionInterface, ConfigurationExtensionInterface
 {
-    private $processedConfigs = [];
+    private array $processedConfigs = [];
 
     /**
      * {@inheritdoc}
@@ -60,14 +60,12 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
      *
      * This can be overridden in a sub-class to specify the alias manually.
      *
-     * @return string The alias
-     *
      * @throws BadMethodCallException When the extension name does not follow conventions
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         $className = static::class;
-        if ('Extension' != substr($className, -9)) {
+        if (!str_ends_with($className, 'Extension')) {
             throw new BadMethodCallException('This extension does not follow the naming convention; you must overwrite the getAlias() method.');
         }
         $classBaseName = substr(strrchr($className, '\\'), 1, -9);
@@ -82,7 +80,7 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
     {
         $class = static::class;
 
-        if (false !== strpos($class, "\0")) {
+        if (str_contains($class, "\0")) {
             return null; // ignore anonymous classes
         }
 
@@ -124,11 +122,9 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
     }
 
     /**
-     * @return bool Whether the configuration is enabled
-     *
      * @throws InvalidArgumentException When the config is not enableable
      */
-    protected function isConfigEnabled(ContainerBuilder $container, array $config)
+    protected function isConfigEnabled(ContainerBuilder $container, array $config): bool
     {
         if (!\array_key_exists('enabled', $config)) {
             throw new InvalidArgumentException("The config array has no 'enabled' key.");

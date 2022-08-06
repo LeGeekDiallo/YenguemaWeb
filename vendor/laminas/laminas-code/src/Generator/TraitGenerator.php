@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Code\Generator;
 
 use Laminas\Code\Reflection\ClassReflection;
@@ -74,7 +68,7 @@ class TraitGenerator extends ClassGenerator
      * @configkey methods
      * @throws Exception\InvalidArgumentException
      * @param  array $array
-     * @return TraitGenerator
+     * @return static
      */
     public static function fromArray(array $array)
     {
@@ -121,7 +115,7 @@ class TraitGenerator extends ClassGenerator
 
     /**
      * @param int $flag
-     * @return self
+     * @return static
      */
     public function addFlag($flag)
     {
@@ -130,7 +124,7 @@ class TraitGenerator extends ClassGenerator
 
     /**
      * @param int $flag
-     * @return self
+     * @return static
      */
     public function removeFlag($flag)
     {
@@ -147,7 +141,7 @@ class TraitGenerator extends ClassGenerator
 
     /**
      * @param ?string $extendedClass
-     * @return self
+     * @return static
      */
     public function setExtendedClass($extendedClass)
     {

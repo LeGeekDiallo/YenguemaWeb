@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class StringToFileTransformer implements DataTransformerInterface
 {
-    private $uploadDir;
+    private string $uploadDir;
     private $uploadFilename;
     private $uploadValidate;
-    private $multiple;
+    private bool $multiple;
 
     public function __construct(string $uploadDir, callable $uploadFilename, callable $uploadValidate, bool $multiple)
     {
@@ -25,9 +25,6 @@ class StringToFileTransformer implements DataTransformerInterface
         $this->multiple = $multiple;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function transform($value)
     {
         if (null === $value || [] === $value) {
@@ -45,9 +42,6 @@ class StringToFileTransformer implements DataTransformerInterface
         return array_map([$this, 'doTransform'], $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function reverseTransform($value)
     {
         if (null === $value || [] === $value) {
@@ -75,11 +69,15 @@ class StringToFileTransformer implements DataTransformerInterface
             return $value;
         }
 
-        if (\is_string($value)) {
-            return new File($value);
+        if (!\is_string($value)) {
+            throw new TransformationFailedException('Expected a string or null.');
         }
 
-        throw new TransformationFailedException('Expected a string or null.');
+        if (is_file($this->uploadDir.$value)) {
+            return new File($this->uploadDir.$value);
+        }
+
+        return null;
     }
 
     private function doReverseTransform($value): ?string
@@ -93,13 +91,13 @@ class StringToFileTransformer implements DataTransformerInterface
                 throw new TransformationFailedException($value->getErrorMessage());
             }
 
-            $filename = $this->uploadDir.($this->uploadFilename)($value);
+            $filename = ($this->uploadFilename)($value);
 
             return ($this->uploadValidate)($filename);
         }
 
         if ($value instanceof File) {
-            return $value->getPathname();
+            return $value->getFilename();
         }
 
         throw new TransformationFailedException('Expected an instance of File or null.');

@@ -6,9 +6,7 @@ use Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand;
 use Doctrine\ORM\Tools\Export\Driver\AbstractExporter;
 use Doctrine\ORM\Tools\Export\Driver\XmlExporter;
 use Doctrine\ORM\Tools\Export\Driver\YamlExporter;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 use function assert;
 
@@ -18,6 +16,8 @@ use function assert;
  */
 class ConvertMappingDoctrineCommand extends ConvertMappingCommand
 {
+    use OrmProxyCommand;
+
     /**
      * {@inheritDoc}
      */
@@ -25,18 +25,13 @@ class ConvertMappingDoctrineCommand extends ConvertMappingCommand
     {
         parent::configure();
         $this
-            ->setName('doctrine:mapping:convert')
-            ->addOption('em', null, InputOption::VALUE_OPTIONAL, 'The entity manager to use for this command');
-    }
+            ->setName('doctrine:mapping:convert');
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        DoctrineCommandHelper::setApplicationEntityManager($this->getApplication(), $input->getOption('em'));
+        if ($this->getDefinition()->hasOption('em')) {
+            return;
+        }
 
-        return parent::execute($input, $output);
+        $this->addOption('em', null, InputOption::VALUE_OPTIONAL, 'The entity manager to use for this command');
     }
 
     /**

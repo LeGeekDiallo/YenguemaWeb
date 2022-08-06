@@ -5,16 +5,12 @@ Easily integrate with an OAuth2 server (e.g. Facebook, GitHub) for:
 * "Social" authentication / login
 * "Connect with Facebook" type of functionality
 * Fetching access keys via OAuth2 to be used with an API
-* Doing OAuth2 authentication with [Guard](https://knpuniversity.com/screencast/guard)
+* Doing OAuth2 authentication with [Symfony Custom Authenticator](https://symfonycasts.com/screencast/symfony-security)
+  (or [Guard Authenticator](https://symfonycasts.com/screencast/symfony-security) for legacy applications)
 
-This bundle integrates with [league/oauth2-client](http://oauth2-client.thephpleague.com/).
+This bundle integrates with [league/oauth2-client](https://oauth2-client.thephpleague.com/).
 
-## Requirements
-
-* PHP 7.1.3 or higher
-* Symfony 4.4 or higher (use version 1 of the bundle for earlier support)
-
-## This bundle or HWIOAuthBundle?
+## This Bundle or HWIOAuthBundle?
 
 In addition to this bundle, another OAuth bundle exists for Symfony: [hwi/oauth-bundle](https://github.com/hwi/HWIOAuthBundle).
 You might be wondering "why are there two popular OAuth bundles?".
@@ -46,78 +42,84 @@ Awesome! Now, you'll want to configure a client.
 You'll need to configure *one* client for *each* OAuth2 server
 (GitHub, Facebook, etc) that you want to talk to.
 
-### Step 1) Download the client library
+### Step 1) Download the Client Library
 
 Choose the one you want from this list and install it
 via Composer:
 
 <a name="client-downloader-table"></a>
 
-| OAuth2 Provider                                                        | Install                                             |
-| ---------------------------------------------------------------------- | ------------------------------------------------------- |
-| [Amazon](https://github.com/luchianenco/oauth2-amazon)                 | composer require luchianenco/oauth2-amazon          |
-| [AppID](https://github.com/Jampire/oauth2-appid)                       | composer require jampire/oauth2-appid               |
-| [Apple](https://github.com/patrickbussmann/oauth2-apple)               | composer require patrickbussmann/oauth2-apple       |
-| [Auth0](https://github.com/RiskioFr/oauth2-auth0)                      | composer require riskio/oauth2-auth0                |
-| [Azure](https://github.com/thenetworg/oauth2-azure)                    | composer require thenetworg/oauth2-azure            |
-| [Bitbucket](https://github.com/stevenmaguire/oauth2-bitbucket)         | composer require stevenmaguire/oauth2-bitbucket     |
-| [Box](https://github.com/stevenmaguire/oauth2-box)                     | composer require stevenmaguire/oauth2-box           |
-| [Buddy](https://github.com/buddy-works/oauth2-client)                  | composer require buddy-works/oauth2-client          |
-| [Buffer](https://github.com/tgallice/oauth2-buffer)                    | composer require tgallice/oauth2-buffer             |
-| [CanvasLMS](https://github.com/smtech/oauth2-canvaslms)                | composer require smtech/oauth2-canvaslms            |
-| [Clever](https://github.com/schoolrunner/oauth2-clever)                | composer require schoolrunner/oauth2-clever         |
-| [DevianArt](https://github.com/SeinopSys/oauth2-deviantart)            | composer require seinopsys/oauth2-deviantart        |
-| [DigitalOcean](https://github.com/chrishemmings/oauth2-digitalocean)   | composer require chrishemmings/oauth2-digitalocean  |
-| [Discord](https://github.com/wohali/oauth2-discord-new)                | composer require wohali/oauth2-discord-new          |
-| [Dribbble](https://github.com/crewlabs/oauth2-dribbble)                | composer require crewlabs/oauth2-dribbble           |
-| [Dropbox](https://github.com/stevenmaguire/oauth2-dropbox)             | composer require stevenmaguire/oauth2-dropbox       |
-| [Drupal](https://github.com/chrishemmings/oauth2-drupal)               | composer require chrishemmings/oauth2-drupal        |
-| [Elance](https://github.com/stevenmaguire/oauth2-elance)               | composer require stevenmaguire/oauth2-elance        |
-| [Eve Online](https://github.com/evelabs/oauth2-eveonline)              | composer require evelabs/oauth2-eveonline           |
-| [Eventbrite](https://github.com/stevenmaguire/oauth2-eventbrite)       | composer require stevenmaguire/oauth2-eventbrite    |
-| [Facebook](https://github.com/thephpleague/oauth2-facebook)            | composer require league/oauth2-facebook             |
-| [Fitbit](https://github.com/djchen/oauth2-fitbit)                      | composer require djchen/oauth2-fitbit               |
-| [Foursquare](https://github.com/stevenmaguire/oauth2-foursquare)       | composer require stevenmaguire/oauth2-foursquare    |
-| [Geocaching](https://github.com/surfoo/oauth2-geocaching)              | composer require surfoo/oauth2-geocaching           |
-| [GitHub](https://github.com/thephpleague/oauth2-github)                | composer require league/oauth2-github               |
-| [GitLab](https://github.com/omines/oauth2-gitlab)                      | composer require omines/oauth2-gitlab               |
-| [Google](https://github.com/thephpleague/oauth2-google)                | composer require league/oauth2-google               |
-| [HeadHunter](https://github.com/AlexMasterov/oauth2-headhunter)        | composer require alexmasterov/oauth2-headhunter     |
-| [Heroku](https://github.com/stevenmaguire/oauth2-heroku)               | composer require stevenmaguire/oauth2-heroku        |
-| [Instagram](https://github.com/thephpleague/oauth2-instagram)          | composer require league/oauth2-instagram            |
-| [Jira](https://github.com/mrjoops/oauth2-jira)                         | composer require mrjoops/oauth2-jira                |
-| [Keycloak](https://github.com/stevenmaguire/oauth2-keycloak)           | composer require stevenmaguire/oauth2-keycloak      |
-| [LinkedIn](https://github.com/thephpleague/oauth2-linkedin)            | composer require league/oauth2-linkedin             |
-| [MailRu](https://github.com/rakeev/oauth2-mailru)                      | composer require aego/oauth2-mailru                 |
-| [Microsoft](https://github.com/stevenmaguire/oauth2-microsoft)         | composer require stevenmaguire/oauth2-microsoft     |
-| [Mollie](https://github.com/mollie/oauth2-mollie-php)                  | composer require mollie/oauth2-mollie-php           |
-| [Odnoklassniki](https://github.com/rakeev/oauth2-odnoklassniki)        | composer require aego/oauth2-odnoklassniki          |
-| [Okta](https://github.com/foxworth42/oauth2-okta)                      | composer require foxworth42/oauth2-okta             |
-| [Paypal](https://github.com/stevenmaguire/oauth2-paypal)               | composer require stevenmaguire/oauth2-paypal        |
-| [PSN](https://github.com/larabros/oauth2-psn)                          | composer require larabros/oauth2-psn                |
-| [Salesforce](https://github.com/stevenmaguire/oauth2-salesforce)       | composer require stevenmaguire/oauth2-salesforce    |
-| [Slack](https://github.com/adam-paterson/oauth2-slack)                 | composer require adam-paterson/oauth2-slack         |
-| [Spotify](https://github.com/ker0x/oauth2-spotify)                     | composer require kerox/oauth2-spotify               |
-| [SymfonyConnect](https://github.com/qdequippe/oauth2-symfony-connect)  | composer require qdequippe/oauth2-symfony-connect   |
-| [Strava](https://github.com/Edwin-Luijten/oauth2-strava)               | composer require edwin-luijten/oauth2-strava        |
-| [Stripe](https://github.com/adam-paterson/oauth2-stripe)               | composer require adam-paterson/oauth2-stripe        |
-| [Twitch](https://github.com/tpavlek/oauth2-twitch)                     | composer require depotwarehouse/oauth2-twitch       |
-| [Uber](https://github.com/stevenmaguire/oauth2-uber)                   | composer require stevenmaguire/oauth2-uber          |
-| [Unsplash](https://github.com/hughbertd/oauth2-unsplash)               | composer require hughbertd/oauth2-unsplash          |
-| [Vimeo](https://github.com/saf33r/oauth2-vimeo)                        | composer require saf33r/oauth2-vimeo                |
-| [VKontakte](https://github.com/j4k/oauth2-vkontakte)                   | composer require j4k/oauth2-vkontakte               |
-| [Wave](https://github.com/qdequippe/oauth2-wave)                       | composer require qdequippe/oauth2-wave              |
-| [Yahoo](https://github.com/hayageek/oauth2-yahoo)                      | composer require hayageek/oauth2-yahoo              |
-| [Yandex](https://github.com/rakeev/oauth2-yandex)                      | composer require aego/oauth2-yandex                 |
-| [Zendesk](https://github.com/stevenmaguire/oauth2-zendesk)             | composer require stevenmaguire/oauth2-zendesk       |
-| generic                                                                | configure any unsupported provider                  |
+| OAuth2 Provider                                                       | How to Install                                     |
+| --------------------------------------------------------------------- | -------------------------------------------------- |
+| [Amazon](https://github.com/luchianenco/oauth2-amazon)                | composer require luchianenco/oauth2-amazon         |
+| [AppID](https://github.com/Jampire/oauth2-appid)                      | composer require jampire/oauth2-appid              |
+| [Apple](https://github.com/patrickbussmann/oauth2-apple)              | composer require patrickbussmann/oauth2-apple      |
+| [Auth0](https://github.com/RiskioFr/oauth2-auth0)                     | composer require riskio/oauth2-auth0               |
+| [Azure](https://github.com/thenetworg/oauth2-azure)                   | composer require thenetworg/oauth2-azure           |
+| [Bitbucket](https://github.com/stevenmaguire/oauth2-bitbucket)        | composer require stevenmaguire/oauth2-bitbucket    |
+| [Box](https://github.com/stevenmaguire/oauth2-box)                    | composer require stevenmaguire/oauth2-box          |
+| [Buddy](https://github.com/buddy-works/oauth2-client)                 | composer require buddy-works/oauth2-client         |
+| [Buffer](https://github.com/tgallice/oauth2-buffer)                   | composer require tgallice/oauth2-buffer            |
+| [CanvasLMS](https://github.com/smtech/oauth2-canvaslms)               | composer require smtech/oauth2-canvaslms           |
+| [Clever](https://github.com/schoolrunner/oauth2-clever)               | composer require schoolrunner/oauth2-clever        |
+| [DevianArt](https://github.com/SeinopSys/oauth2-deviantart)           | composer require seinopsys/oauth2-deviantart       |
+| [DigitalOcean](https://github.com/chrishemmings/oauth2-digitalocean)  | composer require chrishemmings/oauth2-digitalocean |
+| [Discord](https://github.com/wohali/oauth2-discord-new)               | composer require wohali/oauth2-discord-new         |
+| [Dribbble](https://github.com/crewlabs/oauth2-dribbble)               | composer require crewlabs/oauth2-dribbble          |
+| [Dropbox](https://github.com/stevenmaguire/oauth2-dropbox)            | composer require stevenmaguire/oauth2-dropbox      |
+| [Drupal](https://github.com/chrishemmings/oauth2-drupal)              | composer require chrishemmings/oauth2-drupal       |
+| [Elance](https://github.com/stevenmaguire/oauth2-elance)              | composer require stevenmaguire/oauth2-elance       |
+| [Eve Online](https://github.com/evelabs/oauth2-eveonline)             | composer require evelabs/oauth2-eveonline          |
+| [Eventbrite](https://github.com/stevenmaguire/oauth2-eventbrite)      | composer require stevenmaguire/oauth2-eventbrite   |
+| [Facebook](https://github.com/thephpleague/oauth2-facebook)           | composer require league/oauth2-facebook            |
+| [Fitbit](https://github.com/djchen/oauth2-fitbit)                     | composer require djchen/oauth2-fitbit              |
+| [Foursquare](https://github.com/stevenmaguire/oauth2-foursquare)      | composer require stevenmaguire/oauth2-foursquare   |
+| [FusionAuth](https://github.com/jerryhopper/oauth2-fusionauth)        | composer require jerryhopper/oauth2-fusionauth     |
+| [Geocaching](https://github.com/surfoo/oauth2-geocaching)             | composer require surfoo/oauth2-geocaching          |
+| [GitHub](https://github.com/thephpleague/oauth2-github)               | composer require league/oauth2-github              |
+| [GitLab](https://github.com/omines/oauth2-gitlab)                     | composer require omines/oauth2-gitlab              |
+| [Google](https://github.com/thephpleague/oauth2-google)               | composer require league/oauth2-google              |
+| [HeadHunter](https://github.com/AlexMasterov/oauth2-headhunter)       | composer require alexmasterov/oauth2-headhunter    |
+| [Heroku](https://github.com/stevenmaguire/oauth2-heroku)              | composer require stevenmaguire/oauth2-heroku       |
+| [Instagram](https://github.com/thephpleague/oauth2-instagram)         | composer require league/oauth2-instagram           |
+| [Jira](https://github.com/mrjoops/oauth2-jira)                        | composer require mrjoops/oauth2-jira               |
+| [Keycloak](https://github.com/stevenmaguire/oauth2-keycloak)          | composer require stevenmaguire/oauth2-keycloak     |
+| [LinkedIn](https://github.com/thephpleague/oauth2-linkedin)           | composer require league/oauth2-linkedin            |
+| [MailRu](https://github.com/rakeev/oauth2-mailru)                     | composer require aego/oauth2-mailru                |
+| [Microsoft](https://github.com/stevenmaguire/oauth2-microsoft)        | composer require stevenmaguire/oauth2-microsoft    |
+| [Mollie](https://github.com/mollie/oauth2-mollie-php)                 | composer require mollie/oauth2-mollie-php          |
+| [Odnoklassniki](https://github.com/rakeev/oauth2-odnoklassniki)       | composer require aego/oauth2-odnoklassniki         |
+| [Okta](https://github.com/foxworth42/oauth2-okta)                     | composer require foxworth42/oauth2-okta            |
+| [Paypal](https://github.com/stevenmaguire/oauth2-paypal)              | composer require stevenmaguire/oauth2-paypal       |
+| [PSN](https://github.com/larabros/oauth2-psn)                         | composer require larabros/oauth2-psn               |
+| [Salesforce](https://github.com/stevenmaguire/oauth2-salesforce)      | composer require stevenmaguire/oauth2-salesforce   |
+| [Slack](https://github.com/adam-paterson/oauth2-slack)                | composer require adam-paterson/oauth2-slack        |
+| [Spotify](https://github.com/ker0x/oauth2-spotify)                    | composer require kerox/oauth2-spotify              |
+| [SymfonyConnect](https://github.com/qdequippe/oauth2-symfony-connect) | composer require qdequippe/oauth2-symfony-connect  |
+| [Strava](https://github.com/Edwin-Luijten/oauth2-strava)              | composer require edwin-luijten/oauth2-strava       |
+| [Stripe](https://github.com/adam-paterson/oauth2-stripe)              | composer require adam-paterson/oauth2-stripe       |
+| [Twitch Deprecated](https://github.com/tpavlek/oauth2-twitch)         | composer require depotwarehouse/oauth2-twitch      |
+| [Twitch Helix](https://github.com/vertisan/oauth2-twitch-helix)       | composer require vertisan/oauth2-twitch-helix      |
+| [Uber](https://github.com/stevenmaguire/oauth2-uber)                  | composer require stevenmaguire/oauth2-uber         |
+| [Unsplash](https://github.com/hughbertd/oauth2-unsplash)              | composer require hughbertd/oauth2-unsplash         |
+| [Vimeo](https://github.com/saf33r/oauth2-vimeo)                       | composer require saf33r/oauth2-vimeo               |
+| [VKontakte](https://github.com/j4k/oauth2-vkontakte)                  | composer require j4k/oauth2-vkontakte              |
+| [Wave](https://github.com/qdequippe/oauth2-wave)                      | composer require qdequippe/oauth2-wave             |
+| [Yahoo](https://github.com/hayageek/oauth2-yahoo)                     | composer require hayageek/oauth2-yahoo             |
+| [Yandex](https://github.com/rakeev/oauth2-yandex)                     | composer require aego/oauth2-yandex                |
+| [Zendesk](https://github.com/stevenmaguire/oauth2-zendesk)            | composer require stevenmaguire/oauth2-zendesk      |
+| [Generic](#configuring-a-generic-provider)                            | configure any unsupported provider                 |
 
 <span name="end-client-downloader-table"></span>
 
-### Step 2) Configure the provider
+Don't see a provider you need in this list? Please, check the full list of third-party provider
+clients from [league/oauth2-client](https://oauth2-client.thephpleague.com/providers/thirdparty/).
+Otherwise, consider creating a [generic](#configuring-a-generic-provider) client yourself.
+
+### Step 2) Configure the Provider
 
 Awesome! Now, you'll configure your provider. For Facebook,
-this will look something like this.
+this will look something like this:
 
 ```yml
 # config/packages/knpu_oauth2_client.yaml
@@ -139,7 +141,7 @@ knpu_oauth2_client:
 
 Notice the two `'%env(var)%'`calls? Add these anywhere in your `.env` and `.env.dist` files.
 These are the credentials for the OAuth provider. For Facebook, you'll get these by registering
-your app on [developers.facebook.com](https://developers.facebook.com/apps/).
+your app on [developers.facebook.com](https://developers.facebook.com/apps/):
 
 ```bash
 # .env
@@ -189,7 +191,7 @@ class FacebookController extends AbstractController
         return $clientRegistry
             ->getClient('facebook_main') // key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
-	    	'public_profile', 'email' // the scopes you want to access
+                'public_profile', 'email' // the scopes you want to access
             ]);
     }
 
@@ -215,7 +217,7 @@ class FacebookController extends AbstractController
             $user = $client->fetchUser();
 
             // do something with all this new power!
-	    // e.g. $name = $user->getFirstName();
+            // e.g. $name = $user->getFirstName();
             var_dump($user); die;
             // ...
         } catch (IdentityProviderException $e) {
@@ -246,7 +248,7 @@ $provider = $client->getOAuth2Provider();
 $longLivedToken = $provider->getLongLivedAccessToken($accessToken);
 ```
 
-## Authenticating with Guard
+## Authenticating with the new Symfony Authenticator
 
 At this point, you now have a nice service that allows you to
 redirect your user to an OAuth server (e.g. Facebook) and fetch
@@ -254,10 +256,132 @@ their access token and user information.
 
 But often, you will want to actually authenticate that user: log
 them into your system. In that case, instead of putting all of
-the logic in `connectCheckAction` as shown above, you'll leave that
-blank and create a [Guard authenticator](https://symfonycasts.com/screencast/symfony-security),
-which will hold similar logic.
+the logic in `connectCheckAction()` as shown above, you'll leave that
+blank and create an authenticator which will hold similar logic.
 
+Now you can use the new Symfony Authenticator system (available **since Symfony 5.2**,
+don't use it before this version) to login in your app. For legacy Symfony versions,
+use [Guard Authenticator](#authenticating-with-guard) below.
+
+### Step 1) Using the new OAuth2Authenticator Class
+
+```php
+namespace App\Security;
+
+use App\Entity\User; // your user entity
+use Doctrine\ORM\EntityManagerInterface;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+
+class MyFacebookAuthenticator extends OAuth2Authenticator
+{
+    private $clientRegistry;
+    private $entityManager;
+    private $router;
+
+    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router)
+    {
+        $this->clientRegistry = $clientRegistry;
+        $this->entityManager = $entityManager;
+        $this->router = $router;
+    }
+
+    public function supports(Request $request): ?bool
+    {
+        // continue ONLY if the current ROUTE matches the check ROUTE
+        return $request->attributes->get('_route') === 'connect_facebook_check';
+    }
+
+    public function authenticate(Request $request): Passport
+    {
+        $client = $this->clientRegistry->getClient('facebook_main');
+        $accessToken = $this->fetchAccessToken($client);
+
+        return new SelfValidatingPassport(
+            new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
+                /** @var FacebookUser $facebookUser */
+                $facebookUser = $client->fetchUserFromToken($accessToken);
+
+                $email = $facebookUser->getEmail();
+
+                // 1) have they logged in with Facebook before? Easy!
+                $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['facebookId' => $facebookUser->getId()]);
+
+                if ($existingUser) {
+                    return $existingUser;
+                }
+
+                // 2) do we have a matching user by email?
+                $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+
+                // 3) Maybe you just want to "register" them by creating
+                // a User object
+                $user->setFacebookId($facebookUser->getId());
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+
+                return $user;
+            })
+        );
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        // change "app_homepage" to some route in your app
+        $targetUrl = $this->router->generate('app_homepage');
+
+        return new RedirectResponse($targetUrl);
+    
+        // or, on success, let the request continue to be handled by the controller
+        //return null;
+    }
+
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    {
+        $message = strtr($exception->getMessageKey(), $exception->getMessageData());
+
+        return new Response($message, Response::HTTP_FORBIDDEN);
+    }
+}
+```
+
+### Step 2) Configuring the Security
+
+Next, enable the new authenticator manager and then register your authenticator
+in `security.yaml` under the `custom_authenticators` section:
+
+```diff
+# app/config/packages/security.yaml
+security:
+    # ...
++   enable_authenticator_manager: true
+  
+    firewalls:
+        # ...
+        main:
+        # ...
++           custom_authenticators:
++               - App\Security\MyFacebookAuthenticator
+```
+
+> **CAUTION** You *can* also inject the individual client (e.g. `FacebookClient`)
+into your authenticator instead of the `ClientRegistry`. However, this may cause
+circular reference issues and degrades performance (because authenticators are instantiated
+on every request, even though you *rarely* need the `FacebookClient` to be created).
+The `ClientRegistry` lazily creates the client objects.
+
+## Authenticating with Guard
+
+Create a [Guard Authenticator](https://symfonycasts.com/screencast/symfony-security).
 A `SocialAuthenticator` base class exists to help with a few things:
 
 ```php
@@ -285,7 +409,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
     {
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
-	$this->router = $router;
+        $this->router = $router;
     }
 
     public function supports(Request $request)
@@ -342,7 +466,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         return $this->clientRegistry
             // "facebook_main" is the key used in config/packages/knpu_oauth2_client.yaml
             ->getClient('facebook_main');
-	}
+    }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
@@ -385,9 +509,9 @@ Next, register your authenticator in `security.yaml` under the `guard` section:
 security:
     # ...
     firewalls:
-    	# ...
+        # ...
         main:
-	    # ...
+        # ...
 +            guard:
 +                authenticators:
 +                    - App\Security\MyFacebookAuthenticator
@@ -395,19 +519,13 @@ security:
 
 For more details: see http://symfony.com/doc/current/cookbook/security/guard-authentication.html#step-2-configure-the-authenticator.
 
-**CAUTION** You *can* also inject the individual client (e.g. `FacebookClient`)
-into your authenticator instead of the `ClientRegistry`. However, this may cause
-circular reference issues and degrades performance (because authenticators are instantiated
-on every request, even though you *rarely* need the `FacebookClient` to be created).
-The `ClientRegistry` lazily creates the client objects.
-
-### Authenticating any OAuth user
+### Authenticating any OAuth User
 
 If you don't need to fetch/persist any information about the user, you can use the
 `OAuthUserProvider` service to quickly authenticate them in your application (if you're
-using Doctrine, use the normal [entity user provider](http://symfony.com/doc/current/security/entity_provider.html)).
+using Doctrine, use the normal [entity user provider](https://symfony.com/doc/current/security/user_providers.html#entity-user-provider)).
 
-First define the user provider in your `security.yaml` file:
+First, define the user provider in your `security.yaml` file:
 
 ```yml
 security:
@@ -428,123 +546,11 @@ public function getUser($credentials, UserProviderInterface $userProvider)
 The logged-in user will be an instance of `KnpU\OAuth2ClientBundle\Security\User\OAuthUser` and will
 have the roles `ROLE_USER` and `ROLE_OAUTH_USER`.
 
-## Using the new Symfony Authenticator
-
-Now you can use the new Symfony Authenticator system (available **since Symfony 5.2**, don't
-use it before this version) to login in your app.
-
-### Step 1) Using the new OAuth2Authenticator class
-
-```php
-namespace App\Security;
-
-use App\Entity\User; // your user entity
-use Doctrine\ORM\EntityManagerInterface;
-use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
-use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
-
-class MyFacebookAuthenticator extends OAuth2Authenticator
-{
-    private $clientRegistry;
-    private $entityManager;
-    private $router;
-
-    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router)
-    {
-        $this->clientRegistry = $clientRegistry;
-        $this->entityManager = $entityManager;
-        $this->router = $router;
-    }
-
-    public function supports(Request $request): ?bool
-    {
-        // continue ONLY if the current ROUTE matches the check ROUTE
-        return $request->attributes->get('_route') === 'connect_facebook_check';
-    }
-
-    public function authenticate(Request $request): PassportInterface
-    {
-        $credentials = $this->fetchAccessToken($this->clientRegistry->getClient('facebook_main'));
-
-        return new SelfValidatingPassport(
-            new UserBadge($credentials, function($credentials) {
-                /** @var FacebookUser $facebookUser */
-                $facebookUser = $this->clientRegistry->getClient('facebook_main')->fetchUserFromToken($credentials);
-
-                $email = $facebookUser->getEmail();
-
-                // 1) have they logged in with Facebook before? Easy!
-                $existingUser = $this->em->getRepository(User::class)->findOneBy(['facebookId' => $facebookUser->getId()]);
-
-                if ($existingUser) {
-                    return $existingUser;
-                }
-
-                // 2) do we have a matching user by email?
-                $user = $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
-
-                // 3) Maybe you just want to "register" them by creating
-                // a User object
-                $user->setFacebookId($facebookUser->getId());
-                $this->em->persist($user);
-                $this->em->flush();
-
-                return $user;
-            })
-        );
-    }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
-    {
-        // change "app_homepage" to some route in your app
-        $targetUrl = $this->router->generate('app_homepage');
-
-        return new RedirectResponse($targetUrl);
-    
-        // or, on success, let the request continue to be handled by the controller
-        //return null;
-    }
-
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
-    {
-        $message = strtr($exception->getMessageKey(), $exception->getMessageData());
-
-        return new Response($message, Response::HTTP_FORBIDDEN);
-    }
-}
-```
-### Step 2) Configuring the security
-
-Next, enable the new authenticator manager and then register your authenticator
-in `security.yaml` under the `custom_authenticators` section:
-
-```diff
-# app/config/packages/security.yaml
-security:
-    # ...
-+   enable_authenticator_manager: true
-  
-    firewalls:
-        # ...
-        main:
-        # ...
-+           custom_authenticators:
-+               - App\Security\MyFacebookAuthenticator
-```
-
-## Storing and refreshing tokens
+## Storing and Refreshing Tokens
 
 You have a couple of options to store access tokens for use at a later time:
 
-1. Store the `AccessToken` object (eg. serializing into the session), this allows you to check expiry before refreshing
+1. Store the `AccessToken` object (e.g. serializing into the session), this allows you to check expiry before refreshing:
     ```php
     // Fetch and store the AccessToken
     $accessToken = $client->getAccessToken();
@@ -554,15 +560,15 @@ You have a couple of options to store access tokens for use at a later time:
     $accessToken = $session->get('access_token');
 
     if ($accessToken->hasExpired()) {
-        $accessToken = $client->refreshAccessToken($accessToken->getRefreshToken);
+        $accessToken = $client->refreshAccessToken($accessToken->getRefreshToken());
 
         // Update the stored access token for next time
         $session->set('access_token', $accessToken);
     }
     ```
 
-2. Store the refresh token string (eg. in the dabatase `user.refresh_token`), this means you must always refresh. 
-    You can also store the access token and expiration and then avoid the refresh until the access token is actually expired.
+2. Store the refresh token string (e.g. in the database `user.refresh_token`), this means you must always refresh. 
+    You can also store the access token and expiration and then avoid the refresh until the access token is actually expired:
     ```php
     // Fetch the AccessToken and store the refresh token
     $accessToken = $client->getAccessToken();
@@ -570,10 +576,10 @@ You have a couple of options to store access tokens for use at a later time:
     $entityManager->flush();
 
     // Get a new AccessToken from the refresh token, and store the new refresh token for next time
-    $accessToken = $client->refreshAccessToken($user->getRefreshToken);
+    $accessToken = $client->refreshAccessToken($user->getRefreshToken());
     $user->setRefreshToken($accessToken->getRefreshToken());
     $entityManager->flush();
-```
+    ```
 
 Depending on your OAuth2 provider, you may need to pass some parameters when initially creating and/or refreshing the token:
 
@@ -589,7 +595,7 @@ $accessToken = $client->refreshAccessToken($accessToken->getRefreshtoken(), ['sc
 
 Below is the configuration for *all* of the supported OAuth2 providers.
 **Don't see the one you need?** Use the `generic` provider to configure
-any provider.
+any provider:
 
 ```yml
 # config/packages/knpu_oauth2_client.yaml
@@ -600,6 +606,7 @@ knpu_oauth2_client:
     # options to configure the default http client
     # http_client_options:
     #     timeout: 0
+    #     # if you want to disable the proxy (e.g. local GitLab OAuth) - set it to "false"
     #     proxy: null
     #     Use only with proxy option set
     #     verify: false
@@ -990,6 +997,23 @@ knpu_oauth2_client:
             # a route name you'll create
             redirect_route: connect_four_square_check
             redirect_params: {}
+            # whether to check OAuth2 "state": defaults to true
+            # use_state: true
+
+        # will create service: "knpu.oauth2.client.fusion_auth"
+        # an instance of: KnpU\OAuth2ClientBundle\Client\Provider\FusionAuthClient
+        # composer require jerryhopper/oauth2-fusionauth
+        fusion_auth:
+            # must be "fusion_auth" - it activates that type!
+            type: fusion_auth
+            # add and set these environment variables in your .env files
+            client_id: '%env(OAUTH_FUSION_AUTH_CLIENT_ID)%'
+            client_secret: '%env(OAUTH_FUSION_AUTH_CLIENT_SECRET)%'
+            # a route name you'll create
+            redirect_route: connect_fusion_auth_check
+            redirect_params: {}
+            # FusionAuth Server URL, no trailing slash
+            auth_server_url: null
             # whether to check OAuth2 "state": defaults to true
             # use_state: true
 
@@ -1391,6 +1415,21 @@ knpu_oauth2_client:
             # whether to check OAuth2 "state": defaults to true
             # use_state: true
 
+        # will create service: "knpu.oauth2.client.twitch_helix"
+        # an instance of: KnpU\OAuth2ClientBundle\Client\Provider\TwitchHelixClient
+        # composer require vertisan/oauth2-twitch-helix
+        twitch_helix:
+            # must be "twitch_helix" - it activates that type!
+            type: twitch_helix
+            # add and set these environment variables in your .env files
+            client_id: '%env(OAUTH_TWITCH_HELIX_CLIENT_ID)%'
+            client_secret: '%env(OAUTH_TWITCH_HELIX_CLIENT_SECRET)%'
+            # a route name you'll create
+            redirect_route: connect_twitch_helix_check
+            redirect_params: {}
+            # whether to check OAuth2 "state": defaults to true
+            # use_state: true
+
         # will create service: "knpu.oauth2.client.uber"
         # an instance of: KnpU\OAuth2ClientBundle\Client\Provider\UberClient
         # composer require stevenmaguire/oauth2-uber
@@ -1522,11 +1561,11 @@ You can configure a custom "provider" using the `generic` type.
 ### 1) Find / Create your Provider Library
 
 First, see if your OAuth server already has a "provider library"
-that you can use: See [Provider Client Libraries](http://oauth2-client.thephpleague.com/providers/league/).
+that you can use: See [Provider Client Libraries](https://oauth2-client.thephpleague.com/providers/league/).
 
 If you found one there, awesome! Install it. If not, you'll need
 to create your own Provider class. See the
-[Provider Guide](https://github.com/thephpleague/oauth2-client/blob/master/README.PROVIDER-GUIDE.md)
+[Provider Guide](https://oauth2-client.thephpleague.com/providers/implementing/)
 about this.
 
 Either way, after this step, you *should* have a provider "class"
@@ -1565,11 +1604,11 @@ knpu_oauth2_client:
 That's it! Now you'll have a `knpu.oauth2.client.foo_bar_oauth` service
 you can use.
 
-## Extending/Decorating Client Classes
+## Extending / Decorating Client Classes
 
 Maybe you need some extra services inside your client class? No problem! You can
 decorate existing client class with your own implementation. All you need is
-new class that implement OAuth2ClientInterface:
+a new class that implements `OAuth2ClientInterface`:
 
 ```php
 namespace App\Client;
@@ -1593,7 +1632,7 @@ class CacheableAzureClient implements OAuth2ClientInterface
 }
 ```
 
-and configure it:
+And configure it:
 
 ```yml
 # config/services.yaml

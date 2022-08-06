@@ -2,19 +2,17 @@
 
 namespace App\Controller;
 
-use App\DeleteFile;
 use App\Entity\Ads;
 use App\Entity\AdSearch;
 use App\Entity\User;
 use App\Form\AdSearchType;
 use App\Form\AdsType;
-use App\Notification\NewActivityNotification;
 use App\Notification\NewAdsNotification;
 use App\Repository\AdsRepository;
+use App\Tools\DeleteFile;
 use App\Tools\UploadFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,9 +35,8 @@ class AdsController extends AbstractController
     }
 
 
-    /**
-     * @Route("/ads", name="ads_universe")
-     */
+
+    #[Route("/ads", name:"ads_universe")]
     public function index(AdsRepository $repository): Response
     {
         $ad_search = new AdSearch();
@@ -57,7 +54,6 @@ class AdsController extends AbstractController
      * @param string $adsImageDir
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     public function create_new_ads(Request $request, User $user, string $adsImageDir, NotifierInterface $notifier):Response{
         $ad = new Ads();

@@ -41,7 +41,6 @@ class ApartController extends AbstractController
      * @param NotifierInterface $notifier
      * @param FileUploader $fileUploader
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/apart/new_apartment/{id}-new-apartment', name: 'new_apart')]
     public function newApartment(Request $request, User $user, NotifierInterface $notifier, FileUploader $fileUploader): Response
@@ -78,7 +77,6 @@ class ApartController extends AbstractController
      * @param User $user
      * @param string $slug
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/apart/apartments/{id}-apartments-{slug}', name: 'user_apartments')]
     public function userApartments(User $user, string $slug):Response{

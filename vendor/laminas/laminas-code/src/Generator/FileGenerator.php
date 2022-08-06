@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Code\Generator;
 
 use Laminas\Code\DeclareStatement;
@@ -106,9 +100,10 @@ class FileGenerator extends AbstractGenerator
                     $fileGenerator->setRequiredFiles($value);
                     break;
                 case 'declares':
-                    $fileGenerator->setDeclares(array_map(static function ($directive, $value) {
-                        return DeclareStatement::fromArray([$directive => $value]);
-                    }, array_keys($value), $value));
+                    $fileGenerator->setDeclares(
+                        array_map(static fn($directive, $value) =>
+                            DeclareStatement::fromArray([$directive => $value]), array_keys($value), $value)
+                    );
                     break;
                 default:
                     if (property_exists($fileGenerator, $name)) {
@@ -369,7 +364,6 @@ class FileGenerator extends AbstractGenerator
     public function setDeclares(array $declares)
     {
         foreach ($declares as $declare) {
-            /** @psalm-suppress DocblockTypeContradiction $declare should be always DeclareStatement */
             if (! $declare instanceof DeclareStatement) {
                 throw new InvalidArgumentException(sprintf(
                     '%s is expecting an array of %s objects',

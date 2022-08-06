@@ -58,16 +58,14 @@ final class <className> extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
 <down>
-    }
+    }<override>
 }
 
 TEMPLATE;
 
-    /** @var Configuration */
-    private $configuration;
+    private Configuration $configuration;
 
-    /** @var string|null */
-    private $template;
+    private ?string $template = null;
 
     public function __construct(Configuration $configuration)
     {
@@ -98,6 +96,15 @@ TEMPLATE;
             '<className>' => $className,
             '<up>' => $up !== null ? '        ' . implode("\n        ", explode("\n", $up)) : null,
             '<down>' => $down !== null ? '        ' . implode("\n        ", explode("\n", $down)) : null,
+            '<override>' => $this->configuration->isTransactional() ? '' : <<<'METHOD'
+
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
+METHOD
+        ,
         ];
 
         $code = strtr($this->getTemplate(), $replacements);

@@ -1,50 +1,50 @@
+> **Warning**
+> Due to the overwhelming amount of pending issues and pull requests, users can no longer interact with this repository (add comments, open issues, or create pull requests) during the entire month of July 2022. Users who committed to this repository in the past can still interact with it. We're sorry but we had to do this to take care of the mental health our maintainers.
+
 EasyAdmin
 =========
 
-EasyAdmin creates administration backends for your Symfony applications with
-unprecedented simplicity.
+EasyAdmin is a fast, beautiful and modern admin generator for Symfony applications.
 
-<img src="https://raw.githubusercontent.com/EasyCorp/EasyAdminBundle/2.x/doc/images/easyadmin-promo.png" alt="Symfony Backends created with EasyAdmin" align="right" />
+![EasyAdmin, a fast, beautiful and modern admin generator for Symfony applications](/doc/images/easyadmin-promo.jpg)
 
-* [Installation][1]
-* [Creating Your First Backend][2]
-* [Documentation][3]
+Installation
+------------
 
-**Features**
+EasyAdmin 4 requires PHP 8.0.2 or higher and Symfony 5.4 or higher. Run the
+following command to install it in your application:
 
-  * **CRUD** operations on Doctrine entities (create, edit, list, delete).
-  * Full-text **search**, **pagination** and column **sorting**.
-  * Supports Symfony 4.1 or higher
-  * Translated into tens of languages.
-  * **Fast**, **simple** and **smart** where appropriate.
+```
+$ composer require easycorp/easyadmin-bundle
+```
 
-**Requirements**
+Documentation
+-------------
 
-  * Symfony 4.1 or higher applications.
-  * Doctrine ORM entities (Doctrine ODM not supported).
-  * Entities with composite keys or using inheritance are not supported.
+  * Read [EasyAdmin Docs][1] on the official Symfony website
+  * Check out the [EasyAdmin video tutorial][2] on SymfonyCasts
 
 Versions
 --------
 
-* [1.x version](https://github.com/EasyCorp/EasyAdminBundle/tree/1.x): no longer
-  maintained. Recommended only for legacy projects using a Symfony version prior to 4.1;
-* [2.x version](https://github.com/EasyCorp/EasyAdminBundle/tree/2.x): the current
-  stable version. Recommended for all projects using Symfony 4.1 or newer;
-* [3.x version](https://github.com/EasyCorp/EasyAdminBundle/tree/master): it's
-  still in early development. Don't use it in any project yet.
+| Repository Branch | EasyAdmin Version | Symfony Compatibility  | PHP Compatibility | Status               | Docs
+| ----------------- | ----------------- | ---------------------- | ----------------- | -------------------- | ---
+| `4.x`             | `4.x`             | `5.4`, and `6.x`       | `8.0.2` or higher | New features and bug fixes | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/master/index.html)
+| `3.x`             | `3.x`             | `4.4`, and `5.x`       | `7.2.5` or higher | Bug fixes only; no new features | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/3.x/index.html)
+| `2.x`             | `2.x`             | `4.x`, and `5.x`       | `7.1.3` or higher | No longer maintained | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/2.x/index.html)
+| `1.x`             | `1.x`             | `2.x`, `3.x` and `4.x` | `5.3.0` or higher | No longer maintained | -
 
 Demo Application
 ----------------
 
-[easy-admin-demo](https://github.com/javiereguiluz/easy-admin-demo) is a complete
-Symfony application created to showcase EasyAdmin features.
+[easyadmin-demo](https://github.com/EasyCorp/easyadmin-demo) is a complete
+Symfony application that showcases EasyAdmin features. It's based on the
+[Symfony Demo](https://github.com/symfony/demo) project.
 
 License
 -------
 
 This software is published under the [MIT License](LICENSE.md)
 
-[1]: https://symfony.com/doc/current/bundles/EasyAdminBundle/book/installation.html
-[2]: https://symfony.com/doc/current/bundles/EasyAdminBundle/book/your-first-backend.html
-[3]: https://symfony.com/doc/current/bundles/EasyAdminBundle
+[1]: https://symfony.com/doc/4.x/bundles/EasyAdminBundle/index.html
+[2]: https://symfonycasts.com/screencast/easyadminbundle

@@ -19,7 +19,7 @@ namespace Symfony\Component\Security\Core\Exception;
  */
 class TooManyLoginAttemptsAuthenticationException extends AuthenticationException
 {
-    private $threshold;
+    private ?int $threshold;
 
     public function __construct(int $threshold = null)
     {
@@ -33,6 +33,7 @@ class TooManyLoginAttemptsAuthenticationException extends AuthenticationExceptio
     {
         return [
             '%minutes%' => $this->threshold,
+            '%count%' => (int) $this->threshold,
         ];
     }
 

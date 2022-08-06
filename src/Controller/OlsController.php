@@ -38,7 +38,6 @@ class OlsController extends AbstractController
      * @param NotifierInterface $notifier
      * @param FileUploader $fileUploader
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/ols/new_ols/{id}-new-ols', name: 'new_ols')]
     public function newOls(Request $request, User $user, NotifierInterface $notifier, FileUploader $fileUploader):Response{
@@ -67,7 +66,6 @@ class OlsController extends AbstractController
      * @param User $user
      * @param string $slug
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/ols/olss/{id}-olss-{slug}', name: 'user_olss')]
     public function userOls(User $user, string $slug):Response{

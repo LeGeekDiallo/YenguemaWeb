@@ -11,8 +11,8 @@ use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 use League\OAuth2\Client\Provider\FacebookUser;
 use League\OAuth2\Client\Provider\GoogleUser;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -34,7 +34,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Used to upgrade (rehash) the user's password automatically over time.
      * @throws ORMException
      */
-    public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
+    public function upgradePassword(UserInterface|PasswordAuthenticatedUserInterface $user, string $newEncodedPassword): void
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
@@ -50,7 +50,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * @throws NoResultException
      * @throws ORMException
      */
-    public function findOrCreateFromFacebookOauth(FacebookUser $facebookUser, UserPasswordEncoderInterface $encoder):User{
+    /*public function findOrCreateFromFacebookOauth(FacebookUser $facebookUser, UserPasswordEncoderInterface $encoder):User{
         $user = $this->createQueryBuilder('u')
             ->where('u.facebook_id = :facebookId')
             ->setParameter('facebookId', $facebookUser->getId())
@@ -73,7 +73,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
 
         return  $user;
-    }
+    }*/
 
     /**
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -81,7 +81,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * @throws NonUniqueResultException
      * @throws NoResultException
      */
-    public function findOrCreateGoogleOauth(GoogleUser $googleUser, UserPasswordEncoderInterface $encoder):User{
+    /*public function findOrCreateGoogleOauth(GoogleUser $googleUser, UserPasswordEncoderInterface $encoder):User{
         $user = $this->createQueryBuilder('u')
             ->where('u.google_id = :googleId')
             ->setParameter('googleId', $googleUser->getId())
@@ -102,5 +102,5 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->persist($user);
         $this->_em->flush();
         return  $user;
-    }
+    }*/
 }

@@ -61,7 +61,6 @@ class TaxiController extends AbstractController
      * @param User $user
      * @param NotifierInterface $notifier
      * @return Response
-     * @IsGranted("ROLE_USER")
      */
     #[Route('/taxi/new_taxi/{id}-new-TaxiDriver', name: 'new_taxidriver')]
     public function addNewTaxi(Request $request, User $user, NotifierInterface $notifier):Response{
@@ -92,7 +91,6 @@ class TaxiController extends AbstractController
      * @param NotifierInterface $notifier
      * @return Response
      * @Route("/taxi/edit_taxi/{id}-edit-TaxiDriver", name="edit_taxi")
-     * @IsGranted("ROLE_USER")
      */
     public function editTaxi(Request $request, TaxiDriver $taxiDriver, NotifierInterface $notifier):Response{
         $form = $this->createForm(TaxiDriverFormType::class, $taxiDriver);

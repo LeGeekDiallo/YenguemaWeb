@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\DeleteFile;
 use App\Entity\NewPassword;
 use App\Entity\User;
 use App\Entity\UserAvatar;
@@ -10,92 +9,45 @@ use App\Form\NewPasswordFormType;
 use App\Form\UploadFileFormType;
 use App\Repository\UserRepository;
 use App\Tools\UploadFile;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Exception\ORMException;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-
     /**
-     * SecurityController constructor.
      * @param EntityManagerInterface $entityManager
+     * @param UserPasswordHasherInterface $encoder
      */
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private UserPasswordEncoderInterface $encoder)
+        private UserPasswordHasherInterface $encoder)
     {}
-
-    /**
-     * @Route("/security/login_user", name="login_user")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
-     */
+    #[Route(path: '/login', name: 'login_user')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('/security/login_user.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login_user.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    /**
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
-     * @param UserRepository $repos
-     * @return Response
-     */
-    #[Route("/security/login_app", name: "login_app")]
-    public function logInFromApp(Request $request, UserPasswordEncoderInterface $encoder, UserRepository $repos):Response{
-        if($user = $repos->findOneBy(["email"=>$request->get("email")])){
-            $avFilename = null;
-            if($encoder->isPasswordValid($user, $request->get("password"))) {
-                if($user->getUserAvatar()!=null)
-                    $avFilename = $user->getUserAvatar()->getImageName();
-                return $this->json(["resp" =>
-                    ["logIn" => true, "u_id" => $user->getId(), "email" => $user->getEmail(),
-                        "username" => $user->getUsername(),
-                        "usergender" => $user->getSexe(),
-                        "avatar" => $avFilename,
-                        "avatar_URL" => "https://www.leyenguema.com/images/users_avatar/"
-                    ]
-                ]);
-            } else{
-                return $this->json(["resp"=>["logIn"=>false, "u_id"=>$user->getId(), "email"=>$user->getEmail(),
-                    "username"=>$user->getUsername(),
-                    "usergender"=>$user->getSexe(),
-                    "avatar"=>null,
-                    "avatar_URL"=>"https://127.0.0.1:8000/images/users_avatar/"
-                ]]);
-            }
-        }
-        return $this->json([
-            "resp"=>["logIn"=>null, "u_id"=>null,
-                "email"=>null,
-                "username"=>null,
-                "usergender"=>null,
-                "avatar"=>null,
-                "avatar_URL"=>null
-            ]
-        ]);
-    }
-    /**
-     * @Route("/logout", name="app_logout")
-     */
-    public function logout()
+    #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
@@ -184,7 +136,7 @@ class SecurityController extends AbstractController
      * @param Request $request
      * @param NotifierInterface $notifier
      * @return Response
-     * @throws ORMException
+     * @throws ORMException|\Doctrine\ORM\ORMException
      */
     public function password_update(UserRepository $userRepository, Request $request, NotifierInterface $notifier):Response{
         $newPassword = new NewPassword();
@@ -193,7 +145,7 @@ class SecurityController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $user = $userRepository->findOneBy(['email'=>$newPassword->getEmail()]);
             if($user){
-                $password_hash = $this->encoder->encodePassword($user, $newPassword->getNewPassword());
+                $password_hash = $this->encoder->hashPassword($user, $newPassword->getNewPassword());
                 $userRepository->upgradePassword($user, $password_hash);
                 $notifier->send(new Notification("Mot de passe modifié avec succès !", ['browser']));
                 return $this->redirectToRoute('login_user');
@@ -294,6 +246,47 @@ class SecurityController extends AbstractController
             'id'=>$user->getId(),
             'slug'=>$slug,
             'results'=>$user->getRides()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $encoder
+     * @param UserRepository $repos
+     * @return Response
+     */
+    #[Route("/security/login_app", name: "login_app")]
+    public function logInFromApp(Request $request, UserPasswordHasherInterface $encoder, UserRepository $repos):Response{
+        if($user = $repos->findOneBy(["email"=>$request->get("email")])){
+            $avFilename = null;
+            if($encoder->isPasswordValid($user, $request->get("password"))) {
+                if($user->getUserAvatar()!=null)
+                    $avFilename = $user->getUserAvatar()->getImageName();
+                return $this->json(["resp" =>
+                    ["logIn" => true, "u_id" => $user->getId(), "email" => $user->getEmail(),
+                        "username" => $user->getUsername(),
+                        "usergender" => $user->getSexe(),
+                        "avatar" => $avFilename,
+                        "avatar_URL" => "https://www.leyenguema.com/images/users_avatar/"
+                    ]
+                ]);
+            } else{
+                return $this->json(["resp"=>["logIn"=>false, "u_id"=>$user->getId(), "email"=>$user->getEmail(),
+                    "username"=>$user->getUsername(),
+                    "usergender"=>$user->getSexe(),
+                    "avatar"=>null,
+                    "avatar_URL"=>"https://127.0.0.1:8000/images/users_avatar/"
+                ]]);
+            }
+        }
+        return $this->json([
+            "resp"=>["logIn"=>null, "u_id"=>null,
+                "email"=>null,
+                "username"=>null,
+                "usergender"=>null,
+                "avatar"=>null,
+                "avatar_URL"=>null
+            ]
         ]);
     }
 }

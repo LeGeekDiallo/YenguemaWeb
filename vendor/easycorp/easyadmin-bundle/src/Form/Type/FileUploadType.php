@@ -16,22 +16,22 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Uid\Ulid;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 class FileUploadType extends AbstractType implements DataMapperInterface
 {
-    private $projectDir;
+    private string $projectDir;
 
     public function __construct(string $projectDir)
     {
         $this->projectDir = $projectDir;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $uploadDir = $options['upload_dir'];
@@ -48,9 +48,6 @@ class FileUploadType extends AbstractType implements DataMapperInterface
         $builder->addModelTransformer(new StringToFileTransformer($uploadDir, $uploadFilename, $uploadValidate, $options['multiple']));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         /** @var FileUploadState $state */
@@ -77,27 +74,17 @@ class FileUploadType extends AbstractType implements DataMapperInterface
         $view->vars['download_path'] = $options['download_path'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $uploadNew = static function (UploadedFile $file, string $uploadDir, string $fileName) {
-            $name = str_replace('\\', '/', $fileName);
-            $pos = strrpos($name, '/');
-            $subDir = false === $pos ? '' : substr($name, 0, $pos);
-            $name = false === $pos ? $name : substr($name, $pos + 1);
-
-            $file->move(rtrim($uploadDir, '/\\').\DIRECTORY_SEPARATOR.$subDir, $name);
+            $file->move($uploadDir, $fileName);
         };
 
         $uploadDelete = static function (File $file) {
             unlink($file->getPathname());
         };
 
-        $uploadFilename = static function (UploadedFile $file): string {
-            return $file->getClientOriginalName();
-        };
+        $uploadFilename = static fn (UploadedFile $file): string => $file->getClientOriginalName();
 
         $uploadValidate = static function (string $filename): string {
             if (!file_exists($filename)) {
@@ -113,21 +100,13 @@ class FileUploadType extends AbstractType implements DataMapperInterface
             return $filename;
         };
 
-        $downloadPath = function (Options $options) {
-            return mb_substr($options['upload_dir'], mb_strlen($this->projectDir.'/public/'));
-        };
+        $downloadPath = fn (Options $options) => mb_substr($options['upload_dir'], mb_strlen($this->projectDir.'/public/'));
 
-        $allowAdd = static function (Options $options) {
-            return $options['multiple'];
-        };
+        $allowAdd = static fn (Options $options) => $options['multiple'];
 
-        $dataClass = static function (Options $options) {
-            return $options['multiple'] ? null : File::class;
-        };
+        $dataClass = static fn (Options $options) => $options['multiple'] ? null : File::class;
 
-        $emptyData = static function (Options $options) {
-            return $options['multiple'] ? [] : null;
-        };
+        $emptyData = static fn (Options $options) => $options['multiple'] ? [] : null;
 
         $resolver->setDefaults([
             'upload_dir' => $this->projectDir.'/public/uploads/files/',
@@ -160,7 +139,7 @@ class FileUploadType extends AbstractType implements DataMapperInterface
                 $value .= \DIRECTORY_SEPARATOR;
             }
 
-            if (0 !== mb_strpos($value, \DIRECTORY_SEPARATOR)) {
+            if (!str_starts_with($value, $this->projectDir)) {
                 $value = $this->projectDir.'/'.$value;
             }
 
@@ -170,32 +149,26 @@ class FileUploadType extends AbstractType implements DataMapperInterface
 
             return $value;
         });
-        $resolver->setNormalizer('upload_filename', static function (Options $options, $value) {
-            if (\is_callable($value)) {
-                return $value;
+        $resolver->setNormalizer('upload_filename', static function (Options $options, $fileNamePatternOrCallable) {
+            if (\is_callable($fileNamePatternOrCallable)) {
+                return $fileNamePatternOrCallable;
             }
 
-            $generateUuid4 = static function () {
-                return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-                    random_int(0, 0xffff), random_int(0, 0xffff),
-                    random_int(0, 0xffff),
-                    random_int(0, 0x0fff) | 0x4000,
-                    random_int(0, 0x3fff) | 0x8000,
-                    random_int(0, 0xffff), random_int(0, 0xffff), random_int(0, 0xffff)
-                );
-            };
-
-            return static function (UploadedFile $file) use ($value, $generateUuid4) {
-                return strtr($value, [
+            return static function (UploadedFile $file) use ($fileNamePatternOrCallable) {
+                return strtr($fileNamePatternOrCallable, [
                     '[contenthash]' => sha1_file($file->getRealPath()),
                     '[day]' => date('d'),
                     '[extension]' => $file->guessClientExtension(),
                     '[month]' => date('m'),
-                    '[name]' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                    '[name]' => pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME),
                     '[randomhash]' => bin2hex(random_bytes(20)),
-                    '[slug]' => transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)),
+                    '[slug]' => (new AsciiSlugger())
+                        ->slug(pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME))
+                        ->lower()
+                        ->toString(),
                     '[timestamp]' => time(),
-                    '[uuid]' => $generateUuid4(),
+                    '[uuid]' => Uuid::v4()->toRfc4122(),
+                    '[ulid]' => new Ulid(),
                     '[year]' => date('Y'),
                 ]);
             };
@@ -209,17 +182,11 @@ class FileUploadType extends AbstractType implements DataMapperInterface
         });
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
-        return 'easyadmin_fileupload';
+        return 'ea_fileupload';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function mapDataToForms($currentFiles, $forms): void
     {
         /** @var FormInterface $fileForm */
@@ -227,9 +194,6 @@ class FileUploadType extends AbstractType implements DataMapperInterface
         $fileForm->setData($currentFiles);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function mapFormsToData($forms, &$currentFiles): void
     {
         /** @var FormInterface[] $children */

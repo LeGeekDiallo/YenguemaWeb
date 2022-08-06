@@ -135,7 +135,6 @@ class EBookController extends AbstractController
      * @return Response
      * @Route("/e/book/new_ebook", name="new_ebook")
      * @throws Exception
-     * @IsGranted("ROLE_USER")
      */
     public function new_ebook(Request $request, NotifierInterface $notifier, string $ebook_file_dir):Response{
         $ebook = new EBook();
