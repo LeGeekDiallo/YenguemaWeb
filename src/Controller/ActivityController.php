@@ -76,6 +76,32 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Activity $prestS
+     * @param FileUploader $fileUploader
+     * @return Response
+     */
+    #[Route("/activity/edit_prestS_from_app/{id}", name: "edit_prestS")]
+    public function editPrestSFromApp(Request $request, Activity $prestS, FileUploader $fileUploader):Response{
+        $prestS->setActivityName($request->get("prestS_name"))
+            ->setAddress($request->get("address"))
+            ->setCategory("category")
+            ->setCity("city")
+            ->setCreatedAt(new \DateTime('now'))
+            ->setDetails($request->get("details"))
+            ->setEmail($request->get("prestS_email"))
+            ->setPhoneNumber($request->get("phone_number"))
+            ->setMunicipality($request->get("municipality"));
+        if($images = $request->get('activityImages')->getData()){
+            $fileUploader->activityImagesUpload($images, $prestS);
+        }
+        if($this->entityManager->flush()){
+            return $this->json(["resp"=>["edit"=>true]]);
+        }
+
+        return $this->json(["resp"=>["edit"=>false]]);
+    }
+    /**
      * @Route("/activity/new_activity/{id}-new_activity", name="new_activity")
      * @param Request $request
      * @param User $user
@@ -104,6 +130,36 @@ class ActivityController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @param FileUploader $fileUploader
+     * @return Response
+     */
+    #[Route("/activity/new_activity_from_app/{id}", name: "new_prestS_from_app")]
+    public function newActivityFromApp(Request $request, User $user, FileUploader $fileUploader):Response{
+        $prestS = new Activity();
+        $prestS->setActivityName($request->get("prestS_name"))
+            ->setAddress($request->get("address"))
+            ->setCategory("category")
+            ->setCity("city")
+            ->setCreatedAt(new \DateTime('now'))
+            ->setDetails($request->get("details"))
+            ->setEmail($request->get("prestS_email"))
+            ->setUser($user)
+            ->setPhoneNumber($request->get("phone_number"))
+            ->setMunicipality($request->get("municipality"));
+        if($images = $request->get('activityImages')->getData()){
+            $fileUploader->activityImagesUpload($images, $prestS);
+        }
+        $this->entityManager->persist($prestS);
+
+        if($this->entityManager->flush()){
+            return $this->json(["resp"=>["posted"=>true]]);
+        }
+
+        return $this->json(["resp"=>["posted"=>false]]);
+    }
     /**
      * @Route("/activity/delete_activity/{id}", name="delete_activity", methods={"DELETE"})
      * @param Activity $activity
@@ -158,6 +214,21 @@ class ActivityController extends AbstractController
     }
 
     /**
+     * @param string $column
+     * @param string $category
+     * @param ActivityRepository $repos
+     * @return Response
+     */
+    #[Route("/activity/prestS_matches/{column}={category}", name: "prestS_matches")]
+    public function prestSMatchesFromApp(string $column, string $category, ActivityRepository $repos):Response{
+        $prestS = $repos->findByColumnAndValue($column, $category);
+        $docs = array();
+        foreach ($prestS as $prest){
+            $docs[] = $prest->getInfos();
+        }
+        return $this->json(["resp"=>$docs]);
+    }
+    /**
      * @Route("/activity/activities_search", name="activities_search")
      * @param Request $request
      * @param ActivityRepository $repository
@@ -185,6 +256,23 @@ class ActivityController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param ActivityRepository $repos
+     * @return Response
+     */
+    #[Route("/activity/prestS_search_from_app")]
+    public function prestSSearch(Request $request, ActivityRepository $repos):Response{
+        $search = new ActivitySearch();
+        $search->setCategory($request->get("category"))
+            ->setAddress($request->get("address"));
+        $prestS = $repos->findPrestsBySearch($search);
+        $docs = array();
+        foreach ($prestS as $prest){
+            $docs[] = $prest->getInfos();
+        }
+        return $this->json(["resp"=>$docs]);
+    }
     /**
      * @Route("/activity/activities_matches/{id}-{rate_type}", name="activity_rate", requirements={"id"="\d*", "rate_type"="[a-z]*"})
      * @param Activity $activity
@@ -240,5 +328,14 @@ class ActivityController extends AbstractController
             'id'=>$activity->getId(),
             'slug'=>$activity->getSlug()
         ]);
+    }
+
+    /**
+     * @param Activity $prestS
+     * @return Response
+     */
+    #[Route("/activity/details/{id}", name: "prestS_details")]
+    public function getPrestS(Activity $prestS):Response{
+        return $this->json(["resp"=>$prestS->getInfos()]);
     }
 }

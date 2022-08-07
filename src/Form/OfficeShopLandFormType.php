@@ -95,6 +95,9 @@ class OfficeShopLandFormType extends AbstractType
             ->add('more_infos_address', CKEditorType::class, [
                 'required'=>true
             ])
+            ->add('other_infos', CKEditorType::class, [
+                'required'=>false
+            ])
             ->add('more_infos', CKEditorType::class, [
                 'required'=>false
             ])

@@ -22,16 +22,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class SitemapController extends AbstractController
 {
     #[Route('/sitemap.xml', name: 'sitemap', defaults: ['_format'=>'xml'])]
-    public function index(Request $request, ApartmentRepository $repository, HouseVillaRepository $villaRepository,
-                          StudioRepository $studioRepository,
+    public function index(Request                  $request, ApartmentRepository $repository, HouseVillaRepository $villaRepository,
+                          StudioRepository         $studioRepository,
                           OfficeShopLandRepository $shopLandRepository,
-                          ActivityRepository $activityRepository,
-                          AdsRepository $adsRepository,
-                          TeacherRepository $teacherRepository,
-                          JobOfferRepository $offerRepository,
-                          ParkAutoRepository $autoRepository,
-                          RideRepository $rideRepository,
-                          TaxiDriverRepository $taxiDriverRepository): Response
+                          ActivityRepository       $activityRepository,
+                          AdsRepository            $adsRepository,
+                          TeacherRepository        $teacherRepository,
+                          JobOfferRepository       $offerRepository,
+                          ParkAutoRepository       $autoRepository,
+                          RideRepository           $rideRepository,
+                          TaxiDriverRepository     $taxiDriverRepository): Response
     {
         $urls = [];
         $hostname = $request->getSchemeAndHttpHost();

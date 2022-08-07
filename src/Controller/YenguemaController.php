@@ -148,6 +148,13 @@ class YenguemaController extends AbstractController
             }
             $docs["carShops"]=$shops;
         }
+        if(count($trips)){
+            $trips_posted = [];
+            foreach ($trips as $trip){
+                $trips_posted[$trip->getId()] = $trip->getInfos();
+            }
+            $docs["trips_posted"]=$trips_posted;
+        }
         if($prestS!=null){
             $docs["prestS"] = $prestS->getInfos();
         }
@@ -166,7 +173,11 @@ class YenguemaController extends AbstractController
             $docs["aparts_posted"]=$aparts_posted;
         }
         if(count($officeShopLand)){
-            //
+            $offsl_posted = [];
+            foreach ($officeShopLand as $item){
+                $offsl_posted[$item->getAdTitle()] = $item->getInfos();
+            }
+            $docs["officeShopLand_posted"]=$offsl_posted;
         }
         if($taxi){
             $docs["taxi"] = $taxi->getInfos();

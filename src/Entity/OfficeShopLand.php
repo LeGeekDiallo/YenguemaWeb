@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OfficeShopLandRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=OfficeShopLandRepository::class)
  */
-class OfficeShopLand
+class OfficeShopLand implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -101,7 +102,10 @@ class OfficeShopLand
      * @ORM\OneToMany(targetEntity=OfficeShopLandImages::class, mappedBy="osl", orphanRemoval=true, cascade={"persist"})
      */
     private $officeShopLandImages;
-
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $other_infos;
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
@@ -129,7 +133,17 @@ class OfficeShopLand
     {
         return $this->id;
     }
+    public function getOtherInfos(): ?string
+    {
+        return $this->other_infos;
+    }
 
+    public function setOtherInfos(?string $other_infos): self
+    {
+        $this->other_infos = $other_infos;
+
+        return $this;
+    }
     public function getPropertyType(): ?string
     {
         return $this->property_type;
@@ -330,5 +344,21 @@ class OfficeShopLand
 
     public function getSlug():string{
         return (new Slugify())->slugify($this->ad_title);
+    }
+
+    public function getInfos(): array{
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item != "officeShopLandImage") {
+                $infos[$item] = $value;
+            }
+        }
+        $filename = [];
+        foreach ($this->getOfficeShopLandImages() as $image){
+            $filename[] = $image->getFilename();
+        }
+        $infos["images"] = $filename;
+        $infos["imagesURL"] = "https://leyenguema.com/compagnies_logo/";
+        return $infos;
     }
 }

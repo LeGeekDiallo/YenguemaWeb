@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\RideRepository;
+use App\Tools\EntityInfos;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=RideRepository::class)
  */
-class Ride
+class Ride implements EntityInfos
 {
     /**
      * @ORM\Id
@@ -270,5 +271,16 @@ class Ride
     }
     public function getSlug():string{
         return (new Slugify())->slugify($this->departure.' '.$this->destination);
+    }
+
+    public function getInfos(): array
+    {
+        $infos = [];
+        foreach ($this as $item=>$value){
+            if($item != "user" and $item) {
+                $infos[$item] = $value;
+            }
+        }
+        return $infos;
     }
 }

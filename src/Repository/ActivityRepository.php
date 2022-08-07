@@ -7,7 +7,6 @@ use App\Entity\ActivitySearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Activity|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,7 +28,14 @@ class ActivityRepository extends ServiceEntityRepository
             ->setParameter(':criteria',$criteria)
             ->getQuery();
     }
-
+    public function findByColumnAndValue(string $column, string $criteria):array{
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.'.$column.'=:criteria')
+            ->orderBy('a.createdAt', 'DESC')
+            ->setParameter(':criteria',$criteria)
+            ->getQuery()
+            ->getResult();
+    }
     public function findSearchByQuery(ActivitySearch $search):Query{
         $query = $this->createQueryBuilder('a');
         $query->andWhere('a.category=:category')
@@ -46,6 +52,23 @@ class ActivityRepository extends ServiceEntityRepository
                 ':address'=>$search->getAddress()]);
         return $query->getQuery();
 
+    }
+    public function findPrestsBySearch(ActivitySearch $search):array{
+        $query = $this->createQueryBuilder('a');
+        return $query->andWhere('a.category=:category')
+            ->andWhere($query->expr()->orX(
+                $query->expr()->like('a.city', ':city'),
+                $query->expr()->like('a.municipality', ':municipality'),
+                $query->expr()->like('a.address', ':address')
+                    ))
+            ->orderBy('a.createdAt', 'DESC')
+            ->setParameters([
+                ':category'=>$search->getCategory(),
+                ':city'=>$search->getAddress(),
+                ':municipality'=>$search->getAddress(),
+                ':address'=>$search->getAddress()])
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
