@@ -74,7 +74,7 @@ class UploadFile
      */
     public function loadFile($form, string $fileDir):string{
         $filename = "";
-        if($avatar = $form['imageName']->getData()) {
+        if($avatar = $form->get('imageName')->getData()) {
             $filename = $this->imageMove($avatar, $fileDir);
         }
         return $filename;
@@ -87,7 +87,7 @@ class UploadFile
      */
     public function loadAvatarFile($form, string $fileDir):string{
         $filename = "";
-        if($avatar = $form['imageName']->getData()) {
+        if($avatar = $form->get('imageName')->getData()) {
             $filename = $this->avatarMove($avatar, $fileDir);
         }
         return $filename;

@@ -53,7 +53,7 @@ class ApplicationController extends AbstractController
                 $filename = $fileUploader->upload($pdf);
                 $apply->setFilename($filename);
 
-                $this->sendEmailApplication($filename, $job, $user, $mailer, $apply);
+                //$this->sendEmailApplication($filename, $job, $user, $mailer, $apply);
                 $notifier->send(new Notification("Votre candidature a bien été envoyée !", ['browser']));
             }
             $this->entityManager->persist($apply);

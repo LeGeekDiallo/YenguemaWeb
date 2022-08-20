@@ -120,14 +120,14 @@ class YenguemaController extends AbstractController
     }
 
     /**
-     * @param string $email
+     * @param Request $request
      * @param UserRepository $repos
      * @return Response
      */
-    #[Route("/user_infos/user_id={email}", name: "get_the_user_infos")]
-    public function getUserInfos(string $email, UserRepository $repos):Response{
+    #[Route("/user_infos", name: "get_the_user_infos")]
+    public function getUserInfos(Request $request, UserRepository $repos):Response{
         $docs = array();
-        $user = $repos->findOneBy(["email"=>$email]);
+        $user = $repos->findOneBy(["email"=>$request->get("email")]);
         $prestS = $user->getActivity();
         $ads = $user->getAds();
         $aparts = $user->getApartments();
@@ -140,11 +140,11 @@ class YenguemaController extends AbstractController
         $officeShopLand = $user->getOfficeShopLands();
         $carShops = $user->getParkAutos();
         $trips = $user->getRides();
-        
+        $docs["user_infos"] = $user->getInfos();
         if(count($carShops)){
             $shops = [];
             foreach ($carShops as $carShop){
-                $shops[$carShop->getId()] = $carShop->getInfos();
+                $shops[] = $carShop->getInfos();
             }
             $docs["carShops"]=$shops;
         }
@@ -161,21 +161,21 @@ class YenguemaController extends AbstractController
         if(count($ads)){
             $ads_posted = [];
             foreach ($ads as $ad){
-                $ads_posted[$ad->getAdTitle()]= $ad->getInfos();
+                $ads_posted[]= $ad->getInfos();
             }
             $docs["ads_posted"]=$ads_posted;
         }
         if(count($aparts)){
             $aparts_posted = [];
             foreach ($aparts as $apart){
-                $aparts_posted[$apart->getAdTitle()] = $apart->getInfos();
+                $aparts_posted[] = $apart->getInfos();
             }
             $docs["aparts_posted"]=$aparts_posted;
         }
         if(count($officeShopLand)){
             $offsl_posted = [];
             foreach ($officeShopLand as $item){
-                $offsl_posted[$item->getAdTitle()] = $item->getInfos();
+                $offsl_posted[] = $item->getInfos();
             }
             $docs["officeShopLand_posted"]=$offsl_posted;
         }
@@ -185,21 +185,21 @@ class YenguemaController extends AbstractController
         if(count($studios)){
             $studios_posted = [];
             foreach ($studios as $studio){
-                $studios_posted[$studio->getAdTitle()] = $studio->getInfos();
+                $studios_posted[] = $studio->getInfos();
             }
             $docs["studios_posted"]=$studios_posted;
         }
         if(count($houses)){
             $houses_posted = [];
             foreach ($houses as $house){
-                $houses_posted[$house->getAdTitle()] = $house->getInfos();
+                $houses_posted[] = $house->getInfos();
             }
             $docs["houses_posted"]=$houses_posted;
         }
         if(count($jobsPosted)){
             $jobs_posted = [];
             foreach ($jobsPosted as $job){
-                $jobs_posted[$job->getJobTitle()] = $job->getInfos();
+                $jobs_posted[] = $job->getInfos();
             }
             $docs["jobs_posted"] = $jobs_posted;
         }

@@ -10,6 +10,7 @@ use App\Form\ActivityFormType;
 use App\Form\ActivitySearchFormType;
 use App\Notification\NewActivityNotification;
 use App\Repository\ActivityRepository;
+use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -136,11 +137,12 @@ class ActivityController extends AbstractController
      * @param FileUploader $fileUploader
      * @return Response
      */
-    #[Route("/activity/new_activity_from_app/{id}", name: "new_prestS_from_app")]
-    public function newActivityFromApp(Request $request, User $user, FileUploader $fileUploader):Response{
+    #[Route("/activity/new_activity_from_app", name: "new_prestS_from_app")]
+    public function newActivityFromApp(Request $request, FileUploader $fileUploader, UserRepository $repos):Response{
         $prestS = new Activity();
+        $user = $repos->findOneBy(["email"=>$request->get("email")]);
         $prestS->setActivityName($request->get("prestS_name"))
-            ->setAddress($request->get("address"))
+            ->setAddress($request->get("district"))
             ->setCategory("category")
             ->setCity("city")
             ->setCreatedAt(new \DateTime('now'))
@@ -149,16 +151,16 @@ class ActivityController extends AbstractController
             ->setUser($user)
             ->setPhoneNumber($request->get("phone_number"))
             ->setMunicipality($request->get("municipality"));
-        if($images = $request->get('activityImages')->getData()){
+        if($images = $request->get('images')->getData()){
             $fileUploader->activityImagesUpload($images, $prestS);
         }
         $this->entityManager->persist($prestS);
 
         if($this->entityManager->flush()){
-            return $this->json(["resp"=>["posted"=>true]]);
+            return $this->json(["resp"=>["status"=>true]]);
         }
 
-        return $this->json(["resp"=>["posted"=>false]]);
+        return $this->json(["resp"=>["status"=>false]]);
     }
     /**
      * @Route("/activity/delete_activity/{id}", name="delete_activity", methods={"DELETE"})

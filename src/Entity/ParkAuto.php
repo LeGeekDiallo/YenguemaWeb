@@ -280,13 +280,13 @@ class ParkAuto implements EntityInfos
         }
         $vehicles = [];
         foreach ($this->getVehicles() as $vehicle){
-            $vehicles[$vehicle->getId()] = $vehicle->getInfos();
+            $vehicles[] = $vehicle->getInfos();
         }
         $services = [];
         $shops_services = $this->getServices();
         if(count($shops_services)){
             foreach ($shops_services as $service){
-                $services[$service->getId()] = $service->getServiceName();
+                $services[] = $service->getServiceName();
             }
         }
         $infos["vehicles"] = $vehicles;

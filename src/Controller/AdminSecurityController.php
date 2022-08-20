@@ -9,8 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminSecurityController extends AbstractController
@@ -48,17 +48,17 @@ class AdminSecurityController extends AbstractController
     /**
      * @Route("/security/admin_register", name="admin_register")
      * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
+     * @param UserPasswordHasherInterface $encoder
      * @return Response
      */
-    public function admin_register(Request $request, UserPasswordEncoderInterface $encoder):Response{
+    public function admin_register(Request $request, UserPasswordHasherInterface $encoder):Response{
         $admin = new Admin();
         $form = $this->createForm(AdminRegisterFormType::class, $admin);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $admin->setRoles($admin->getRoles());
             $admin->setRegisterAt(new \DateTime());
-            $password_hash = $encoder->encodePassword($admin, $admin->getPassword());
+            $password_hash = $encoder->hashPassword($admin, $admin->getPassword());
             $admin->setPassword($password_hash);
             $this->entityManager->persist($admin);
             $this->entityManager->flush();

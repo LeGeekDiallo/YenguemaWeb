@@ -68,7 +68,6 @@ class JobController extends AbstractController
             $this->entityManager->persist($jobOffer);
             $this->entityManager->flush();
             $notifier->send(new Notification("Votre annonce a bien été ajoutée !", ['browser']));
-
             return $this->redirectToRoute('profile');
         }
 
@@ -97,7 +96,6 @@ class JobController extends AbstractController
             }
             $this->entityManager->flush();
             $notifier->send(new Notification("Votre annonce a bien été modifiée !", ['browser']));
-
             return $this->redirectToRoute('profile');
         }
         return $this->render('/job/edit_job_offer_ad.html.twig', [

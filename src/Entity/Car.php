@@ -436,7 +436,7 @@ class Car implements EntityInfos
         $advantages = [];
 
         foreach ($carAdges as $advantage){
-            $advantages[$advantage->getId()] = $advantage->getAdvantageName();
+            $advantages[] = $advantage->getAdvantageName();
         }
         $infos["images"] = $filename;
         $infos["advantages"] = $advantages;

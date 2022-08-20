@@ -708,4 +708,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->getEmail();
     }
+
+    public function getInfos():array{
+        $infos = [
+            "name"=> $this->getUsername(),
+            "email"=> $this->getEmail(),
+            "phoneNumber"=>$this->getPhoneNumber(),
+            "gender"=>$this->getSexe(),
+            "role"=>$this->getRoles()[0],
+        ];
+
+        if($avatar = $this->getUserAvatar()){
+            $filename = $avatar->getImageName();
+            $infos["avatar"] = $filename;
+        }else{
+            $infos["avatar"] = "";
+        }
+        $infos["avatarURL"] = "https://leyenguema.com/images/users_avatar/";
+        return $infos;
+    }
 }

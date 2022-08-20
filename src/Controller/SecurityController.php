@@ -103,6 +103,39 @@ class SecurityController extends AbstractController
             'form'=>$form->createView(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param string $avatarDir
+     * @param UserRepository $repos
+     * @return Response
+     * @throws Exception
+     */
+    #[Route("/security/upload_user_avatar", name: "update_avatar")]
+    public function updateUserAvatarFromApp(Request $request, string $avatarDir, UserRepository $repos):Response{
+        $user = $repos->findOneBy(["email"=>$request->get("user_email")]);
+        $avatar = $user->getUserAvatar();
+
+        if($avatar != null){
+            $oldImage = $avatar->getImageName();
+            $avatar->setUpdateAt(new \DateTime('now'));
+            $uploadFile = new UploadFile();
+            $filename = $uploadFile->uploadFile($request, $oldImage, $avatarDir);
+            $avatar->setImageName($filename);
+            $this->entityManager->flush();
+            return $this->json(["resp"=>true]);
+        }
+        $userAvatar = new UserAvatar();
+        $userAvatar->setUser($user);
+        $userAvatar->setUpdateAt(new \DateTime('now'));
+        $uploadFile = new UploadFile();
+        $filename = $uploadFile->loadFile($request, $avatarDir);
+        $userAvatar->setImageName($filename);
+        $this->entityManager->persist($userAvatar);
+        $this->entityManager->flush();
+
+        return $this->json(["resp"=>true]);
+    }
     /**
      * @Route("/security/upload_user_avatar/{email}", name="new_avatar")
      * @param Request $request

@@ -67,7 +67,7 @@ class AdsController extends AbstractController
             $this->entityManager->persist($ad);
             $this->entityManager->flush();
             $notifier->send(new Notification("Votre annonce a bien été ajoutée !", ['browser']));
-            $notifier->send(new NewAdsNotification($user), ...$notifier->getAdminRecipients());
+            //$notifier->send(new NewAdsNotification($user), ...$notifier->getAdminRecipients());
             return $this->redirectToRoute('profile');
         }
         return $this->render('ads/new_ad.html.twig', [
