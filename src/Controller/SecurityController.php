@@ -113,14 +113,14 @@ class SecurityController extends AbstractController
      */
     #[Route("/security/upload_user_avatar", name: "update_avatar")]
     public function updateUserAvatarFromApp(Request $request, string $avatarDir, UserRepository $repos):Response{
-        $user = $repos->findOneBy(["email"=>$request->get("user_email")]);
+        $user = $repos->findOneBy(["email"=>$_POST["user_email"]]);
         $avatar = $user->getUserAvatar();
-
+        $file = $_FILES["imageName"];
         if($avatar != null){
             $oldImage = $avatar->getImageName();
             $avatar->setUpdateAt(new \DateTime('now'));
             $uploadFile = new UploadFile();
-            $filename = $uploadFile->uploadFile($request, $oldImage, $avatarDir);
+            $filename = $uploadFile->updateUserAvatarFromApp($file, $oldImage, $avatarDir);
             $avatar->setImageName($filename);
             $this->entityManager->flush();
             return $this->json(["resp"=>true]);
@@ -129,7 +129,7 @@ class SecurityController extends AbstractController
         $userAvatar->setUser($user);
         $userAvatar->setUpdateAt(new \DateTime('now'));
         $uploadFile = new UploadFile();
-        $filename = $uploadFile->loadFile($request, $avatarDir);
+        $filename = $uploadFile->loadFileFromApp($file, $avatarDir);
         $userAvatar->setImageName($filename);
         $this->entityManager->persist($userAvatar);
         $this->entityManager->flush();

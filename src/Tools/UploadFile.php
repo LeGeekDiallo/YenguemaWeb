@@ -79,6 +79,15 @@ class UploadFile
         }
         return $filename;
     }
+    public function loadFileFromApp($file, string $fileDir):string{
+        return $this->imageMove2($file, $fileDir);
+    }
+    public function updateUserAvatarFromApp($file, string $olfImageName, string $fileDir):string{
+        $deleteOldImageFile = new DeleteFile($olfImageName, $fileDir);
+        $filename = $this->loadFileFromApp($file, $fileDir);
+        $deleteOldImageFile->deleteFile();
+        return $filename;
+    }
     /**
      * @param $form
      * @param string $fileDir
@@ -150,6 +159,22 @@ class UploadFile
             $this->resize($fileDir.'/'.$filename);
             return $filename;
         }catch (FileException $e){}
+        return "";
+    }
+
+    /**
+     * @param $image
+     * @param string $fileDir
+     * @return string
+     */
+    private function imageMove2($image, string $fileDir):string{
+        $filename = basename($image["name"]);
+        try{
+            move_uploaded_file($image["tmp_name"], "$fileDir/$filename");
+            $this->resize($fileDir.'/'.$filename);
+            return $filename;
+        }catch (FileException $e){}
+        return  "";
     }
 
 
@@ -168,6 +193,7 @@ class UploadFile
         }
         return $filename;
     }
+
 
     public function loadFiles($form, string $fileDir, Ads $ads){
         if($images = $form['adPhotos']->getData()){
